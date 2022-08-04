@@ -12,5 +12,6 @@
 
 	<div>map으로 가기</div>
 	<button onclick='location.href="map.go"'>GO</button>
+	
 </body>
 </html>

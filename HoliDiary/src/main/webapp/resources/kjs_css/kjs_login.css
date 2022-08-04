@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#content_login{
+	position: relative;
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#login_box{
+	position: absolute;
+	border: 3px solid #6667AB;
+	border-radius: 10px;
+	width: 400px;
+	height: 200px;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -200px;
+	text-align: center;
+}
+
+.login_id{
+	position: relative;
+	width: 200px;
+	height: 50px;
+	margin: 5px auto;	
+}
+
+.login_id input{
+	position: absolute;
+	width: 180px;
+	height: 30px;
+	top: 50%;
+	left: 50%;
+	margin-top: -15px;
+	margin-left: -90px;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 13pt;
+}
+
+.login_pw{
+	position: relative;
+	width: 200px;
+	height: 50px;
+	margin: 5px auto;	
+	text-align: center;
+}
+
+.login_pw input{
+	position: absolute;
+	width: 180px;
+	height: 30px;
+	top: 50%;
+	left: 50%;
+	margin-top: -15px;
+	margin-left: -90px;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 13pt;
+}
+
+.login_btn{
+	width: 150px;
+	height: 40px;
+	margin: 10px auto;
+}
+
+.login_btn button{
+	width: 100%;
+	height: 100%;
+	font-size: 15pt;
+	font-family: 'GangwonEdu_OTFBoldA';
+	background-color: #6667AB;
+	color: white;
+	cursor: pointer;
+}
+
+.social_loing_box{
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	
+}
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.main.js.UserMapper">
+
+	<insert id="join" parameterType="com.project.main.js.User">
+		insert into USER_TABLE values(#{userID}, #{userPW}, #{userName}, #{userPhoneNumber}, #{userEmail}, #{userImg}, #{userDiaryUrl}, #{userNickname})
+	</insert>
+	
+	<select id="getUserByID" resultType="com.project.main.js.User">
+		select * from user_table where userID = #{userID}
+	</select>
+
+
+</mapper>

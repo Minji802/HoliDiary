@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="resources/sej_css/index.css">
+<link rel="stylesheet" href="resources/kjs_css/kjs_login.css">
+<link rel="stylesheet" href="resources/kjs_css/kjs_join.css">
 <script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/jquery.js"></script>
 <script type="text/javascript" src="resources/js/sej_home.js"></script>
@@ -22,8 +24,8 @@
 			<a href="">Best 홀리</a>
 			<a href="">아이템샵</a>
 			<!-- 임시 연결 용 링크 입니다 -->
-			<a href="">로그인</a>
-			<a href="">회원가입</a>
+			<a href="login.go">로그인</a>
+			<a href="join.go">회원가입</a>
 	</div>
 	
 	<!-- HEADER 영역 -->
