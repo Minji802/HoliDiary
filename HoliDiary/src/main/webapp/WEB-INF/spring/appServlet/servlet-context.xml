@@ -28,7 +28,7 @@
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@HOLIDIARY_HIGH?TNS_ADMIN=C:\Wallet_HOLIDIARY\" />
+			value="jdbc:oracle:thin:@HOLIDIARY_HIGH?TNS_ADMIN=C:/Wallet_HOLIDIARY" />
 		<beans:property name="username" value="ADMIN" />
 		<beans:property name="password" value="Holidiary123" />
 	</beans:bean>
@@ -45,6 +45,7 @@
 			<beans:list>
 				<beans:value>classpath:testMapper.xml</beans:value>
 				<beans:value>classpath:userMapper.xml</beans:value>
+				<beans:value>classpath:mapMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

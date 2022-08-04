@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>diary 윈도우 열기</div>
-	<button onclick=popup()>popup diary</button>
-
-	<div>map으로 가기</div>
-	<button onclick='location.href="map.go"'>GO</button>
-	
+	<div class="main_slider">
+		<div><img src="resources/sej_img/slider/1.jpg"></div>
+		<div><img src="resources/sej_img/slider/8.jpg"></div>
+		<div><img src="resources/sej_img/slider/다운로드.jpg"></div>
+		<div><img src="resources/sej_img/slider/AA.14077862.1.jpg"></div>
+		<div><img src="resources/sej_img/slider/AA.14077862.1.jpg"></div>
+	</div>
 </body>
 </html>

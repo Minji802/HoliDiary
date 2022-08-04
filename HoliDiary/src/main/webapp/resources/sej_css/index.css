@@ -84,6 +84,7 @@ body {
 	width: 40px;
 	height: 40px;
 	margin-top: 96px;
+	margin-left: 30px;
 }
 .top_menu_img {
 	width: 40px;
@@ -95,32 +96,83 @@ body {
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
-  background-color: #111;
+  right: 0;
+  background-color: #6667AB;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
 }
-#menu_bar a {
-  padding: 8px 8px 8px 32px;
+/* #menu_bar label {
+	width: 300px;
+	display: block;
+	border-bottom: 1px solid #FFDE59;
+	padding-bottom: 20px;
+} */
+
+#menu_bar .menu_bar_li {
+  /* padding: 20px 8px 8px 40px; */
+  text-align: center;
+  margin-left: 45px;
+  margin-bottom: 45px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #FFDE59;
   display: block;
   transition: 0.3s;
+  font-family: 'GangwonEdu_OTFBoldA';
+  font-size: 27px;
+  width: 200px; 
 }
+.menu_bar_diary_li {
+	text-decoration: none;
+	font-size: 25px;
+  	color: #FFDE59;
+  	font-family: 'GangwonEdu_OTFBoldA';
+  	text-align: center;
+}
+.menu_bar_border {
+	display: block;
+	border-bottom: 1px solid #FFDE59;
+	padding-top: 50px;
+	margin-bottom: 80px;
+}
+.menu_bar_li_first {
+  text-align: center;
+  margin-left: 45px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #FFDE59;
+  display: block;
+  transition: 0.3s;
+  font-family: 'GangwonEdu_OTFBoldA';
+  font-size: 30px;
+  width: 200px; 
+}
+/* .menu_bar_diary_li p {
+	margin-top: -5px;
+} */
 #menu_bar .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  color: #FFDE59;
+  opacity: 0.4;
+  text-decoration: none;
 }
 .menu_bar_logo {
 	width: 230px;
 	height: 100px;
+	margin-left: 35px;
 }
-
+.menu_diary_img {
+	width: 130px;
+	height: 130px;
+	margin-left: 90px;
+	margin-top: 50px;
+	/* margin-bottom: 30px; */
+}
 /* Main 콘텐츠 영역  */
 #main_place {
 	width: 100%;

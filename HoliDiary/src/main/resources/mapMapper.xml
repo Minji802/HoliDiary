@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.main.mj.MapMapper">
+
+	<select id="showAllMemo" resultType="com.project.main.mj.MapMemo">
+		select * from map_table
+	</select>
+
+
+	<insert id="regInfo" parameterType="com.project.main.mj.MapMemo">
+		insert into map_table values(map_table_seq.nextval, #{map_placeName}, #{map_infoMemo})
+	</insert>
+
+</mapper>
