@@ -5,170 +5,120 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/sm_popup1.css">
+<link rel="stylesheet" href="resources/sm_css/sm_popup.css">
+<link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet">
+<script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
 </head>
 <body>
 
-<div class="blog">
- <div class="blog-part is-menu">
-  <a href="#" class="blog-menu">
-   Work
-   <svg fill="none" stroke="currentColor" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up-right" viewBox="0 0 24 24">
-    <path d="M7 17L17 7M7 7h10v10" />
-   </svg>
-  </a>
-  <a href="#" class="blog-menu">Studio</a>
-  <a href="#" class="blog-menu">Blog</a>
-  <a href="#" class="blog-menu">Contact</a>
-  <a href="#" class="blog-menu mention">@MagazineDope</a>
-  <a href="#" class="blog-menu subscribe">Subscribe</a>
- </div>
- <div class="blog-header blog-is-sticky">
-  <div class="blog-article header-article">
-   <div class="blog-big__title">Self</div>
-   <div class="blog-menu rounded small-title">Pinned Issue</div>
+<div class="app-wrapper">
+  <div class="left-area hide-on-mobile">
+    <div class="app-header">
+	</div>
+    <div class="left-area-content">
+    	
+      <div class="profile">
+        	<a><img src="https://images.unsplash.com/photo-1496340672773-0b29c9b17ed2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" alt=""></a>
+      <details>
+          	<summary><span class="profile-name">minji park</span></summary>
+          	<p class="profile-introduce">소개글칸입니다. 가나다라마바사아자차카타파하</p>
+      </details>
+      </div>
+      
+      <div class="page-link-list">
+        <a href="popupHomeGo" class="item-link" id="pageLink">
+          <svg class="link-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-home" viewBox="0 0 24 24">
+            <defs />
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            <path d="M9 22V12h6v10" /></svg>
+          Home</a>
+        <a href="popupScheduleGo" class="item-link" id="pageLink">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+          </svg>
+          Schedule</a>
+         <a href="#" class="item-link" id="pageLink">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play">
+            <path d="M5 3l14 9-14 9V3z" />
+          </svg>
+          Map</a>
+       </div>
+       <div class="list-header">
+        <span class="category-item">Public</span>
+       
+      </div>
+       <div>
+        <a href="#" class="item-link" id="pageLink">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+          </svg>
+          2020 Trip</a>
+        <a href="#" class="item-link" id="pageLink">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+          </svg>
+          2021 Trip</a>
+        <a href="#" class="item-link" id="pageLink">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+          </svg>
+          2022 Trip</a>
+      </div>
+      <div class="list-header">
+        <span class="category-item">Private</span>
+        
+      </div>
+      <a href="#" class="item-link" id="pageLink">
+        <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0110 0v4" />
+        </svg>
+        Personal 1</a>
+      <a href="#" class="item-link" id="pageLink">
+        <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0110 0v4" />
+        </svg>
+        Personal 2</a>
+      
+      
+    </div>
+    <button class="btn-invite" onclick="updateMyPopup">설정</button>
   </div>
-  <div class="blog-article page-number">
-   NO. 01
+  <div class="right-area">
+    <div class="right-area-upper">
+      <button class="menu-button">
+        <svg width="24" height="24" fill="none" stroke="#51a380" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <defs />
+          <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+      </button>
+      <div class="search-part-wrapper">
+
+        <div class="diary-title-name">다이어리 타이틀</div>
+        
+        <button class="more-button">
+          <svg width="24" height="20" fill="none" stroke="#51a380" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-more-vertical">
+            <defs />
+            <circle cx="12" cy="12" r="1" />
+            <circle cx="12" cy="5" r="1" />
+            <circle cx="12" cy="19" r="1" />
+          </svg>
+        </button>
+        
+      </div>
+      <div class="action-buttons-wrapper">
+        <button class="action-buttons btn-upload">포스트 작성1</button>
+      </div>
+    </div>
+    
+    <div class="page-right-content"> <!-- 우측 메인 컨텐트 페이지 -->
+    
+    	<jsp:include page="${contentPage }"></jsp:include>
+			
+    </div>
+    
   </div>
- </div>
- <div class="blog-header-container">
-  <div class="blog-header">
-   <div class="blog-article header-article">
-    <div class="blog-big__title">Esteem</div>
-    <div class="blog-menu small-title date">12.06.2021</div>
-   </div>
-   <div class="blog-article">
-    <img src="https://images.unsplash.com/photo-1496629062893-b0f566065d44?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
-    <h2>Sharing The <span>Widespread</span> Acclaim About Motivation</h2>
-    <div class="blog-detail">
-     <span>By Richard Carnation</span>
-     <span>5 Min Read</span>
-    </div>
-    <p>Blonde received widespread acclaim, with critics praising Ocean's introspective lyrics and the album's unconventional</p>
-    <a href="#">
-     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-down-right" viewBox="0 0 24 24">
-      <path d="M15 10l5 5-5 5" />
-      <path d="M4 4v7a4 4 0 004 4h12" />
-     </svg>
-     See More
-    </a>
-   </div>
-  </div>
-  <div class="blog-header">
-   <div class="blog-article header-article">
-    <div class="blog-big__title">Love</div>
-    <div class="blog-menu small-title date">12.06.2021</div>
-   </div>
-   <div class="blog-article">
-    <img src="https://images.unsplash.com/photo-1529255484355-cb73c33c04bb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTh8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
-    <h2>Talking About <span>Vulnerability</span> During Quarantine</h2>
-    <div class="blog-detail">
-     <span>By Tom Hiddleston</span>
-     <span>5 Min Read</span>
-    </div>
-    <p>Having traveled to Turkey multiple times, with critics praising Ocean's introspective lyrics and the album's unconventional</p>
-    <a href="#">
-     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-down-right" viewBox="0 0 24 24">
-      <path d="M15 10l5 5-5 5" />
-      <path d="M4 4v7a4 4 0 004 4h12" />
-     </svg>
-     See More
-    </a>
-   </div>
-  </div>
-  <div class="blog-header">
-   <div class="blog-article header-article">
-    <div class="blog-big__title">Control</div>
-    <div class="blog-menu small-title date">12.06.2021</div>
-   </div>
-   <div class="blog-article">
-    <img src="https://images.unsplash.com/photo-1616248249518-b16013cd4e42?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTkzfHxibGFjayUyMGFuZCUyMHdoaXRlfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
-    <h2>How 2020 Changed <span>Understanding</span> Of Mental Health</h2>
-    <div class="blog-detail">
-     <span>By Scarlett Witch</span>
-     <span>5 Min Read</span>
-    </div>
-    <p>Time is defines ad the indefinete continued progress, with critics praising Ocean's introspective lyrics and the album's</p>
-    <a href="#">
-     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-down-right" viewBox="0 0 24 24">
-      <path d="M15 10l5 5-5 5" />
-      <path d="M4 4v7a4 4 0 004 4h12" />
-     </svg>
-     See More
-    </a>
-   </div>
-  </div>
- </div>
- <div class="blog-part right-blog">
-  <marquee width="100%" direction="left">
-   <span>Now And Then You Miss It Sounds Make You Cry</span>
-   <span>Now In - MoMa Sharing Exhibition NOW</span>
-   <span>NYC Opens After Long Lockdown Check</span>
-  </marquee>
-  <div class="blog-right-title-container">
-   <div class="blog-right-title">
-    Featured Articles
-   </div>
-   <div class="blog-menu rounded">See All</div>
-  </div>
-  <div class="blog-right">
-   <div class="blog-right-container">
-    <div class="blog-title-date">
-     <div class="blog-right-page">1</div>
-     <div class="date">12.06.2021</div>
-    </div>
-    <div class="blog-right-page-title">Blonde - Widespread Acclaim</div>
-    <div class="blog-right-page-subtitle">Blonde received widespread acclaim, with critics praising Ocean's introspective lyrics and the album's</div>
-   </div>
-   <div class="blog-right-container">
-    <div class="blog-title-date">
-     <div class="blog-right-page">2</div>
-     <div class="date">12.06.2021</div>
-    </div>
-    <div class="blog-right-page-title">Introspective Lyrics and Beats</div>
-    <div class="blog-right-page-subtitle">When we toured Scotland we stopped at several selft-sealing hpuses because hotels would</div>
-   </div>
-   <div class="blog-right-container">
-    <div class="blog-title-date">
-     <div class="blog-right-page">3</div>
-     <div class="date">12.06.2021</div>
-    </div>
-    <div class="blog-right-page-title">The Language Of Gris: Comples Beauty Of Monochrome</div>
-    <div class="blog-right-page-subtitle">The interior concept was conceived of by Dutch archtitect Studio Anne Holtrop who cleverly emulated</div>
-   </div>
-   <div class="blog-right-container">
-    <div class="blog-title-date">
-     <div class="blog-right-page">4</div>
-     <div class="date">12.06.2021</div>
-    </div>
-    <div class="blog-right-page-title">A24 IS LAUNCHING ITS OWN BEAUTY BRAND</div>
-    <div class="blog-right-page-subtitle">Blonde received widespread acclaim, with critics praising Ocean's introspective lyrics and the album's</div>
-   </div>
-   <div class="blog-right-container">
-    <div class="blog-title-date">
-     <div class="blog-right-page">5</div>
-     <div class="date">12.06.2021</div>
-    </div>
-    <div class="blog-right-page-title">Elon Musk's SpaceX is launching a moon satellite</div>
-    <div class="blog-right-page-subtitle">The interior concept was conceived of by Dutch archtitect Studio Anne Holtrop who cleverly emulated</div>
-   </div>
-   <div class="blog-right-container">
-    <div class="blog-title-date">
-     <div class="blog-right-page">6</div>
-     <div class="date">12.06.2021</div>
-    </div>
-    <div class="blog-right-page-title">What Happens When You Leave Your Old life Behind</div>
-    <div class="blog-right-page-subtitle">The interior concept was conceived of by Dutch archtitect Studio Anne Holtrop who cleverly emulated</div>
-   </div>
-   <div class="circle">
-    <div class="circle-title">Leave Your Old Life Behind</div>
-    <div class="circle-subtitle">Don't try to be like someone else, be yourself. Be secure with yourself.</div>
-    <div class="circle-footer">Explore</div>
-   </div>
-  </div>
- </div>
-</div>
 
 </body>
 </html>

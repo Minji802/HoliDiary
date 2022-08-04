@@ -18,6 +18,8 @@
 	</div>
 
 	<div id="map"></div>
+	
+	<p>
 
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb4vTBtJ5eI4DOAJXj4ov7YSdM066-PQ0&libraries=places&callback=initMap&v=weekly"
