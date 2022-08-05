@@ -26,13 +26,18 @@
 				<div class="login_btn">
 					<button type="button" onclick="location.href='join.go'">회원가입</button>
 				</div>
+				<div class="">
+					<a href="">아이디 찾기</a>
+				</div>
+				<div class="">
+					<a href="">비밀번호 찾기</a>
+				</div>
 			</div>
 		</form>
 		<!-- 소셜 로그인 기능 -->
-		<div class="social_loing_box">
-			${r }
+		<div class="social_login_box">
+			<button onclick="loginWithKakao()"><img src="./resources/kjs_img/kakao_login_medium_narrow.png"></button>
 			네이버
-			카카오
 		</div>
 	
 

@@ -64,5 +64,22 @@ public class UserController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/social.go", method = RequestMethod.GET)
+	public String socialGo(HttpServletRequest req) {
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/token.get", method = RequestMethod.GET)
+	public String tokenGet(HttpServletRequest req) {
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		
+		return "index";
+	}
+	
 
 }

@@ -22,7 +22,6 @@
 }
 
 .after_login_box{
-	border: 1px solid black;
   text-align: center;
   margin-left: 45px;
   margin-bottom: 45px;
@@ -32,6 +31,22 @@
   transition: 0.3s;
   font-family: 'GangwonEdu_OTFBoldA';
   width: 200px; 
+}
+
+.logout_box{
+	text-align: center;
+}
+
+.logout_box button{
+	height: 30px;
+	background-color: #FFDE59;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 15pt;
+	color: #6667AB;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	
 }
 
 
@@ -110,10 +125,20 @@
 	cursor: pointer;
 }
 
-.social_loing_box{
+.social_login_box{
+	border: 1px solid black;
 	position: absolute;
-	top: 70%;
+	width: 200px;
+	height: 200px;
+	top: 50%;
 	left: 50%;
+	margin-left: -100px;
 	
+}
+
+.social_login_box button{
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
 }
 
