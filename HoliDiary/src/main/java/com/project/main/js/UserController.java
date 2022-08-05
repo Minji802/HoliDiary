@@ -65,6 +65,7 @@ public class UserController {
 		return "index";
 	}
 	
+	// 카카오톡 인가코드 및 토큰 얻기
 	@RequestMapping(value = "/social.go", method = RequestMethod.GET)
 	public String socialGo(HttpServletRequest req) {
 		uDAO.loginCheck(req);
@@ -73,13 +74,6 @@ public class UserController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/token.get", method = RequestMethod.GET)
-	public String tokenGet(HttpServletRequest req) {
-		uDAO.loginCheck(req);
-		req.setAttribute("contentPage", "home.jsp");
-		
-		return "index";
-	}
 	
 
 }
