@@ -1,15 +1,8 @@
 @charset "UTF-8";
-/* .slick-dots {
-	list-style: none;
-}
-.slick-dots li{
-	float: left;
-} */
-/* .slick-loading .slick-list
-{
-    background: #fff url('./ajax-loader.gif') center center no-repeat;
-} */
-.slick-slider {
+
+/* Main Slider */
+
+.slick-slide {
 	
 }
 .main_slider {
@@ -22,27 +15,31 @@
 	height: 500px;
 }
 .slick-slider img {
-	width: 1200px;
-	height: 500px;
+/* 	width: 1200px;
+	height: 500px; */
+	width: 100%;
+    height: 500px;
+    object-fit: fill;
+    object-position: center;
+	border-radius: 10px;
+}
+.slick-prev, .slick-next {
+	visibility: hidden;
 }
 .slick-dotted.slick-slider
 {
-    margin-bottom: 30px;
+    margin-bottom: 100px;
 }
 
 .slick-dots
 {
     position: absolute;
-    bottom: -25px;
-
+    bottom: -2px;
     display: block;
-
     width: 100%;
     padding: 0;
     margin: 0;
-
     list-style: none;
-
     text-align: center;
 }
 .slick-dots li
@@ -113,3 +110,83 @@
     opacity: .75;
     color: black;
 }
+
+/* Second slider */
+.second_slider_title {
+	text-align: left;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 30px;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 15px;
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+.second_slider_title_img {
+	width: 50px;
+	height: 50px;
+	position: relative;
+	top: 15px;
+	left: -10px;
+}
+.second_slider_title_border {
+	border-top: 5px dashed #FFDE59;
+	width: 910px;
+	display: block;
+	position: relative;
+	top: -20px;
+	left: 290px;
+}
+.swiper-container 
+{
+	width: 1200px;
+	overflow: visible;
+}
+.swiper-slide 
+{
+	opacity:0.4; transition:opacity 0.3s;
+	overflow: hidden;
+}
+.swiper-slide-active,
+.swiper-slide-active + .swiper-slide,
+.swiper-slide-active + .swiper-slide + .swiper-slide,
+.swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide 
+{
+	opacity:1
+}
+.swiper-container img {
+    width: 100%;
+    height: 300px;
+    object-fit: fill;
+    object-position: center;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px #c5c5c5;
+    transition: transform 0.3s;
+}
+.swiper-slide img:hover {
+   transform: scale(1.2);
+  -webkit-transform: scale(1.2); /* 크롬, 사파리 */
+  -moz-transform: scale(1.2);  /* 파이어폭스 */
+  -ms-transform: scale(1.2); /* IE */
+  -o-transform: scale(1.2);  /* 오페라 */
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.swiper-button-next {
+  background: url(resources/sej_img/slider/free-icon-right.png) no-repeat;
+  background-size: 50% auto;
+  background-position: center;
+}
+
+.swiper-button-prev {
+  background: url(resources/sej_img/slider/free-icon-right.png) no-repeat;
+} 
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev

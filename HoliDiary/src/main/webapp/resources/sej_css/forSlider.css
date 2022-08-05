@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.swiper-button-next {
+  background: url(resources/sej_img/slider/free-icon-right.png) no-repeat;
+  background-size: 40px 40px;
+  background-position: center;
+  width: 50px;
+  right: 0;
+}
+
+.swiper-button-prev {
+  background: url(resources/sej_img/slider/free-icon-right.png) no-repeat;
+} 
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
