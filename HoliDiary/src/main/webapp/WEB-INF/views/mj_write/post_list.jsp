@@ -30,6 +30,13 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<c:if test="${curPage != 1 }">
+		<a href="post-list.change.page?page=${curPage - 1 }" id="postL">&lt;</a>
+	</c:if>
+	<c:if test="${curPage != pageCount }">
+		<a href="post-list.change.page?page=${curPage + 1 }" id="postR">&gt;</a>
+	</c:if>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
