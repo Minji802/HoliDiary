@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/mj_css/postDetail.css">
+<link rel="stylesheet" href="mj_css/postDetail.css">
 </head>
 <body>
 
@@ -25,10 +25,7 @@
 	
 	<div>
 		<button>좋아요</button>
-		<button onclick="updateDiaryPost('${DiaryPost.postNum}')">수정</button>
-		<button onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }')">삭제</button>
-	</div>
-	<div>
+		<button>수정하기</button>
 		<button onclick="history.go(-1)">목록으로</button>
 	</div>
 	
@@ -41,21 +38,7 @@
 		<button>등록</button> </div>
 	</div>
 
-<script type="text/javascript">
-	function deleteDiaryPost(n,postWriter) {
-		var ok = confirm("정말 삭제하시겠습니까?");
-		if(ok){
-			location.href = "diaryPost.delete?postNum=" + n + "&postWriter=" + postWriter;
-		}
-	}
 
-	function updateDiaryPost(n) {
-		var ok = confirm("정말 수정하시겠습니까?");
-		if(ok){
-			location.href = "diaryPost.update.go?postNum=" + n;
-		}
-	}
-</script>
 
 </body>
 </html>

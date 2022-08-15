@@ -28,11 +28,10 @@ public class DiaryPostDAO {
 	@Autowired
 	private SqlSession ss;
 	
-	public void getAllList(HttpServletRequest req, DiaryPost p, String postWriter) {
-		
+	public void getAllList(HttpServletRequest req, DiaryPost p, String userId) {
 		
 		try {
-			p.setPostWriter(postWriter);
+			p.setPostWriter(userId);
 			DiaryPostMapper pm = ss.getMapper(DiaryPostMapper.class);
 			List<DiaryPost> posts = pm.showAllPostList(p);
 			req.setAttribute("DiaryPost", posts);
@@ -49,15 +48,15 @@ public class DiaryPostDAO {
 	}
 	
 	
-	public void regPost(DiaryPost p, HttpServletRequest req, String postWriter, String postTitle, 
+	public void regPost(DiaryPost p, HttpServletRequest req, String userId, String postTitle, 
 			String postTxt, String postCategory, String postCountry) {
-		System.out.println("유저아이디" + postWriter);
+		System.out.println("유저아이디" + userId);
 		System.out.println("2" + postTitle);
 		System.out.println("3" + postTxt);
 		System.out.println("4" + postCategory);
 		System.out.println("5" + postCountry);
 		try {
-			p.setPostWriter(postWriter);
+			p.setPostWriter(userId);
 			p.setPostTitle(postTitle);
 			p.setPostTxt(postTxt);
 			p.setPostCategory(postCategory);
@@ -96,21 +95,6 @@ public class DiaryPostDAO {
 			e.printStackTrace();
 		}	
 		return jsonObject;
-	}
-
-	public void deleteDiaryPost(HttpServletRequest req, DiaryPost p) {
-
-		try {
-			if (ss.getMapper(DiaryPostMapper.class).deleteDiaryPost(p) == 1) {
-				System.out.println("글 삭제 성공");
-			} else {
-				System.out.println("글 삭제 실패");
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("글 삭제 실패");
-		}
 	}
 
 
