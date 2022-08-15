@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
 import com.project.main.js.UserDAO;
+import com.project.main.sm.Diary;
 
 @Controller
 public class WriteController {
@@ -108,13 +109,39 @@ public class WriteController {
 		System.out.println(postTxt);
 		if (uDAO.loginCheck(req)) {
 			pDAO.regPost(p, req, userId, postTitle, postTxt, postCategory, postCountry);
-			pDAO.detailPost(p, req);
+			pDAO.getAllList(req, p, userId);
 		}
 		System.out.println(userId);
 
-		req.setAttribute("popupContentPage", "../mj_write/post_detail.jsp");
+		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
 		return "ksm_main/popup";
 	}
+	
+    // 글 삭제
+    @RequestMapping(value = "/diaryPost.delete", method = RequestMethod.GET)
+    public String deleteDiaryPost(HttpServletRequest req, DiaryPost p, Diary d, 
+    		@RequestParam("postWriter") String postWriter, @RequestParam("userId") String userId) {
+    	
+        
+        //dDAO.getDiaryInfo(req, d, userId);
+        System.out.println(p.getPostNum());
+        System.out.println(postWriter);
+        pDAO.deleteDiaryPost(req, p);
+        pDAO.getAllList(req, p, postWriter);
+
+        req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
+        return "ksm_main/popup";
+    }
+
+    // 글 수정하러 가기
+    @RequestMapping(value = "/diaryPost.update.go", method = RequestMethod.GET)
+    public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p) {
+        
+        //dDAO.getDiaryInfo(req, d, userId);
+    	pDAO.detailPost(p, req);
+        req.setAttribute("popupContentPage", "../mj_write/post_update.jsp");
+        return "ksm_main/popup";
+    }
 
 	
 	// 지도 만들기

@@ -97,6 +97,20 @@ public class DiaryPostDAO {
 		return jsonObject;
 	}
 
+    public void deleteDiaryPost(HttpServletRequest req, DiaryPost p) {
+
+        try {
+            if (ss.getMapper(DiaryPostMapper.class).deleteDiaryPost(p) == 1) {
+                System.out.println("글 삭제 성공");
+            } else {
+                System.out.println("글 삭제 실패");
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("글 삭제 실패");
+        }
+    }
 
 	
 	

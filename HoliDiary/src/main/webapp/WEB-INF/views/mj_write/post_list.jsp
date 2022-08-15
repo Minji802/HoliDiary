@@ -30,6 +30,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
 
 	<script type="text/javascript">
 		$(document).ready(function() {

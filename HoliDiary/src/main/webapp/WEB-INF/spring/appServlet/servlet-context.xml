@@ -20,9 +20,6 @@
 	<context:annotation-config />
 	<tx:annotation-driven />
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/assets/**" location="/resources/assets/" />
-	<resources mapping="/ad_assets/**"
-		location="/resources/ad_assets/" />
 
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

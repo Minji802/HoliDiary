@@ -9,5 +9,8 @@ public interface DiaryPostMapper {
 	public DiaryPost detailPost(DiaryPost p);
 
 	public int regPost(DiaryPost p);
+	
+    public int deleteDiaryPost(DiaryPost p);
+
 
 }
