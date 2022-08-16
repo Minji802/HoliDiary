@@ -55,10 +55,10 @@
 				</div>
 			<div class="missing_user_box">
 				<div class="missing_user_a">
-				<a href="id.search.go">아이디 찾기</a>
+					<a href="find.id.go">아이디 찾기</a>
 				</div>
 				<div class="missing_user_a">
-				<a href="pw.search.go">비밀번호 찾기</a>
+					<a href="find.pw.go">비밀번호 찾기</a>
 				</div>
 			</div>
 			

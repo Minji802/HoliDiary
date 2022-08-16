@@ -25,7 +25,7 @@
 
 	<div>
 		<button>좋아요</button>
-		<button onclick="updateDiaryPost('${DiaryPost.postNum}')">수정</button>
+		<button onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}')">수정</button>
 		<button
 			onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }')">삭제</button>
 
@@ -55,10 +55,10 @@
 			}
 		}
 
-		function updateDiaryPost(n) {
+		function updateDiaryPost(userId, n) {
 			var ok = confirm("정말 수정하시겠습니까?");
 			if (ok) {
-				location.href = "diaryPost.update.go?postNum=" + n;
+				location.href = "diaryPost.update.go?userId=" + userId + "&postNum=" + n;
 			}
 		}
 	</script>

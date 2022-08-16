@@ -16,14 +16,10 @@
 <script type="text/javascript">
 	$(function() {
 		document.addEventListener("contextmenu", function(e) {
-
 			e.preventDefault(); // 원래 있던 오른쪽 마우스 이벤트를 무효화한다.
-
 			var x = e.pageX + 'px'; // 현재 마우스의 X좌표
 			var y = e.pageY + 'px'; // 현재 마우스의 Y좌표
-
 			const popMenu = document.getElementById('popMenu'); // 팝업창을 담아옴
-
 			/*
 			    스타일 지정, 우클릭 한 위치에 팝업창 띄워줌..
 			 */
@@ -33,13 +29,28 @@
 			popMenu.style.display = 'block';
 		})
 		document.addEventListener("click", function(e) {
-
+			if(e.keyCode == 3){
 			// 노출 초기화
 			popMenu.style.display = 'none';
 			popMenu.style.top = null;
 			popMenu.style.left = null;
-
+			}
 		});
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	});
 </script>
 </head>
@@ -67,6 +78,7 @@
 					<details>
 						<summary>
 							<span class="profile-name">${sessionScope.loginUser.userNickname }</span>
+						<%-- <span class="profile-name">${sessionScope.loginUser.userNickname }</span> --%>
 						</summary>
 						<p class="profile-introduce">${Diary.diaryIntroduce }</p>
 					</details>
@@ -106,7 +118,7 @@
        
       </div>
        <div>
-        <a href="post-list?postWriter=${sessionScope.loginUser.userID }" class="item-link" id="pageLink">
+        <a href="post-list?userId=${sessionScope.loginUser.userID }" class="item-link" id="pageLink">
           <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
             <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
           </svg> POST
@@ -132,11 +144,15 @@
 			</div>
 			
 			
+			
+			<c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 			<button class="btn-invite"
 				onclick="location.href='updateMyPopup?userId=${sessionScope.loginUser.userID }'" 
 				style="background: ${Diary.themeColor}">다이어리 설정
 			</button>
-
+			</c:if>
+			
+			
 		</div>
 
 		<div class="right-area">
@@ -163,12 +179,19 @@
 					</button>
 				</div>
 
-			
+
+			<c:choose>
+			<c:when test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 				<div class="action-buttons-wrapper">
 					<button class="action-buttons btn-upload"
-						onclick="location.href='write.go?postWriter=${sessionScope.loginUser.userID }'" 
+						onclick="location.href='write.go?userId=${sessionScope.loginUser.userID }'" 
 						style="background: ${Diary.themeColor}">포스트 작성</button>
 				</div>
+			</c:when>
+			<c:otherwise>
+				<button class="action-buttons btn-upload" style="background: ${Diary.themeColor}">구독</button>
+			</c:otherwise>
+			</c:choose>	
 				
 				
 			</div>

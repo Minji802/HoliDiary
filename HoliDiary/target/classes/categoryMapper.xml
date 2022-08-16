@@ -6,8 +6,13 @@
 		insert into CATEGORY values(#{userID}, 111, 222, 333)
 	</insert>
 	
-	<insert id="addCategory" parameterType="com.project.main.sm.Category">
-		ALTER TABLE CATEGORY ADD category5 VARCHAR2(20 char);
-	</insert>
+	<update id="addCategory" parameterType="com.project.main.sm.Category">
+		UPDATE CATEGORY SET CATEGORIES = CATEGORIES||#{categories} WHERE CATEGORYUSERID = 'test4'
+	</update>
+	
+	<update id="updateCategory" parameterType="com.project.main.sm.Category">
+		UPDATE CATEGORY SET CATEGORIES = #{categories} WHERE CATEGORYUSERID = 'test4'
+	</update>
+	
 
 </mapper>

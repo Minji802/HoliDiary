@@ -22,7 +22,7 @@
 		</tr>
 		<c:forEach var="posts" items="${DiaryPost }">
 			<tr class="postList">
-				<td class="postTitle"><a href='post.detail.go?postNum=${posts.postNum }'>${posts.postTitle }</a></td>
+				<td class="postTitle"><a href='post.detail.go?postNum=${posts.postNum } + &userId=${sessionScope.loginUser.userID }'>${posts.postTitle }</a></td>
 				<td class="postWriter">${posts.postWriter }</td>
 				<td class="postDate">${posts.postDate }</td>
 				<td class="postDate">${posts.postRecommend }</td>

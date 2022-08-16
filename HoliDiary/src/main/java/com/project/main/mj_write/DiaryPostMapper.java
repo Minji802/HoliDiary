@@ -12,5 +12,7 @@ public interface DiaryPostMapper {
 	
     public int deleteDiaryPost(DiaryPost p);
 
+	public int updateDiaryPost(DiaryPost p);
+
 
 }

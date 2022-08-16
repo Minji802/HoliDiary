@@ -48,16 +48,23 @@
 		select count(*) from user_table where userNickname = #{userNickname}
 	</select>
 	
-	<select id="searchID" resultType="String">
+	<select id="findID" resultType="String">
 		select userID from user_table where userName = #{userName} and userPhoneNumber = #{userPhoneNumber}
 	</select>
 	
-	<select id="searchPW" resultType="int">
-		select count(*) from user_table where userID = #{userID} and userEmail = #{userEmail}
+	<select id="findPW" resultType="com.project.main.js.User">
+		select * from user_table where userID = #{userID} and userEmail = #{userEmail}
 	</select>
 	
-	<select id="deleteUser" parameterType="com.project.main.js.User">
+	<update id="updatePW">
+		update user_table
+		set userPW = #{userPW}
+		where userID = #{userID} and userEmail = #{userEmail}
+	</update>
+	
+	<delete id="deleteUser">
 		delete user_table where userID = #{userID}
-	</select>
+	</delete>
+	
 
 </mapper>

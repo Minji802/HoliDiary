@@ -10,9 +10,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,41 +34,14 @@ public class UserDAO {
 	private SqlSession ss;
 
 	public void join(User u, HttpServletRequest req) {
-		String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
-		System.out.println(path);
-		MultipartRequest mr = null;
-		
 		try {
 			
-			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+			String id = req.getParameter("userID");
+			u.setUserDiaryUrl("http://localhost/main/popup.open?userId=" + id);
 			
-			String name = mr.getParameter("userName");
-			String nickname = mr.getParameter("userNickname");
-			String id = mr.getParameter("userID");
-			String pw = mr.getParameter("userPW");
-			String phone = mr.getParameter("userPhoneNumber");
-			String email = mr.getParameter("userEmail");
-			String url = mr.getParameter("userDiaryUrl");
+			//System.out.println(u.getUserDiaryUrl());
+			//System.out.println(u.getUserEmail());
 			
-			u.setUserNickname(nickname);
-			u.setUserName(name);
-			u.setUserID(id);
-			u.setUserPW(pw);
-			u.setUserPhoneNumber(phone);
-			u.setUserEmail(email);
-			u.setUserDiaryUrl(url+id);
-			u.setUserImg("person-3093152.jpg");
-			
-			/*System.out.println(url+id);
-			System.out.println(nickname);
-			System.out.println(name);
-			System.out.println(id);
-			System.out.println(pw);
-			System.out.println(phone);
-			System.out.println(email);
-			System.out.println(img);*/
-			
-				
 			if(ss.getMapper(UserMapper.class).join(u) == 1) {
 				req.getSession().setAttribute("loginUser", u);
 				req.getSession().setMaxInactiveInterval(60*10);
@@ -79,61 +55,28 @@ public class UserDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			String fileName = mr.getFilesystemName("userImg");
-			new File(path + "/" + fileName).delete();
 			req.setAttribute("r", "가입실패");
 		}
 	}
 	
-	// ajax 아이디 체크
-	public int idCheck(User u, HttpServletRequest req) {
-		//System.out.println(req.getParameter("kakaoID"));
-		//System.out.println(req.getParameter("naverID"));
-		//System.out.println(req.getParameter("userID"));
-		
-		if(req.getParameter("naverID") != null) {
-			if(ss.getMapper(UserMapper.class).idCheck(u) == 1) {
-				if(ss.getMapper(UserMapper.class).idCheckWithNaver(u) == 0) {
-					return 2;
-				}
-			}
-			return ss.getMapper(UserMapper.class).idCheckWithNaver(u);
-		}
-		
-		if(req.getParameter("kakaoID") != null) {
-			if(ss.getMapper(UserMapper.class).idCheck(u) == 1) {
-				if(ss.getMapper(UserMapper.class).idCheckWithKakao(u) == 0) {
-					return 2;
-				}
-			}
-			return ss.getMapper(UserMapper.class).idCheckWithKakao(u);
-		}
-		
-		return ss.getMapper(UserMapper.class).idCheck(u);
-	}
-	
-	// ajax 닉네임 체크
-	public int nickCheck(User u) {
-		return ss.getMapper(UserMapper.class).nickCheck(u);
-	}
-	
 	public void fileUpdate(User u, HttpServletRequest req) {
 		String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
+		System.out.println(path);
 		MultipartRequest mr = null;
 		User loginUser =  (User) req.getSession().getAttribute("loginUser");
 		String oldFile = loginUser.getUserImg();
+		System.out.println(oldFile);
 		String newFile = null;
 		try {
 			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
 			newFile = mr.getFilesystemName("userImg");
+			System.out.println(newFile);
 			if (newFile == null) {
 				newFile = oldFile;
 			} else {
 				newFile = URLEncoder.encode(newFile, "utf-8");
 				newFile = newFile.replace("+", " ");
 			}
-			
-			System.out.println(newFile);
 			
 			u.setUserID(loginUser.getUserID());
 			u.setUserImg(newFile);
@@ -170,6 +113,40 @@ public class UserDAO {
 			}
 		}
 	}
+	
+	// ajax 아이디 체크
+	public int idCheck(User u, HttpServletRequest req) {
+		//System.out.println(req.getParameter("kakaoID"));
+		//System.out.println(req.getParameter("naverID"));
+		//System.out.println(req.getParameter("userID"));
+		
+		if(req.getParameter("naverID") != null) {
+			if(ss.getMapper(UserMapper.class).idCheck(u) == 1) {
+				if(ss.getMapper(UserMapper.class).idCheckWithNaver(u) == 0) {
+					return 2;
+				}
+			}
+			return ss.getMapper(UserMapper.class).idCheckWithNaver(u);
+		}
+		
+		if(req.getParameter("kakaoID") != null) {
+			if(ss.getMapper(UserMapper.class).idCheck(u) == 1) {
+				if(ss.getMapper(UserMapper.class).idCheckWithKakao(u) == 0) {
+					return 2;
+				}
+			}
+			return ss.getMapper(UserMapper.class).idCheckWithKakao(u);
+		}
+		
+		return ss.getMapper(UserMapper.class).idCheck(u);
+	}
+	
+	// ajax 닉네임 체크
+	public int nickCheck(User u) {
+		return ss.getMapper(UserMapper.class).nickCheck(u);
+	}
+	
+	
 	
 	public boolean login(User u, HttpServletRequest req) {
 		
@@ -476,21 +453,123 @@ public class UserDAO {
 	}
 
 	// 아이디 찾기
-	public String searchID(User u) {
-		return ss.getMapper(UserMapper.class).searchID(u);
+	public String findID(User u) {
+		return ss.getMapper(UserMapper.class).findID(u);
 	}
 
-	public void searchPW(User u) {
+	// 비밀번호 찾기 : 회원정보 여부 확인
+	public void findPW(User u, HttpServletRequest req) {
 		
-		if(ss.getMapper(UserMapper.class).searchPW(u) == 1) {
-			// 이메일 돌리기
+		if(ss.getMapper(UserMapper.class).findPW(u) != null) {
+			User dbUser = ss.getMapper(UserMapper.class).findPW(u);
+
+			String name = dbUser.getUserNickname();
+			String email = dbUser.getUserEmail();
+			// 8자리 랜덤 문자열 생성
+			String temporaryPW = getRandomString(8);
+
+			dbUser.setUserPW(temporaryPW);
 			
+			//System.out.println(dbUser.getUserNickname());
+			//System.out.println(dbUser.getUserEmail());
+			//System.out.println(dbUser.getUserPW());
+			
+			// 이메일 돌리기
+			mailSend(name, email, temporaryPW);
+			
+			// 임시 비밀번호 DB에 저장
+			ss.getMapper(UserMapper.class).updatePW(dbUser);
+			System.out.println(ss.getMapper(UserMapper.class).updatePW(dbUser));
+			
+			req.setAttribute("userEmail", email);
+			req.setAttribute("r", "일치");
 		} else {
-			// 회원정보를 찾을 수 없음.
+			req.setAttribute("r", "불일치");
 		}
 		
 	}
+	
+	// 임시비밀번호 메일로 보내기
+	public void mailSend(String userName, String userEmail, String pw) {
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.naver.com";		
+		String hostSMTPid = "tlawl912@naver.com"; // 본인의 아이디 입력		
+		String hostSMTPpwd = ""; // 비밀번호 입력
+			
+		// 보내는 사람 EMail, 제목, 내용 
+		String fromEmail = "tlawl912@naver.com"; // 보내는 사람 eamil
+		String fromName = "홀리다이어리";  // 보내는 사람 이름
+		String subject = "[홀리다이어리]임시 비밀번호가 발급되었습니다"; // 제목
+				
+		// 받는 사람 E-Mail 주소
+		String mail = userEmail;  // 받는 사람 email		
+				
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSL(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(587);	// SMTP 포트 번호 입력
 
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setTLS(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg("<h2>안녕하세요 " +  userName + "님</h2><br><br>\r\n" + 
+					""				+ "<p>비밀번호 찾기를 신청해주셔서 임시 비밀번호를 발급해드렸습니다.</p>\r\n" + 
+					""				+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>" + pw +"</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>\r\n" + 
+					""				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)"); // 본문 내용
+			email.send();			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	
+	// 랜덤 문자열 생성 : 임시 비밀번호
+	static String getRandomString(int i) 
+    { 
+    
+        // bind the length 
+		byte[] bytearray;
+        bytearray = new byte[256];        
+        String mystring;
+        StringBuffer thebuffer;
+        String theAlphaNumericS;
+
+        new Random().nextBytes(bytearray); 
+
+        mystring 
+            = new String(bytearray, Charset.forName("UTF-8")); 
+            
+        thebuffer = new StringBuffer();
+        
+        //remove all spacial char 
+        theAlphaNumericS 
+            = mystring 
+                .replaceAll("[^A-Z0-9]", ""); 
+
+        //random selection
+        for (int m = 0; m < theAlphaNumericS.length(); m++) { 
+
+            if (Character.isLetter(theAlphaNumericS.charAt(m)) 
+                    && (i > 0) 
+                || Character.isDigit(theAlphaNumericS.charAt(m)) 
+                    && (i > 0)) { 
+
+                thebuffer.append(theAlphaNumericS.charAt(m)); 
+                i--; 
+            } 
+        } 
+
+        // the resulting string 
+        return thebuffer.toString(); 
+    } 
+
+	// 탈퇴
 	public void delete(HttpServletRequest req) {
 		try {
 			User u = (User) req.getSession().getAttribute("loginUser");

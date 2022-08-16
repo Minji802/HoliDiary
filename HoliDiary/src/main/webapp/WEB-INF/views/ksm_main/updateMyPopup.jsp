@@ -14,6 +14,8 @@ $(function(){
 		let color = $("input[name='themeColor']:checked").val();
 		console.log(color);
 			$('body').css('background',color);
+			$('.btn-invite').css('background',color);
+			$('.action-buttons').css('background',color);
 			$(".themeColor").removeClass("selected");
 		});
 	

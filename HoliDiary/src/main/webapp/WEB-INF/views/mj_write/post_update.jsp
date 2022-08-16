@@ -14,10 +14,6 @@
 </head>
 <body>
 
-	<div>${DiaryPost }</div>
-	<h1>${DiaryPost.postTitle }</h1>
-
-
 	<input type="button" value="Map" onclick="showPopupMap();" />
 
 	<script language="javascript">
@@ -27,16 +23,17 @@
 		}
 	</script>
 
-	<form action="post.reg.do" method="post">
+	<form action="diaryPost.update.do" method="post">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
-				제목<input type="text" name="postTitle" class="postTitleWriteContent" value="${DiaryPost.postTitle }"
+				제목<input type="text" name="postTitle" class="postTitleWriteContent"
+					value="${DiaryPost.postTitle }"
 					style="width: 60%; margin-left: 20px; border: 1px solid grey;">                              
 			</div>
 
 			<div>
 				<input type="hidden" value="${sessionScope.loginUser.userID }"
-					name="postWriter">
+					name="userId">
 			</div>
 
 			<div class="diaryPostCategory"
@@ -64,67 +61,75 @@
 			<div style="margin-top: 30px">
 				<textarea id="postTxt" name="postTxt"></textarea>
 			</div>
-			
-			<script type="text/javascript">
-		$(document).ready(function() {
-			//여기 아래 부분
-			$('#postTxt').summernote({
-				height: 500,
-				focus: true,                
-				lang: "ko-KR",	
-				placeholder: '포스트를 작성해주세요',
-				callbacks : { 
-	            	onImageUpload : function(files, editor, welEditable) {
-	            // 파일 업로드(다중업로드를 위해 반복문 사용)
-	            for (var i = files.length - 1; i >= 0; i--) {
-	            uploadSummernoteImageFile(files[i], this);
-	            		}
-	            	}
-	            },
-				toolbar: [
-				    // [groupName, [list of button]]
-				    ['fontname', ['fontname']],
-				    ['fontsize', ['fontsize']],
-				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-				    ['color', ['forecolor','color']],
-				    ['table', ['table']],
-				    ['para', ['ul', 'ol', 'paragraph']],
-				    ['height', ['height']],
-				    ['insert',['picture','link','video']],
-				    ['view', ['fullscreen', 'help']]
-				  ],
-				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-		  });
-			
-			 function uploadSummernoteImageFile(file, el) {
-					data = new FormData();
-					data.append("file", file);
-					$.ajax({
-						data : data,
-						type : "POST",
-						url : "uploadSummernoteImageFile",
-						contentType : false,
-						enctype : 'multipart/form-data',
-						processData : false,
-						success : function(data) {
-							$(el).summernote('editor.insertImage', data.url);
-						}
-					});
-				}
-			
-		});
-	</script>
 
 			<div class="row justify-content-md-center">
-				<button type="submit" class="writeUpload" style="font-weight:  bold"> 등록 </button>
+				<button type="submit" class="writeUpload" style="font-weight:  bold"> 수정 </button>
 				<button type="button" onclick="history.go(-1)" class="writeCancel"
 					style="font-weight:  bold"> 취소 </button>
 			</div>
 		</div>
 	</form>
 
-	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//여기 아래 부분
+			$('#postTxt').summernote({
+				height : 500,
+				focus : true,
+				lang : "ko-KR",
+				placeholder : '포스트를 작성해주세요',
+				callbacks : {
+					onImageUpload : function(files, editor,welEditable) {
+						// 파일 업로드(다중업로드를 위해 반복문 사용)
+						for (var i = files.length - 1; i >= 0; i--) {
+							uploadSummernoteImageFile(files[i],this);}
+					}
+				},
+				toolbar : [
+					// [groupName, [list of button]]
+					[ 'fontname',[ 'fontname' ] ],
+					[ 'fontsize',[ 'fontsize' ] ],
+					['style',[
+							'bold',
+							'italic',
+							'underline',
+							'strikethrough',
+							'clear' ] ],
+					['color',[ 'forecolor','color' ] ],
+					[ 'table', [ 'table' ] ],
+					['para',[ 'ul', 'ol','paragraph' ] ],
+					[ 'height',[ 'height' ] ],
+					['insert',[ 'picture','link','video' ] ],
+					['view',[ 'fullscreen','help' ] ] ],
+				fontNames : [ 'Arial','Arial Black','Comic Sans MS',
+								'Courier New', '맑은 고딕','궁서', '굴림체', '굴림','돋움체', '바탕체' ],
+				fontSizes : [ '8', '9', '10','11', '12', '14', '16',
+							'18', '20', '22', '24','28', '30', '36', '50','72' ],
+			});
+			
+			$("#postTxt").summernote('code', '${DiaryPost.postTxt}')
+
+			function uploadSummernoteImageFile(file, el) {
+				data = new FormData();
+				data.append("file", file);
+				$.ajax({
+					data : data,
+					type : "POST",
+					url : "uploadSummernoteImageFile",
+					contentType : false,
+					enctype : 'multipart/form-data',
+					processData : false,
+					success : function(data) {
+					$(el).summernote('editor.insertImage', data.url);
+					}
+				});
+			}
+	});
+	</script>
+
+
+
+
 
 </body>
 </html>

@@ -42,21 +42,21 @@ function loginValidCheck(){
 }
 
 // 비번찾기 유효성검사
-function pwSearchValidCheck(){
-	let id = $("#pw_search_id");
-	let email = $("#pw_search_email");
+function findPWValidCheck(){
+	let id = $("#find_pw_id");
+	let email = $("#find_pw_email");
 	
 	if(isEmpty(id)){
 		id.focus();
-		$('#pw_search_error').text('아이디를 입력해주세요');
-		$('#pw_search_error').css('color','red');
+		$('#find_pw_error').text('아이디를 입력해주세요');
+		$('#find_pw_error').css('color','red');
 		return false;
 	}
 
 	if(isEmpty(email)){
 		email.focus();
-		$('#pw_search_error').text('이메일을 입력해주세요');
-		$('#pw_search_error').css('color','red');
+		$('#find_pw_error').text('이메일을 입력해주세요');
+		$('#find_pw_error').css('color','red');
 		return false;
 	}
 	
@@ -136,15 +136,15 @@ function joinCheck(){
 	return true;
 }
 
-//아이디 유효성검사 및 찾기
-function searchID(){
+//아이디찾기 유효성검사
+function findID(){
 
-	let name = $('#id_search_name');
-	let phone = $('#id_search_phone');
+	let name = $('#find_id_name');
+	let phone = $('#find_id_phone');
 	
 	if(isEmpty(name)){
 		name.focus();
-		$('#userID_show').text('아이디를 입력해주세요');
+		$('#userID_show').text('이름을 입력해주세요');
 		$('#userID_show').css('color','red');
 		return false;
 	}
@@ -159,7 +159,7 @@ function searchID(){
 	if(!isEmpty(name) && !isEmpty(phone)){
 		console.log('빈칸은 없음')
 		$.ajax({
-			url : 'id.search.do',
+			url : 'find.id.do',
 			type : 'POST',
 			dataType : 'text',
 			data : {'userName' : name.val(), 'userPhoneNumber' : phone.val()},
@@ -168,10 +168,11 @@ function searchID(){
 				if(getID != ''){
 					//console.log('아이디 찾음');
 					$('#userID_show').text(getID);
-					$('#userID_show').css('color','red');
+					$('#userID_show').css('color','blue');
+					$('#userID_show').css('font-size','15pt');
 				}else{
 					//console.log('아이디 없음')
-					$('#userID_show').text('회원정보를 찾을 수 없습니다. 입력사항을 다시 확인해주세요.');
+					$('#userID_show').html('회원정보를 찾을 수 없습니다.<br>입력사항을 다시 확인해주세요.');
 					$('#userID_show').css('color','red');
 				}
 			},
@@ -372,7 +373,7 @@ $(function() {
 		});
 	  
 	// 하이픈 생성(아이디 찾기 전화번호)
-	$("#id_search_phone").keyup(function() {
+	$("#find_id_phone").keyup(function() {
 		var autoHypenPhone = function(str){
 		      str = str.replace(/[^0-9]/g, '');
 		      var tmp = '';

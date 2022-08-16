@@ -23,7 +23,7 @@
 		}
 	</script>
 
-	<form action="post.reg.do" method="post">
+	<form action="diaryPost.reg.do" method="post" enctype="multipart/form-data">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
 				제목<input type="text" name="postTitle" class="postTitleWriteContent"
@@ -32,7 +32,8 @@
 
 			<div>
 				<input type="hidden" value="${sessionScope.loginUser.userID }"
-					name="postWriter">
+					name="userId">
+				<input type="hidden" name="token" value="${token }">
 			</div>
 
 			<div class="diaryPostCategory"
@@ -61,7 +62,21 @@
 				<textarea id="postTxt" name="postTxt"></textarea>
 			</div>
 			
-			<script type="text/javascript">
+			<div id="diaryPostImgFileTbl" style="width: 100%">
+				<div class="diaryPostImgFileTitle" style="width: 20%; float: left;">대표이미지(썸네일)</div>
+				<div class="diaryPostImgFileInsert" style="width: 20%; float: right;">
+				<input type="file" name="postImg"></div> 
+			</div>
+			
+			<div class="row justify-content-md-center">
+				<button type="submit" class="writeUpload" style="font-weight: bold"> 등록 </button>
+				<button type="button" onclick="history.go(-1)" class="writeCancel"
+					style="font-weight:  bold"> 취소 </button>
+			</div>
+		</div>
+	</form>
+			
+	<script type="text/javascript">
 		$(document).ready(function() {
 			//여기 아래 부분
 			$('#postTxt').summernote({
@@ -110,15 +125,10 @@
 				}
 			
 		});
+		
 	</script>
 
-			<div class="row justify-content-md-center">
-				<button type="submit" class="writeUpload" style="font-weight:  bold"> 등록 </button>
-				<button type="button" onclick="history.go(-1)" class="writeCancel"
-					style="font-weight:  bold"> 취소 </button>
-			</div>
-		</div>
-	</form>
+			
 
 	
 

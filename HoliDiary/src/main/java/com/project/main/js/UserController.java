@@ -60,6 +60,17 @@ public class UserController {
 		return "index";
 	}
 	
+	// 마지막 사진 저장
+	@RequestMapping(value = "/join.file.upload", method = RequestMethod.POST)
+	public String joinFileUpload(User u ,HttpServletRequest req) {
+		
+		uDAO.fileUpdate(u, req);
+		
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "index";
+	}
+	
 	// ID체크하기(ajax)
 	@RequestMapping(value = "/id.check", method = RequestMethod.GET)
 	public @ResponseBody int idCheck(User u, HttpServletRequest req) {
@@ -72,17 +83,6 @@ public class UserController {
 	public @ResponseBody int nickCheck(User u) {
 		
 		return uDAO.nickCheck(u);
-	}
-	
-	// 마지막 사진 저장
-	@RequestMapping(value = "/join.file.upload", method = RequestMethod.POST)
-	public String joinFileUpload(User u ,HttpServletRequest req) {
-		
-		uDAO.fileUpdate(u, req);
-		
-		uDAO.loginCheck(req);
-		req.setAttribute("contentPage", "home.jsp");
-		return "index";
 	}
 	
 	// 로그아웃하기
@@ -158,39 +158,39 @@ public class UserController {
 	}
 	
 	// 아이디찾기 페이지 이동
-	@RequestMapping(value = "/id.search.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/find.id.go", method = RequestMethod.GET)
 	public String idSearchGo(HttpServletRequest req) {
 		
-		req.setAttribute("contentPage", "kjs_user/id_search.jsp");
+		req.setAttribute("contentPage", "kjs_user/find_id.jsp");
 		req.setAttribute("loginPage", "kjs_user/before_login.jsp");
 		
 		return "index";
 	}
 	
 	// 아이디찾기
-	@RequestMapping(value = "/id.search.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/find.id.do", method = RequestMethod.POST)
 	public @ResponseBody String idSearchDo(User u) {
 		
-		return uDAO.searchID(u);
+		return uDAO.findID(u);
 	}
 	
 	// 비번찾기 페이지 이동
-	@RequestMapping(value = "/pw.search.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/find.pw.go", method = RequestMethod.GET)
 	public String pwSearchGo(HttpServletRequest req) {
 		
-		req.setAttribute("contentPage", "kjs_user/pw_search.jsp");
+		req.setAttribute("contentPage", "kjs_user/find_pw.jsp");
 		req.setAttribute("loginPage", "kjs_user/before_login.jsp");
 		
 		return "index";
 	}
 	
-	// 비번찾기 페이지 이동
-	@RequestMapping(value = "/pw.search.do", method = RequestMethod.POST)
+	// 비번찾기 이메일 전송
+	@RequestMapping(value = "/find.pw.do", method = RequestMethod.POST)
 	public String pwSearchDo(User u, HttpServletRequest req) {
 		
-		uDAO.searchPW(u);
+		uDAO.findPW(u, req);
 		
-		req.setAttribute("contentPage", "kjs_user/pw_search_result.jsp");
+		req.setAttribute("contentPage", "kjs_user/find_pw_result.jsp");
 		req.setAttribute("loginPage", "kjs_user/before_login.jsp");
 		
 		return "index";
