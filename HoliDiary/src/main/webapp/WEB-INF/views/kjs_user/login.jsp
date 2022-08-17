@@ -18,6 +18,7 @@
 			</div>
 				<div id="login_box">
 			<!-- 로그인 기능 -->
+			<form action="login.do" method="post" onsubmit="return loginValidCheck();">
 					<div class="login_id">
 						<input placeholder="아이디" name="userID" autocomplete="off" id="loginID">
 					</div>
@@ -26,9 +27,17 @@
 						<input type="password" placeholder="비밀번호" name="userPW" autocomplete="off" id="loginPW">
 					</div>
 					<div class="login_btn_box">
-						<button id="login_btn">로그인</button>
+						<button>로그인</button>
 					</div>
-					<div><span id="login_error" style="font-family:'GangwonEdu_OTFBoldA';"></span></div>
+					<c:choose>
+						<c:when test="${empty r}">
+							<div><span id="login_error" style="font-family:'GangwonEdu_OTFBoldA';"></span></div>
+						</c:when>
+						<c:when test="${r eq '로그인실패'}">
+							<div><span id="login_error" style="font-family:'GangwonEdu_OTFBoldA'; color: red;">아이디 또는 비밀번호가 일치하지 않습니다.</span></div>
+						</c:when>
+					</c:choose>
+			</form>
 					<!-- 소셜 로그인 기능 -->
 				<div class="social_login_box">
 					<div class="social_login_info"><span>소셜 아이디로 로그인하기</span></div>

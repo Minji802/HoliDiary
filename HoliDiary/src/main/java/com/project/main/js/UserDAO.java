@@ -3,6 +3,7 @@ package com.project.main.js;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -12,13 +13,18 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -33,6 +39,7 @@ public class UserDAO {
 	@Autowired
 	private SqlSession ss;
 
+	// 회원가입
 	public void join(User u, HttpServletRequest req) {
 		try {
 			
@@ -59,59 +66,56 @@ public class UserDAO {
 		}
 	}
 	
-	public void fileUpdate(User u, HttpServletRequest req) {
-		String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
-		System.out.println(path);
-		MultipartRequest mr = null;
-		User loginUser =  (User) req.getSession().getAttribute("loginUser");
-		String oldFile = loginUser.getUserImg();
-		System.out.println(oldFile);
-		String newFile = null;
-		try {
-			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-			newFile = mr.getFilesystemName("userImg");
-			System.out.println(newFile);
-			if (newFile == null) {
-				newFile = oldFile;
-			} else {
-				newFile = URLEncoder.encode(newFile, "utf-8");
-				newFile = newFile.replace("+", " ");
-			}
+	// 회원가입 후 사진 저장
+	public void fileUpdate(HttpServletRequest req, String userID, MultipartFile mf) {
+		 // 내부경로로 저장
+        String contextRoot = new HttpServletRequestWrapper(req).getRealPath("/");
+        String fileRoot = contextRoot + "resources/kjs_profileImg/";
+
+        String originalFileName = mf.getOriginalFilename(); // 오리지날 파일명
+        String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+        String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+
+        System.out.println("경로1: " + contextRoot);
+        System.out.println("경로2: " + fileRoot);
+
+        System.out.println("원래 파일명 : " + originalFileName);
+        System.out.println("저장될 파일명 : " + savedFileName);
+
+        File targetFile = new File(fileRoot + savedFileName);
+
+        try {
+            InputStream fileStream = mf.getInputStream();
+            FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+
+        } catch (Exception e) {
+            FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+            e.printStackTrace();
+        }
+        
+        System.out.println(userID);
+        
+        try {
+        	
+        	User u = new User();
+        	
+             
+            u.setUserID(userID);
+            u.setUserImg(savedFileName);
+            savedFileName = URLEncoder.encode(savedFileName, "utf-8");
+            u.setUserImg(savedFileName.replace("+", " "));
+             
+            if(ss.getMapper(UserMapper.class).fileUpdate(u) == 1) {
+            	System.out.println("사진 등록");
+            }
+        	
 			
-			u.setUserID(loginUser.getUserID());
-			u.setUserImg(newFile);
-			u.setUserDiaryUrl(loginUser.getUserDiaryUrl());
-			u.setUserEmail(loginUser.getUserEmail());
-			u.setUserName(loginUser.getUserName());
-			u.setUserNickname(loginUser.getUserNickname());
-			u.setUserPhoneNumber(loginUser.getUserPhoneNumber());
-			u.setUserPW(loginUser.getUserPW());
-			
-			if (ss.getMapper(UserMapper.class).fileUpdate(u) == 1) {
-				System.out.println("사진 업뎃");
-				req.getSession().setAttribute("loginUser", u);
-				if (!oldFile.equals(newFile)) {
-					oldFile = URLDecoder.decode(oldFile, "utf-8");
-					new File(path + "/" + oldFile).delete();
-				}
-			} else {
-				System.out.println("사진 업뎃 실패");
-				if (!oldFile.equals(newFile)) {
-					newFile = URLDecoder.decode(newFile, "utf-8");
-					new File(path + "/" + newFile).delete();
-				}
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("수정실패");
-			if (!oldFile.equals(newFile)) {
-				try {
-					newFile = URLDecoder.decode(newFile, "utf-8");
-				} catch (UnsupportedEncodingException e1) {
-				}
-				new File(path + "/" + newFile).delete();
-			}
+			targetFile.delete();
+			System.out.println("등록실패");
 		}
+        
 	}
 	
 	// ajax 아이디 체크
@@ -147,7 +151,7 @@ public class UserDAO {
 	}
 	
 	
-	
+	// 로그인하기
 	public boolean login(User u, HttpServletRequest req) {
 		
 		User dbUser = ss.getMapper(UserMapper.class).getUserByID(u);
@@ -169,6 +173,7 @@ public class UserDAO {
 		
 	}
 
+	// 유저 세션 확인
 	public boolean loginCheck(HttpServletRequest req) {
 		
 		User u = (User) req.getSession().getAttribute("loginUser");
@@ -184,6 +189,11 @@ public class UserDAO {
 
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("loginUser", null);
+		
+
+		
+		// 네이버 토큰 삭제
+		
 	}
 	
 	// 카카오 토근 가져오기 
@@ -234,9 +244,9 @@ public class UserDAO {
 
             br.close();
             bw.close();
-
-            req.setAttribute("access_Token", access_Token);
             
+            req.setAttribute("access_Token", access_Token);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -244,18 +254,12 @@ public class UserDAO {
 	}
 	
 	// 카카오 정보 DB저장
-	public void joinWithKakao(HttpServletRequest req) {
+	public void joinWithKakao(String token, HttpServletRequest req) {
 		
-		// 카카오톡 인가코드 받기 (토큰 받기 위함: 세션)
-		String code = req.getParameter("code");
-		//System.out.println(code);
-		
+		//System.out.println(token);
+
 		// 유저정보 가져오기
-		if(code != null) {
-			getKakaoToken(code,req);
-			
-			String token = (String) req.getAttribute("access_Token");
-			System.out.println(token);
+		if(token != null) {
 			
 			String reqURL = "https://kapi.kakao.com/v2/user/me";
 
@@ -287,8 +291,12 @@ public class UserDAO {
 		       JsonElement element = parser.parse(result);
 
 		       String kakaoID = element.getAsJsonObject().get("id").getAsString();
-		       String nickname = element.getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString();
-		       String img = element.getAsJsonObject().get("properties").getAsJsonObject().get("profile_image").getAsString();
+		       String name = element.getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString();
+		       boolean imgAgree = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("profile_image_needs_agreement").getAsBoolean();
+		       String img = "person-3093152.jpg";
+		       if(!imgAgree) {
+		    	   img = element.getAsJsonObject().get("properties").getAsJsonObject().get("profile_image").getAsString();
+		       }
 		       boolean hasEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
 		       String email = "";
 		       if(hasEmail){
@@ -299,19 +307,19 @@ public class UserDAO {
 		       String id = email.substring(0,idx);
 
 		       // 사용자 정보 추출
-		       System.out.println("kakaoID : " + kakaoID);
-		       System.out.println("id : " + id);
-		       System.out.println("email : " + email);
-		       System.out.println("nickname : " + nickname);
-		       System.out.println("img : " + img);
+		       //System.out.println("kakaoID : " + kakaoID);
+		       //System.out.println("id : " + id);
+		       //System.out.println("email : " + email);
+		       //System.out.println("name : " + name);
+		       //System.out.println("img : " + img);
 		       
 		       // 사용자 정보 User Bean에 저장
 		       User kakaoUser = new User();
 		       kakaoUser.setUserID(id);
-		       kakaoUser.setUserPW("없음");
-		       kakaoUser.setUserName(nickname);
+		       kakaoUser.setUserPW(getRandomString(8));
+		       kakaoUser.setUserName(name);
 		       kakaoUser.setUserPhoneNumber("없음");
-		       kakaoUser.setUserNickname(nickname);
+		       kakaoUser.setUserNickname("user" + kakaoID);
 		       kakaoUser.setUserEmail(email);
 		       kakaoUser.setUserImg(img);
 		       kakaoUser.setKakaoID(kakaoID);
@@ -323,6 +331,7 @@ public class UserDAO {
 		       
 		       if(ss.getMapper(UserMapper.class).joinWithKakao(kakaoUser) == 1) {
 					req.getSession().setAttribute("loginUser", kakaoUser);
+					req.getSession().setAttribute("kakao_token", token);
 					req.getSession().setMaxInactiveInterval(60*10);
 					System.out.println("세션 등록 성공");
 					//ss.getMapper(DiaryMapper.class).diaryInsert(kakaoUser);
@@ -334,6 +343,8 @@ public class UserDAO {
 		       } catch (Exception e) {
 		            e.printStackTrace();
 		       }
+		} else {
+			System.out.println("토큰 없음");
 		}
 		
 		
@@ -395,14 +406,17 @@ public class UserDAO {
 				       
 		       User dbUser = (User)ss.getMapper(UserMapper.class).getUserByKakaoID(kakaoUser);
 		       
+		       //기존에 있는 아이디면 로그인
 			   if(dbUser != null) {
 					req.getSession().setAttribute("loginUser", dbUser);
+					req.getSession().setAttribute("kakao_token", token);
 					req.getSession().setMaxInactiveInterval(60*10);
 					System.out.println("세션 등록 성공");
 					//ss.getMapper(DiaryMapper.class).diaryInsert(kakaoUser);
 					System.out.println("로그인 성공");
 			   }else {
-					joinWithKakao(req);
+				   // 카카오 아이디 없으면 회원가입
+					joinWithKakao(token, req);
 					System.out.println("가입성공");
 				}
 
@@ -444,9 +458,7 @@ public class UserDAO {
 				
 				return true;
 		   }else {
-				joinWithKakao(req);
-				System.out.println("가입성공");
-				
+			   System.out.println("로그인 실패");
 				return false;
 			}
 		
@@ -495,7 +507,7 @@ public class UserDAO {
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";		
 		String hostSMTPid = "tlawl912@naver.com"; // 본인의 아이디 입력		
-		String hostSMTPpwd = ""; // 비밀번호 입력
+		String hostSMTPpwd = "kjsrla1968!"; // 비밀번호 입력
 			
 		// 보내는 사람 EMail, 제목, 내용 
 		String fromEmail = "tlawl912@naver.com"; // 보내는 사람 eamil
@@ -573,23 +585,43 @@ public class UserDAO {
 	public void delete(HttpServletRequest req) {
 		try {
 			User u = (User) req.getSession().getAttribute("loginUser");
+			
+			System.out.println(req.getSession().getAttribute("kakao_token"));
 
 			if (ss.getMapper(UserMapper.class).deleteUser(u) == 1) {
-				req.setAttribute("result", "탈퇴성공");
-
 				String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
-				String photo = u.getUserImg();
-				photo = URLDecoder.decode(photo, "utf-8");
-				new File(path + "/" + photo).delete();
+				String img = u.getUserImg();
+				img = URLDecoder.decode(img, "utf-8");
+				new File(path + "/" + img).delete();
+				
+				// 카카오 연동 해제
+				if(req.getSession().getAttribute("kakao_token") != null) {
+					
+					String reqURL = "https://kapi.kakao.com/v1/user/unlink";
+					
+					URL url = new URL(reqURL);
+				    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+				    conn.setRequestMethod("POST");
+				    conn.setDoOutput(true);
+				    conn.setRequestProperty("Authorization", "Bearer " + req.getSession().getAttribute("kakao_token")); //전송할 header 작성, access_token전송
+
+				    //결과 코드가 200이라면 성공
+				    int responseCode = conn.getResponseCode();
+				    System.out.println("responseCode : " + responseCode);
+				}
+				
+				// 네이버 연동 해제
 
 				logout(req);
-				//loginCheck(req);
+
+				System.out.println("탈퇴성공");
 			} else {
-				req.setAttribute("result", "탈퇴실패");
+				System.out.println("탈퇴실패");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("result", "탈퇴실패");
+			System.out.println("탈퇴실패");
 		}
 	}
 

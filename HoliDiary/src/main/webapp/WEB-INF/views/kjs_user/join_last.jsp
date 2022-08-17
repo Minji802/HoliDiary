@@ -28,6 +28,7 @@
 			<form action="join.file.upload" method="post" enctype="multipart/form-data">
 					<div class="join_file_input_box">
 						<input type="file" onchange="readURL(this)" name="userImg">
+						<input type="hidden" name="userID" value="${sessionScope.loginUser.userID }">
 					</div>
 					<div class="join_file_btn_box">
 						<button>등록하기</button>

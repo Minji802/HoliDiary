@@ -18,27 +18,7 @@ function loginValidCheck(){
 		return false;
 	}
 	
-	if(!isEmpty(id) && !isEmpty(pw)){
-		$.ajax({
-			url : 'login.do',
-			type : 'POST',
-			dataType : 'text',
-			data : {'userID' : id.val(), 'userPW' : pw.val()},
-			success : function(data) {
-				//console.log(data);
-				if(data == 'true'){
-					console.log('로그인 성공')
-					location.href='http://localhost/main/'
-				}else{
-					console.log('로그인 실패')
-					$('#login_error').text('아이디 또는 비밀번호 입력이 잘못 되었습니다');
-					$('#login_error').css('color','red');
-				}
-			}
-		});
-	}
-	
-	
+	return true;
 }
 
 // 비번찾기 유효성검사
@@ -186,12 +166,7 @@ function findID(){
 
 // 회원가입에 쓸 레디문
 $(function() {
-	
-	// 로그인 유효성검사
-	$("#login_btn").click(function() {
-		loginValidCheck();
-	});
-	
+
 	//이름 필수
 	  $('#join_name').blur(function() {
 			

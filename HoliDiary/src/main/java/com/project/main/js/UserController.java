@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UserController {
@@ -26,9 +28,17 @@ public class UserController {
 	
 	// 로그인 하기
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public @ResponseBody boolean loginDo(User u ,HttpServletRequest req) {
+	public String loginDo(User u ,HttpServletRequest req) {
 		
-		return uDAO.login(u,req);
+		if(uDAO.login(u,req)) {
+			req.setAttribute("contentPage", "home.jsp");
+		} else {
+			req.setAttribute("contentPage", "kjs_user/login.jsp");
+		}
+		
+		uDAO.loginCheck(req);
+		
+		return "index";
 	}
 	
 	// 회원가입 옵션 선택
@@ -62,9 +72,9 @@ public class UserController {
 	
 	// 마지막 사진 저장
 	@RequestMapping(value = "/join.file.upload", method = RequestMethod.POST)
-	public String joinFileUpload(User u ,HttpServletRequest req) {
+	public String joinFileUpload(HttpServletRequest req, @RequestParam("userID") String userID, @RequestParam("userImg") MultipartFile mf) {
 		
-		uDAO.fileUpdate(u, req);
+		uDAO.fileUpdate(req, userID, mf);
 		
 		uDAO.loginCheck(req);
 		req.setAttribute("contentPage", "home.jsp");
@@ -131,7 +141,7 @@ public class UserController {
 		return "index";
 	}
 	
-	// 네이버 (로그인: 세션저장)
+	// 네이버 로그인(세션저장)
 	@RequestMapping(value = "/social.login.naver", method = RequestMethod.GET)
 	public String socialLoginNaver(User u, HttpServletRequest req) {
 		
