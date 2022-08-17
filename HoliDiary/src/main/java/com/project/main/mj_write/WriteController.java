@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
-import com.oreilly.servlet.MultipartRequest;
 import com.project.main.js.UserDAO;
 import com.project.main.sej.TokenMaker;
 import com.project.main.sm.Diary;
@@ -160,11 +159,13 @@ public class WriteController {
 	
 	// 글 수정하기
 	@RequestMapping(value = "/diaryPost.update.do", method = RequestMethod.POST)
-	public String updateDiaryPostDo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req) {
+	public String updateDiaryPostDo(Diary d, @RequestParam("userId") String userId, HttpServletRequest req, @RequestParam("postImg") MultipartFile mf,
+			@RequestParam("postTitle") String postTitle, @RequestParam("postTxt") String postTxt,
+			@RequestParam("postCategory") String postCategory, @RequestParam("postCountry") String postCountry) {
 		
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId);
-			pDAO.diaryPostUpdate(p, req, userId);
+			pDAO.diaryPostUpdate(req, userId, mf, postTitle, postTxt, postCategory, postCountry);
 			pDAO.getAllList(req, userId);
 		}
 

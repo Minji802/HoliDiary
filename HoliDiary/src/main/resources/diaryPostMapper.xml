@@ -20,7 +20,7 @@
 	</delete>
 	
 	<update id="updateDiaryPost" parameterType="com.project.main.mj_write.DiaryPost">
-		update post set postTitle = #{postTitle}, postTxt = #{postTxt}, postWriter = #{postWriter}, postCategory = #{postCategory}, postCountry = #{postCountry}
+		update post set postTitle = #{postTitle}, postTxt = #{postTxt}, postWriter = #{postWriter}, postImg = #{postImg}, postCategory = #{postCategory}, postCountry = #{postCountry}
 		where postNum = #{postNum}
 	</update>
 	

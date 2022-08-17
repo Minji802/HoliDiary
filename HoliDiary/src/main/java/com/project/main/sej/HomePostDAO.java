@@ -46,7 +46,10 @@ public class HomePostDAO {
 		
 		req.setAttribute("search", search);
 		
-		if (search.equals("")) {
+		
+		List<PostContent> contents = ss.getMapper(Sej_postMapper.class).getPost(pSel);
+		
+		if (search.equals("")||contents.isEmpty()) {
 			req.setAttribute("contentPage", "sej_search/home_search_null.jsp");
 		} else {
 			pSel.setStart(new BigDecimal(start));
@@ -55,9 +58,7 @@ public class HomePostDAO {
 			req.setAttribute("contentPage", "sej_search/home_search.jsp");
 		}
 		
-		List<PostContent> contents = ss.getMapper(Sej_postMapper.class).getPost(pSel);
 		
-
 		int pageCount = (int) Math.ceil(postCount / (double) count);
 		req.setAttribute("pageCount", pageCount);
 

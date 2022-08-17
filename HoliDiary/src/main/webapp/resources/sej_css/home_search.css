@@ -147,5 +147,30 @@
 	font-size: 13px;
 	letter-spacing: 0.2px;
 }
+.home_search_null_place {
+	width: 1200px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+}
+.home_search_null_img {
+	width: 100px;
+	height: 100px;
+	margin-bottom: 30px;
+}
+.home_search_null_place_one,.home_search_null_place_two {
+	color: #848c94;
+	font-size: 14px;
+	font-family: 'Noto Sans KR','sans-serif';
+	line-height: 1;
+}
+
+
+
+
+
+
+
 
 

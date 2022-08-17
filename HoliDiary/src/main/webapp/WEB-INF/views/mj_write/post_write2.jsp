@@ -71,7 +71,7 @@
 			<div class="row justify-content-md-center">
 				<button type="submit" class="writeUpload" style="font-weight: bold"> 등록 </button>
 				<button type="button" onclick="history.go(-1)" class="writeCancel"
-					style="font-weight:  bold"> 취소 </button>
+					style="font-weight: bold"> 취소 </button>
 			</div>
 		</div>
 	</form>

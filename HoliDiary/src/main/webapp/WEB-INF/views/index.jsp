@@ -107,7 +107,18 @@
 	<jsp:include page="${contentPage }"></jsp:include>
 	
 	</div>
-	
+	<form name="searchFrm" style="margin-top: 20px;">
+		<select name="searchType" id="searchType">
+			<option value="subject">제목</option>
+			<option value="name">글쓴이</option>
+		</select>
+		<input type="text" id="searchWord" name="searchWord" size="100" autocomplete="off">
+		<input type="hidden" style="display: none;">
+		<button type="button" class="btn btn-secondary btn-sm" onclick="goSearch()">검색</button>
+	</form>
+	<%-- 검색어 자동완성이 보여질 구역 --%>
+	<div id="displayList" style="border: solid 1px gray; height: 100px; overflow: auto; margin-left: 77px; margin-top; -1px; border-top: 0px;">
+	</div>
 	<!-- FOOTER 영역 -->
 	<footer id="bottom_footer">
 		<div class="first_footer">
