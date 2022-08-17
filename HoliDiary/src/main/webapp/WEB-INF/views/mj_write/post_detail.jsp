@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,8 @@
 
 	<div>
 		<button>좋아요</button>
-		<button onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}')">수정</button>
+		<button
+			onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}')">수정</button>
 		<button
 			onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }')">삭제</button>
 
@@ -37,28 +40,40 @@
 	<hr>
 
 	<div>
+		<textarea name="commentTxt" id="commentTxt"></textarea>
+		<button>등록</button>
+	</div>
+
+	<h1>${Comment }</h1>
+	
+	<div id="comment">
 		<div>
 			<h3>Comment</h3>
 		</div>
-		<div>작성자</div>
-		<div>
-			<textarea name="commentTxt" id="commentTxt"></textarea>
-			<button>등록</button>
-		</div>
+
+		<c:forEach items="${Comment }" var="Comment">
+			<div>${Comment.commentTxt }</div>
+		</c:forEach>
+
+
 	</div>
+
+	<hr>
 
 	<script type="text/javascript">
 		function deleteDiaryPost(n, postWriter, userId) {
 			var ok = confirm("정말 삭제하시겠습니까?");
 			if (ok) {
-				location.href = "diaryPost.delete?postNum=" + n + "&postWriter=" + postWriter + "&userId=" + userId;
+				location.href = "diaryPost.delete?postNum=" + n
+						+ "&postWriter=" + postWriter + "&userId=" + userId;
 			}
 		}
 
 		function updateDiaryPost(userId, n) {
 			var ok = confirm("정말 수정하시겠습니까?");
 			if (ok) {
-				location.href = "diaryPost.update.go?userId=" + userId + "&postNum=" + n;
+				location.href = "diaryPost.update.go?userId=" + userId
+						+ "&postNum=" + n;
 			}
 		}
 	</script>

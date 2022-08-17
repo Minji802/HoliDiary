@@ -8,8 +8,14 @@
 	
 	<select id="getDiaryInfo" parameterType="com.project.main.sm.Diary" resultType="com.project.main.sm.Diary">
 		select *
-		from diarytable d, category c
+		from DIARYTABLE d, category c
 		where d.diaryuserid = c.categoryuserid
+	</select>
+
+	<select id="getUserInfo" parameterType="com.project.main.js.User" resultType="com.project.main.js.User">
+		select *
+		from USER_TABLE
+		where userID = #{userID}
 	</select>
 
 	<update id="diaryUpdate" parameterType="com.project.main.sm.Diary">
@@ -19,6 +25,7 @@
 	<select id="diaryTheme" parameterType="com.project.main.sm.Diary" resultType="com.project.main.sm.Diary">
 		select themeColor from DIARYTABLE where diaryUserId=#{diaryUserId}
 	</select>
+	
 	
 
 </mapper>

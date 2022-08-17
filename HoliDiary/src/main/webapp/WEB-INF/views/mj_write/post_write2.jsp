@@ -23,7 +23,7 @@
 		}
 	</script>
 
-	<form action="diaryPost.reg.do" method="post" enctype="multipart/form-data">
+	<form action="diaryPost.reg.do" method="post">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
 				제목<input type="text" name="postTitle" class="postTitleWriteContent"
@@ -62,11 +62,7 @@
 				<textarea id="postTxt" name="postTxt"></textarea>
 			</div>
 			
-			<div id="diaryPostImgFileTbl" style="width: 100%">
-				<div class="diaryPostImgFileTitle" style="width: 20%; float: left;">대표이미지(썸네일)</div>
-				<div class="diaryPostImgFileInsert" style="width: 20%; float: right;">
-				<input type="file" name="postImg"></div> 
-			</div>
+			<input type="hidden" id="postImg" name="postImg">
 			
 			<div class="row justify-content-md-center">
 				<button type="submit" class="writeUpload" style="font-weight: bold"> 등록 </button>
@@ -87,7 +83,7 @@
 				callbacks : { 
 	            	onImageUpload : function(files, editor, welEditable) {
 	            // 파일 업로드(다중업로드를 위해 반복문 사용)
-	            for (var i = files.length - 1; i >= 0; i--) {
+	            for (var i = 0; i < files.length; i++) {
 	            uploadSummernoteImageFile(files[i], this);
 	            		}
 	            	}
@@ -119,7 +115,10 @@
 						enctype : 'multipart/form-data',
 						processData : false,
 						success : function(data) {
+							console.log(data);
 							$(el).summernote('editor.insertImage', data.url);
+							$("#postImg").val(data.url)
+							
 						}
 					});
 				}

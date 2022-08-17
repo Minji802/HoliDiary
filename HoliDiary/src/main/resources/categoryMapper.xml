@@ -3,15 +3,15 @@
 <mapper namespace="com.project.main.sm.CategoryMapper">
 
 	<insert id="categoryUserInsert" parameterType="com.project.main.js.User">
-		insert into CATEGORY values(#{userID}, 111, 222, 333)
+		insert into CATEGORY values(#{userID}, '카테고리!')
 	</insert>
 	
 	<update id="addCategory" parameterType="com.project.main.sm.Category">
-		UPDATE CATEGORY SET CATEGORIES = CATEGORIES||#{categories} WHERE CATEGORYUSERID = 'test4'
+		UPDATE CATEGORY SET CATEGORIES = CATEGORIES||#{categories} WHERE CATEGORYUSERID = #{categoryUserId} <!-- 'test4' -->
 	</update>
 	
 	<update id="updateCategory" parameterType="com.project.main.sm.Category">
-		UPDATE CATEGORY SET CATEGORIES = #{categories} WHERE CATEGORYUSERID = 'test4'
+		UPDATE CATEGORY SET CATEGORIES = #{categories} WHERE CATEGORYUSERID = #{categoryUserId} <!-- 'test4' -->
 	</update>
 	
 

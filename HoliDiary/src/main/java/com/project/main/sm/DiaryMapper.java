@@ -9,6 +9,7 @@ public interface DiaryMapper {
 	public int diaryUpdate(Diary d);
 	public Object getDiaryInfo(Diary d);
 	public void diaryTheme(Diary d);
+	public Object getUserInfo(User u);
 
 
 }

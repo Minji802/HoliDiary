@@ -33,7 +33,7 @@ public class WriteController {
 
 	@Autowired
 	private DiaryDAO dDAO;
-
+	
 	// 게시글 목록 불러오기
 	@RequestMapping(value = "/post-list", method = RequestMethod.GET)
 	public String listGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId) {
@@ -113,13 +113,13 @@ public class WriteController {
 
 	// 글 등록
 	@RequestMapping(value = "/diaryPost.reg.do", method = RequestMethod.POST)
-	public String postRegDo(Diary d, @RequestParam("userId") String userId, HttpServletRequest req, @RequestParam("postImg") MultipartFile mf,
+	public String postRegDo(Diary d, @RequestParam("userId") String userId, HttpServletRequest req, @RequestParam("postImg") String postImg,
 			@RequestParam("postTitle") String postTitle, @RequestParam("postTxt") String postTxt,
 			@RequestParam("postCategory") String postCategory, @RequestParam("postCountry") String postCountry) {
 		
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId);
-			pDAO.regPost(req, userId, mf, postTitle, postTxt, postCategory, postCountry);
+			pDAO.regPost(req, userId, postImg, postTitle, postTxt, postCategory, postCountry);
 		}
 		TokenMaker.make(req);
 		pDAO.getAllList(req, userId);
@@ -159,15 +159,13 @@ public class WriteController {
 	
 	// 글 수정하기
 	@RequestMapping(value = "/diaryPost.update.do", method = RequestMethod.POST)
-	public String updateDiaryPostDo(Diary d, @RequestParam("userId") String userId, HttpServletRequest req, @RequestParam("postImg") MultipartFile mf,
-			@RequestParam("postTitle") String postTitle, @RequestParam("postTxt") String postTxt,
-			@RequestParam("postCategory") String postCategory, @RequestParam("postCountry") String postCountry) {
+	public String updateDiaryPostDo(Diary d, DiaryPost p, @RequestParam("userId") String userId, HttpServletRequest req) {
 		
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId);
-			pDAO.diaryPostUpdate(req, userId, mf, postTitle, postTxt, postCategory, postCountry);
-			pDAO.getAllList(req, userId);
+			pDAO.diaryPostUpdate(req, p, userId);
 		}
+		pDAO.getAllList(req, userId);
 
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
 		return "ksm_main/popup";

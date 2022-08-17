@@ -10,4 +10,6 @@ public interface CategoryMapper {
 
 	void updateCategory(Category c);
 
+	void deleteCategory(Category c);
+
 }

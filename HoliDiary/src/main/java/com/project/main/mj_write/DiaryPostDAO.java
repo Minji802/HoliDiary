@@ -2,12 +2,10 @@ package com.project.main.mj_write;
 
 import java.io.File;
 import java.io.InputStream;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -42,35 +40,14 @@ public class DiaryPostDAO {
 		DiaryPostMapper pm = ss.getMapper(DiaryPostMapper.class);
 		DiaryPost posts = pm.detailPost(p);
 		req.setAttribute("DiaryPost", posts);
+		
+		/*CommentMapper cm = ss.getMapper(CommentMapper.class);
+		Comment comments = cm.getAll*/
 	}
 
-	public void regPost(HttpServletRequest req, String userId, MultipartFile mf, String postTitle, String postTxt,
+	public void regPost(HttpServletRequest req, String userId, String postImg, String postTitle, String postTxt,
 			String postCategory, String postCountry) {
 
-		// 내부경로로 저장
-		String contextRoot = new HttpServletRequestWrapper(req).getRealPath("/");
-		String fileRoot = contextRoot + "resources/thumbnail/";
-
-		String originalFileName = mf.getOriginalFilename(); // 오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
-		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
-		System.out.println("경로1: " + contextRoot);
-		System.out.println("경로2: " + fileRoot);
-
-		System.out.println("원래 파일명 : " + originalFileName);
-		System.out.println("저장될 파일명 : " + savedFileName);
-
-		File targetFile = new File(fileRoot + savedFileName);
-
-		try {
-			InputStream fileStream = mf.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-
-		} catch (Exception e) {
-			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-			e.printStackTrace();
-		}
 
 		DiaryPost p = new DiaryPost();
 
@@ -83,9 +60,7 @@ public class DiaryPostDAO {
 			p.setPostWriter(userId);
 			p.setPostTitle(postTitle);
 			p.setPostTxt(postTxt);
-			p.setPostImg(savedFileName);
-			savedFileName = URLEncoder.encode(savedFileName, "utf-8");
-			p.setPostImg(savedFileName.replace("+", " "));
+			p.setPostImg(postImg);
 			p.setPostCategory(postCategory);
 			p.setPostCountry(postCountry);
 
@@ -97,13 +72,13 @@ public class DiaryPostDAO {
 			System.out.println("유저아이디" + userId);
 			System.out.println("2" + postTitle);
 			System.out.println("3" + postTxt);
-			System.out.println("4" + postCategory);
-			System.out.println("5" + postCountry);
+			System.out.println("4" + postImg);
+			System.out.println("5" + postCategory);
+			System.out.println("6" + postCountry);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			// new File(contextRoot + "/" + savedFileName).delete();
-			targetFile.delete();
 			System.out.println("등록실패");
 		}
 	}
@@ -146,49 +121,21 @@ public class DiaryPostDAO {
 		}
 	}
 
-	public void diaryPostUpdate(HttpServletRequest req, String userId, MultipartFile mf, String postTitle,
-			String postTxt, String postCategory, String postCountry) {
+	public void diaryPostUpdate(HttpServletRequest req, DiaryPost p, String userId) {
 		
-		// 내부경로로 저장
-		String contextRoot = new HttpServletRequestWrapper(req).getRealPath("/");
-		String fileRoot = contextRoot + "resources/thumbnail/";
+		int postNum = p.getPostNum();
+		String postTitle = p.getPostTitle();
+		String postTxt = p.getPostTxt();
+		String postImg = p.getPostImg();
+		String postCategory = p.getPostCategory();
+		String postCountry = p. getPostCountry();
 		
-		DiaryPost p = new DiaryPost();
-
-		String originalFileName = p.getPostImg(); // 오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
-		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
-		System.out.println("경로1: " + contextRoot);
-		System.out.println("경로2: " + fileRoot);
-
-		System.out.println("원래 파일명 : " + originalFileName);
-		System.out.println("저장될 파일명 : " + savedFileName);
-
-		File targetFile = new File(fileRoot + savedFileName);
-
 		try {
-			InputStream fileStream = mf.getInputStream();
-			if(fileStream == null) {
-				savedFileName = originalFileName;
-			} else {
-				FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-			}
-
-		} catch (Exception e) {
-			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-			e.printStackTrace();
-		}
-
-		
-
-		try {
+			p.setPostNum(postNum);
 			p.setPostWriter(userId);
 			p.setPostTitle(postTitle);
 			p.setPostTxt(postTxt);
-			p.setPostImg(savedFileName);
-			savedFileName = URLEncoder.encode(savedFileName, "utf-8");
-			p.setPostImg(savedFileName.replace("+", " "));
+			p.setPostImg(postImg);
 			p.setPostCategory(postCategory);
 			p.setPostCountry(postCountry);
 			
@@ -196,19 +143,21 @@ public class DiaryPostDAO {
 				System.out.println("글 수정 성공");
 			} 
 			
-			System.out.println("유저아이디" + userId);
-			System.out.println("2" + postTitle);
-			System.out.println("3" + postTxt);
-			System.out.println("4" + postCategory);
-			System.out.println("5" + postCountry);
+			System.out.println(postNum);
+			System.out.println("수정유저아이디" + userId);
+			System.out.println("수정2" + postTitle);
+			System.out.println("수정3" + postTxt);
+			System.out.println("수정4" + postImg);
+			System.out.println("수정5" + postCategory);
+			System.out.println("수정6" + postCountry);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			// new File(contextRoot + "/" + savedFileName).delete();
-			targetFile.delete();
 			System.out.println("등록실패");
 		}
 
 	}
+
 
 }

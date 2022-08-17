@@ -31,6 +31,7 @@ public class CategoryDAO {
 				System.out.println(categories2);
 			
 			c.setCategories(categories2);
+			c.setCategoryUserId(userId);
 			
 				System.out.println(c.getCategories());
 			
@@ -53,6 +54,7 @@ public class CategoryDAO {
 			System.out.println(newCategories);
 			
 			c.setCategories(newCategories);
+			c.setCategoryUserId(userId);
 			
 			System.out.println(c.getCategories());
 			

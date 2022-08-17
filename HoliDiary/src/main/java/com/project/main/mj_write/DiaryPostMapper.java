@@ -14,5 +14,8 @@ public interface DiaryPostMapper {
 
 	public int updateDiaryPost(DiaryPost p);
 
+	public List<DiaryPost> showAllCommentList(Comment c);
+
+
 
 }

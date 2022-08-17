@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.main.js.User;
+
 
 @Service
 public class DiaryDAO {
@@ -14,12 +16,17 @@ public class DiaryDAO {
 	private SqlSession ss;
 
 	// 다이어리 정보 불러오기
-	public void getDiaryInfo(HttpServletRequest req, Diary d, String userId) {
+	public void getDiaryInfo(HttpServletRequest req, Diary d, String userId, User u) {
 		try {
 			d.setDiaryUserId(userId);
+			u.setUserID(userId);
+			
 			Diary dd = (Diary) ss.getMapper(DiaryMapper.class).getDiaryInfo(d);
+			User uu = (User) ss.getMapper(DiaryMapper.class).getUserInfo(u);
+			
 			dd.setCategoriesArray(makeCategory(dd.getCategories()));
 			req.setAttribute("Diary", dd);
+			req.setAttribute("User", uu);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
