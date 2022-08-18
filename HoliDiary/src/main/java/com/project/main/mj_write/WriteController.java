@@ -49,11 +49,12 @@ public class WriteController {
 
 	// 게시글 상세보기
 	@RequestMapping(value = "/post.detail.go", method = RequestMethod.GET)
-	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req, User u) {
+	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, 
+			HttpServletRequest req, User u, Comment c) {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u);
-			pDAO.detailPost(p, req);
+			pDAO.detailPost(p, req, c);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_detail.jsp");
 
@@ -148,11 +149,12 @@ public class WriteController {
 
 	// 글 수정하러 가기
 	@RequestMapping(value = "/diaryPost.update.go", method = RequestMethod.GET)
-	public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p, @RequestParam("userId") String userId, User u) {
+	public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p, 
+			@RequestParam("userId") String userId, User u, Comment c) {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u);
-			pDAO.detailPost(p, req);
+			pDAO.detailPost(p, req, c);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_update.jsp");
 		return "ksm_main/popup";
@@ -178,4 +180,5 @@ public class WriteController {
 
 		return "mj_map/map";
 	}
+	
 }

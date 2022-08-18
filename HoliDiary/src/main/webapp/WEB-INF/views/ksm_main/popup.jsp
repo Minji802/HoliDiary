@@ -56,7 +56,7 @@
 </head>
 <body style="background: ${Diary.themeColor}">
 
-<!-- 우클릭 메뉴 -->
+<!-- 우클릭 시 메뉴 -->
 <c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 	<ul class="contextmenu">
 		<li><a href="">포스트 작성</a></li>
