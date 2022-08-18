@@ -36,9 +36,16 @@
 	<div>
 		<button onclick="history.go(-1)">목록으로</button>
 	</div>
+	
+	<div>--------------------------------------------------------------------</div>
+	
+	
+	<%-- <img alt="대체이미지 실험" src="${DiaryPost.postImg }" onerror=this.src="resources/alterImg/Landscape-Color.jpg"> --%>
 
 	<hr>
 
+	<h3>Comment</h3>
+	
 	<div>
 		<textarea name="commentTxt" id="commentTxt"></textarea>
 		<button>등록</button>
@@ -48,7 +55,6 @@
 	
 	<div id="comment">
 		<div>
-			<h3>Comment</h3>
 		</div>
 
 		<c:forEach items="${Comment }" var="Comment">
