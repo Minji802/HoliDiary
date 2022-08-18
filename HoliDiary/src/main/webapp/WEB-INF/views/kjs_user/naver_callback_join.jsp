@@ -15,7 +15,7 @@
   var naver_id_login = new naver_id_login("rX3BsIpQkj6CJiShI2rn", "http://localhost/main/social.join.naver");
   // 접근 토큰 값 출력
   //alert(naver_id_login.oauthParams.access_token);
-  sessionStorage.setItem("naver_token",naver_id_login.oauthParams.access_token)
+  
   // 네이버 사용자 프로필 조회
   naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
@@ -70,7 +70,7 @@
 						if(result == 1){
 							alert('회원가입 성공');
 							window.close();
-							window.opener.location.href= "http://localhost/main/social.login.naver?naverID=" + naverID;
+							window.opener.location.href= "http://localhost/main/social.login.naver?naverID=" + naverID + "&naver_token=" + naver_id_login.oauthParams.access_token;
 						}
 					},
 					error : function(request, status, error) {

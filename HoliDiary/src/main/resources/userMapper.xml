@@ -48,8 +48,8 @@
 		select count(*) from user_table where userNickname = #{userNickname}
 	</select>
 	
-	<select id="findID" resultType="String">
-		select userID from user_table where userName = #{userName} and userPhoneNumber = #{userPhoneNumber}
+	<select id="findID" resultType="com.project.main.js.User">
+		select * from user_table where userName = #{userName} and userPhoneNumber = #{userPhoneNumber}
 	</select>
 	
 	<select id="findPW" resultType="com.project.main.js.User">

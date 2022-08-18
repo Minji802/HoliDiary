@@ -7,11 +7,10 @@ function loginWithKakao() {
 	
 	  Kakao.Auth.login({
       success: function(authObj) {
-        alert(JSON.stringify(authObj));
+        //alert(JSON.stringify(authObj));
         Kakao.API.request({
 		          url: '/v2/user/me',
 		          success: function(res) {
-		        	alert('d');
 		            //console.log(JSON.stringify(res));
 		            let kakaoID = res.id;
 		            let email = res.kakao_account["email"];
@@ -22,7 +21,7 @@ function loginWithKakao() {
 		        		dataType : "text",
 		        		data : {"kakaoID" : kakaoID, "userID" : id},
 		        		success : function(getData){
-		        			alert(getData);
+		        			//alert(getData);
 		        			if(getData == 1){
 		        				Kakao.Auth.authorize({
 		        					redirectUri: 'http://localhost/main/social.kakao'

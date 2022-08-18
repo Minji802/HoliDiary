@@ -16,17 +16,23 @@ public class DiaryDAO {
 	private SqlSession ss;
 
 	// 다이어리 정보 불러오기
-	public void getDiaryInfo(HttpServletRequest req, Diary d, String userId, User u) {
+	public void getDiaryInfo(HttpServletRequest req, Diary d, String userId, User u, Category cate) {
 		try {
 			d.setDiaryUserId(userId);
 			u.setUserID(userId);
+			cate.setCategoryUserId(userId);
 			
 			Diary dd = (Diary) ss.getMapper(DiaryMapper.class).getDiaryInfo(d);
 			User uu = (User) ss.getMapper(DiaryMapper.class).getUserInfo(u);
 			
+			System.out.println(dd.getCategories() + "----------------------------");
 			dd.setCategoriesArray(makeCategory(dd.getCategories()));
+			
+			System.out.println("ㅅㅐㄱ");
+			
 			req.setAttribute("Diary", dd);
 			req.setAttribute("User", uu);
+			System.out.println("갸..");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -34,7 +40,11 @@ public class DiaryDAO {
 	
 	// 다이어리 카테고리 만들기
 	public String[] makeCategory(String dd) {
+		System.out.println(dd);
 		String categories[] = dd.split("!");
+		for (String string : categories) {
+			System.out.println(string);
+		}
 		return categories;
 	}
 	

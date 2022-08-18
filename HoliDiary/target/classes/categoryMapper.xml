@@ -14,5 +14,9 @@
 		UPDATE CATEGORY SET CATEGORIES = #{categories} WHERE CATEGORYUSERID = #{categoryUserId} <!-- 'test4' -->
 	</update>
 	
+	<select id="getCategoryInfo" resultType="com.project.main.sm.Category">
+		select * FROM CATEGORY WHERE CATEGORYUSERID = #{categoryUserId}
+	</select>
+	
 
 </mapper>

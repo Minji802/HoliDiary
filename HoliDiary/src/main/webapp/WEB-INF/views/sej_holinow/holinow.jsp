@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -9,6 +10,38 @@
 <link rel="stylesheet" href="./style.css">
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Zen+Dots&display=swap');
+
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    src: url('../../resources/sej_font/NotoSansKR-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Light';
+    src: url('../../resources/sej_font/NotoSansKR-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../../resources/sej_font/Montserrat-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Thin';
+    src: url('../../resources/sej_font/Montserrat-Thin.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'sans-serif';
+    src: url('../../resources/sej_font/SansSerifFLF.otf') format('opentype');
+}
 
 /*from mobile have a bug, working to fix the error*/
 
@@ -167,20 +200,22 @@ main {
 	font-weight: normal;
 	position: absolute;
 	left: 0;
-	top: 0;
+	top: -30px;
 	margin: 0 0 0 1rem;
-	-webkit-writing-mode: vertical-rl;
-	writing-mode: vertical-rl;
-	transform: rotate(180deg);
+	/* -webkit-writing-mode: vertical-rl;
+	writing-mode: vertical-rl; */
+	/* transform: rotate(180deg); */
 	transform-origin: 0 50%;
+	font-family: 'GangwonEdu_OTFBoldA';
+	letter-spacing: 0.8px;
 }
 
 .grid__item-number {
-	font-family: 'Great Vibes', cursive;
+	font-family: 'GangwonEdu_OTFBoldA';
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	font-size: 2.7rem;
+	font-size: 45px;
 	margin: 0 0 0.15rem;
 }
 
@@ -344,6 +379,7 @@ button.content__close:hover {
 	}
 }
 </style>
+<!-- css 적용 문제로 직접 css 적용 -->
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -469,22 +505,24 @@ button.content__close:hover {
 
 					<!-- Text -->
 					<text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text">
-						#Holi Now
+						<a href="javascript:void(0)" onclick="goHolinow()">#Holi Now</a>
 					</text>
 				</svg>
 			</div>
 
 			<div class="grid-wrap">
 				<div class="grid">
+				<c:forEach var="hn" items="${holinows }">
 					<a href="#" class="grid__item">
 						<div class="grid__item-bg"></div>
 						<div class="grid__item-wrap">
-							<img class="grid__item-img" src="resources/sej_img/holinow/GettyImages-503564070.jpg" alt="Paris" />
+							<img class="grid__item-img" src="${hn.postimg }" alt="Paris" />
 						</div>
-						<h3 class="grid__item-title">Amazing Lond</h3>
-						<h4 class="grid__item-number">London</h4>
+						<h3 class="grid__item-title">${hn.posttitle }</h3>
+						<h4 class="grid__item-number">${hn.postcountry }</h4>
 					</a>
-					<a href="#" class="grid__item">
+				</c:forEach>	
+					<!-- <a href="#" class="grid__item">
 						<div class="grid__item-bg"></div>
 						<div class="grid__item-wrap">
 							<img class="grid__item-img" src="resources/sej_img/holinow/GettyImages-532667921.jpg" alt="Eagle" />
@@ -571,21 +609,23 @@ button.content__close:hover {
 						</div>
 						<h3 class="grid__item-title">Common Ostrich</h3>
 						<h4 class="grid__item-number">Ostrich</h4>
-					</a>
+					</a> -->
 				</div>
 			</div>
 
 			<div class="content">
+				<c:forEach var="hn2" items="${holinows }">
 				<div class="content__item">
 					<div class="content__item-intro">
-						<img class="content__item-img" src="https://images.pexels.com/photos/154510/pexels-photo-154510.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dove" />
+						<img class="content__item-img" src="${hn.postimg }" alt="Dove" />
 						<h2 class="content__item-title">Mourning Dove</h2>
 					</div>
 					<div class="content__item-text">
-						<p>The mourning dove is a medium-sized, slender dove approximately 31 cm (12 in) in length. Mourning doves weigh 112–170 g (4.0–6.0 oz), usually closer to 128 g (4.5 oz). The mourning dove has a wingspan of 37-45 cm. The elliptical wings are broad, and the head is rounded. Its tail is long and tapered ("macroura" comes from the Greek words for "large" and "tail"). Mourning doves have perching feet, with three toes forward and one reversed. The legs are short and reddish colored. The beak is short and dark, usually a brown-black hue.</p>
+						${hn.posttxt }
 					</div>
 				</div>
-				<div class="content__item">
+				</c:forEach>
+				<!-- <div class="content__item">
 					<div class="content__item-intro">
 						<img class="content__item-img" src="https://images.pexels.com/photos/6694643/pexels-photo-6694643.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Eagle" />
 						<h2 class="content__item-title">Bald Eagle</h2>
@@ -685,7 +725,7 @@ button.content__close:hover {
 					<div class="content__item-text">
 						<p>The common ostrich (Struthio camelus) or simply ostrich, is a species of large flightless bird native to certain large areas of Africa. It is one of two extant species of ostriches, the only living members of the genus Struthio in the ratite order of birds. The other is the Somali ostrich (Struthio molybdophanes), which was recognized as a distinct species by BirdLife International in 2014 having been previously considered a very distinctive subspecies of ostrich. The common ostrich belongs to the order Struthioniformes. Struthioniformes previously contained all the ratites, such as the kiwis, emus, rheas, and cassowaries. However, recent genetic analysis has found that the group is not monophyletic, as it is paraphyletic with respect to the tinamous, so the ostriches are now classified as the only members of the order. Phylogenetic studies have shown that it is the sister group to all other members of Palaeognathae and thus the flighted tinamous are the sister group to the extinct moa. It is distinctive in its appearance, with a long neck and legs, and can run for a long time at a speed of 55 km/h (34 mph) with short bursts up to about 70 km/h (43 mph), the fastest land speed of any bird. The common ostrich is the largest living species of bird and lays the largest eggs of any living bird (the extinct elephant birds of Madagascar and the giant moa of New Zealand laid larger eggs). The common ostrich's diet consists mainly of plant matter, though it also eats invertebrates and small reptiles. It lives in nomadic groups of 5 to 50 birds. When threatened, the ostrich will either hide itself by lying flat against the ground, or run away. If cornered, it can attack with a kick of its powerful legs. Mating patterns differ by geographical region, but territorial males fight for a harem of two to seven females. The common ostrich is farmed around the world, particularly for its feathers, which are decorative and are also used as feather dusters. Its skin is used for leather products and its meat is marketed commercially, with its leanness a common marketing point. Common ostriches usually weigh from 63 to 145 kilograms (139–320 lb), or as much as two adult humans. The Masai ostriches of East Africa (S. c. massaicus) averaged 115 kg (254 lb) in males and 100 kg (220 lb) in females, while the nominate subspecies, the North African ostrich (S. c. camelus), was found to average 111 kg (245 lb) in unsexed adults. Exceptional male ostriches (in the nominate subspecies) can weigh up to 156.8 kg (346 lb). At sexual maturity (two to four years), male common ostriches can be from 2.1 to 2.8 m (6 ft 11 in to 9 ft 2 in) in height, while female common ostriches range from 1.7 to 2.0 m (5 ft 7 in to 6 ft 7 in) tall. New chicks are fawn in color, with dark brown spots.[12] During the first year of life, chicks grow at about 25 cm (9.8 in) per month[citation needed]. At one year of age, common ostriches weigh approximately 45 kilograms (99 lb). Their lifespan is up to 40–45 years. The long neck and legs keep their head up to 2.8 m (9 ft) above the ground, and their eyes are said to be the largest of any land vertebrate: 50 mm (2.0 in) in diameter; helping them to see predators at a great distance. The eyes are shaded from sunlight from above. However, the head and bill are relatively small for the birds' huge size, with the bill measuring 12 to 14.3 cm (4.7 to 5.6 in). Their skin varies in color depending on the subspecies, with some having light or dark gray skin and others having pinkish or even reddish skin. The strong legs of the common ostrich are unfeathered and show bare skin, with the tarsus (the lowest upright part of the leg) being covered in scales: red in the male, black in the female. The tarsus of the common ostrich is the largest of any living bird, measuring 39 to 53 cm (15 to 21 in) in length. The bird has just two toes on each foot (most birds have four), with the nail on the larger, inner toe resembling a hoof. The outer toe has no nail. The reduced number of toes is an adaptation that appears to aid in running, useful for getting away from predators. Common ostriches can run at a speed over 70 km/h (43 mph) and can cover 3 to 5 m (9.8 to 16.4 ft) in a single stride. The wings reach a span of about 2 metres (6 ft 7 in), and the wing chord measurement of 90 cm (35 in) is around the same size as for the largest flying birds.</p>
 					</div>
-				</div>
+				</div> -->
 				<button class="content__close">Close</button>
         <svg class="content__indicator icon icon--caret"><use xlink:href="#icon-caret"></use></svg>
 			</div>

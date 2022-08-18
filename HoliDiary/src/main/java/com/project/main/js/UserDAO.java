@@ -52,17 +52,16 @@ public class UserDAO {
 			if(ss.getMapper(UserMapper.class).join(u) == 1) {
 				req.getSession().setAttribute("loginUser", u);
 				req.getSession().setMaxInactiveInterval(60*10);
-				System.out.println("세션 등록 성공");
 				ss.getMapper(DiaryMapper.class).diaryInsert(u);
 				ss.getMapper(CategoryMapper.class).categoryUserInsert(u);
-				req.setAttribute("r", "가입성공");
+				System.out.println("세션 등록 성공 및 가입성공");
 			}else {
-				req.setAttribute("r", "가입실패");
+				System.out.println("가입실패");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("r", "가입실패");
+			System.out.println("가입실패");
 		}
 	}
 	
@@ -333,15 +332,16 @@ public class UserDAO {
 					req.getSession().setAttribute("loginUser", kakaoUser);
 					req.getSession().setAttribute("kakao_token", token);
 					req.getSession().setMaxInactiveInterval(60*10);
-					System.out.println("세션 등록 성공");
-					//ss.getMapper(DiaryMapper.class).diaryInsert(kakaoUser);
-					req.setAttribute("r", "가입성공");
+					ss.getMapper(DiaryMapper.class).diaryInsert(kakaoUser);
+					ss.getMapper(CategoryMapper.class).categoryUserInsert(kakaoUser);
+					System.out.println("세션 등록 성공 및 가입성공");
 				}else {
-					req.setAttribute("r", "가입실패");
+					System.out.println("가입실패");
 				}
 
 		       } catch (Exception e) {
 		            e.printStackTrace();
+		            System.out.println("가입실패");
 		       }
 		} else {
 			System.out.println("토큰 없음");
@@ -412,7 +412,6 @@ public class UserDAO {
 					req.getSession().setAttribute("kakao_token", token);
 					req.getSession().setMaxInactiveInterval(60*10);
 					System.out.println("세션 등록 성공");
-					//ss.getMapper(DiaryMapper.class).diaryInsert(kakaoUser);
 					System.out.println("로그인 성공");
 			   }else {
 				   // 카카오 아이디 없으면 회원가입
@@ -422,6 +421,7 @@ public class UserDAO {
 
 		       } catch (Exception e) {
 		            e.printStackTrace();
+		            System.out.println("카카오 오류");
 		       }
 		}		
 	
@@ -436,7 +436,11 @@ public class UserDAO {
 			User dbUser = ss.getMapper(UserMapper.class).getUserByID(u);
 			
 			req.getSession().setAttribute("loginUser", dbUser);
+			req.getSession().setAttribute("naver_token", req.getParameter("naver_token"));
 			req.getSession().setMaxInactiveInterval(60*10);
+			ss.getMapper(DiaryMapper.class).diaryInsert(u);
+			ss.getMapper(CategoryMapper.class).categoryUserInsert(u);
+			System.out.println("네이버 가입 성공");
 			
 			return 1;
 		}
@@ -451,9 +455,9 @@ public class UserDAO {
 	       
 		   if(dbUser != null) {
 				req.getSession().setAttribute("loginUser", dbUser);
+				req.getSession().setAttribute("naver_token", req.getParameter("naver_token"));
 				req.getSession().setMaxInactiveInterval(60*10);
 				System.out.println("세션 등록 성공");
-				//ss.getMapper(DiaryMapper.class).diaryInsert(kakaoUser);
 				System.out.println("로그인 성공");
 				
 				return true;
@@ -465,8 +469,22 @@ public class UserDAO {
 	}
 
 	// 아이디 찾기
-	public String findID(User u) {
-		return ss.getMapper(UserMapper.class).findID(u);
+	public void findID(User u, HttpServletRequest req) {
+		if(ss.getMapper(UserMapper.class).findID(u) != null) {
+			User dbUser = ss.getMapper(UserMapper.class).findID(u);
+			System.out.println(dbUser.getKakaoID());
+			System.out.println(dbUser.getNaverID());
+			System.out.println(dbUser.getUserID());
+			if(u.getKakaoID() != null) {
+				req.setAttribute("kakao_user", dbUser.getKakaoID());
+			}
+			if(u.getNaverID() != null) {
+				req.setAttribute("naver_user", dbUser.getNaverID());
+			}
+			req.setAttribute("db_user", dbUser.getUserID());
+		}
+		req.setAttribute("findID_r", "no");
+		
 	}
 
 	// 비밀번호 찾기 : 회원정보 여부 확인
@@ -587,6 +605,10 @@ public class UserDAO {
 			User u = (User) req.getSession().getAttribute("loginUser");
 			
 			System.out.println(req.getSession().getAttribute("kakao_token"));
+			System.out.println(req.getSession().getAttribute("naver_token"));
+			
+			String kakao_token = (String) req.getSession().getAttribute("kakao_token");
+			String naver_token = (String) req.getSession().getAttribute("naver_token");
 
 			if (ss.getMapper(UserMapper.class).deleteUser(u) == 1) {
 				String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
@@ -595,7 +617,7 @@ public class UserDAO {
 				new File(path + "/" + img).delete();
 				
 				// 카카오 연동 해제
-				if(req.getSession().getAttribute("kakao_token") != null) {
+				if(kakao_token != null) {
 					
 					String reqURL = "https://kapi.kakao.com/v1/user/unlink";
 					
@@ -612,6 +634,34 @@ public class UserDAO {
 				}
 				
 				// 네이버 연동 해제
+				if(naver_token != null) {
+					String apiUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=rX3BsIpQkj6CJiShI2rn" +
+							"&client_secret=V8T2DziKhJ&access_token="+naver_token.replaceAll("'", "")+"&service_provider=NAVER";
+					
+					URL url = new URL(apiUrl);
+				    HttpURLConnection conn = (HttpURLConnection) url.openConnection();	
+				    conn.setRequestMethod("GET");
+				    int responseCode = conn.getResponseCode();
+				    
+				    System.out.println(responseCode);
+				    
+				    BufferedReader  br;
+				    
+				    if(responseCode==200) { // 정상 호출
+				    	br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+				      } else {  // 에러 발생
+				    	br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+				      }
+				      String inputLine;
+				      StringBuffer res = new StringBuffer();
+				      while ((inputLine = br.readLine()) != null) {
+				        res.append(inputLine);
+				      }
+				      
+				      br.close();
+				    
+				      System.out.println(res);
+				}
 
 				logout(req);
 

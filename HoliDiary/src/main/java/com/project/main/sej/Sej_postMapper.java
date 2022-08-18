@@ -10,4 +10,6 @@ public interface Sej_postMapper {
 
 	int getPostCountBeta(HomePostSelector pSel);
 
+	public List<PostContent> getHolinow();
+
 }

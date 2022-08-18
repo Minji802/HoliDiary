@@ -12,4 +12,6 @@ public interface CategoryMapper {
 
 	void deleteCategory(Category c);
 
+	Category getCategoryInfo(Category c);
+
 }

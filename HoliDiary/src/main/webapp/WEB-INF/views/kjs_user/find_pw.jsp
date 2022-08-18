@@ -17,6 +17,9 @@
 		</div>
 		<form action="find.pw.do" method="post" onsubmit="return findPWValidCheck()">
 		<div id="find_pw_box">
+			<div class="find_pw_error_box">
+				<span id="find_pw_error"></span>
+			</div>
 			<div class="find_pw_id_box">
 				<input placeholder="아이디" name="userID" autocomplete="off" id="find_pw_id">
 			</div>
@@ -25,9 +28,6 @@
 			</div>
 			<div class="find_pw_btn_box">
 				<button>비밀번호 찾기</button>
-			</div>
-			<div>
-				<span id="find_pw_error"></span>
 			</div>
 		</div>
 		</form>

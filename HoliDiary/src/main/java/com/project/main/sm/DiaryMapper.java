@@ -7,9 +7,9 @@ public interface DiaryMapper {
 
 	public void diaryInsert(User u);
 	public int diaryUpdate(Diary d);
-	public Object getDiaryInfo(Diary d);
+	public Diary getDiaryInfo(Diary d);
 	public void diaryTheme(Diary d);
-	public Object getUserInfo(User u);
+	public User getUserInfo(User u);
 
 
 }

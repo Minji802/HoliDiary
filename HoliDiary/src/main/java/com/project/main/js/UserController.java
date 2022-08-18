@@ -179,9 +179,14 @@ public class UserController {
 	
 	// 아이디찾기
 	@RequestMapping(value = "/find.id.do", method = RequestMethod.POST)
-	public @ResponseBody String idSearchDo(User u) {
+	public String idSearchDo(User u, HttpServletRequest req) {
 		
-		return uDAO.findID(u);
+		uDAO.findID(u, req);
+		
+		req.setAttribute("contentPage", "kjs_user/find_id.jsp");
+		req.setAttribute("loginPage", "kjs_user/before_login.jsp");
+		
+		return "index";
 	}
 	
 	// 비번찾기 페이지 이동

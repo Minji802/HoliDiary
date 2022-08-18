@@ -11,14 +11,14 @@
 <link rel="stylesheet" href="resources/sej_css/home_search.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_join.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_login.css">
-<link rel="stylesheet" href="resources/kjs_css/kjs_find_user.css">
+<link rel="stylesheet" href="resources/kjs_css/kjs_find_user.css?ver=1">
 <script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/sej_js/jquery.js"></script>
 <script type="text/javascript" src="resources/sej_js/sej_home.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="resources/sej_js/sej_go.js"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_kakao.js"></script>
+<script type="text/javascript" src="resources/kjs_js/kjs_kakao.js?ver=1"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_mypage.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_valid.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_validCheck.js"></script>
@@ -65,6 +65,7 @@
 			</a>
 			<a class="menu_bar_li_first" href="#" id="modal_btn" onclick=popup()>My Diary</a>
 			<input type="hidden" value="${sessionScope.loginUser.userID }" id="userID">
+			<input type="hidden" value="${Category.categoryUserId }" id="CuserID">
 			<span class="menu_bar_border"></span>
 			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">마이페이지</a>
 			<a class="menu_bar_li" href="javascript:void(0)" onclick="goHolinow()">홀리 NOW</a>

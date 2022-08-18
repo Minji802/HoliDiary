@@ -36,6 +36,8 @@
 		
 	</select>
 
-
+	<select id="getHolinow" resultType="com.project.main.sej.PostContent">
+		select * from (select * from post order by postdate desc) where rownum &lt;=12
+	</select>
 
 </mapper>

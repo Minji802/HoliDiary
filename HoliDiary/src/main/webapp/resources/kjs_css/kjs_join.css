@@ -39,10 +39,11 @@
 	border: 3px solid #6667AB;
 	border-radius: 10px;
 	width: 600px;
-	height: 1000px;
+	height: 900px;
 	top: 10%;
 	left: 50%;
 	margin-left: -300px;
+	padding-top: 30px;
 }
 
 #join_title_box{
@@ -61,30 +62,33 @@
 	color: #6667AB;
 }
 
+.join_span{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 15pt;
+	margin-left: 150px;
+}
+
+.join_span span{
+	width: 200px;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 11pt;
+	margin-left: 5px;
+}
+
 .join_input_box{
 	width: 300px;
-	height: 100px;
-	margin-top: 20px; 
+	height: 50px;
+	margin-top: 10px;
 	margin-bottom: 20px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.join_input_box span{
-	font-family: 'GangwonEdu_OTFBoldA';
-	font-size: 15pt;
-}
-
 .join_input_box input{
 	width: 100%;
-	height: 50px;
+	height: 100%;
 	font-size: 12pt;
 	padding: 10px;
-}
-
-.join_span > span{
-	font-size: 11pt;
-	margin-left: 10px;
 }
 
 .join_file_box{
@@ -94,7 +98,7 @@
 .join_btn_box{
 	width: 150px;
 	height: 40px;
-	margin: 10px auto;
+	margin: 20px auto;
 }
 
 .join_btn_box button{
@@ -105,6 +109,7 @@
 	background-color: #6667AB;
 	color: white;
 	cursor: pointer;
+	border: none;
 }
 
 .join_page{
@@ -164,38 +169,24 @@
 
 .join_file_upload_box{
 	position: absolute;
-	width: 600px;
+	width: 100%;
 	height: 500px;
 	top: 5%;
 	left: 50%;
-	margin-left: -300px;
+	margin-left: -50%;
 }
 
-.join_phrase{
-	margin: 10px;
+.join_welcome{
+	padding-bottom: 10px;
+	border-bottom: 3px solid #6667AB;
 }
 
-.join_phrase span{
+.join_welcome span{
 	font-family: 'GangwonEdu_OTFBoldA';
 	font-size: 15pt;
 }
 
-.join_go_home_box{
-	width: 150px;
-	height: 40px;
-	margin: 10px;
-}
 
-.join_go_home_box button{
-	width: 100%;
-	height: 100%;
-	font-size: 15pt;
-	font-family: 'GangwonEdu_OTFBoldA';
-	border: 2px solid #6667AB;
-	background-color: transparent;
-	color: #6667AB;
-	cursor: pointer;
-}
 
 #join_img_box{
 	width: 330px;
@@ -216,25 +207,64 @@
 }
 
 .join_file_input_box{
-	position:absolute;
-	margin: 10px;
-	top: 85%;
-	left: 70%;
+	margin: 20px;
+	text-align: center;
+}
+
+.join_upload_name{
+	display: inline-block;
+    width: 200px;
+    height: 30px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    color: #999999;
+}
+
+.join_file_input_box label{
+	display: inline-block;
+    padding: 10px 10px;
+    color: gray;
+    vertical-align: middle;
+    background-color: transparent;
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 12pt;
+    cursor: pointer;
+    height: 30px;
+    margin-left: 10px;
+    border: 2px solid gray;
+}
+
+.join_file_input_box input[type="file"]{
+	display: none;
 }
 
 .join_file_btn_box{
-	width: 100px;
+	width: 500px;
 	height: 40px;
 	margin: 10px auto;
-	
+	text-align: center;
 }
 
-.join_file_btn_box button{
-	width: 100%;
+.join_file_reg_btn{
+	width: 100px;
 	height: 100%;
 	font-size: 15pt;
 	font-family: 'GangwonEdu_OTFBoldA';
 	background-color: #6667AB;
 	color: white;
 	cursor: pointer;
+	border: none;
+}
+
+.join_go_home_btn{
+	width: 150px;
+	height: 40px;
+	font-size: 15pt;
+	font-family: 'GangwonEdu_OTFBoldA';
+	border: 2px solid #6667AB;
+	background-color: transparent;
+	color: #6667AB;
+	cursor: pointer;
+	margin: 10px;
 }

@@ -16,10 +16,16 @@ public class HolinowController {
 	@Autowired
 	private UserDAO uDAO;
 	
+	@Autowired
+	private HolinowDAO hDAO;
+	
 	@RequestMapping(value = "/holinow.go", method = RequestMethod.GET)
 	public String holiNowGo(HomePostSelector pSel,HttpServletRequest req) {
 		uDAO.loginCheck(req);
+		hDAO.getHolinow(req);
 		req.setAttribute("contentPage", "sej_holinow/holinow.jsp");
 		return "index";
 	}
+	
+	
 }

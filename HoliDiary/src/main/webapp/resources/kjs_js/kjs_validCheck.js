@@ -21,29 +21,6 @@ function loginValidCheck(){
 	return true;
 }
 
-// 비번찾기 유효성검사
-function findPWValidCheck(){
-	let id = $("#find_pw_id");
-	let email = $("#find_pw_email");
-	
-	if(isEmpty(id)){
-		id.focus();
-		$('#find_pw_error').text('아이디를 입력해주세요');
-		$('#find_pw_error').css('color','red');
-		return false;
-	}
-
-	if(isEmpty(email)){
-		email.focus();
-		$('#find_pw_error').text('이메일을 입력해주세요');
-		$('#find_pw_error').css('color','red');
-		return false;
-	}
-	
-	return true;
-	
-}
-
 // 회원가입 안 넘어가게 유효성 검사
 function joinCheck(){
 	let name = document.joinForm.userName;
@@ -124,45 +101,49 @@ function findID(){
 	
 	if(isEmpty(name)){
 		name.focus();
-		$('#userID_show').text('이름을 입력해주세요');
-		$('#userID_show').css('color','red');
+		if($('#userID_show').text() != ''){
+			$('#userID_show').text('');
+		}
+		$('#find_id_valid').text('이름을 입력해주세요');
 		return false;
 	}
 		
 	if(isEmpty(phone)){
 		phone.focus();
-		$('#userID_show').text('전화번호를 입력해주세요');
-		$('#userID_show').css('color','red');
+		if($('#userID_show').text() != ''){
+			$('#userID_show').text('');
+		}
+		$('#find_id_valid').text('전화번호를 입력해주세요');
 		return false;
 	}
+
 		
-	if(!isEmpty(name) && !isEmpty(phone)){
-		console.log('빈칸은 없음')
-		$.ajax({
-			url : 'find.id.do',
-			type : 'POST',
-			dataType : 'text',
-			data : {'userName' : name.val(), 'userPhoneNumber' : phone.val()},
-			success : function(getID) {
-				//console.log(getID);
-				if(getID != ''){
-					//console.log('아이디 찾음');
-					$('#userID_show').text(getID);
-					$('#userID_show').css('color','blue');
-					$('#userID_show').css('font-size','15pt');
-				}else{
-					//console.log('아이디 없음')
-					$('#userID_show').html('회원정보를 찾을 수 없습니다.<br>입력사항을 다시 확인해주세요.');
-					$('#userID_show').css('color','red');
-				}
-			},
-			error : function(request,status,error) {
-       			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       		}
-		});
-	}
+	return true;
 }
 
+
+//비번찾기 유효성검사
+function findPWValidCheck(){
+	let id = $("#find_pw_id");
+	let email = $("#find_pw_email");
+	
+	if(isEmpty(id)){
+		id.focus();
+		$('#find_pw_error').text('아이디를 입력해주세요');
+		$('#find_pw_error').css('color','red');
+		return false;
+	}
+
+	if(isEmpty(email)){
+		email.focus();
+		$('#find_pw_error').text('이메일을 입력해주세요');
+		$('#find_pw_error').css('color','red');
+		return false;
+	}
+	
+	return true;
+	
+}
 
 // 회원가입에 쓸 레디문
 $(function() {
@@ -339,7 +320,7 @@ $(function() {
 			// 필수
 			if(isEmpty(email)){
 				$('#join_email_error').text('이메일을 입력해주세요');
-				$('#join_email_error').text('비밀번호를 입력해주세요');
+				$('#join_email_error').css('color','red');
 			}else{
 				$('#join_email_error').text('');
 				$('#join_email_error').css('color','blue');
