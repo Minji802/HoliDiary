@@ -507,7 +507,7 @@ public class UserDAO {
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";		
 		String hostSMTPid = "tlawl912@naver.com"; // 본인의 아이디 입력		
-		String hostSMTPpwd = "kjsrla1968!"; // 비밀번호 입력
+		String hostSMTPpwd = ""; // 비밀번호 입력
 			
 		// 보내는 사람 EMail, 제목, 내용 
 		String fromEmail = "tlawl912@naver.com"; // 보내는 사람 eamil

@@ -36,4 +36,5 @@ public class Sej_SearchController {
 		pDAO.searchPost(p, pSel, req);
 		return "index";
 	}
+	
 }

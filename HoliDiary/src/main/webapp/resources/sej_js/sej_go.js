@@ -7,3 +7,7 @@ function goSearch() {
 	
 	location.href='home.search?search='+ search;
 }
+
+function goHolinow() {
+	location.href='holinow.go';
+}

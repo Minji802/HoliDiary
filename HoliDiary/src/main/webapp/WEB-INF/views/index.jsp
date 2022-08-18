@@ -28,6 +28,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script type="text/javascript" src="resources/sej_js/sej_slider_script.js"></script>
 <link rel="stylesheet" href="resources/sej_css/sej_slider_style.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style type="text/css">
 .swiper-button-next {
   background: url(resources/sej_img/slider/free-icon-right.png) no-repeat;
@@ -65,7 +67,7 @@
 			<input type="hidden" value="${sessionScope.loginUser.userID }" id="userID">
 			<span class="menu_bar_border"></span>
 			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">마이페이지</a>
-			<a class="menu_bar_li" href="">홀리 NOW</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goHolinow()">홀리 NOW</a>
 			<a class="menu_bar_li" href="">Best 홀리</a>
 			<a class="menu_bar_li" href="">아이템샵</a>
 			<a class="menu_bar_li" href="#" onclick='location.href="map.go"'>Map(임시)</a>
@@ -107,18 +109,7 @@
 	<jsp:include page="${contentPage }"></jsp:include>
 	
 	</div>
-	<form name="searchFrm" style="margin-top: 20px;">
-		<select name="searchType" id="searchType">
-			<option value="subject">제목</option>
-			<option value="name">글쓴이</option>
-		</select>
-		<input type="text" id="searchWord" name="searchWord" size="100" autocomplete="off">
-		<input type="hidden" style="display: none;">
-		<button type="button" class="btn btn-secondary btn-sm" onclick="goSearch()">검색</button>
-	</form>
-	<%-- 검색어 자동완성이 보여질 구역 --%>
-	<div id="displayList" style="border: solid 1px gray; height: 100px; overflow: auto; margin-left: 77px; margin-top; -1px; border-top: 0px;">
-	</div>
+
 	<!-- FOOTER 영역 -->
 	<footer id="bottom_footer">
 		<div class="first_footer">
