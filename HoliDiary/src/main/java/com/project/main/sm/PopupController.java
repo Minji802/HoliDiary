@@ -130,6 +130,11 @@ public class PopupController {
 		
 		return "ksm_main/popup";
 	}
+	
+	
+	
+	// 다이어리 - 개인 카테고리 포스트 작성에 던져주기
+	
 
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
 				제목<input type="text" name="postTitle" class="postTitleWriteContent"
-					style="width: 60%; margin-left: 20px; border: 1px solid grey;">                              
+					style="width: 60%; margin-left: 20px; border: 1px solid grey;">                     
 			</div>
 
 			<div>
@@ -38,10 +39,18 @@
 
 			<div class="diaryPostCategory"
 				style="width: 10%; height: 20px; float: right; margin-top: -12px; font-size: 12px">
+				
+				<c:if test="${!empty Diary.categoriesArray }">
 				<select name="postCategory" id="postCategory">
 					<option selected>분류</option>
 					<option value="post">Post</option>
-				</select>                  
+					<c:forEach var="category" varStatus="status" items="${Diary.categoriesArray }">
+					<option class="item-link il-${status.count }" id="pageLink" value="${category }"> 
+					${category }
+					</option>
+					</c:forEach>
+				</select>
+				</c:if>                  
 			</div>
 
 			<div class="diaryPostCountry">

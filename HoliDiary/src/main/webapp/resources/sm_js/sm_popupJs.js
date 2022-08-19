@@ -9,6 +9,12 @@ function popup() {
 	window.open(url,"_blank", options);
 }
 
+function popupclose(){
+	
+	window.close();
+}
+
+
 $(document).ready(function () {
 	  $("a#pageLink").click(function () {
 	    $("a#pageLink").removeClass("active");
