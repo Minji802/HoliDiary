@@ -25,10 +25,10 @@
 			</div> 
 			<div>
 			<span>${c.postmap }</span>
-			<p class="home_search_content_img"><%-- ${c.postimg } --%><img src="resources/sej_img/search_testing/a78c82f1bd248f89b536c8b849a96ced.jpg"></p>
+			<p class="home_search_content_img"><img src="${c.postimg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"></p>
 			</div>
 			<div>
-			<p class="home_search_text_box">${c.posttxt }</p>
+			<span class="home_search_text_box">${c.posttxt }</span>
 			<span class="home_search_writer">${c.postwriter }</span> 
 			<span class="home_search_recommend">추천수: ${c.postrecommend }</span>
 			</div>

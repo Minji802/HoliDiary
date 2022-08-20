@@ -422,34 +422,34 @@ input.add-event-edit:-ms-input-placeholder {
     <span class="day-view-date" id="day-view-date">MAY 29 2016</span>
     <div class="day-view-content">
       <div class="day-highlight">
-        You <span class="day-events" id="day-events">had no events for today</span>. &nbsp; <span tabindex="0" onkeyup="if(event.keyCode != 13) return; this.click();" class="day-events-link" id="add-event" data-date>Add a new event?</span>
+        <span class="day-events" id="day-events">had no events for today</span>. &nbsp; <span tabindex="0" onkeyup="if(event.keyCode != 13) return; this.click();" class="day-events-link" id="add-event" data-date>일정을 추가하시겠습니까?</span>
       </div>
       <div class="day-add-event" id="add-day-event-box" data-active="false">
         <div class="row">
           <div class="half">
             <label class="add-event-label">
-               Name of event
-              <input type="text" class="add-event-edit add-event-edit--long" placeholder="New event" id="input-add-event-name">
+              	일정 제목
+              <input type="text" class="add-event-edit add-event-edit--long" placeholder="새로운 일정" id="input-add-event-name">
              
             </label>
           </div>
           <div class="qtr">
             <label class="add-event-label">
-          Start Time
+          		시작 시간
               <input type="text" class="add-event-edit" placeholder="8:15" id="input-add-event-start-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
               <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-start-ampm" data-options="a,p,am,pm">
             </label>
           </div>
           <div class="qtr">
             <label class="add-event-label">
-          End Time
+         		마침 시간
               <input type="text" class="add-event-edit" placeholder="9" id="input-add-event-end-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
               <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-end-ampm" data-options="a,p,am,pm">
             </label>
           </div>
           <div class="half">
-            <a onkeyup="if(event.keyCode != 13) return; this.click();" tabindex="0" id="add-event-save" class="event-btn--save event-btn">save</a>
-            <a tabindex="0" id="add-event-cancel" class="event-btn--cancel event-btn">cancel</a>
+            <a onkeyup="if(event.keyCode != 13) return; this.click();" tabindex="0" id="add-event-save" class="event-btn--save event-btn">저장</a>
+            <a tabindex="0" id="add-event-cancel" class="event-btn--cancel event-btn">취소</a>
           </div>
         </div>
         
@@ -659,17 +659,17 @@ function CalendarApp(date) {
 	  /* Contextual lang changes based on tense. Also show btn for scheduling future events */
 	  var _dayTopbarText = '';
 	  if ( day < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
-	    _dayTopbarText = "had ";
+	    _dayTopbarText = "과거 ";
 	    this.addDayEventEle.style.display = "none";
 	  } else {
-	     _dayTopbarText = "have ";
+	     _dayTopbarText = "현재 ";
 	     this.addDayEventEle.style.display = "inline";
 	  }
 	  this.addDayEventEle.setAttribute("data-date", day);
 	  
 	  var eventsToday = this.showEventsByDay(day);
 	  if ( !eventsToday ) {
-	    _dayTopbarText += "no ";
+	    _dayTopbarText += "0 ";
 	    var _rand = Math.round(Math.random() * ((this.quotes.length - 1 ) - 0) + 0);
 	    this.dayInspirationalQuote.textContent = this.quotes[_rand];
 	  } else {
@@ -684,7 +684,7 @@ function CalendarApp(date) {
 	  this.dayEventsList.appendChild(this.showEventsCreateElesView(eventsToday));
 	  
 	  
-	  this.dayEventsEle.textContent = _dayTopbarText + "events on " + this.months[day.getMonth()] + " " + day.getDate() + ", " + day.getFullYear();
+	  this.dayEventsEle.textContent = _dayTopbarText + "개의 일정이 있습니다. " + this.months[day.getMonth()] + " " + day.getDate() + ", " + day.getFullYear();
 	  
 	  
 	};
@@ -701,7 +701,7 @@ function CalendarApp(date) {
 	    var li = document.createElement("li");
 	    li.className = "event-dates";
 	    // li.innerHtml
-	    var html = "<span class='start-time'>" + _start.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + "</span> <small>through</small> ";
+	    var html = "<span class='start-time'>" + _start.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + "</span> <small>부터 </small> ";
 	    html += "<span class='end-time'>" + _end.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + ( (_end.getDate() != _start.getDate()) ? ' <small>on ' + _end.toLocaleDateString() + "</small>" : '') +"</span>";
 	    
 

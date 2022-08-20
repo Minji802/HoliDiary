@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="resources/sej_css/home_search.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_join.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_login.css">
+<link rel="stylesheet" href="resources/kjs_css/kjs_mypage.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_find_user.css?ver=1">
 <script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/sej_js/jquery.js"></script>
@@ -69,9 +70,9 @@
 			<span class="menu_bar_border"></span>
 			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">마이페이지</a>
 			<a class="menu_bar_li" href="javascript:void(0)" onclick="goHolinow()">홀리 NOW</a>
-			<a class="menu_bar_li" href="">Best 홀리</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goBestHoli()">Best 홀리</a>
 			<a class="menu_bar_li" href="">아이템샵</a>
-			<a class="menu_bar_li" href="#" onclick='location.href="map.go"'>Map(임시)</a>
+			<a class="menu_bar_li" href="">Map(임시)</a>
 			
 			<!-- 로그인 페이지 공간 입니다 -->
 			<div class="menu_bar_user_place">

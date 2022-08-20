@@ -67,7 +67,6 @@
 					<details>
 						<summary>
 							<span class="profile-name">${User.userID}</span>
-						<%-- <span class="profile-name">${sessionScope.loginUser.userNickname }</span> --%>
 						</summary>
 						<p class="profile-introduce">${Diary.diaryIntroduce }</p>
 					</details>
@@ -77,7 +76,7 @@
 
 <!-- 좌측 카테고리 리스트 -->
 				<div class="page-link-list">
-					<a href="popupHomeGo?userId=${sessionScope.loginUser.userID }"
+					<a href="popupHomeGo?userId=${User.userID}"
 						class="item-link" id="pageLink"> <svg class="link-icon"
 							fill="none" stroke="currentColor" stroke-linecap="round"
 							stroke-linejoin="round" stroke-width="2"
@@ -85,15 +84,10 @@
             <defs />
             <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
             <path d="M9 22V12h6v10" /></svg> Home
-					</a> <a href="popupScheduleGo?userId=${sessionScope.loginUser.userID }"
-						class="item-link" id="pageLink"> <svg class="link-icon"
-							xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-							viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="feather feather-heart">
-            <path
-								d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-          </svg> Schedule
+					</a> <a href="popupScheduleGo?userId=${User.userID}"
+						class="item-link" id="pageLink"> <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" /></svg> Schedule
 					</a> <a href="#" class="item-link" id="pageLink"> <svg
 							class="link-icon" xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -101,14 +95,14 @@
 							class="feather feather-play">
             <path d="M5 3l14 9-14 9V3z" />
           </svg>
-          Map</a>
+          Guest Book</a>
        </div>
        <div class="list-header">
         <span class="category-item">My Diary</span>
        
       </div>
        <div>
-        <a href="post-list?userId=${sessionScope.loginUser.userID }" class="item-link" id="pageLink">
+        <a href="post-list?userId=${User.userID}" class="item-link" id="pageLink">
           <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
             <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
           </svg> POST
@@ -142,7 +136,7 @@
 				</button>
 			 </c:when>
 			<c:otherwise>
-				<button class="action-buttons btn-upload" style="background: ${Diary.themeColor}">나의 다이어리로</button>
+				<button class="btn-invite" onclick="location.href='popupHomeGo?userId=${sessionScope.loginUser.userID }'" style="background: ${Diary.themeColor}">나의 다이어리로</button>
 			</c:otherwise>
 			</c:choose>
 			
@@ -184,7 +178,9 @@
 				</div>
 			 </c:when>
 			<c:otherwise>
-				<button class="action-buttons btn-upload" style="background: ${Diary.themeColor}">구독</button>
+				<div class="action-buttons-wrapper">
+					<button class="action-buttons btn-upload" style="background: ${Diary.themeColor}">구독</button>
+				</div>
 			</c:otherwise>
 			</c:choose>	 
 				

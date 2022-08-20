@@ -59,6 +59,7 @@
 				<beans:value>classpath:categoryMapper.xml</beans:value>
 				<beans:value>classpath:diaryPostMapper.xml</beans:value>
 				<beans:value>classpath:commentMapper.xml</beans:value>
+				<beans:value>classpath:likeMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

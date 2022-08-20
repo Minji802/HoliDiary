@@ -1,3 +1,14 @@
+//레디
+$(function() {
+	$(".mypage_index").click(function() {
+		$(this).css('background-color', '#FFDE59');
+		$(this).find('span').css('color', '#6667AB');
+		$(".mypage_index").not($(this)).css('background-color', '#6667AB');
+		$(".mypage_index").find('span').not($(this).find('span')).css('color', '#FFDE59');
+	});
+	
+	
+});
 
 //마이페이지 회원만 이용가능
 function mypageCheckUser(){
@@ -30,6 +41,27 @@ function mypageCheckUser(){
 		
 }
 
+// 마이페이지 내 정보 이동
+
+function showMyinfo(){
+	$("#mypage_myinfo").css('display', 'block');
+	$("#mypage_modify").css('display', 'none');
+	$("#mypage_subscribe").css('display', 'none');
+}
+
+// 마이페이지 정보수정 이동
+function showModify(){
+	$("#mypage_myinfo").css('display', 'none');
+	$("#mypage_modify").css('display', 'block');
+	$("#mypage_subscribe").css('display', 'none');
+}
+
+// 마이페이지 구독정보 확인
+function showSubscribe(){
+	$("#mypage_myinfo").css('display', 'none');
+	$("#mypage_modify").css('display', 'none');
+	$("#mypage_subscribe").css('display', 'block');
+}
 
 
 // 탈퇴

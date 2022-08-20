@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+#content_mypage{
+	position: relative;
+	width: 1400px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#mypage_page_box{
+	position: absolute;
+	width: 1200px;
+	height: 1000px;
+	top: 5%;
+	left: 50%;
+	margin-left: -600px;
+}
+
+.mypage_index{
+	position: relative;
+	display: inline-block;
+	width: 130px;
+	height: 50px;
+	background-color: #6667AB;
+	box-shadow: 0 5px 18px -7px rgba(0,0,0,1);
+	cursor: pointer;
+}
+
+.mypage_index:hover{
+	background-color: #FFDE59;
+}
+
+.mypage_index:hover span{
+	color: #6667AB;
+}
+
+.mypage_index span{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	margin-left: -50px;
+	margin-top: -5px;
+	width:100px;
+	height: 20px;
+	font-family: 'GangwonEdu_OTFBoldA';
+	color: #FFDE59;
+	font-size: 13pt;
+}
+
+#mypage_index_info{
+	background-color: #FFDE59;
+}
+
+.mypage_content_box{
+	width: 100%;
+	height: 800px;
+	background-color: #F9F2ED;
+	box-shadow: 0 5px 18px -7px rgba(0,0,0,1);
+	border-radius: 5px;
+	padding: 20px;
+}
+
+.mypage_myinfo_title{
+	color: #6667AB;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 20pt;
+	padding: 10px;
+	margin-bottom: 30px;
+	border-bottom: 3px dashed #6667AB;
+}
+
+.mypage_myinfo_img{
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.mypage_myinfo_img img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	
+}
+
+#mypage_modify{
+	display: none;
+}
+
+#mypage_subscribe{
+	display: none;
+}

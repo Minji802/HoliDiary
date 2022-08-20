@@ -12,4 +12,6 @@ public interface Sej_postMapper {
 
 	public List<PostContent> getHolinow();
 
+	public List<PostContent> getBestHoli();
+
 }

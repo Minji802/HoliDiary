@@ -663,8 +663,8 @@ details > summary::maker{
 }
 
 .contextmenu li:hover {
-  background: #CE93D8;
-  border-left: 3px solid #9C27B0;
+  background: #bebebe;
+  border-left: 3px solid #707070;
 }
 
 .contextmenu li:hover a {

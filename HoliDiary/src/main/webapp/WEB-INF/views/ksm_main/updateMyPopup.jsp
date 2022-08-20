@@ -17,9 +17,7 @@ $(function(){
 			$('.btn-invite').css('background',color);
 			$('.action-buttons').css('background',color);
 			$(".themeColor").removeClass("selected");
-		});
-	
-	
+		});	
 });
 
 

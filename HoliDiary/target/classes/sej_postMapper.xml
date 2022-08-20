@@ -37,7 +37,17 @@
 	</select>
 
 	<select id="getHolinow" resultType="com.project.main.sej.PostContent">
-		select * from (select * from post order by postdate desc) where rownum &lt;=12
+		select *
+    	from (
+    	select rownum as rn, postnum, posttitle, posttxt, postdate, postwriter, postcategory,
+    	postcountry, postrecommend, postimg, postweather
+    	from (select * from post order by postdate desc)
+   	 			)
+    	where rn &lt;=12
+	</select>
+	
+	<select id="getBestHoli" resultType="com.project.main.sej.PostContent">
+		select * from (select * from post order by postrecommend desc) where rownum &lt;=4
 	</select>
 
 </mapper>

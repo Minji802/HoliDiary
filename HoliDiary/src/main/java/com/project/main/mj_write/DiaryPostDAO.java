@@ -36,7 +36,7 @@ public class DiaryPostDAO {
 		}
 	}
 
-	public void detailPost(DiaryPost p, HttpServletRequest req, Comment c) {
+	public void detailPost(DiaryPost p, HttpServletRequest req, Comment c, Like l) {
 		DiaryPostMapper pm = ss.getMapper(DiaryPostMapper.class);
 		DiaryPost posts = pm.detailPost(p);
 		req.setAttribute("DiaryPost", posts);
@@ -44,6 +44,11 @@ public class DiaryPostDAO {
 		CommentMapper cm = ss.getMapper(CommentMapper.class);
 		List<Comment> comment = cm.showAllComments(c);
 		req.setAttribute("Comment", comment);
+		
+		LikeMapper lm = ss.getMapper(LikeMapper.class);
+		Like like = lm.showLikeCount(l);
+		req.setAttribute("Like", like);
+		
 	}
 
 	public void regPost(HttpServletRequest req, String userId, String postImg, String postTitle, String postTxt,
@@ -159,6 +164,7 @@ public class DiaryPostDAO {
 		}
 
 	}
+
 
 
 }

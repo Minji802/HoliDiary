@@ -50,11 +50,11 @@ public class WriteController {
 
 	// 게시글 상세보기
 	@RequestMapping(value = "/post.detail.go", method = RequestMethod.GET)
-	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req, User u, Category cate, Comment c) {
+	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req, User u, Category cate, Comment c, Like l) {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
-			pDAO.detailPost(p, req, c);
+			pDAO.detailPost(p, req, c, l);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_detail.jsp");
 
@@ -149,11 +149,11 @@ public class WriteController {
 
 	// 글 수정하러 가기
 	@RequestMapping(value = "/diaryPost.update.go", method = RequestMethod.GET)
-	public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p, @RequestParam("userId") String userId, User u, Category cate, Comment c) {
+	public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p, @RequestParam("userId") String userId, User u, Category cate, Comment c, Like l) {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
-			pDAO.detailPost(p, req, c);
+			pDAO.detailPost(p, req, c, l);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_update.jsp");
 		return "ksm_main/popup";

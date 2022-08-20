@@ -25,14 +25,12 @@ public class DiaryDAO {
 			Diary dd = (Diary) ss.getMapper(DiaryMapper.class).getDiaryInfo(d);
 			User uu = (User) ss.getMapper(DiaryMapper.class).getUserInfo(u);
 			
-			System.out.println(dd.getCategories() + "----------------------------");
+			System.out.println(dd.getCategories());
 			dd.setCategoriesArray(makeCategory(dd.getCategories()));
 			
-			System.out.println("ㅅㅐㄱ");
 			
 			req.setAttribute("Diary", dd);
 			req.setAttribute("User", uu);
-			System.out.println("갸..");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

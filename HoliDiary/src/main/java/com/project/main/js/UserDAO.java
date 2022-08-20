@@ -51,7 +51,7 @@ public class UserDAO {
 			
 			if(ss.getMapper(UserMapper.class).join(u) == 1) {
 				req.getSession().setAttribute("loginUser", u);
-				req.getSession().setMaxInactiveInterval(60*10);
+				req.getSession().setMaxInactiveInterval(60*30);
 				ss.getMapper(DiaryMapper.class).diaryInsert(u);
 				ss.getMapper(CategoryMapper.class).categoryUserInsert(u);
 				System.out.println("세션 등록 성공 및 가입성공");
@@ -70,20 +70,28 @@ public class UserDAO {
 		 // 내부경로로 저장
         String contextRoot = new HttpServletRequestWrapper(req).getRealPath("/");
         String fileRoot = contextRoot + "resources/kjs_profileImg/";
+        
+		String newFile = mf.getOriginalFilename(); // 오리지날 파일명
+		
+		User u = new User();
+		
+		if (newFile == "") {
+			return;
+		}
+		
+		System.out.println("새로운거 등록");
+	        String extension = newFile.substring(newFile.lastIndexOf(".")); // 파일 확장자
+	        String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 
-        String originalFileName = mf.getOriginalFilename(); // 오리지날 파일명
-        String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
-        String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+	        System.out.println("경로1: " + contextRoot);
+	        System.out.println("경로2: " + fileRoot);
 
-        System.out.println("경로1: " + contextRoot);
-        System.out.println("경로2: " + fileRoot);
+	        System.out.println("원래 파일명 : " + newFile);
+	        System.out.println("저장될 파일명 : " + savedFileName);
+	        File targetFile = new File(fileRoot + savedFileName);
+		
 
-        System.out.println("원래 파일명 : " + originalFileName);
-        System.out.println("저장될 파일명 : " + savedFileName);
-
-        File targetFile = new File(fileRoot + savedFileName);
-
-        try {
+		try {
             InputStream fileStream = mf.getInputStream();
             FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
 
@@ -92,19 +100,19 @@ public class UserDAO {
             e.printStackTrace();
         }
         
-        System.out.println(userID);
-        
         try {
         	
-        	User u = new User();
-        	
-             
             u.setUserID(userID);
             u.setUserImg(savedFileName);
             savedFileName = URLEncoder.encode(savedFileName, "utf-8");
             u.setUserImg(savedFileName.replace("+", " "));
+            
+            System.out.println(u.getUserImg());
              
             if(ss.getMapper(UserMapper.class).fileUpdate(u) == 1) {
+            	User dbUser = ss.getMapper(UserMapper.class).getUserByID(u);
+            	req.getSession().setAttribute("loginUser", dbUser);
+				req.getSession().setMaxInactiveInterval(60*30);
             	System.out.println("사진 등록");
             }
         	
@@ -158,7 +166,7 @@ public class UserDAO {
 		if(dbUser != null) {
 			if(u.getUserPW().equals(dbUser.getUserPW())) {
 				req.getSession().setAttribute("loginUser", dbUser);
-				req.getSession().setMaxInactiveInterval(60*10);
+				req.getSession().setMaxInactiveInterval(60*30);
 				req.setAttribute("r", "로그인 성공");
 				return true;
 			}else {
@@ -331,7 +339,7 @@ public class UserDAO {
 		       if(ss.getMapper(UserMapper.class).joinWithKakao(kakaoUser) == 1) {
 					req.getSession().setAttribute("loginUser", kakaoUser);
 					req.getSession().setAttribute("kakao_token", token);
-					req.getSession().setMaxInactiveInterval(60*10);
+					req.getSession().setMaxInactiveInterval(60*30);
 					ss.getMapper(DiaryMapper.class).diaryInsert(kakaoUser);
 					ss.getMapper(CategoryMapper.class).categoryUserInsert(kakaoUser);
 					System.out.println("세션 등록 성공 및 가입성공");
@@ -410,7 +418,7 @@ public class UserDAO {
 			   if(dbUser != null) {
 					req.getSession().setAttribute("loginUser", dbUser);
 					req.getSession().setAttribute("kakao_token", token);
-					req.getSession().setMaxInactiveInterval(60*10);
+					req.getSession().setMaxInactiveInterval(60*30);
 					System.out.println("세션 등록 성공");
 					System.out.println("로그인 성공");
 			   }else {
@@ -437,7 +445,7 @@ public class UserDAO {
 			
 			req.getSession().setAttribute("loginUser", dbUser);
 			req.getSession().setAttribute("naver_token", req.getParameter("naver_token"));
-			req.getSession().setMaxInactiveInterval(60*10);
+			req.getSession().setMaxInactiveInterval(60*30);
 			ss.getMapper(DiaryMapper.class).diaryInsert(u);
 			ss.getMapper(CategoryMapper.class).categoryUserInsert(u);
 			System.out.println("네이버 가입 성공");
@@ -456,7 +464,7 @@ public class UserDAO {
 		   if(dbUser != null) {
 				req.getSession().setAttribute("loginUser", dbUser);
 				req.getSession().setAttribute("naver_token", req.getParameter("naver_token"));
-				req.getSession().setMaxInactiveInterval(60*10);
+				req.getSession().setMaxInactiveInterval(60*30);
 				System.out.println("세션 등록 성공");
 				System.out.println("로그인 성공");
 				
@@ -613,8 +621,10 @@ public class UserDAO {
 			if (ss.getMapper(UserMapper.class).deleteUser(u) == 1) {
 				String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
 				String img = u.getUserImg();
-				img = URLDecoder.decode(img, "utf-8");
-				new File(path + "/" + img).delete();
+				if(img != "person-3093152.jpg") {
+					img = URLDecoder.decode(img, "utf-8");
+					new File(path + "/" + img).delete();
+				}
 				
 				// 카카오 연동 해제
 				if(kakao_token != null) {

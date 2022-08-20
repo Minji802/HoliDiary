@@ -6,45 +6,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="resources/jquery/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="resources/mj_css/postDetail.css">
+<link rel="stylesheet" href="resources/mj_css/likeButton.css">
+<script type="text/javascript" src="resources/mj_js/likeButton.js"></script>
 </head>
 <body>
 
+<h1>${Like}</h1>
+<h1>${Like.likeCount }</h1>
 	<div>
 		<h1>${DiaryPost.postTitle }</h1>
 	</div>
 
-	<table id="postDetail" border="1" style="width: 100%; height: 90%;">
-		<tr style="height: 50px">
-			<td class="postDetailWriter">작성자 : ${DiaryPost.postWriter }</td>
-			<td class="postDetailDate">${DiaryPost.postDate }</td>
-		</tr>
-		<tr style="height: 50px">
-			<td class="postDetailWriter">카테고리 : ${DiaryPost.postCategory }</td>
-			<td class="postDetailDate">국가 : ${DiaryPost.postCountry }</td>
-		</tr>
-		<tr>
-			<td class="postDetailTxt" colspan="2">${DiaryPost.postTxt }</td>
-		</tr>
-	</table>
+	<div id="#postDetail" style="width: 100%">
+		<div>
+			<div id="leftSide" style="width: 100%">
+				<div style="width: 10%"></div>
+				<div class="postDetailWriter">작성자 : ${DiaryPost.postWriter }</div>
+				<div class="postDetailDate">${DiaryPost.postDate }</div>
+				<div class="postDetailCategory">카테고리 :
+					${DiaryPost.postCategory }</div>
+				<div class="postDetailCountry">국가 : ${DiaryPost.postCountry }</div>
+				<div class="postDetailView">조회수 0</div>
+			</div>
+		</div>
+		<hr>
+		<div class="postDetailTxt">${DiaryPost.postTxt }</div>
+	</div>
+
+
 
 	<div>
-		<button>좋아요</button>
+		<!-- 좋아요 -->
+		<!-- 로그인 상태일때 하트 클릭가능 -->
+		<div id="placement">
+			<div class="heart"></div>
+			<div class="like_result">${Like.likeCount }</div>
+		</div>
+
+		<!-- 수정/삭제버튼 -->
+		<div id="rightSide">
+    <c:if test="${DiaryPost.postWriter eq sessionScope.loginUser.userID }">
 		<button
 			onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}')">수정</button>
 		<button
 			onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }')">삭제</button>
-
+		</c:if>
+    
+    
+			</div>
 	</div>
+	<br>
+	<br>
 	<div>
-		<button onclick="history.go(-1)">목록으로</button>
+		<button onclick="history.go(-1)" id="GoToList">목록으로</button>
 	</div>
-
+	<br>
 
 	<hr>
 
-	<h3>Comment</h3>
+	<h2>Comment</h2>
 
 	<div>
 		<textarea name="commentTxt" id="commentTxt"></textarea>
@@ -57,7 +79,7 @@
 				<ul>${c.commentWriter }</ul>
 				<ul>${c.commentTxt }</ul>
 				<ul>${c.commentDate }</ul>
-				<div style="text-align: right; margin-right: 50px">좋아요</div>
+				<div style="text-align: right; margin-right: 50px">삭제</div>
 				<div style="text-align: right; margin-top: -17.5px;">답글</div>
 			</div>
 			<hr>
@@ -81,10 +103,6 @@
 						+ "&postNum=" + n;
 			}
 		}
-		
-		
-		
-		
 	</script>
 
 
