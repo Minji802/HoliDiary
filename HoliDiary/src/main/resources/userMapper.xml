@@ -36,6 +36,10 @@
 		select count(*) from user_table where userID = #{userID}
 	</select>
 	
+	<select id="pwCheck" resultType="int">
+		select count(*) from user_table where userID = #{userID} and userPW = #{userPW}
+	</select>
+	
 	<select id="idCheckWithKakao" resultType="int">
 		select count(*) from user_table where kakaoID = #{kakaoID}
 	</select>
@@ -65,6 +69,16 @@
 	<delete id="deleteUser">
 		delete user_table where userID = #{userID}
 	</delete>
+	
+	<update id="updateUser">
+		update user_table
+		set userName = #{userName}, 
+			userPhoneNumber = #{userPhoneNumber}, 
+			userEmail = #{userEmail}, 
+			userNickname = #{userNickname},
+			userImg = #{userImg}
+		where userID = #{userID}
+	</update>
 	
 
 </mapper>

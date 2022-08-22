@@ -22,7 +22,7 @@
 					<div class="join_file_input_box">
 						<input class="join_upload_name" value="첨부파일" placeholder="첨부파일">
     					<label for="join_img_file">파일찾기</label> 
-						<input type="file" onchange="readURL(this)" name="userImg" id="join_img_file">
+						<input type="file" onchange="readURL(this)" name="userImg" id="join_img_file" readonly/>
 						<input type="hidden" name="userID" value="${sessionScope.loginUser.userID }">
 					</div>
 					<div class="join_file_btn_box">

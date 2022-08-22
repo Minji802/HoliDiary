@@ -40,20 +40,19 @@ public class DiaryPostDAO {
 		DiaryPostMapper pm = ss.getMapper(DiaryPostMapper.class);
 		DiaryPost posts = pm.detailPost(p);
 		req.setAttribute("DiaryPost", posts);
-		
+
 		CommentMapper cm = ss.getMapper(CommentMapper.class);
 		List<Comment> comment = cm.showAllComments(c);
 		req.setAttribute("Comment", comment);
-		
+
 		LikeMapper lm = ss.getMapper(LikeMapper.class);
-		Like like = lm.showLikeCount(l);
+		List<Like> like = lm.showAllLikeUsers(l);
 		req.setAttribute("Like", like);
-		
+
 	}
 
 	public void regPost(HttpServletRequest req, String userId, String postImg, String postTitle, String postTxt,
 			String postCategory, String postCountry) {
-
 
 		DiaryPost p = new DiaryPost();
 
@@ -128,14 +127,14 @@ public class DiaryPostDAO {
 	}
 
 	public void diaryPostUpdate(HttpServletRequest req, DiaryPost p, String userId) {
-		
+
 		int postNum = p.getPostNum();
 		String postTitle = p.getPostTitle();
 		String postTxt = p.getPostTxt();
 		String postImg = p.getPostImg();
 		String postCategory = p.getPostCategory();
-		String postCountry = p. getPostCountry();
-		
+		String postCountry = p.getPostCountry();
+
 		try {
 			p.setPostNum(postNum);
 			p.setPostWriter(userId);
@@ -144,11 +143,11 @@ public class DiaryPostDAO {
 			p.setPostImg(postImg);
 			p.setPostCategory(postCategory);
 			p.setPostCountry(postCountry);
-			
+
 			if (ss.getMapper(DiaryPostMapper.class).updateDiaryPost(p) == 1) {
 				System.out.println("글 수정 성공");
-			} 
-			
+			}
+
 			System.out.println(postNum);
 			System.out.println("수정유저아이디" + userId);
 			System.out.println("수정2" + postTitle);
@@ -165,6 +164,155 @@ public class DiaryPostDAO {
 
 	}
 
+	
+	/*좋아요 관련*/
+	public int likeCount(HttpServletRequest req,Like l) {
 
+		System.out.println(l.getPostNum());
+		System.out.println(l.getUserId());
+		System.out.println(l.getPostNum());
+		System.out.println("등록성공~!");
+
+		return ss.getMapper(LikeMapper.class).likeCount(l);
+	}
+
+	public void insertLike(HttpServletRequest req, Like l) {
+
+		int postNum = l.getPostNum();
+		String userId = l.getUserId();
+		int likeCount = l.getLikeCount();
+
+		try {
+			l.setPostNum(postNum);
+			l.setUserId(userId);
+			l.setLikeCount(likeCount);
+
+			ss.getMapper(LikeMapper.class).insertLike(l);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("실패");
+
+		}
+
+	}
+
+	public void updateLike(HttpServletRequest req, DiaryPost p) {
+
+		int postNum = p.getPostNum();
+		int postRecommend = p.getPostRecommend();
+		
+		System.out.println("-----------------");
+		System.out.println(p.getPostNum());
+		System.out.println(p.getPostRecommend());
+		
+		try {
+
+			p.setPostNum(postNum);
+			p.setPostRecommend(postRecommend);
+
+			if (ss.getMapper(LikeMapper.class).updateLike(p) == 1) {
+				System.out.println("1");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void updateLikeCount(HttpServletRequest req, Like l) {
+
+		int postNum = l.getPostNum();
+		String userId = l.getUserId();
+		int likeCount = l.getLikeCount();
+		
+		try {
+			
+			l.setPostNum(postNum);
+			l.setUserId(userId);
+			l.setLikeCount(likeCount);
+			
+			ss.getMapper(LikeMapper.class).updateLikeCount(l);
+			System.out.println("updateLikeCount 1 성공");
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("updateLikeCount 1 실패");
+		}
+		
+	}
+	
+
+	public void updateLikeCountCancel(HttpServletRequest req, Like l) {
+		
+		int postNum = l.getPostNum();
+		String userId = l.getUserId();
+		int likeCount = l.getLikeCount();
+		
+		try {
+			
+			l.setPostNum(postNum);
+			l.setUserId(userId);
+			l.setLikeCount(likeCount);
+			
+			ss.getMapper(LikeMapper.class).updateLikeCountCancel(l);
+			System.out.println("updateLikeCount 0 성공");
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("updateLikeCount 0 실패");
+		}
+		
+	}
+
+	public void updateLikeCancel(HttpServletRequest req, DiaryPost p) {
+
+
+		int postNum = p.getPostNum();
+		int postRecommend = p.getPostRecommend();
+
+		try {
+
+			p.setPostNum(postNum);
+			p.setPostRecommend(postRecommend);
+
+			if (ss.getMapper(LikeMapper.class).updateLikeCancel(p) == 1) {
+				System.out.println("좋아요 -1");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("좋아요 -1 실패");
+		}
+	}
+
+	public void deleteLike(HttpServletRequest req, Like l) {
+
+		int postNum = l.getPostNum();
+		String userId = l.getUserId();
+		int likeCount = l.getLikeCount();
+		
+		try {
+			
+			l.setPostNum(postNum);
+			l.setUserId(userId);
+			l.setLikeCount(likeCount);
+			
+			ss.getMapper(LikeMapper.class).deleteLike(l);
+			System.out.println("삭제 성공11111111");
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("삭제 111111111 실패");
+		}
+		
+	}
+	
+	
 
 }

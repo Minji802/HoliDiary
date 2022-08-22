@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.main.mj_write.LikeMapper">
+	<!-- 게시글 추천수 -->
+	<update id="updateLike" parameterType="int">
+		update post set
+		postRecommend = postRecommend + 1
+		where postNum = #{postNum}
+	</update>
 
-	<select id="showLikeCount" resultType="com.project.main.mj_write.Like">
-		select * from post_like where postNum=#{postNum}
+	<!-- 게시글 추천수취소 -->
+	<update id="updateLikeCancel" parameterType="int">
+		update post set
+		postRecommend = postRecommend - 1
+		where postNum = #{postNum}
+	</update>
+
+	<!-- 게시글 추천 시 Like 테이블에 insert -->
+	<insert id="insertLike" parameterType="com.project.main.mj_write.Like">
+		insert into POST_LIKE(like_no, postNum, userId)
+		values(like_no_seq.nextval, #{postNum} ,#{userId})
+	</insert>
+
+	<!-- 게시글 추천취소 시 delete -->
+	<delete id="deleteLike" parameterType="com.project.main.mj_write.Like">
+		delete from POST_LIKE where postNum = #{postNum} and userId = #{userId}
+	</delete>
+
+	<!-- 게시글 추천 시 Check를 1로 만들어서 중복방지 -->
+	<update id="updateLikeCount" parameterType="com.project.main.mj_write.Like">
+		update POST_LIKE set likeCount = 1
+		where postNum = #{postNum} and userId = #{userId}
+	</update>
+
+	<!-- 게시글 추천취소 시 다시 0 -->
+	<update id="updateLikeCountCancel" parameterType="com.project.main.mj_write.Like">
+		update POST_LIKE set likeCount = 0
+		where postNum = #{postNum} and userId = #{userId}
+	</update>
+
+	<!-- 게시글 추천 중복방지 select문 -->
+	<select id="likeCount" parameterType="Like" resultType="int">
+		select count(*) from POST_LIKE where postNum = #{postNum} and userId = #{userId}
 	</select>
-
 	
-
+	<!-- 좋아요 누른 회원 정보 불러오기 -->
+	<select id="showAllLikeUsers" resultType="com.project.main.mj_write.Like">
+		select userId from post_like where postNum = #{postNum}
+	</select>
 </mapper>

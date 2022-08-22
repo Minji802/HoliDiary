@@ -23,6 +23,7 @@ public class Sej_SearchController {
 		TokenMaker.make(req);
 		uDAO.loginCheck(req);
 		pDAO.searchPost(1, pSel, req);
+		/*pDAO.textLengthSet(req);*/
 		/*pDAO.getPost(1, req);*/
 		/*req.setAttribute("contentPage", "sej_search/home_search.jsp");*/
 		return "index";

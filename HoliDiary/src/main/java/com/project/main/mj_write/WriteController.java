@@ -35,10 +35,11 @@ public class WriteController {
 
 	@Autowired
 	private DiaryDAO dDAO;
-	
+
 	// 게시글 목록 불러오기
 	@RequestMapping(value = "/post-list", method = RequestMethod.GET)
-	public String listGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u, Category cate) {
+	public String listGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
+			Category cate) {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
 			pDAO.getAllList(req, userId);
@@ -50,7 +51,8 @@ public class WriteController {
 
 	// 게시글 상세보기
 	@RequestMapping(value = "/post.detail.go", method = RequestMethod.GET)
-	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req, User u, Category cate, Comment c, Like l) {
+	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req,
+			User u, Category cate, Comment c, Like l) {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
@@ -63,7 +65,8 @@ public class WriteController {
 
 	// 글쓰기 페이지 바로가기
 	@RequestMapping(value = "/write.go", method = RequestMethod.GET)
-	public String writeGo(HttpServletRequest req, Diary d, @RequestParam("userId") String userId, User u, Category cate) {
+	public String writeGo(HttpServletRequest req, Diary d, @RequestParam("userId") String userId, User u,
+			Category cate) {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
@@ -115,10 +118,11 @@ public class WriteController {
 
 	// 글 등록
 	@RequestMapping(value = "/diaryPost.reg.do", method = RequestMethod.POST)
-	public String postRegDo(Diary d, @RequestParam("userId") String userId, HttpServletRequest req, @RequestParam("postImg") String postImg,
-			@RequestParam("postTitle") String postTitle, @RequestParam("postTxt") String postTxt,
-			@RequestParam("postCategory") String postCategory, @RequestParam("postCountry") String postCountry, User u, Category cate) {
-		
+	public String postRegDo(Diary d, @RequestParam("userId") String userId, HttpServletRequest req,
+			@RequestParam("postImg") String postImg, @RequestParam("postTitle") String postTitle,
+			@RequestParam("postTxt") String postTxt, @RequestParam("postCategory") String postCategory,
+			@RequestParam("postCountry") String postCountry, User u, Category cate) {
+
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
 			pDAO.regPost(req, userId, postImg, postTitle, postTxt, postCategory, postCountry);
@@ -149,7 +153,8 @@ public class WriteController {
 
 	// 글 수정하러 가기
 	@RequestMapping(value = "/diaryPost.update.go", method = RequestMethod.GET)
-	public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p, @RequestParam("userId") String userId, User u, Category cate, Comment c, Like l) {
+	public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p, @RequestParam("userId") String userId,
+			User u, Category cate, Comment c, Like l) {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
@@ -158,11 +163,12 @@ public class WriteController {
 		req.setAttribute("popupContentPage", "../mj_write/post_update.jsp");
 		return "ksm_main/popup";
 	}
-	
+
 	// 글 수정하기
 	@RequestMapping(value = "/diaryPost.update.do", method = RequestMethod.POST)
-	public String updateDiaryPostDo(Diary d, DiaryPost p, @RequestParam("userId") String userId, HttpServletRequest req, User u, Category cate) {
-		
+	public String updateDiaryPostDo(Diary d, DiaryPost p, @RequestParam("userId") String userId, HttpServletRequest req,
+			User u, Category cate) {
+
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
 			pDAO.diaryPostUpdate(req, p, userId);
@@ -173,11 +179,31 @@ public class WriteController {
 		return "ksm_main/popup";
 	}
 
+	// 좋아요
+	@ResponseBody
+	@RequestMapping(value = "updateLike.do", method = RequestMethod.GET)
+	public int updateLikeDo(HttpServletRequest req, Like l, DiaryPost p) throws Exception {
+		// 이건 좋아요 테이블을 가야되는데 다이
+		int likeCount = pDAO.likeCount(req, l);
+		if (likeCount == 0) {
+			// 좋아요 처음누름
+			pDAO.insertLike(req, l); // like테이블 삽입
+			pDAO.updateLike(req, p); // 게시판테이블 +1
+			pDAO.updateLikeCount(req, l);// like테이블 구분자 1
+		} else if(likeCount == 1) { 
+			pDAO.updateLikeCountCancel(req, l);		//like테이블 구분자0 
+			pDAO.updateLikeCancel(req, p); //게시판테이블 - 1
+			pDAO.deleteLike(req, l); //like테이블 삭제 
+		}
+		
+		return likeCount;
+	}
+
 	// 지도 만들기
 	@RequestMapping(value = "/map.open", method = RequestMethod.GET)
 	public String mapOpen(HttpServletRequest req) {
 
 		return "mj_map/map";
 	}
-	
+
 }

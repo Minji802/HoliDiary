@@ -541,7 +541,7 @@ button.content__close:hover {
 				<c:forEach var="hn" items="${holinows }">
 				<div class="content__item">
 					<div class="content__item-intro">
-						<img class="content__item-img" src="${hn.postimg }" alt="Dove" />
+						<img class="content__item-img" src="${hn.postimg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';" alt="Dove" />
 						<h2 class="content__item-title">${hn.posttitle }</h2>
 					</div>
 					<div class="content__item-text">

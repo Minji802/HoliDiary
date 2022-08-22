@@ -95,6 +95,13 @@ public class UserController {
 		return uDAO.nickCheck(u);
 	}
 	
+	// PW체크하기(ajax)
+	@RequestMapping(value = "/pw.check", method = RequestMethod.POST)
+	public @ResponseBody int pwCheck(User u) {
+		
+		return uDAO.pwCheck(u);
+	}
+	
 	// 로그아웃하기
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutDo(User u ,HttpServletRequest req) {
@@ -212,13 +219,38 @@ public class UserController {
 	}
 	
 	// 탈퇴하기
-	@RequestMapping(value = "/delete.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
 	public String DeleteUser(HttpServletRequest req) {
 		
 		uDAO.delete(req);
 		
 		req.setAttribute("contentPage", "home.jsp");
 		req.setAttribute("loginPage", "kjs_user/before_login.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
+	public String updateUser(HttpServletRequest req, @RequestParam("userID") String userID, @RequestParam("userName") String userName, @RequestParam("userNickname") String userNickname, @RequestParam("userPhoneNumber") String userPhoneNumber, @RequestParam("userEmail") String userEmail,@RequestParam("userPW") String userPW, @RequestParam("userImg") MultipartFile mf) {
+		
+		User u = new User();
+		
+		u.setUserID(userID);
+		u.setUserPW(userPW);
+		
+		System.out.println(u.getUserPW());
+		System.out.println(u.getUserID());
+		
+		// 비번 맞음
+		if(uDAO.pwCheck(u) == 1) {
+			uDAO.update(userID, userName, userEmail, userNickname,userPhoneNumber, mf, req);
+			uDAO.login(u, req);
+			req.setAttribute("result", "회원정보가 수정되었습니다.");
+		}else {
+			req.setAttribute("error", "비밀번호를 확인해주세요.");
+		}
+		
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
 		return "index";
 	}
 

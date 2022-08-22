@@ -9,12 +9,9 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="resources/mj_css/postDetail.css">
 <link rel="stylesheet" href="resources/mj_css/likeButton.css">
-<script type="text/javascript" src="resources/mj_js/likeButton.js"></script>
 </head>
 <body>
 
-<h1>${Like}</h1>
-<h1>${Like.likeCount }</h1>
 	<div>
 		<h1>${DiaryPost.postTitle }</h1>
 	</div>
@@ -42,24 +39,42 @@
 		<!-- 로그인 상태일때 하트 클릭가능 -->
 		<div id="placement">
 			<div class="heart"></div>
-			<div class="like_result">${Like.likeCount }</div>
+			<div class="like_result">${DiaryPost.postRecommend }</div>
+			<input type="hidden" id="postNum" value="${DiaryPost.postNum }">
+			<input type="hidden" id="userID"
+				value="${sessionScope.loginUser.userID}"> <input
+				type="hidden" id="postWriter" value="${DiaryPost.postWriter}">
 		</div>
 
+		<!-- 모달창 -->
+		<div class="modal hidden">
+			<div class="bg"></div>
+			<div class="modalBox">
+				<p>
+					<c:forEach items="${Like }" var="Like">
+						<li>${Like.userId }</li>
+					</c:forEach>
+				</p>
+				<button class="closeBtn">✖</button>
+			</div>
+		</div>
+		
 		<!-- 수정/삭제버튼 -->
 		<div id="rightSide">
-    <c:if test="${DiaryPost.postWriter eq sessionScope.loginUser.userID }">
-		<button
-			onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}')">수정</button>
-		<button
-			onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }')">삭제</button>
-		</c:if>
-    
-    
-			</div>
+			<c:if
+				test="${DiaryPost.postWriter eq sessionScope.loginUser.userID }">
+				<button
+					onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}')">수정</button>
+				<button
+					onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }')">삭제</button>
+			</c:if>
+
+
+		</div>
 	</div>
 	<br>
 	<br>
-	<div>
+	<div id="goToListDiv">
 		<button onclick="history.go(-1)" id="GoToList">목록으로</button>
 	</div>
 	<br>
@@ -103,6 +118,62 @@
 						+ "&postNum=" + n;
 			}
 		}
+
+		$(function() {
+
+			var postNum = document.getElementById("postNum").value;
+			var userID = document.getElementById("userID").value;
+			var postWriter = document.getElementById("postWriter").value;
+
+			$(".heart").on("click", function() {
+				console.log(postNum);
+				console.log(userID);
+				console.log(postWriter);
+
+				$(this).toggleClass("is-active");
+				likeupdate();
+			});
+
+			function likeupdate() {
+				$.ajax({
+					url : "updateLike.do",
+					type : "GET",
+					dataType : "json",
+					data : {
+						'postNum' : postNum,
+						'userId' : userID,
+						'postWriter' : postWriter
+					},
+					success : function(likeCount) {
+						if (likeCount == 0) {
+							alert("추천완료.");
+							location.reload();
+						} else if (likeCount == 1) {
+							alert("추천취소");
+							location.reload();
+						}
+					},
+					error : function(request, status, error) {
+						alert("ajax 실패1");
+					}
+
+				});
+			}
+
+		});
+		
+		const open = () => {
+		    document.querySelector(".modal").classList.remove("hidden");
+		  }
+
+		  const close = () => {
+		    document.querySelector(".modal").classList.add("hidden");
+		  }
+
+		  document.querySelector(".like_result").addEventListener("click", open);
+		  document.querySelector(".closeBtn").addEventListener("click", close);
+		  document.querySelector(".bg").addEventListener("click", close);
+		
 	</script>
 
 

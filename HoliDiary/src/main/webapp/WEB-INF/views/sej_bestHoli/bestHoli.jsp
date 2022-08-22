@@ -50,6 +50,7 @@
   width: 100%;
   background-color: white;
   overflow: hidden;
+  box-shadow: 3px 2px 5px #c5c5c5;
 }
 .swiper-slide.swiper-slide-active .slide-image, .swiper-slide.swiper-slide-duplicate-active .slide-image {
   transform: scale3d(1, 1, 1);
@@ -170,7 +171,7 @@
                </p>
                 <footer>
                     <div>01/02</div>
-                    <a href="#">READ MORE</a>
+                    <a href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }">READ MORE</a>
                 </footer>
             </article>
         </div>

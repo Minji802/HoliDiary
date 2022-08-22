@@ -45,30 +45,69 @@ function mypageCheckUser(){
 
 function showMyinfo(){
 	$("#mypage_myinfo").css('display', 'block');
-	$("#mypage_modify").css('display', 'none');
-	$("#mypage_subscribe").css('display', 'none');
+	$("#mypage_following").css('display', 'none');
+	$("#mypage_follower").css('display', 'none');
 }
 
 // 마이페이지 정보수정 이동
-function showModify(){
+function showFollowing(){
 	$("#mypage_myinfo").css('display', 'none');
-	$("#mypage_modify").css('display', 'block');
-	$("#mypage_subscribe").css('display', 'none');
+	$("#mypage_following").css('display', 'block');
+	$("#mypage_follower").css('display', 'none');
 }
 
 // 마이페이지 구독정보 확인
-function showSubscribe(){
+function showFollower(){
 	$("#mypage_myinfo").css('display', 'none');
-	$("#mypage_modify").css('display', 'none');
-	$("#mypage_subscribe").css('display', 'block');
+	$("#mypage_following").css('display', 'none');
+	$("#mypage_follower").css('display', 'block');
 }
 
 
 // 탈퇴
 function deleteUser(){
-	let ok = confirm('진짜로 삭제?');
 	
-	if(ok){
-		location.href="delete.user";
+	let pw = $("#mypagePW");
+	let id = $("#mypageID");
+	
+	if(isEmpty(pw)){
+		alert('비밀번호를 입력해주세요');
+		pw.focus();
+	}else{
+		$.ajax({
+			url: 'pw.check',
+			type : 'POST',
+			dataType : 'text',
+			data : {'userID': id.val(), 'userPW' : pw.val()},
+			success : function(result) {
+				console.log(result);
+				if(result == 1){
+					let ok = confirm('정말 탈퇴하시겠습니까? 탈퇴와 동시에 소셜 로그인 연동도 해제됩니다.');
+					if(ok){
+						location.href="delete.do";
+					}
+				}else{
+					alert('비밀번호를 확인해주세요');
+				}
+			},
+			error : function(request,status,error) {
+    			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    			alert('문제가 발생했습니다. 다시 이용해주세요.')
+    			return false;
+    		}
+		});
 	}
+}
+
+function modifyUser(){
+	
+	let pw = $("#mypagePW");
+	
+	if(isEmpty(pw)){
+		alert('비밀번호를 입력해주세요.');
+		pw.focus();
+		return false;
+	}
+	
+	return true;
 }

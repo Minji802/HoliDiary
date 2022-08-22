@@ -196,11 +196,6 @@ public class UserDAO {
 
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("loginUser", null);
-		
-
-		
-		// 네이버 토큰 삭제
-		
 	}
 	
 	// 카카오 토근 가져오기 
@@ -568,8 +563,7 @@ public class UserDAO {
 	
 	
 	// 랜덤 문자열 생성 : 임시 비밀번호
-	static String getRandomString(int i) 
-    { 
+	static String getRandomString(int i){ 
     
         // bind the length 
 		byte[] bytearray;
@@ -684,6 +678,86 @@ public class UserDAO {
 			System.out.println("탈퇴실패");
 		}
 	}
+
+	public int pwCheck(User u) {
+		return ss.getMapper(UserMapper.class).pwCheck(u);
+	}
+
+	public void update(String userID, String userName, String userEmail, String userNickname, String userPhoneNumber,
+			MultipartFile mf, HttpServletRequest req) {
+		
+		  String contextRoot = new HttpServletRequestWrapper(req).getRealPath("/");
+	        String fileRoot = contextRoot + "resources/kjs_profileImg/";
+	        
+			User u = (User) req.getSession().getAttribute("loginUser");
+			String oldFile = u.getUserImg(); // 기존 파일명
+			String newFile = mf.getOriginalFilename(); // 오리지날 파일명
+			
+			String savedFileName = null;
+			File targetFile = null;
+			
+			// 사진을 바꾸지 않을 경우
+			if (newFile == "") {
+				savedFileName = oldFile;
+				// 사진을 바꿀 경우
+			}else {
+		        String extension = newFile.substring(newFile.lastIndexOf(".")); // 파일 확장자
+		        savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+
+		        System.out.println("경로1: " + contextRoot);
+		        System.out.println("경로2: " + fileRoot);
+
+		        System.out.println("원래 파일명 : " + newFile);
+		        System.out.println("저장될 파일명 : " + savedFileName);
+		        targetFile = new File(fileRoot + savedFileName);
+
+		        try {
+		        	InputStream fileStream = mf.getInputStream();
+		        	FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+		        	System.out.println("파일 저장");
+
+		        } catch (Exception e) {
+		        	FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+		        	e.printStackTrace();
+		        }
+			}
+	        
+	        try {
+	        	
+	            u.setUserID(userID);
+	            u.setUserEmail(userEmail);
+	            u.setUserName(userName);
+	            u.setUserNickname(userNickname);
+	            u.setUserPhoneNumber(userPhoneNumber);
+	            u.setUserImg(savedFileName);
+	            savedFileName = URLEncoder.encode(savedFileName, "utf-8");
+	            u.setUserImg(savedFileName.replace("+", " "));
+	            
+	            System.out.println(u.getUserImg());
+	             
+	            if(ss.getMapper(UserMapper.class).updateUser(u) == 1) {
+	            	System.out.println("수정 성공");
+					if (!oldFile.equals(newFile)) {
+						File errorOldFile = new File(fileRoot + oldFile);
+						FileUtils.deleteQuietly(errorOldFile);
+					}
+	            } else {
+	            	System.out.println("수정 실패");
+					if (!oldFile.equals(newFile)) {
+						FileUtils.deleteQuietly(targetFile);
+					}
+	            }
+	            
+			} catch (Exception e) {
+				e.printStackTrace();
+				targetFile.delete();
+				System.out.println("수정실패");
+			}
+		
+		
+	}
+
+
 
 	
 
