@@ -25,7 +25,7 @@
 				<div class="postDetailCategory">카테고리 :
 					${DiaryPost.postCategory }</div>
 				<div class="postDetailCountry">국가 : ${DiaryPost.postCountry }</div>
-				<div class="postDetailView">조회수 0</div>
+				<div class="postDetailView">조회수 ${DiaryPost.postView }</div>
 			</div>
 		</div>
 		<hr>
@@ -75,7 +75,7 @@
 	<br>
 	<br>
 	<div id="goToListDiv">
-		<button onclick="history.go(-1)" id="GoToList">목록으로</button>
+		<button onclick="location.href='post-list?userId=${User.userID}'" id="GoToList">목록으로</button>
 	</div>
 	<br>
 

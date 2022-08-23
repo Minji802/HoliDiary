@@ -25,7 +25,18 @@
 			</div> 
 			<div>
 			<span>${c.postmap }</span>
-			<p class="home_search_content_img"><img src="${c.postimg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"></p>
+			<p class="home_search_content_img">
+			<c:if test="${sessionScope.loginUser.userID != null}">
+			<a href="post.detail.go?postNum=${c.postnum } + &userId=${c.postwriter }">
+			<img src="${c.postimg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';">
+			</a>
+			</c:if>
+			<c:if test="${sessionScope.loginUser.userID == null}">
+			<a href="login.go">
+			<img src="${c.postimg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';">
+			</a>
+			</c:if>
+			</p>
 			</div>
 			<div>
 			<span class="home_search_text_box">${c.posttxt }</span>

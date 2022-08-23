@@ -124,6 +124,17 @@ public class UserController {
 		return "index";
 	}
 	
+	// 카카오 연동하기
+	@RequestMapping(value = "/connect.kakao", method = RequestMethod.GET)
+	public String connectKakao(HttpServletRequest req) {
+		
+		uDAO.connectKakao(req);
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
+		
+		return "index";
+	}
+	
 	// 네이버 콜백 주소(회원가입)
 	@RequestMapping(value = "/callback.join.naver", method = RequestMethod.GET)
 	public String callbackJoinNaver(User u, HttpServletRequest req) {
@@ -236,9 +247,6 @@ public class UserController {
 		
 		u.setUserID(userID);
 		u.setUserPW(userPW);
-		
-		System.out.println(u.getUserPW());
-		System.out.println(u.getUserID());
 		
 		// 비번 맞음
 		if(uDAO.pwCheck(u) == 1) {

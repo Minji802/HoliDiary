@@ -56,6 +56,7 @@ public class WriteController {
 
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			pDAO.countPostView(p, req, u);
 			pDAO.detailPost(p, req, c, l);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_detail.jsp");

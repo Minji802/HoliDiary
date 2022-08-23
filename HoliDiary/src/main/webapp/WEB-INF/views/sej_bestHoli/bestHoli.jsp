@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -129,9 +130,23 @@
 .slide-content p {
   display: flex;
   line-height: 1.8;
+  margin-bottom: 0;
   margin-top: 0;
   font-size: 14px;
   flex-grow: 1;
+  	/* display: inline-block;
+-	overflow : hidden;
+	text-overflow : ellipsis;
+	height : 20px; 
+	word-wrap : brek-word; 
+	display : -webkit-box;
+	-webkit-line-clamp : 1; 
+	-webkit-box-orient: vertical;  */
+ /* width : 100px; (px을 고정 값으로 설정한다. 이는 자신이 원하는 만큼 설정하면 될것이다.) */
+ height: 50px;
+ white-space : nowrap; /* (text의 길이가 길어지면 자동으로 줄이 바뀌는데 이를 한줄로 설정한다.) */
+ overflow : hidden; /* (width가 고정되어있는 상태에서 text가 길어지면 해당 element를 넘어서는데 이를 표시하지 않는다.) */
+ text-overflow : ellipsis; /* (넘어간 text대신 ...으로 text를 대체한다.) */
 }
 .slide-content footer {
   display: flex;
@@ -148,6 +163,16 @@
   text-decoration: none;
   border-bottom: 3px solid currentColor;
   padding-bottom: 3px;
+}
+.bestHoliTxt {
+	/* display: inline-block;
+	overflow : hidden;
+	text-overflow : ellipsis;
+	height : 20px; 
+	word-wrap : brek-word; 
+	display : -webkit-box;
+	-webkit-line-clamp : 1; 
+	-webkit-box-orient: vertical;  */
 }
 </style>
 </head>
@@ -166,12 +191,17 @@
         <div class="swiper-slide">
             <article class="slide-content">
                 <h4>${bh.posttitle }</h4>
-                <p>
+                <p class="bestHoliTxt">
 				${bh.posttxt }
                </p>
                 <footer>
-                    <div>01/02</div>
+                    <div><fmt:formatDate value="${bh.postdate }" pattern="yyyy/MM/dd"/> </div>
+                    <c:if test="${sessionScope.loginUser.userID != null}">
                     <a href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }">READ MORE</a>
+                	</c:if>
+                    <c:if test="${sessionScope.loginUser.userID == null}">
+                    <a href="login.go">READ MORE</a>
+                	</c:if>
                 </footer>
             </article>
         </div>

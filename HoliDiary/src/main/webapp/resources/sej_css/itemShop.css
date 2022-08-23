@@ -1,0 +1,58 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    src: url('../../resources/sej_font/NotoSansKR-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Light';
+    src: url('../../resources/sej_font/NotoSansKR-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../../resources/sej_font/Montserrat-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Thin';
+    src: url('../../resources/sej_font/Montserrat-Thin.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'sans-serif';
+    src: url('../../resources/sej_font/SansSerifFLF.otf') format('opentype');
+}
+
+.itemContainer {
+	width:1200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+}
+.itemMenuList ul li{
+	float: left;
+	list-style: none;
+	width: 130px;
+    height: 55px;
+    text-align: center;
+    line-height: 60px;
+    background-color: #FFDE59;
+    border-right: 1px solid #fff;
+    color: #fff;
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 3px;
+}
+.itemBox ul li{
+	list-style: none;
+}
+

@@ -7,6 +7,94 @@ $(function() {
 		$(".mypage_index").find('span').not($(this).find('span')).css('color', '#FFDE59');
 	});
 	
+	// 마이다이어리 복붙 창 열기
+	let blank = true;
+	$("#mapage_mydiaryURL_box").click(function() {
+		
+		if(blank){
+			$("#mapage_mydiaryURL").css('display','block');
+			blank = !blank;
+		}else{
+			$("#mapage_mydiaryURL").css('display','none');
+			blank = !blank;
+		}
+	});
+	
+	// 마이다이어리 복붙
+	$("#mp_mydiary_copy_btn").click(function() {
+	
+	    // input에 담긴 데이터를 선택
+	    $('#mp_mydiary_copyURL').select();
+	    
+	    //  clipboard에 데이터 복사
+	    var copy = document.execCommand('copy');
+	    
+	    // 사용자 알림
+	    if(copy) {
+	    	alert("마이다이어리 주소가 복사되었습니다.");
+	    }
+	});
+	
+	// 마이페이지 카카오 연동 처리
+	$("#mypage_kakao_checkbox").click(function(){
+		if($(this).is(":checked") == true){
+			if(confirm('카카오를 연동하시겠습니까?')){
+				// 카카오 연결
+				  Kakao.Auth.login({
+				      success: function(authObj) {
+				        //alert(JSON.stringify(authObj));
+						            // db값에 kakaID값 넣기
+						        	Kakao.Auth.authorize({
+						        	redirectUri: 'http://localhost/main/connect.kakao'
+						        	});
+						          },
+				      fail: function(err) {
+				        alert(JSON.stringify(err))
+				      }
+				    })
+				$(this).prop("checked", true);
+			}else{
+				$(this).prop("checked", false);
+				return;
+			}
+		}
+		if($(this).is(":checked") == false){
+			if(confirm('카카오연동 해제하시겠습니까?')){
+				// 카카오 아이디 값 삭제
+				
+				$(this).prop("checked", false);
+			}else{
+				$(this).prop("checked", true);
+				return;
+			}
+		}
+	});
+	
+	// 마이페이지 네이버 연동 처리
+	$("#mypage_naver_checkbox").click(function(){
+		if($(this).is(":checked") == true){
+			if(confirm('네이버를 연동하시겠습니까?')){
+				// 네이버 연동
+				
+				$(this).prop("checked", true);
+			}else{
+				$(this).prop("checked", false);
+				return;
+			}
+		}
+		if($(this).is(":checked") == false){
+			if(confirm('네이버연동 해제하시겠습니까?')){
+				// 네이버 아이디 삭제
+				
+				$(this).prop("checked", false);
+			}else{
+				$(this).prop("checked", true);
+				return;
+			}
+		}
+	});
+	
+	
 	
 });
 

@@ -215,7 +215,7 @@ public class UserDAO {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=2a81773cdaa73d4aadc2ed8f0c9370ac");
-            sb.append("&redirect_uri=http://localhost/main/social.kakao");
+            sb.append("&redirect_uri=http://localhost/main/connect.kakao");
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
@@ -428,6 +428,82 @@ public class UserDAO {
 		       }
 		}		
 	
+		
+	}
+	
+	public void connectKakao(HttpServletRequest req) {
+		
+		// 카카오톡 인가코드 받기 (토큰 받기 위함: 세션)
+				String code = req.getParameter("code");
+				User u = (User) req.getSession().getAttribute("loginUser");
+				//System.out.println(code);
+					
+				// 유저정보 가져오기
+				if(code != null) {
+					getKakaoToken(code,req);
+						
+					String token = (String) req.getAttribute("access_Token");
+					System.out.println(token);
+				
+					String reqURL = "https://kapi.kakao.com/v2/user/me";
+
+				    //access_token을 이용하여 사용자 정보 조회
+				    try {
+				       URL url = new URL(reqURL);
+				       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				
+				       conn.setRequestMethod("POST");
+				       conn.setDoOutput(true);
+				       conn.setRequestProperty("Authorization", "Bearer " + token); //전송할 header 작성, access_token전송
+
+				       //결과 코드가 200이라면 성공
+				       int responseCode = conn.getResponseCode();
+				       System.out.println("responseCode : " + responseCode);
+
+				       //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+					   BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+					   String line = "";
+					   String result = "";
+
+					   while ((line = br.readLine()) != null) {
+					         result += line;
+					   }
+					   System.out.println("response body : " + result);
+
+					   //Gson 라이브러리로 JSON파싱
+					   JsonParser parser = new JsonParser();
+					   JsonElement element = parser.parse(result);
+
+					   String kakaoID = element.getAsJsonObject().get("id").getAsString();
+
+				       // 사용자 정보 추출
+				       System.out.println("kakaoID : " + kakaoID);
+
+				       br.close();
+						       
+				       // 사용자 정보 User Bean에 저장
+				       u.setKakaoID(kakaoID);
+				       System.out.println("아이디 : " + u.getUserID());
+				       if(ss.getMapper(UserMapper.class).updateKakao(u) == 1) {
+				    	   User dbUser = (User)ss.getMapper(UserMapper.class).getUserByID(u);
+				    	   
+				    	   //기존에 있는 아이디면 로그인
+				    	   if(dbUser != null) {
+				    		   req.getSession().setAttribute("loginUser", dbUser);
+				    		   req.getSession().setAttribute("kakao_token", token);
+				    		   req.getSession().setMaxInactiveInterval(60*30);
+				    		   System.out.println("세션 등록 성공");
+				    		   System.out.println("로그인 성공");
+				    	   }else {
+				    		   System.out.println("회원 없음");
+				    	   }
+				       }
+
+				       } catch (Exception e) {
+				            e.printStackTrace();
+				            System.out.println("카카오 오류");
+				       }
+				}		
 		
 	}
 
@@ -686,68 +762,65 @@ public class UserDAO {
 	public void update(String userID, String userName, String userEmail, String userNickname, String userPhoneNumber,
 			MultipartFile mf, HttpServletRequest req) {
 		
-		  String contextRoot = new HttpServletRequestWrapper(req).getRealPath("/");
-	        String fileRoot = contextRoot + "resources/kjs_profileImg/";
+		//내부경로로 저장
+		String contextRoot = new HttpServletRequestWrapper(req).getRealPath("/");
+	    String fileRoot = contextRoot + "resources/kjs_profileImg/";
 	        
-			User u = (User) req.getSession().getAttribute("loginUser");
-			String oldFile = u.getUserImg(); // 기존 파일명
-			String newFile = mf.getOriginalFilename(); // 오리지날 파일명
+		User u = (User) req.getSession().getAttribute("loginUser");
+		String oldFile = u.getUserImg(); // 기존 파일명
+		String newFile = mf.getOriginalFilename(); // 오리지날 파일명
 			
-			String savedFileName = null;
-			File targetFile = null;
+		String savedFileName = null;
+		File targetFile = null;
 			
-			// 사진을 바꾸지 않을 경우
-			if (newFile == "") {
-				savedFileName = oldFile;
-				// 사진을 바꿀 경우
-			}else {
-		        String extension = newFile.substring(newFile.lastIndexOf(".")); // 파일 확장자
-		        savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+		// 사진을 바꾸지 않을 경우
+		if (newFile == "") {
+			savedFileName = oldFile;
+			// 사진을 바꿀 경우
+		}else {
+		    String extension = newFile.substring(newFile.lastIndexOf(".")); // 파일 확장자
+		    savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 
-		        System.out.println("경로1: " + contextRoot);
-		        System.out.println("경로2: " + fileRoot);
+		    System.out.println("경로1: " + contextRoot);
+		    System.out.println("경로2: " + fileRoot);
 
-		        System.out.println("원래 파일명 : " + newFile);
-		        System.out.println("저장될 파일명 : " + savedFileName);
-		        targetFile = new File(fileRoot + savedFileName);
+		    System.out.println("원래 파일명 : " + newFile);
+		    System.out.println("저장될 파일명 : " + savedFileName);
+		    targetFile = new File(fileRoot + savedFileName);
 
-		        try {
-		        	InputStream fileStream = mf.getInputStream();
-		        	FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-		        	System.out.println("파일 저장");
+		    try {
+		    	InputStream fileStream = mf.getInputStream();
+		       	FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
 
-		        } catch (Exception e) {
-		        	FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-		        	e.printStackTrace();
-		        }
+		    } catch (Exception e) {
+		       	FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+		       	e.printStackTrace();
+		    	}
 			}
-	        
-	        try {
-	        	
-	            u.setUserID(userID);
-	            u.setUserEmail(userEmail);
-	            u.setUserName(userName);
-	            u.setUserNickname(userNickname);
-	            u.setUserPhoneNumber(userPhoneNumber);
-	            u.setUserImg(savedFileName);
-	            savedFileName = URLEncoder.encode(savedFileName, "utf-8");
-	            u.setUserImg(savedFileName.replace("+", " "));
+	     try {
+	    	 u.setUserID(userID);
+	         u.setUserEmail(userEmail);
+	         u.setUserName(userName);
+	         u.setUserNickname(userNickname);
+	         u.setUserPhoneNumber(userPhoneNumber);
+	         u.setUserImg(savedFileName);
+	         savedFileName = URLEncoder.encode(savedFileName, "utf-8");
+	         u.setUserImg(savedFileName.replace("+", " "));
 	            
-	            System.out.println(u.getUserImg());
+	         System.out.println(u.getUserImg());
 	             
-	            if(ss.getMapper(UserMapper.class).updateUser(u) == 1) {
-	            	System.out.println("수정 성공");
-					if (!oldFile.equals(newFile)) {
-						File errorOldFile = new File(fileRoot + oldFile);
-						FileUtils.deleteQuietly(errorOldFile);
-					}
-	            } else {
-	            	System.out.println("수정 실패");
-					if (!oldFile.equals(newFile)) {
-						FileUtils.deleteQuietly(targetFile);
-					}
-	            }
-	            
+	         if(ss.getMapper(UserMapper.class).updateUser(u) == 1) {
+	          	System.out.println("수정 성공");
+				if (newFile != "" && !oldFile.equals(newFile)) {
+					File errorOldFile = new File(fileRoot + oldFile);
+					FileUtils.deleteQuietly(errorOldFile);
+				}
+	         } else {
+	           	System.out.println("수정 실패");
+				if (!oldFile.equals(newFile)) {
+					FileUtils.deleteQuietly(targetFile);
+				}
+	           }
 			} catch (Exception e) {
 				e.printStackTrace();
 				targetFile.delete();
@@ -756,6 +829,8 @@ public class UserDAO {
 		
 		
 	}
+
+
 
 
 

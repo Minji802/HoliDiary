@@ -15,3 +15,7 @@ function goHolinow() {
 function goBestHoli() {
 	location.href='bestHoli.go';
 }
+
+function goItemShop() {
+	location.href='itemShop.go';
+}

@@ -80,5 +80,11 @@
 		where userID = #{userID}
 	</update>
 	
+	<update id="updateKakao">
+		update user_table
+		set kakaoID = #{kakaoID}
+		where userID = #{userID}
+	</update>
+	
 
 </mapper>

@@ -16,6 +16,8 @@ public interface DiaryPostMapper {
 
 	public List<DiaryPost> showAllCommentList(Comment c);
 
+	public int countPostView(DiaryPost p);
+
 
 
 }

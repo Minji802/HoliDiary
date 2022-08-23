@@ -38,6 +38,8 @@ public interface UserMapper {
 
 	int updateUser(User u);
 
+	int updateKakao(User u);
+
 
 
 

@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="resources/sej_css/index.css">
 <link rel="stylesheet" href="resources/sej_css/home.css">
 <link rel="stylesheet" href="resources/sej_css/home_search.css">
+<link rel="stylesheet" href="resources/sej_css/itemShop.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_join.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_login.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_mypage.css">
@@ -71,7 +72,7 @@
 			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">마이페이지</a>
 			<a class="menu_bar_li" href="javascript:void(0)" onclick="goHolinow()">홀리 NOW</a>
 			<a class="menu_bar_li" href="javascript:void(0)" onclick="goBestHoli()">Best 홀리</a>
-			<a class="menu_bar_li" href="">아이템샵</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goItemShop()">아이템샵</a>
 			<a class="menu_bar_li" href="">Map(임시)</a>
 			
 			<!-- 로그인 페이지 공간 입니다 -->

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
+import com.project.main.js.User;
 
 @Service
 public class DiaryPostDAO {
@@ -309,6 +310,28 @@ public class DiaryPostDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("삭제 111111111 실패");
+		}
+		
+	}
+
+	// 조회수 증가
+	public void countPostView(DiaryPost p, HttpServletRequest req, User u) {
+
+		int postNum = p.getPostNum();
+		int postView = p.getPostView();
+		
+		try {
+			p.setPostNum(postNum);
+			p.setPostView(postView);
+			
+			if (ss.getMapper(DiaryPostMapper.class).countPostView(p) == 1) {
+				System.out.println("조회수 증가 성공");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("조회수 증가 실패");
 		}
 		
 	}

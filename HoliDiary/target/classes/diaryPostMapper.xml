@@ -26,6 +26,10 @@
 		where postNum = #{postNum}
 	</update>
 	
+	<update id="countPostView" parameterType="com.project.main.mj_write.DiaryPost">
+		update post set postView = postView + 1 where postNum = #{postNum}
+	</update>
+	
 	
 	
 </mapper>

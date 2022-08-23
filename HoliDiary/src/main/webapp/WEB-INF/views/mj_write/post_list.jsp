@@ -28,7 +28,7 @@
 				<td class="postWriter">${posts.postWriter }</td>
 				<td class="postDate">${posts.postDate }</td>
 				<td class="postDate">${posts.postRecommend }</td>
-				<td class="postViewCount">조회수</td>
+				<td class="postViewCount">${posts.postView }</td>
 			</tr>
 		</c:forEach>
 	</table>
