@@ -1,11 +1,5 @@
 //레디
 $(function() {
-	$(".mypage_index").click(function() {
-		$(this).css('background-color', '#FFDE59');
-		$(this).find('span').css('color', '#6667AB');
-		$(".mypage_index").not($(this)).css('background-color', '#6667AB');
-		$(".mypage_index").find('span').not($(this).find('span')).css('color', '#FFDE59');
-	});
 	
 	// 마이다이어리 복붙 창 열기
 	let blank = true;
@@ -59,10 +53,10 @@ $(function() {
 			}
 		}
 		if($(this).is(":checked") == false){
-			if(confirm('카카오연동 해제하시겠습니까?')){
+			if(confirm('카카오로 로그인하신 후에 해제가 됩니다. 카카오연동 해제하시겠습니까?')){
 				// 카카오 아이디 값 삭제
-				
 				$(this).prop("checked", false);
+				location.href='disconnect.sns';
 			}else{
 				$(this).prop("checked", true);
 				return;
@@ -72,21 +66,24 @@ $(function() {
 	
 	// 마이페이지 네이버 연동 처리
 	$("#mypage_naver_checkbox").click(function(){
+		
 		if($(this).is(":checked") == true){
 			if(confirm('네이버를 연동하시겠습니까?')){
 				// 네이버 연동
-				
+				var btnNaverLogin = document.getElementById("naver_id_login").firstChild;
+				btnNaverLogin.click();
 				$(this).prop("checked", true);
 			}else{
 				$(this).prop("checked", false);
 				return;
 			}
 		}
+		
 		if($(this).is(":checked") == false){
-			if(confirm('네이버연동 해제하시겠습니까?')){
+			if(confirm('네이버로 로그인하신 후에 해제가 됩니다. 네이버연동 해제하시겠습니까?')){
 				// 네이버 아이디 삭제
-				
 				$(this).prop("checked", false);
+				location.href='disconnect.sns';
 			}else{
 				$(this).prop("checked", true);
 				return;
@@ -115,7 +112,7 @@ function mypageCheckUser(){
 					alert('로그인 후 이용해주세요');
 					return false;
 				} else{
-					location.href="mypage.go";
+					location.href="mypage.myinfo.go";
 					return true;
 				}
 				
@@ -132,23 +129,17 @@ function mypageCheckUser(){
 // 마이페이지 내 정보 이동
 
 function showMyinfo(){
-	$("#mypage_myinfo").css('display', 'block');
-	$("#mypage_following").css('display', 'none');
-	$("#mypage_follower").css('display', 'none');
+	location.href='mypage.myinfo.go'
 }
 
 // 마이페이지 정보수정 이동
 function showFollowing(){
-	$("#mypage_myinfo").css('display', 'none');
-	$("#mypage_following").css('display', 'block');
-	$("#mypage_follower").css('display', 'none');
+	location.href='mypage.mysubscribe.go'
 }
 
 // 마이페이지 구독정보 확인
 function showFollower(){
-	$("#mypage_myinfo").css('display', 'none');
-	$("#mypage_following").css('display', 'none');
-	$("#mypage_follower").css('display', 'block');
+	location.href='mypage.mydiary.go'
 }
 
 
@@ -159,7 +150,7 @@ function deleteUser(){
 	let id = $("#mypageID");
 	
 	if(isEmpty(pw)){
-		alert('비밀번호를 입력해주세요');
+		alert('비밀번호를 입력해주세요. 소셜회원가입을 하셨다면 비밀번호를 재발급 받아주세요.');
 		pw.focus();
 	}else{
 		$.ajax({
@@ -187,9 +178,13 @@ function deleteUser(){
 	}
 }
 
-function modifyUser(){
+function updateValidCheck(){
 	
 	let pw = $("#mypagePW");
+	let name = $("#mypageName");
+	let nickname = $("#mypageNickname");
+	let phone = $("#mypagePhone");
+	let email = $("#mypageEmail");
 	
 	if(isEmpty(pw)){
 		alert('비밀번호를 입력해주세요.');

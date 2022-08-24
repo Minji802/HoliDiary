@@ -2,16 +2,16 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
 	<div id="content_mypage">
 		<div id="mypage_page_box">
-			<div class="mypage_index" id="mypage_index_info"
+			<div style="background-color: #FFDE59;" class="mypage_index"
 				onclick="showMyinfo()">
 				<span style="color: #6667AB;">My Page</span>
 			</div>
@@ -25,14 +25,24 @@
 			</div>
 			<div class="mypage_content_box">
 				<div id="mypage_myinfo">
-					<div class="mypage_myinfo_title">나의 정보</div>
+					<div class="mypage_myinfo_title">나의 정보 
+						<span style="color: red; font-size: 12pt;">${error}</span>
+					</div>
 					<form action="update.do" method="post"
-						enctype="multipart/form-data" onsubmit="return modifyUser();">
+						enctype="multipart/form-data" onsubmit="return updateValidCheck();">
 						<div style="text-align: center;">
 							<div class="mypage_myinfo_left">
 								<div class="mypage_myinfo_img">
+								<c:choose>
+								<c:when test="${fn:contains(sessionScope.loginUser.userImg, 'https')}">
+									<img id="mypage_img" alt="${sessionScope.loginUser.userImg}"
+										src="${sessionScope.loginUser.userImg }">
+								</c:when>
+								<c:otherwise>
 									<img id="mypage_img" alt="${sessionScope.loginUser.userImg}"
 										src="./resources/kjs_profileImg/${sessionScope.loginUser.userImg }">
+								</c:otherwise>
+								</c:choose>
 									<div class="mypage_myinfo_img_change">
 										<label for="mypage_img_file">사진수정</label> <input type="file"
 											onchange="readURL(this)" name="userImg" id="mypage_img_file"
@@ -71,6 +81,16 @@
 												</c:choose>
 												<span class="onoff-switch"></span>
 											</label>
+											<!-- 네이버 로그인 버튼 노출 영역 -->
+										  <div id=naver_id_login style="display: none;"></div>
+										  <!-- //네이버 로그인 버튼 노출 영역 -->
+										  <script type="text/javascript">
+										  	var naver_id_login = new naver_id_login("rX3BsIpQkj6CJiShI2rn", "http://localhost/main/callback.connect.naver");
+										  	var state = naver_id_login.getUniqState();
+										  	naver_id_login.setState(state);
+										  	naver_id_login.setPopup();
+										  	naver_id_login.init_naver_id_login();
+										  </script>
 										</div>
 									</div>
 								</div>
@@ -97,37 +117,35 @@
 									<div>
 										<span>이름</span>
 									</div>
-									<input name="userName"
+									<input id="mypageName" name="userName"
 										value="${sessionScope.loginUser.userName}">
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
 										<span>닉네임</span>
 									</div>
-									<input name="userNickname"
+									<input id="mypageNickname" name="userNickname"
 										value="${sessionScope.loginUser.userNickname}">
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
 										<span>핸드폰</span>
 									</div>
-									<input name="userPhoneNumber"
+									<input id="mypagePhone" name="userPhoneNumber"
 										value="${sessionScope.loginUser.userPhoneNumber}">
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
 										<span>이메일</span>
 									</div>
-									<input name="userEmail"
+									<input id="mypageEmail" name="userEmail"
 										value="${sessionScope.loginUser.userEmail}">
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
-										<span>비밀번호</span>
+										<span>비밀번호 확인</span>
 									</div>
-									<input type="password" id="mypagePW" name="userPW"
-										placeholder="비밀번호 확인"> <span
-										style="color: red; font-size: 12pt;">${error}</span>
+									<input type="password" id="mypagePW" name="userPW" placeholder="기존 비밀번호">
 								</div>
 								<div
 									style="font-family: 'GangwonEdu_OTFBoldA'; color: red; text-align: right;">${result}</div>
@@ -138,13 +156,6 @@
 							</div>
 						</div>
 					</form>
-				</div>
-				<div id="mypage_following">
-					<div>내가 구독하는 사람들</div>
-				</div>
-				<div id="mypage_follower">
-					<div>나를 구독하는 사람들</div>
-					<div>나를 구독하는 통계</div>
 				</div>
 			</div>
 		</div>

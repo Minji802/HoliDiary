@@ -199,6 +199,19 @@ public class WriteController {
 		
 		return likeCount;
 	}
+	
+	// 댓글 등록
+	@ResponseBody
+	@RequestMapping(value = "/comment.do", method = RequestMethod.GET)
+	public String postRegDo(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+
+		if (uDAO.loginCheck(req)) {
+			pDAO.commentReg(req, u, p, c);
+		}
+
+		req.setAttribute("popupContentPage", "../mj_write/post_detail.jsp");
+		return "ksm_main/popup";
+	}
 
 	// 지도 만들기
 	@RequestMapping(value = "/map.open", method = RequestMethod.GET)

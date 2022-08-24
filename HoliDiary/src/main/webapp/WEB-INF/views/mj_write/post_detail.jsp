@@ -58,7 +58,7 @@
 				<button class="closeBtn">✖</button>
 			</div>
 		</div>
-		
+
 		<!-- 수정/삭제버튼 -->
 		<div id="rightSide">
 			<c:if
@@ -75,27 +75,40 @@
 	<br>
 	<br>
 	<div id="goToListDiv">
-		<button onclick="location.href='post-list?userId=${User.userID}'" id="GoToList">목록으로</button>
+		<button onclick="location.href='post-list?userId=${User.userID}'"
+			id="GoToList">목록으로</button>
 	</div>
 	<br>
 
 	<hr>
 
 	<h2>Comment</h2>
+	<!-- 댓글작성 -->
+	<form id="commentForm" name="commentForm" method="get">
+		<div>${sessionScope.loginUser.userID }</div>
+		<div>
+			<input type="hidden" id="postNum" name="postNum" value="${DiaryPost.postNum }">
+			<input type="hidden" id="userId" name="userId" value="${DiaryPost.postWriter }">
+			<input type="hidden" id="commentWriter" name="commentWriter" value="${sessionScope.loginUser.userID}">
+			<textarea name="commentTxt" id="commentTxt"></textarea>
+			<button id="commentSubmit">등록</button>
+		</div>
+	</form>
 
-	<div>
-		<textarea name="commentTxt" id="commentTxt"></textarea>
-		<button id="commentSubmit">등록</button>
-	</div>
-
+	<!-- 댓글목록 -->
 	<c:forEach items="${Comment}" var="c">
 		<div id="comment">
 			<div style="width: 100%; margin-bottom: 30px; border: 1px solid red">
 				<ul>${c.commentWriter }</ul>
 				<ul>${c.commentTxt }</ul>
 				<ul>${c.commentDate }</ul>
-				<div style="text-align: right; margin-right: 50px">삭제</div>
-				<div style="text-align: right; margin-top: -17.5px;">답글</div>
+				
+				<div style="float:right; text-align: right; margin-left: 20px;">답글</div>
+				<c:if
+				test="${c.commentWriter eq sessionScope.loginUser.userID }">
+				<div style="float:right; text-align: right; margin-left: 20px;">삭제</div>
+				<div style="float:right; text-align: right; margin-left: 20px;">수정</div>
+				</c:if>
 			</div>
 			<hr>
 		</div>
@@ -118,7 +131,8 @@
 						+ "&postNum=" + n;
 			}
 		}
-
+		
+		/*좋아요 기능*/
 		$(function() {
 
 			var postNum = document.getElementById("postNum").value;
@@ -147,10 +161,8 @@
 					success : function(likeCount) {
 						if (likeCount == 0) {
 							alert("추천완료.");
-							location.reload();
 						} else if (likeCount == 1) {
 							alert("추천취소");
-							location.reload();
 						}
 					},
 					error : function(request, status, error) {
@@ -162,6 +174,7 @@
 
 		});
 		
+		/*모달창*/
 		const open = () => {
 		    document.querySelector(".modal").classList.remove("hidden");
 		  }
@@ -174,6 +187,40 @@
 		  document.querySelector(".closeBtn").addEventListener("click", close);
 		  document.querySelector(".bg").addEventListener("click", close);
 		
+		  
+		 /*댓글창*/
+		 $(function() {
+
+		/* 	var postNum = document.getElementById("postNum2").value;
+			var CommentWriter = document.getElementById("commentWriter").value;
+			var commentTxt = document.getElementById("commentTxt");
+ */			
+ 			console.log(commentWriter);
+ 
+ 
+			$("#commentSubmit").on("click", function() {
+				/* console.log(postNum);
+				console.log(userID);
+				console.log(commentTxt); */
+
+				$.ajax({
+					url : "comment.do",
+					type : "GET",
+					dataType : "JSON",
+					data : $("#commentForm").serialize(),
+					success : function(data) {
+						alert("댓글 삽입 성공!" + data)
+						location.reload(true);
+					},
+					error : function(request, status, error) {
+						alert("ajax 실패(댓글)" + data);
+					}
+
+				});
+			});
+
+		});
+		 
 	</script>
 
 

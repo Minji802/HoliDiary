@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 
-  var naver_id_login = new naver_id_login("rX3BsIpQkj6CJiShI2rn", "http://localhost/main/social.join.naver");
+  var naver_id_login = new naver_id_login("rX3BsIpQkj6CJiShI2rn", "http://localhost/main/social.login.naver");
   // 접근 토큰 값 출력
   //alert(naver_id_login.oauthParams.access_token);
   
@@ -77,7 +77,6 @@
 						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 							alert('회원가입에 실패했습니다. 간편회원가입을 이용해주세요.');
 							window.close();
-						
 					}
 				}); 
 

@@ -1,5 +1,7 @@
 package com.project.main.sm;
 
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -79,6 +81,41 @@ public class DiaryDAO {
 		}
 
 	}
+
+	public int insertSchedule(HttpServletRequest req, Schedule s) {
+	try {
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
+		
+		System.out.println(s.getScheduleDate());
+		System.out.println(s.getScheduleUserId());
+		System.out.println(s.getScheduleTitle());
+//		sdf.format(req.getParameter("ScheduleDate1"));
+		req.getParameter("ScheduleStartTime1");
+		req.getParameter("ScheduleEndTime1");
+//		System.out.println(req.getParameter("ScheduleDate1"));
+		System.out.println(req.getParameter("ScheduleStartTime1"));
+		System.out.println(req.getParameter("ScheduleEndTime1"));
+		
+//		s.setScheduleDate(scheduleDate);
+		s.setScheduleStartTime(sdf2.parse(req.getParameter("ScheduleStartTime1")));
+		s.setScheduleEndTime(sdf2.parse(req.getParameter("ScheduleEndTime1")));
+		
+		if (ss.getMapper(ScheduleMapper.class).insertSchedule(s) == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	
+		/*ss.getMapper(ScheduleMapper.class).insertSchedule(s);*/
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}	
+		
+		return 0;
+	}
+
 
 
 

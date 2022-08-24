@@ -40,6 +40,12 @@ public interface UserMapper {
 
 	int updateKakao(User u);
 
+	int disconnectKakao(User u);
+
+	int disconnectNaver(User u);
+
+	int updateNaver(User u);
+
 
 
 

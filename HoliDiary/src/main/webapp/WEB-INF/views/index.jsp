@@ -21,7 +21,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="resources/sej_js/sej_go.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_kakao.js?ver=1"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_mypage.js"></script>
+<script type="text/javascript" src="resources/kjs_js/kjs_mypage.js?ver=1"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_valid.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_validCheck.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

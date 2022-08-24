@@ -40,7 +40,8 @@ body {
 	/* height: 2000px; */
 }
 #main_place {
-	height: 2000px;
+	height: 100%;
+	/* 원래  height 2000px */
 }
 /* Header 영역 css */
 #top_header {

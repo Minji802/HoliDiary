@@ -1,3 +1,7 @@
+
+
+/*----------------------------------------------------*/
+
 function CalendarApp(date) {
   
   if (!(date instanceof Date)) {

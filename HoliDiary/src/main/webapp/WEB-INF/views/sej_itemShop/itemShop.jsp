@@ -10,36 +10,257 @@
 <div class="itemContainer">
 	<div class="itemMenuList">
 		<ul>
-			<li>다이어리 테마</li>
-			<li>스티커</li>
-			<li>기타</li>
+			<li><a href="#">다이어리 테마</a></li>
+			<li><a href="#">스티커</a></li>
+			<li><a href="#">기타</a></li>
 		</ul>
 	</div>
 	<div class="itemBox">
 		<ul>
 			<li>
-				<a href="#">
-					<!-- <div></div>
-					<div></div>
-					<span></span>
-					<div></div> -->
-				</a>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img" src="resources/sej_img/itemShop/newbutton.png">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title">청량 민트 테마</span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
 			</li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img" src="resources/sej_img/itemShop/newbutton.png">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img" src="resources/sej_img/itemShop/newbutton.png">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img" src="resources/sej_img/itemShop/newbutton.png">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
+			<li>
+					<div class="itemBox_newHot">
+						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
+					</div>
+					<span class="itemBox_img">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+					</span>
+					<span class="itemBox_title"></span>
+					<div class="itemBox_PriceButton">
+						<span class="itemBox_price_and_img">
+							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
+							1,000
+						</span>
+					</div>
+			</li>
 		</ul>
 	</div>
 </div>

@@ -4,9 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.main.js.User;
 import com.project.main.js.UserDAO;
@@ -131,9 +133,24 @@ public class PopupController {
 		return "ksm_main/popup";
 	}
 	
+	// 다이어리 - 스케줄러 추가
+	@ResponseBody
+	@RequestMapping(value = "/schedule.insert", method = RequestMethod.GET)
+	public int insertSchedule(HttpServletRequest req, Schedule s) {
+		System.out.println("==============================");
+		System.out.println(req.getParameter("ScheduleUserId"));
+		System.out.println(req.getParameter("ScheduleTitle"));
+		System.out.println(req.getParameter("ScheduleDate"));
+		System.out.println(req.getParameter("ScheduleStartTime1"));
+		System.out.println(req.getParameter("ScheduleEndTime1"));
+		System.out.println("==============================");
+		
+		
+		
+		uDAO.loginCheck(req);
+		return dDAO.insertSchedule(req, s);
+	}
 	
-	
-	// 다이어리 - 개인 카테고리 포스트 작성에 던져주기
 	
 
 	

@@ -51,7 +51,7 @@
 	box-sizing: border-box;
 }
 
-body {
+.holinow_place {
 	--color-text: #4800d4;
   --color-bg: #fff2db;
   --color-link: #b045f8;
@@ -61,7 +61,7 @@ body {
 	font-family: 'Zen Dots', cursive;
 	min-height: 100vh;
 	color: var(--color-text, #272625);
-	background-color: var(--color-bg, #fff);
+/* 	background-color: var(--color-bg, #fff); */
 }
 
 /* Main stuff */
@@ -393,6 +393,7 @@ button.content__close:hover {
 <!-- css 적용 문제로 직접 css 적용 -->
 </head>
 <body>
+<div class="holinow_place">
 <!-- partial:index.partial.html -->
 <main>
 			<div class="title">
@@ -554,6 +555,7 @@ button.content__close:hover {
         <svg class="content__indicator icon icon--caret"><use xlink:href="#icon-caret"></use></svg>
 			</div>
 		</main>
+</div>
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js'></script>

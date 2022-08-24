@@ -137,24 +137,32 @@ public class UserController {
 	
 	// 네이버 콜백 주소(회원가입)
 	@RequestMapping(value = "/callback.join.naver", method = RequestMethod.GET)
-	public String callbackJoinNaver(User u, HttpServletRequest req) {
+	public String callbackJoinNaver(HttpServletRequest req) {
 
 		return "kjs_user/naver_callback_join";
 	}
 	
 	// 네이버 콜백 주소(로그인)
 	@RequestMapping(value = "/callback.login.naver", method = RequestMethod.GET)
-	public String callbackLoginNaver(User u, HttpServletRequest req) {
+	public String callbackLoginNaver(HttpServletRequest req) {
 
 		return "kjs_user/naver_callback_login";
 	}
 	
-	// 네이버 회원가입 콜백
-	@RequestMapping(value = "/social.join.naver", method = RequestMethod.GET)
-	public String socialJoinNaver(User u, HttpServletRequest req) {
+	// 네이버 콜백 주소(연동)
+	@RequestMapping(value = "/callback.connect.naver", method = RequestMethod.GET)
+	public String callbackConnectNaver(HttpServletRequest req) {
+
+		return "kjs_mypage/naver_callback_connect";
+	}
+	
+	// 네이버 연동콜백
+	@RequestMapping(value = "/social.connect.naver", method = RequestMethod.GET)
+	public String socialConnectNaver(User u, HttpServletRequest req) {
 		
+		uDAO.connectNaver(req);
 		uDAO.loginCheck(req);
-		req.setAttribute("contentPage", "home.jsp");
+		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
 		
 		return "index";
 	}
@@ -231,7 +239,7 @@ public class UserController {
 	
 	// 탈퇴하기
 	@RequestMapping(value = "/delete.do", method = RequestMethod.GET)
-	public String DeleteUser(HttpServletRequest req) {
+	public String deleteUser(HttpServletRequest req) {
 		
 		uDAO.delete(req);
 		
@@ -240,6 +248,17 @@ public class UserController {
 		return "index";
 	}
 	
+	// 소셜 로그인 연동해제
+	@RequestMapping(value = "/disconnect.sns", method = RequestMethod.GET)
+	public String disconnectSNS(HttpServletRequest req) {
+	
+		uDAO.disconnectSNS(req);
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
+		return "index";
+	}
+	
+	// 수정하기
 	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String updateUser(HttpServletRequest req, @RequestParam("userID") String userID, @RequestParam("userName") String userName, @RequestParam("userNickname") String userNickname, @RequestParam("userPhoneNumber") String userPhoneNumber, @RequestParam("userEmail") String userEmail,@RequestParam("userPW") String userPW, @RequestParam("userImg") MultipartFile mf) {
 		

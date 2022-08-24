@@ -5,8 +5,12 @@
 	<!-- 코멘트 관련  -->
 	
 	<select id="showAllComments" resultType="com.project.main.mj_write.Comment">
-		select * from commentTable where postNum = #{postNum}
+		select * from commentTable where postNum = #{postNum} order by commentDate desc
 	</select>
 	
+	<insert id="commentWrite" parameterType="com.project.main.mj_write.Comment">
+		insert into commentTable (commentNum, commentTxt, commentWriter, commentDate, postNum) 
+		values (commentNum_seq.nextval, #{commentTxt}, #{commentWriter}, sysdate, #{postNum})
+	</insert>
 	
 </mapper>

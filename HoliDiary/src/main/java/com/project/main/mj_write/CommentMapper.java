@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface CommentMapper {
 
-	List<Comment> showAllComments(Comment c);
+	public List<Comment> showAllComments(Comment c);
+
+	public int commentWrite(Comment c);
 
 }

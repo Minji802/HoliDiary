@@ -17,6 +17,10 @@
 }
 
 @font-face {
+    font-family: 'Noto Sans Bold';
+    src: url('../../resources/sej_font/NotoSansKR-Bold.otf') format('opentype');
+}
+@font-face {
     font-family: 'Montserrat';
     src: url('../../resources/sej_font/Montserrat-Medium.otf') format('opentype');
 }
@@ -37,22 +41,101 @@
 	margin-right: auto;
 	margin-top: 100px;
 }
+.itemMenuList {
+	margin-left: 80px;
+}
 .itemMenuList ul li{
 	float: left;
 	list-style: none;
-	width: 130px;
-    height: 55px;
+	/* width: 130px;
+    height: 55px; */
     text-align: center;
-    line-height: 60px;
     background-color: #FFDE59;
     border-right: 1px solid #fff;
-    color: #fff;
     font-family: 'GangwonEdu_OTFBoldA';
     font-weight: bold;
     font-size: 20px;
     border-radius: 3px;
 }
+.itemMenuList ul li a {
+	width: 130px;
+	height: 55px;
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	line-height: 60px;
+}
+.itemBox {
+	padding-top: 100px;
+}
 .itemBox ul li{
 	list-style: none;
 }
+.itemBox li:first-child, .itemBox li:nth-child(4n + 1) {
+    margin-left: 80px;
+}
+.itemBox li { 
+	display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding: 9px 9px 0;
+    width: 238px;
+    height: 348px;
+    background: #fff;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    font-size: 17px;
+    transition: border-color .3s;
+    cursor: pointer;
+}
+.itemBox_img {
+	display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.itemBox_img_file {
+	width: 90%;
+    height: auto;
+}
+.itemBox_new_img {
+	width: 45px;
+	height: 25px;
+	display: inline-block;
+}
+.itemBox_new_img2 {
+	width: 45px;
+	height: 20px;
+	display: inline-block;
+	position: absolute;
+	top: 11px;
+}
+.itemBox_newHot {
+	width: 100px;
+	height: 60px;
+}
+.itemBox_title {
+	display: inline-block;
+	width: 218px;
+	height: 64px;
+	text-align: center;
+	line-height: 64px;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 18px;
+	color: #737373;
+	border-bottom: 1px solid #eee;
+}
+.itemBox_price_img {
+	width: 20px;
+	height: 20px;
+}
+.itemBox_price_and_img {
+	display: inline-block;
+	width: 100px;
+	color: #834e00;
+	font-family: 'Noto Sans Bold';
+	margin-top: 20px;
+}
+
+
 

@@ -199,7 +199,7 @@ public class UserDAO {
 	}
 	
 	// 카카오 토근 가져오기 
-	public void getKakaoToken(String code, HttpServletRequest req) {
+	public void getKakaoToken(String redirect, String code, HttpServletRequest req) {
 		String access_Token = "";
         String refresh_Token = "";
 		String requestURL = "https://kauth.kakao.com/oauth/token";
@@ -215,7 +215,7 @@ public class UserDAO {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=2a81773cdaa73d4aadc2ed8f0c9370ac");
-            sb.append("&redirect_uri=http://localhost/main/connect.kakao");
+            sb.append("&redirect_uri=" + redirect);
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
@@ -358,11 +358,12 @@ public class UserDAO {
 		
 		// 카카오톡 인가코드 받기 (토큰 받기 위함: 세션)
 		String code = req.getParameter("code");
+		String redirect = "http://localhost/main/social.kakao";
 		//System.out.println(code);
 			
 		// 유저정보 가져오기
 		if(code != null) {
-			getKakaoToken(code,req);
+			getKakaoToken(redirect, code,req);
 				
 			String token = (String) req.getAttribute("access_Token");
 			System.out.println(token);
@@ -436,11 +437,12 @@ public class UserDAO {
 		// 카카오톡 인가코드 받기 (토큰 받기 위함: 세션)
 				String code = req.getParameter("code");
 				User u = (User) req.getSession().getAttribute("loginUser");
+				String redirect = "http://localhost/main/connect.kakao";
 				//System.out.println(code);
 					
 				// 유저정보 가져오기
 				if(code != null) {
-					getKakaoToken(code,req);
+					getKakaoToken(redirect, code,req);
 						
 					String token = (String) req.getAttribute("access_Token");
 					System.out.println(token);
@@ -547,6 +549,20 @@ public class UserDAO {
 		
 	}
 
+	public void connectNaver(HttpServletRequest req) {
+		
+		User u = (User) req.getSession().getAttribute("loginUser");
+		String naverID = req.getParameter("naverID");
+		u.setNaverID(naverID);
+		
+		if(ss.getMapper(UserMapper.class).updateNaver(u) == 1) {
+			User dbUser = (User)ss.getMapper(UserMapper.class).getUserByID(u);
+				req.getSession().setAttribute("loginUser", dbUser);
+				req.getSession().setMaxInactiveInterval(60*30);
+				System.out.println("연동 처리");
+		}
+	}
+	
 	// 아이디 찾기
 	public void findID(User u, HttpServletRequest req) {
 		if(ss.getMapper(UserMapper.class).findID(u) != null) {
@@ -691,7 +707,7 @@ public class UserDAO {
 			if (ss.getMapper(UserMapper.class).deleteUser(u) == 1) {
 				String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
 				String img = u.getUserImg();
-				if(img != "person-3093152.jpg") {
+				if(img != "person-3093152.jpg" || !img.contains("https")) {
 					img = URLDecoder.decode(img, "utf-8");
 					new File(path + "/" + img).delete();
 				}
@@ -754,11 +770,90 @@ public class UserDAO {
 			System.out.println("탈퇴실패");
 		}
 	}
-
+	
+	// SNS 소셜 연동해제
+	public void disconnectSNS(HttpServletRequest req) {
+			User u = (User) req.getSession().getAttribute("loginUser");
+			
+			System.out.println(req.getSession().getAttribute("kakao_token"));
+			System.out.println(req.getSession().getAttribute("naver_token"));
+			System.out.println(u.getKakaoID());
+			
+			String kakao_token = (String) req.getSession().getAttribute("kakao_token");
+			String naver_token = (String) req.getSession().getAttribute("naver_token");
+			
+			try {
+				if(kakao_token != null) {
+					if (ss.getMapper(UserMapper.class).disconnectKakao(u) == 1) {
+						// 카카오 연동 해제
+						String reqURL = "https://kapi.kakao.com/v1/user/unlink";
+							
+						URL url = new URL(reqURL);
+						HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+							
+						conn.setRequestMethod("POST");
+						conn.setDoOutput(true);
+						conn.setRequestProperty("Authorization", "Bearer " + req.getSession().getAttribute("kakao_token")); //전송할 header 작성, access_token전송
+							
+						//결과 코드가 200이라면 성공
+						int responseCode = conn.getResponseCode();
+						System.out.println("responseCode : " + responseCode);
+						System.out.println("카카오 연동 해제");
+					}
+				}
+				
+				// 네이버 연동 해제
+				if(naver_token != null) {
+					if(ss.getMapper(UserMapper.class).disconnectNaver(u) == 1) {
+						
+						String apiUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=rX3BsIpQkj6CJiShI2rn" +
+								"&client_secret=V8T2DziKhJ&access_token="+naver_token.replaceAll("'", "")+"&service_provider=NAVER";
+						
+						URL url = new URL(apiUrl);
+					    HttpURLConnection conn = (HttpURLConnection) url.openConnection();	
+					    conn.setRequestMethod("GET");
+					    int responseCode = conn.getResponseCode();
+					    
+					    System.out.println(responseCode);
+					    
+					    BufferedReader  br;
+					    
+					    if(responseCode==200) { // 정상 호출
+					    	br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+					      } else {  // 에러 발생
+					    	br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+					      }
+					      String inputLine;
+					      StringBuffer res = new StringBuffer();
+					      while ((inputLine = br.readLine()) != null) {
+					        res.append(inputLine);
+					      }
+					      
+					      br.close();
+					    
+					      System.out.println(res);
+					      System.out.println("네이버 연동 해제");
+					}
+				}
+				
+				User dbUser = ss.getMapper(UserMapper.class).getUserByID(u);
+				
+				req.getSession().setAttribute("loginUser", dbUser);
+				req.getSession().setMaxInactiveInterval(60*30);
+				System.out.println("세션저장");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("연동해제 실패");
+			}
+	}
+	
+	// 마이페이지 비밀번호 확인 
 	public int pwCheck(User u) {
 		return ss.getMapper(UserMapper.class).pwCheck(u);
 	}
 
+	// 마이페이지 정보 수정
 	public void update(String userID, String userName, String userEmail, String userNickname, String userPhoneNumber,
 			MultipartFile mf, HttpServletRequest req) {
 		
@@ -812,6 +907,9 @@ public class UserDAO {
 	         if(ss.getMapper(UserMapper.class).updateUser(u) == 1) {
 	          	System.out.println("수정 성공");
 				if (newFile != "" && !oldFile.equals(newFile)) {
+					if(oldFile == "person-3093152.jpg" || oldFile.contains("https")) {
+						return;
+					}
 					File errorOldFile = new File(fileRoot + oldFile);
 					FileUtils.deleteQuietly(errorOldFile);
 				}
@@ -829,6 +927,8 @@ public class UserDAO {
 		
 		
 	}
+
+
 
 
 

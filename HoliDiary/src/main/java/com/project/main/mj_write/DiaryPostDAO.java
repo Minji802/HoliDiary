@@ -335,6 +335,30 @@ public class DiaryPostDAO {
 		}
 		
 	}
+
+	public void commentReg(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+
+		int postNum = c.getPostNum();
+		int commentNum = c.getCommentNum();
+		String CommentWriter = c.getCommentWriter();
+		String commentTxt = c.getCommentTxt();
+
+		try {
+			c.setPostNum(postNum);
+			c.setCommentNum(commentNum);
+			c.setCommentWriter(CommentWriter);
+			c.setCommentTxt(commentTxt);
+			
+			if (ss.getMapper(CommentMapper.class).commentWrite(c) == 1) {
+				System.out.println("댓글 등록 성공");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("실패");
+
+		}
+	}
 	
 	
 
