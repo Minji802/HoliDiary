@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="home_container">
 	<div class="main_slider">
 		<div>
 			<img src="resources/sej_img/slider/eiffel-tower-768501.jpg">
@@ -68,11 +69,14 @@
 			type='radio'> <input id='four' name='trigger' type='radio'>
 		<div class='pages_page'>
 			<div class='pages_page__inner'>
-				<div class='logo'>Fashion</div>
+				<div class='logo'>
+					<img class="logo_img_for_bookslider" src="resources/sej_img/slogo1-removebg-preview.png">
+				</div>
+				<img class="aeroplane_img_for_bookslider" src="resources/sej_img/slider/free-icon-paper-aeroplane-8135537.png">
 				<div class='pagenumber'>1 2</div>
 				<div class='content'>
 					<div class='content_center'>
-						<h4>The latest in fashion &amp; fashion design</h4>
+						<h4>Make a diary of your trip</h4>
 					</div>
 				</div>
 			</div>
@@ -81,7 +85,7 @@
 			<div class='pages_page__inner'>
 				<div class='content'>
 					<div class='content_center right'>
-						<h4>The latest in fashion &amp; fashion design</h4>
+						<h4>Make a diary of your trip</h4>
 					</div>
 					<div class='overlay'></div>
 				</div>
@@ -92,7 +96,7 @@
 		</div>
 		<div class='pages_page'>
 			<div class='pages_page__inner'>
-				<div><img class='note_pages_logo' src="resources/sej_img/logofit-removebg-preview.png"></div>
+				<!-- <div><img class='note_pages_logo' src="resources/sej_img/logofit-removebg-preview.png"></div> -->
 				<div class='pagenumber'>2 3</div>
 				<div class='control'>
 					<label for='one'></label>
@@ -241,6 +245,6 @@
 	</div>
 	<!-- partial -->
 	<script src="./script.js"></script>
-
+	</div>
 </body>
 </html>

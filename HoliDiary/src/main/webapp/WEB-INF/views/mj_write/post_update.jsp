@@ -63,7 +63,7 @@
 				<textarea id="postTxt" name="postTxt"></textarea>
 			</div>
 			
-			<input id="postImg" name="postImg" value="${DiaryPost.postImg }">
+			<input type="hidden" id="postImg" name="postImg" value="${DiaryPost.postImg }">
 			
 			<div class="row justify-content-md-center">                                                                                                                          
 				<button type="submit" class="writeUpload" style="font-weight: bold"> 수정 </button>

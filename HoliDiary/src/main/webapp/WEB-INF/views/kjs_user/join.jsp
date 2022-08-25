@@ -28,7 +28,7 @@
 				</div>
 				<span class="join_span">비밀번호<span id="join_pw_error"></span></span>
 				<div class="join_input_box">
-					<input type="password" id="join_pw" name="userPW" autocomplete="off" maxlength="16" placeholder="8~16자 대 소문자, 숫자 사용">
+					<input type="password" id="join_pw" name="userPW" autocomplete="off" maxlength="16" placeholder="8~16자 영문 소문자, 숫자">
 				</div>
 				<span class="join_span">비밀번호 확인<span id="join_pwCheck_error"></span></span>
 				<div class="join_input_box">

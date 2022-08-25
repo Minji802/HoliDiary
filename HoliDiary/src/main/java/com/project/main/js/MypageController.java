@@ -51,6 +51,19 @@ public class MypageController {
 			
 			return "index";
 		}
+		
+		// 마이 페이지 들어가기(비번수정)
+		@RequestMapping(value = "/mypage.changepw.go", method = RequestMethod.GET)
+		public String mypageChangepwGo(HttpServletRequest req) {
+			
+			if(uDao.loginCheck(req)) {
+				req.setAttribute("contentPage", "kjs_mypage/mypage_changePW.jsp");
+			}else {
+				req.setAttribute("contentPage", "home.jsp");
+			}
+			
+			return "index";
+		}
 
 
 

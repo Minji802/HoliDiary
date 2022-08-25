@@ -2,6 +2,10 @@ package com.project.main.mj_write;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.http.HttpHeaders;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +13,9 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -138,7 +144,8 @@ public class WriteController {
 	// 글 삭제
 	@RequestMapping(value = "/diaryPost.delete", method = RequestMethod.GET)
 	public String deleteDiaryPost(HttpServletRequest req, DiaryPost p, Diary d,
-			@RequestParam("postWriter") String postWriter, @RequestParam("userId") String userId, User u, Category cate) {
+			@RequestParam("postWriter") String postWriter, @RequestParam("userId") String userId, User u,
+			Category cate) {
 
 		// dDAO.getDiaryInfo(req, d, userId);
 		System.out.println(p.getPostNum());
@@ -191,26 +198,39 @@ public class WriteController {
 			pDAO.insertLike(req, l); // like테이블 삽입
 			pDAO.updateLike(req, p); // 게시판테이블 +1
 			pDAO.updateLikeCount(req, l);// like테이블 구분자 1
-		} else if(likeCount == 1) { 
-			pDAO.updateLikeCountCancel(req, l);		//like테이블 구분자0 
-			pDAO.updateLikeCancel(req, p); //게시판테이블 - 1
-			pDAO.deleteLike(req, l); //like테이블 삭제 
+		} else if (likeCount == 1) {
+			pDAO.updateLikeCountCancel(req, l); // like테이블 구분자0
+			pDAO.updateLikeCancel(req, p); // 게시판테이블 - 1
+			pDAO.deleteLike(req, l); // like테이블 삭제
 		}
-		
+
 		return likeCount;
 	}
-	
+
 	// 댓글 등록
 	@ResponseBody
 	@RequestMapping(value = "/comment.do", method = RequestMethod.GET)
-	public String postRegDo(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+	public int commentRegDo(HttpServletRequest req, User u, DiaryPost p, Comment c) {
 
-		if (uDAO.loginCheck(req)) {
-			pDAO.commentReg(req, u, p, c);
-		}
+		return pDAO.commentReg(req, u, p, c);
+	}
 
-		req.setAttribute("popupContentPage", "../mj_write/post_detail.jsp");
-		return "ksm_main/popup";
+	// 댓글 리스트
+	@ResponseBody
+	@RequestMapping(value = "/commentList.do", method = RequestMethod.GET, produces="application/json")
+	public List<Comment> commentListDo(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+
+
+		return pDAO.commentList(req, u, p, c);
+	}
+	
+	// 댓글 삭제
+	@ResponseBody
+	@RequestMapping(value = "/commentDelete.do", method = RequestMethod.GET, produces="application/json")
+	public int commentDeleteDo(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+		
+		
+		return pDAO.commentDelete(req, u, p, c);
 	}
 
 	// 지도 만들기

@@ -149,6 +149,9 @@ body {
   font-size: 27px;
   width: 200px; 
 }
+#menu_bar .menu_bar_li:hover {
+	color: #fffaf4;
+}
 .menu_bar_diary_li {
 	text-decoration: none;
 	font-size: 25px;
@@ -173,6 +176,31 @@ body {
   font-family: 'GangwonEdu_OTFBoldA','Noto Sans KR',sans-serif;
   font-size: 30px;
   width: 200px; 
+}
+.menu_bar_li_first:hover {
+	color: #fffaf4;
+}
+@keyframes 왔다갔다 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-90deg);
+  }
+
+  75% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.menu_diary_img:hover {
+  animation-name: 왔다갔다;
+  animation-duration: 1s;
 }
 /* .menu_bar_diary_li p {
 	margin-top: -5px;

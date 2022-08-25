@@ -20,7 +20,7 @@ public interface UserMapper {
 	
 	int idCheckWithNaver(User u);
 
-	int nickCheck(User u);
+	String nickCheck(User u);
 
 	int joinWithKakao(User kakaoUser);
 

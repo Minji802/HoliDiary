@@ -22,6 +22,18 @@ public class ItemShopController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/itemShop_sticker.go", method = RequestMethod.GET)
+	public String itemShopStickerGo(HttpServletRequest req) {
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "sej_itemShop/itemShop_sticker.jsp");
+		return "index";
+	}
 	
+	@RequestMapping(value = "/itemShop_other.go", method = RequestMethod.GET)
+	public String itemShopOtherGo(HttpServletRequest req) {
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "sej_itemShop/itemShop_sticker.jsp");
+		return "index";
+	}
 	
 }

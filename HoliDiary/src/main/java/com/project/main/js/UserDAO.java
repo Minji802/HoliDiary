@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -23,13 +22,10 @@ import org.apache.commons.mail.HtmlEmail;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.project.main.sm.CategoryMapper;
 import com.project.main.sm.DiaryMapper;
 
@@ -153,7 +149,7 @@ public class UserDAO {
 	}
 	
 	// ajax 닉네임 체크
-	public int nickCheck(User u) {
+	public String nickCheck(User u) {
 		return ss.getMapper(UserMapper.class).nickCheck(u);
 	}
 	
@@ -604,7 +600,7 @@ public class UserDAO {
 			
 			// 임시 비밀번호 DB에 저장
 			ss.getMapper(UserMapper.class).updatePW(dbUser);
-			System.out.println(ss.getMapper(UserMapper.class).updatePW(dbUser));
+			//System.out.println(ss.getMapper(UserMapper.class).updatePW(dbUser));
 			
 			req.setAttribute("userEmail", email);
 			req.setAttribute("r", "일치");
@@ -926,6 +922,14 @@ public class UserDAO {
 			}
 		
 		
+	}
+
+	public void updatePW(User u, HttpServletRequest req) {
+		if(ss.getMapper(UserMapper.class).updatePW(u) == 1) {
+			req.setAttribute("result", "비밀번호가 수정되었습니다");
+		}else {
+			req.setAttribute("result", "오류가 발생하여 비밀번호 수정을 하지 못했습니다");
+		}
 	}
 
 

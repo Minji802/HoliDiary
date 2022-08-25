@@ -19,3 +19,11 @@ function goBestHoli() {
 function goItemShop() {
 	location.href='itemShop.go';
 }
+
+function goItemShop_sticker() {
+	location.href='itemShop_sticker.go';
+}
+
+function goItemShop_other() {
+	location.href='itemShop_other.go';
+}

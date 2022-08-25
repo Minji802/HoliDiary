@@ -37,12 +37,20 @@
 
 .itemContainer {
 	width:1200px;
+	height: 1600px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 100px;
 }
 .itemMenuList {
-	margin-left: 80px;
+	margin-left: 120px;
+	width: 1000px;
+	height: 55px;
+	border-bottom: 5px dashed #FFDE59;
+}
+
+.itemMenuList ul li a:hover {
+	background-color: #6667AB;
 }
 .itemMenuList ul li{
 	float: left;
@@ -56,6 +64,9 @@
     font-weight: bold;
     font-size: 20px;
     border-radius: 3px;
+}
+.itemMenuList ul li:first-child {
+	margin-left: -40px;
 }
 .itemMenuList ul li a {
 	width: 130px;
@@ -81,7 +92,7 @@
     margin-bottom: 20px;
     padding: 9px 9px 0;
     width: 238px;
-    height: 348px;
+    height: 315px;
     background: #fff;
     border: 1px solid #eee;
     box-sizing: border-box;
@@ -128,6 +139,9 @@
 .itemBox_price_img {
 	width: 20px;
 	height: 20px;
+	position: relative;
+	top: -7px;
+	left: 10px;
 }
 .itemBox_price_and_img {
 	display: inline-block;
@@ -136,6 +150,11 @@
 	font-family: 'Noto Sans Bold';
 	margin-top: 20px;
 }
-
+.itemBox_price {
+	display: inline-block;
+	position: relative;
+	left: 15px;
+	top: -10px;
+}
 
 

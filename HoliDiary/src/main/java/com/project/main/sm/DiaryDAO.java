@@ -98,8 +98,8 @@ public class DiaryDAO {
 		System.out.println(req.getParameter("ScheduleEndTime1"));
 		
 //		s.setScheduleDate(scheduleDate);
-		s.setScheduleStartTime(sdf2.parse(req.getParameter("ScheduleStartTime1")));
-		s.setScheduleEndTime(sdf2.parse(req.getParameter("ScheduleEndTime1")));
+		s.setScheduleStartTime(req.getParameter("ScheduleStartTime1"));
+		s.setScheduleEndTime(req.getParameter("ScheduleEndTime1"));
 		
 		if (ss.getMapper(ScheduleMapper.class).insertSchedule(s) == 1) {
 			return 1;

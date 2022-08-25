@@ -178,10 +178,10 @@ $(function() {
 				data : {"userNickname" : nickVal},
 				success : function(getData){
 					console.log(getData);
-					if(getData == 1){
+					if(getData != ''){
 						$('#join_nickname_error').text('이미 사용중인 닉네임입니다');
 						$('#join_nickname_error').css('color','red');
-					}else if(getData == 0){
+					}else{
 						if(isEmpty(nick)){
 							$('#join_nickname_error').text('닉네임을 입력해주세요');
 							$('#join_nickname_error').css('color','red');
@@ -266,7 +266,7 @@ $(function() {
 		
 		//비번 조건
 		if(lessThan(pw, 8) || containsHS(pw)){
-			$('#join_pw_error').text('비밀번호는 8~16자 영문 대 소문자, 숫자로 입력해주세요');
+			$('#join_pw_error').text('비밀번호는 8~16자 영문 소문자, 숫자로 입력해주세요');
 			$('#join_pw_error').css('color','red');
 		}else{
 			$('#join_pw_error').text('사용가능한 비밀번호입니다');
@@ -289,7 +289,7 @@ $(function() {
 			}else{
 				//비번 확인
 				if(notEquals(pw, pwCheck)){
-					$('#join_pwCheck_error').text('입력하신 비밀번호와 다릅니다');
+					$('#join_pwCheck_error').text('비밀번호가 일치하지 않습니다');
 					$('#join_pwCheck_error').css('color','red');
 				}else{
 					$('#join_pwCheck_error').text('비밀번호가 일치합니다');

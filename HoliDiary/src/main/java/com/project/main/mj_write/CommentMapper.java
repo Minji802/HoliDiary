@@ -8,4 +8,6 @@ public interface CommentMapper {
 
 	public int commentWrite(Comment c);
 
+	public int commentDelete(Comment c);
+
 }

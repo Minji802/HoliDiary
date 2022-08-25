@@ -40,13 +40,24 @@ body .pages_page {
 } */
 .pages .logo {
   font-size: 20px;
-  padding: 33px 30px 30px 30px;
+  padding: 15px 30px 30px 15px;
   line-height: 0;
   color: var(--yellow);
 }
 .pages .note_pages_logo {
 	width: 120px;
 	height: 100px;
+}
+.logo_img_for_bookslider {
+	width: 130px;
+	height: 60px;
+}
+.aeroplane_img_for_bookslider {
+	width: 420px;
+	height: 450px;
+	position: relative;
+	left: 60px;
+	top: 30px;
 }
 body .pagenumber {
   position: absolute;
@@ -699,12 +710,13 @@ body .pages_page:nth-of-type(odd) .pages_page__inner {
 body .pages_page:nth-of-type(1) .pages_page__inner {
   background-size: 880px !important;
   background-position: center !important;
-  background: url("https://cdnfl01.viewbug.com/media/mediafiles/2017/10/16/75667840_large.jpg");
+  background-color: #6667AB;
+  /* background: url("../../resources/sej_img/slider/99271D3C5A4F43E9223.jpg"); */
 }
 body .pages_page:nth-of-type(2) .pages_page__inner {
   background-size: 870px !important;
   background-position: center !important;
-  background: url("https://data.whicdn.com/images/86911589/original.jpg");
+  background: url("../../resources/sej_img/slider/image_readtop_2017_390427_14972076712914333.jpg");
 }
 body .pages_page:nth-of-type(2) .pages_page__inner h4 {
   color: black;
@@ -861,7 +873,7 @@ body .pages_page__inner .control label {
   cursor: pointer;
 }
 body .pages_page__inner .control:after {
-  content: "";
+  content: "<";
   display: block;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;

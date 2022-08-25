@@ -13,6 +13,10 @@
 <script type="text/javascript" src="resources/sm_js/sm_scheduleJs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
+#saveBtn{
+	position: relative;
+}
+
 .calendar {
 	color: #fff;
 	margin: 10px auto;
@@ -226,6 +230,20 @@ input.add-event-edit:-ms-input-placeholder {
 .event-btn--cancel:hover {
 	box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.2);
 }
+
+.event-btn--lastsave{
+	border-color: #fff;
+	background: #FFDE59;
+	color: #1C1C1C;
+	border-color: transparent;
+	border-radius: 10px 10px 10px 10px;
+	padding: 13px;
+}
+
+.event-btn--lastsave:hover {
+	box-shadow: 0px 2px 4px rgba(2, 2, 2, 0.2);
+}
+
 /* .add-event-btn:hover, .add.event-btn:focus{
   background: #00258e;
   box-shadow: 0px -1px 2px rgba(3,2,2,0.2);
@@ -480,18 +498,20 @@ keyframes popIn { 100%{
 </style>
 <script type="text/javascript">
 $(function(){
-	 $('.event-btn--save').click(function() {
-		
+	 $('#saveBtn').click(function() {
+		alert(111)
 		let userID = document.getElementById("userID").value;
 		let ScheduleTitle = $("#input-add-event-name").val();
 		//let ScheduleTitle = document.getElementById("input-add-event-name").value;
-		alert(ScheduleTitle);
 		
 		let ScheduleDate1 = document.getElementById("day-events2").value;
 		let ScheduleStartTime1 = document.getElementById("makeStartTime").value;
-		alert(ScheduleStartTime1);
 		let ScheduleEndTime1 = document.getElementById("makeEndTime").value;
-		alert(ScheduleEndTime1);
+		
+		let scheduleContent = $("#day-events-list").html();
+		alert(ScheduleStartTime1)
+		alert(ScheduleEndTime1)
+		alert(scheduleContent)
 		$.ajax({
 			url : "schedule.insert",
 			type : "GET",
@@ -500,7 +520,8 @@ $(function(){
 				  	"ScheduleTitle" : ScheduleTitle,
 				  	"ScheduleDate" : ScheduleDate1,
 				  	"ScheduleStartTime1" : ScheduleStartTime1,
-				  	"ScheduleEndTime1" : ScheduleEndTime1
+				  	"ScheduleEndTime1" : ScheduleEndTime1,
+				  	"ScheduleContent" : scheduleContent
 					},
 			success : function(getData) {
 				console.log(getData);
@@ -511,23 +532,39 @@ $(function(){
 					//$("makeStartTime").value('');
 					//$("makeEndTime").value('');
 					$(".inputText").val("");
-					
-					
-					
+				
 				}else {
 				}				
 			}
 		});
-	});         
+	});
+	 
+	 
+	 //스케줄러 삭제 - db 내용 동시에 삭제 - pk로 삭제 / 등록날짜 
+	 $('.event-delete').click(function(){
+		 $.ajax({
+				url : "schedule.delete",
+				type : "GET",
+				dataType : "text",
+				data :	{"ScheduleUserId" : userID,
+					  	"ScheduleTitle" : ScheduleTitle,
+					  	"ScheduleDate" : ScheduleDate1,
+					  	"ScheduleStartTime1" : ScheduleStartTime1,
+					  	"ScheduleEndTime1" : ScheduleEndTime1
+						},
+				success : function(getData) {
+					console.log(getData);
+					if (getData == 1) {
+						console.log("성공");
+					}else {
+					}				
+				}
+			});
+	 });     
 
-	
-	
-	
 
 });	
 
-	
-	
 	
 </script>
 
@@ -538,8 +575,8 @@ $(function(){
 		<div class="calendar" id="calendar-app"
 			style="background: ${Diary.themeColor}">
 			<div class="calendar--day-view" id="day-view">
-				<span class="day-view-exit" id="day-view-exit">&times;</span> <span
-					class="day-view-date" id="day-view-date">MAY 29 2016</span>
+				<span class="day-view-exit" id="day-view-exit">&times;</span><!-- <button id="saveBtn">저장</button>  -->
+				<span class="day-view-date" id="day-view-date">MAY 29 2016</span>
 				<div class="day-view-content">
 					<div class="day-highlight">
 						<input id="day-events2" name="dayEventsEle2" value=""><span class="day-events"
@@ -556,6 +593,7 @@ $(function(){
 								<label class="add-event-label"> 일정 제목 
 								<input type="text" class="add-event-edit add-event-edit--long"
 									placeholder="새로운 일정" id="input-add-event-name">
+								
 
 								</label>
 							</div>
@@ -579,7 +617,7 @@ $(function(){
 							<div class="half">
 								<a onkeyup="if(event.keyCode != 13) return; this.click();"
 									tabindex="0" id="add-event-save"
-									class="event-btn--save event-btn">저장</a> <a tabindex="0"
+									class="event-btn--save event-btn">추가</a> <a tabindex="0"
 									id="add-event-cancel" class="event-btn--cancel event-btn">취소</a>
 							</div>
 						</div>
@@ -589,6 +627,7 @@ $(function(){
 					<div class="day-inspiration-quote" id="inspirational-quote">
 						Every child is an artist. The problem is how to remain an artist
 						once he grows up. –Pablo Picasso</div>
+					<button id="saveBtn" class="event-btn--lastsave">스케줄러에 저장</button>
 				</div>
 			</div>
 			<div class="calendar--view" id="calendar-view">
@@ -605,6 +644,7 @@ $(function(){
 				<div class="cview__header">Fri</div>
 				<div class="cview__header">Sat</div>
 				<div class="calendar--view" id="dates"></div>
+	
 			</div>
 			<div class="footer">
 				<span><span id="footer-date" class="footer__link">Today
@@ -612,6 +652,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	
 
 	<script type="text/javascript">
 	function makeST() {
@@ -851,8 +892,8 @@ $(function(){
 		  events = this.sortEventsByTime(events);
 		  var _this = this;
 		  events.forEach(function(event){
-		    var _start = new Date(event.startTime);
-		    var _end = new Date(event.endTime);
+		    var _start = new Date(event.startTime); //시작시간
+		    var _end = new Date(event.endTime); //마침시간
 		    var idx = event.index;
 		    var li = document.createElement("li");
 		    li.className = "event-dates";
@@ -868,8 +909,8 @@ $(function(){
 		    div.innerHTML = html;
 		    
 		    var deleteBtn = document.createElement("span");
-		    var deleteText = document.createTextNode("delete");
-		    deleteBtn.className = "event-delete";
+		    var deleteText = document.createTextNode("삭제"); //삭제 버튼
+		    deleteBtn.className = "event-delete"; //삭제 버튼의 class
 		    deleteBtn.setAttribute("data-idx", idx);
 		    deleteBtn.appendChild(deleteText);
 		    deleteBtn.onclick = _this.deleteEvent.bind(_this);

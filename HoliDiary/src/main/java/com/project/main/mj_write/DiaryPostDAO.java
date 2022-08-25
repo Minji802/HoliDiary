@@ -42,10 +42,6 @@ public class DiaryPostDAO {
 		DiaryPost posts = pm.detailPost(p);
 		req.setAttribute("DiaryPost", posts);
 
-		CommentMapper cm = ss.getMapper(CommentMapper.class);
-		List<Comment> comment = cm.showAllComments(c);
-		req.setAttribute("Comment", comment);
-
 		LikeMapper lm = ss.getMapper(LikeMapper.class);
 		List<Like> like = lm.showAllLikeUsers(l);
 		req.setAttribute("Like", like);
@@ -165,9 +161,8 @@ public class DiaryPostDAO {
 
 	}
 
-	
-	/*좋아요 관련*/
-	public int likeCount(HttpServletRequest req,Like l) {
+	/* 좋아요 관련 */
+	public int likeCount(HttpServletRequest req, Like l) {
 
 		System.out.println(l.getPostNum());
 		System.out.println(l.getUserId());
@@ -202,11 +197,11 @@ public class DiaryPostDAO {
 
 		int postNum = p.getPostNum();
 		int postRecommend = p.getPostRecommend();
-		
+
 		System.out.println("-----------------");
 		System.out.println(p.getPostNum());
 		System.out.println(p.getPostRecommend());
-		
+
 		try {
 
 			p.setPostNum(postNum);
@@ -227,50 +222,46 @@ public class DiaryPostDAO {
 		int postNum = l.getPostNum();
 		String userId = l.getUserId();
 		int likeCount = l.getLikeCount();
-		
+
 		try {
-			
+
 			l.setPostNum(postNum);
 			l.setUserId(userId);
 			l.setLikeCount(likeCount);
-			
+
 			ss.getMapper(LikeMapper.class).updateLikeCount(l);
 			System.out.println("updateLikeCount 1 성공");
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("updateLikeCount 1 실패");
 		}
-		
+
 	}
-	
 
 	public void updateLikeCountCancel(HttpServletRequest req, Like l) {
-		
+
 		int postNum = l.getPostNum();
 		String userId = l.getUserId();
 		int likeCount = l.getLikeCount();
-		
+
 		try {
-			
+
 			l.setPostNum(postNum);
 			l.setUserId(userId);
 			l.setLikeCount(likeCount);
-			
+
 			ss.getMapper(LikeMapper.class).updateLikeCountCancel(l);
 			System.out.println("updateLikeCount 0 성공");
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("updateLikeCount 0 실패");
 		}
-		
+
 	}
 
 	public void updateLikeCancel(HttpServletRequest req, DiaryPost p) {
-
 
 		int postNum = p.getPostNum();
 		int postRecommend = p.getPostRecommend();
@@ -295,23 +286,21 @@ public class DiaryPostDAO {
 		int postNum = l.getPostNum();
 		String userId = l.getUserId();
 		int likeCount = l.getLikeCount();
-		
+
 		try {
-			
+
 			l.setPostNum(postNum);
 			l.setUserId(userId);
 			l.setLikeCount(likeCount);
-			
+
 			ss.getMapper(LikeMapper.class).deleteLike(l);
 			System.out.println("삭제 성공11111111");
-			
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("삭제 111111111 실패");
 		}
-		
+
 	}
 
 	// 조회수 증가
@@ -319,47 +308,80 @@ public class DiaryPostDAO {
 
 		int postNum = p.getPostNum();
 		int postView = p.getPostView();
-		
+
 		try {
 			p.setPostNum(postNum);
 			p.setPostView(postView);
-			
+
 			if (ss.getMapper(DiaryPostMapper.class).countPostView(p) == 1) {
 				System.out.println("조회수 증가 성공");
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("조회수 증가 실패");
 		}
-		
+
 	}
 
-	public void commentReg(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+	public int commentReg(HttpServletRequest req, User u, DiaryPost p, Comment c) {
 
 		int postNum = c.getPostNum();
 		int commentNum = c.getCommentNum();
 		String CommentWriter = c.getCommentWriter();
 		String commentTxt = c.getCommentTxt();
 
+		c.setPostNum(postNum);
+		c.setCommentNum(commentNum);
+		c.setCommentWriter(CommentWriter);
+		c.setCommentTxt(commentTxt);
+
+		if (ss.getMapper(CommentMapper.class).commentWrite(c) == 1) {
+			System.out.println("댓글 등록 성공");
+			return 1;
+		} else {
+			return 0;
+
+		}
+	}
+
+	public List<Comment> commentList(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+
+		CommentMapper cm = ss.getMapper(CommentMapper.class);
+		List<Comment> comment = cm.showAllComments(c);
+
+		return comment;
+
+	}
+
+	public int commentDelete(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+
+		System.out.println(c.getPostNum());
+		System.out.println(c.getCommentNum());
+		
+		int postNum = c.getPostNum();
+		int commentNum = c.getCommentNum();
+		String CommentWriter = c.getCommentWriter();
+		String commentTxt = c.getCommentTxt();
+
 		try {
+
 			c.setPostNum(postNum);
 			c.setCommentNum(commentNum);
 			c.setCommentWriter(CommentWriter);
 			c.setCommentTxt(commentTxt);
-			
-			if (ss.getMapper(CommentMapper.class).commentWrite(c) == 1) {
-				System.out.println("댓글 등록 성공");
+
+			if (ss.getMapper(CommentMapper.class).commentDelete(c) == 1) {
+				System.out.println("댓글 삭제 성공");
+			} else {
+
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("실패");
-
 		}
+		
+		return commentNum;
 	}
-	
-	
 
 }

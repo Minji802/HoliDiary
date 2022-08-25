@@ -7,20 +7,25 @@ public class Schedule {
 	private String ScheduleUserId;
 	private String ScheduleTitle;
 	private Date ScheduleDate;
-	private Date ScheduleStartTime;
-	private Date ScheduleEndTime;
+	private String ScheduleStartTime;
+	private String ScheduleEndTime;
+	private int ScheduleNum;
+	private String ScheduleContent;
 
 	public Schedule() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public Schedule(String scheduleUserId, String scheduleTitle, Date scheduleDate, Date scheduleStartTime,
-			Date scheduleEndTime) {
+	public Schedule(String scheduleUserId, String scheduleTitle, Date scheduleDate, String scheduleStartTime,
+			String scheduleEndTime, int scheduleNum, String scheduleContent) {
 		super();
 		ScheduleUserId = scheduleUserId;
 		ScheduleTitle = scheduleTitle;
 		ScheduleDate = scheduleDate;
 		ScheduleStartTime = scheduleStartTime;
 		ScheduleEndTime = scheduleEndTime;
+		ScheduleNum = scheduleNum;
+		ScheduleContent = scheduleContent;
 	}
 
 	public String getScheduleUserId() {
@@ -47,20 +52,41 @@ public class Schedule {
 		ScheduleDate = scheduleDate;
 	}
 
-	public Date getScheduleStartTime() {
+	public String getScheduleStartTime() {
 		return ScheduleStartTime;
 	}
 
-	public void setScheduleStartTime(Date scheduleStartTime) {
+	public void setScheduleStartTime(String scheduleStartTime) {
 		ScheduleStartTime = scheduleStartTime;
 	}
 
-	public Date getScheduleEndTime() {
+	public String getScheduleEndTime() {
 		return ScheduleEndTime;
 	}
 
-	public void setScheduleEndTime(Date scheduleEndTime) {
+	public void setScheduleEndTime(String scheduleEndTime) {
 		ScheduleEndTime = scheduleEndTime;
 	}
+
+	public int getScheduleNum() {
+		return ScheduleNum;
+	}
+
+	public void setScheduleNum(int scheduleNum) {
+		ScheduleNum = scheduleNum;
+	}
+
+	public String getScheduleContent() {
+		return ScheduleContent;
+	}
+
+	public void setScheduleContent(String scheduleContent) {
+		ScheduleContent = scheduleContent;
+	}
+
+	
+
+	
+	
 
 }

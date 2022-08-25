@@ -85,34 +85,25 @@
 	<h2>Comment</h2>
 	<!-- 댓글작성 -->
 	<form id="commentForm" name="commentForm" method="get">
-		<div>${sessionScope.loginUser.userID }</div>
 		<div>
-			<input type="hidden" id="postNum" name="postNum" value="${DiaryPost.postNum }">
-			<input type="hidden" id="userId" name="userId" value="${DiaryPost.postWriter }">
-			<input type="hidden" id="commentWriter" name="commentWriter" value="${sessionScope.loginUser.userID}">
-			<textarea name="commentTxt" id="commentTxt"></textarea>
-			<button id="commentSubmit">등록</button>
+			<strong>${sessionScope.loginUser.userID }</strong>
+		</div>
+		<div>
+			<input type="hidden" id="postNum" name="postNum"
+				value="${DiaryPost.postNum }"> <input type="hidden"
+				id="userId" name="userId" value="${DiaryPost.postWriter }">
+			<input type="hidden" id="commentWriter" name="commentWriter"
+				value="${sessionScope.loginUser.userID}">
+			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요."
+				style="width: 95%; height: 100px;"></textarea>
+			<button type="submit" id="commentSubmit">등록</button>
 		</div>
 	</form>
 
 	<!-- 댓글목록 -->
-	<c:forEach items="${Comment}" var="c">
-		<div id="comment">
-			<div style="width: 100%; margin-bottom: 30px; border: 1px solid red">
-				<ul>${c.commentWriter }</ul>
-				<ul>${c.commentTxt }</ul>
-				<ul>${c.commentDate }</ul>
-				
-				<div style="float:right; text-align: right; margin-left: 20px;">답글</div>
-				<c:if
-				test="${c.commentWriter eq sessionScope.loginUser.userID }">
-				<div style="float:right; text-align: right; margin-left: 20px;">삭제</div>
-				<div style="float:right; text-align: right; margin-left: 20px;">수정</div>
-				</c:if>
-			</div>
-			<hr>
-		</div>
-	</c:forEach>
+	<form id="commentListForm" name="commentListForm" method="GET">
+		<div id="commentList"></div>
+	</form>
 
 
 	<script type="text/javascript">
@@ -161,8 +152,10 @@
 					success : function(likeCount) {
 						if (likeCount == 0) {
 							alert("추천완료.");
+							location.reload(true);
 						} else if (likeCount == 1) {
 							alert("추천취소");
+							location.reload(true);
 						}
 					},
 					error : function(request, status, error) {
@@ -191,35 +184,101 @@
 		 /*댓글창*/
 		 $(function() {
 
-		/* 	var postNum = document.getElementById("postNum2").value;
-			var CommentWriter = document.getElementById("commentWriter").value;
-			var commentTxt = document.getElementById("commentTxt");
- */			
- 			console.log(commentWriter);
- 
- 
+			$(function() {
+				getCommentList();
+			})
+ 			
 			$("#commentSubmit").on("click", function() {
-				/* console.log(postNum);
-				console.log(userID);
-				console.log(commentTxt); */
+				
+				if($("#commentTxt").val() == ''){
+					alert('내용을 입력해주세요!');
+					$("#commentTxt").focus();
+				}
 
 				$.ajax({
 					url : "comment.do",
 					type : "GET",
-					dataType : "JSON",
+					dataType : "text",
 					data : $("#commentForm").serialize(),
 					success : function(data) {
-						alert("댓글 삽입 성공!" + data)
-						location.reload(true);
+						if (data == 1){
+							getCommentList();
+							$("#commentTxt").val('');
+						} else {
+							//alert("댓글 등록 실패");
+						}
 					},
 					error : function(request, status, error) {
-						alert("ajax 실패(댓글)" + data);
 					}
 
 				});
 			});
-
-		});
+		
+		function getCommentList() {
+			
+			$.ajax({
+				type : 'GET',
+				url : 'commentList.do',
+				dataType : 'json',
+				data : $("#commentForm").serialize(),
+				success : function(data) {
+					var html = "";
+					
+					if(data.length > 0) {
+							for (var i = 0; i < data.length; i++) {
+						
+							html += '<div style="width: 100%; margin-bottom: 30px; border: 1px solid white">';
+							html += '<ul><strong>'+data[i]["commentWriter"]+'</strong></ul>';
+							html += '<ul>'+data[i]["commentTxt"]+'</ul>';
+							html += '<ul>'+data[i]["commentDate"]+'</ul>';
+							html += '<button style="float: right; text-align: right; margin-left: 20px;">답글</button>';
+							
+							/*var diasble="";
+							if(${sessionScope.loginUser.userID} != data['commentWriter'])
+							{diasble="disabled"}*/
+							html += '<button class="commentDelete" style="float: right; text-align: right; margin-left: 20px;">삭제</button>';
+							/*html += '<button class="commentDelete"'+ diasble + 'data-del=' + data["commentNum"] + 'value=' + data["commentNum"] + 'style="float: right; text-align: right; margin-left: 20px;">삭제</button>';*/
+							html += '</div>';
+							html += '<hr>';
+								
+							}
+					} else {
+						 html += "<div>";
+			             html += "<div style='width: 100%; height: 100px; text-align: center; margin-top: 50px;'><strong>등록된 댓글이 없습니다.</strong>";
+			             html += "</div>";
+			             html += "</div>";
+					}
+					
+					$("#commentList").html(html);
+				},
+				error : function(request, status, error){
+					alert("통신실패22222");
+				}
+			});
+			
+		}
+		
+		
+		$(".commentDelete").on("click", function() {
+			
+			var commentNum = $(this).attr("data-del");
+			var sendData = {"commentNum": commentNum}
+			
+			$.ajax({
+				type: "GET",
+				url: "commentDelete.do",
+				data : $("#commentForm").serialize(),
+				dataType: "text",
+				success: function(data) {
+					console.log(data)
+					$("#commentList").html('');
+					commentList();
+				}
+			});
+		
+		
+	 });
+ });
 		 
 	</script>
 

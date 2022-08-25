@@ -89,9 +89,8 @@ public class UserController {
 	}
 	
 	// 닉네임 체크하기(ajax)
-	@RequestMapping(value = "/nick.check", method = RequestMethod.GET)
-	public @ResponseBody int nickCheck(User u) {
-		
+	@RequestMapping(value = "/nick.check", method = RequestMethod.GET, produces = "application/text;charset=utf8")
+	public @ResponseBody String nickCheck(User u) {
 		return uDAO.nickCheck(u);
 	}
 	
@@ -130,7 +129,7 @@ public class UserController {
 		
 		uDAO.connectKakao(req);
 		uDAO.loginCheck(req);
-		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
+		req.setAttribute("contentPage", "kjs_mypage/mypage_myinfo.jsp");
 		
 		return "index";
 	}
@@ -162,7 +161,7 @@ public class UserController {
 		
 		uDAO.connectNaver(req);
 		uDAO.loginCheck(req);
-		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
+		req.setAttribute("contentPage", "kjs_mypage/mypage_myinfo.jsp");
 		
 		return "index";
 	}
@@ -254,7 +253,7 @@ public class UserController {
 	
 		uDAO.disconnectSNS(req);
 		uDAO.loginCheck(req);
-		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
+		req.setAttribute("contentPage", "kjs_mypage/mypage_myinfo.jsp");
 		return "index";
 	}
 	
@@ -277,7 +276,20 @@ public class UserController {
 		}
 		
 		uDAO.loginCheck(req);
-		req.setAttribute("contentPage", "kjs_mypage/mypage.jsp");
+		req.setAttribute("contentPage", "kjs_mypage/mypage_myinfo.jsp");
+		return "index";
+	}
+	
+	// 비밀번호 수정
+	
+	@RequestMapping(value = "/update.pw", method = RequestMethod.POST)
+	public String updatePW(User u, HttpServletRequest req) {
+		
+		// 비번 수정
+		uDAO.updatePW(u, req);
+		
+		uDAO.loginCheck(req);
+		req.setAttribute("contentPage", "kjs_mypage/mypage_changePW.jsp");
 		return "index";
 	}
 

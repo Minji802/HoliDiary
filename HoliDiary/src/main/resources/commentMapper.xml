@@ -13,4 +13,8 @@
 		values (commentNum_seq.nextval, #{commentTxt}, #{commentWriter}, sysdate, #{postNum})
 	</insert>
 	
+	<delete id="commentDelete" parameterType="com.project.main.mj_write.Comment">
+		delete commentTable where commentNum = #{commentNum}
+	</delete>
+	
 </mapper>

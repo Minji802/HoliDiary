@@ -3,7 +3,7 @@
 <mapper namespace="com.project.main.sm.ScheduleMapper">
 
 <insert id="insertSchedule">
-	insert into ScheduleTable values (#{ScheduleUserId},#{ScheduleTitle},#{ScheduleDate},#{ScheduleStartTime},#{ScheduleEndTime},SCHEDULENUM_seq.nextval)
+	insert into ScheduleTable values (#{ScheduleUserId},#{ScheduleTitle},#{ScheduleDate},#{ScheduleStartTime},#{ScheduleEndTime},SCHEDULENUM_seq.nextval, #{ScheduleContent})
 </insert>
 
 </mapper>

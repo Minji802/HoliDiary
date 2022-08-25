@@ -25,8 +25,9 @@
 			</div>
 			<div class="mypage_content_box">
 				<div id="mypage_myinfo">
-					<div class="mypage_myinfo_title">나의 정보 
-						<span style="color: red; font-size: 12pt;">${error}</span>
+					<div class="mypage_myinfo_title">
+						<span>나의 정보</span> 
+						<a href="mypage.changepw.go">비밀번호 수정하기</a>
 					</div>
 					<form action="update.do" method="post"
 						enctype="multipart/form-data" onsubmit="return updateValidCheck();">
@@ -110,45 +111,50 @@
 									<div>
 										<span>아이디</span>
 									</div>
-									<input id="mypageID" name="userID"
+									<input id="mypage_id" name="userID"
 										value="${sessionScope.loginUser.userID}" readonly />
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
 										<span>이름</span>
 									</div>
-									<input id="mypageName" name="userName"
-										value="${sessionScope.loginUser.userName}">
+									<input id="mypage_name" name="userName"
+										value="${sessionScope.loginUser.userName}" autocomplete="off">
+									<span id="mypage_name_error"></span>
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
 										<span>닉네임</span>
 									</div>
-									<input id="mypageNickname" name="userNickname"
-										value="${sessionScope.loginUser.userNickname}">
+									<input id="mypage_nickname" name="userNickname"
+										value="${sessionScope.loginUser.userNickname}" autocomplete="off">
+									<span id="mypage_nickname_error"></span>
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
-										<span>핸드폰</span>
+										<span>핸드폰번호</span>
 									</div>
-									<input id="mypagePhone" name="userPhoneNumber"
-										value="${sessionScope.loginUser.userPhoneNumber}">
+									<input id="mypage_phone" name="userPhoneNumber"
+										value="${sessionScope.loginUser.userPhoneNumber}" autocomplete="off">
+									<span id="mypage_phone_error"></span>
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
 										<span>이메일</span>
 									</div>
-									<input id="mypageEmail" name="userEmail"
-										value="${sessionScope.loginUser.userEmail}">
+									<input id="mypage_email" name="userEmail"
+										value="${sessionScope.loginUser.userEmail}" autocomplete="off">
+									<span id="mypage_email_error"></span>
 								</div>
 								<div class="myapge_myinfo_right_txt">
 									<div>
 										<span>비밀번호 확인</span>
 									</div>
-									<input type="password" id="mypagePW" name="userPW" placeholder="기존 비밀번호">
+									<input type="password" id="mypage_pW" name="userPW" placeholder="기존 비밀번호">
+									<span id="mypage_pw_error"></span>
+									<span style="color: red; font-size: 12pt;">${error}${result}</span>
 								</div>
-								<div
-									style="font-family: 'GangwonEdu_OTFBoldA'; color: red; text-align: right;">${result}</div>
+								<div></div>
 								<div class="myapge_myinfo_right_btn_box">
 									<button>정보수정</button>
 									<button type="button" onclick="deleteUser()">회원탈퇴</button>

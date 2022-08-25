@@ -23,9 +23,9 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/mint.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
 					</span>
-					<span class="itemBox_title">청량 민트 테마</span>
+					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
@@ -39,9 +39,9 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/lime.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
 					</span>
-					<span class="itemBox_title">라임 테마</span>
+					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
@@ -55,9 +55,9 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/Beige.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
 					</span>
-					<span class="itemBox_title">차분 베이지 테마</span>
+					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
@@ -71,9 +71,9 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/red.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
 					</span>
-					<span class="itemBox_title">레드 테마</span>
+					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">

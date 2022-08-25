@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<div id="content_join">
+	<div id="content_join_option">
 		<div class="go_back_login"><a href="javascript:window.history.back();"> 로그인 페이지로</a></div> 
 		<div id="join_option_box">
 			<div class="join_page"><button onclick="location.href='join.go'">간편회원가입</button></div>

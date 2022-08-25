@@ -2,8 +2,15 @@
 
 #content_join{
 	position: relative;
-	width: 80%;
-	height: 100%;
+	width: 700px;
+	height: 1100px;
+	margin: 0 auto;
+}
+
+#content_join_option{
+	position: relative;
+	width: 450px;
+	height: 600px;
 	margin: 0 auto;
 }
 
@@ -20,8 +27,8 @@
 
 .go_back_login{
 	position: absolute;
-	top: 8%;
-	left: 40%;
+	top: 5%;
+	left: 50px;
 	width: 110px;
 	height: 30px;
 	text-align: center;
@@ -50,7 +57,7 @@
 	position: absolute;
 	width: 150px;
 	height: 40px;
-	top: 7%;
+	top: 50px;
 	left: 50%;
 	margin-left: -75px;
 	text-align: center;
