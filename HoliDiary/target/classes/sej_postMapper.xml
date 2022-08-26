@@ -20,6 +20,14 @@
 		or posttxt like '%'||#{search}||'%' or postcountry like '%'||#{search}||'%'or postcategory like '%'||#{search}||'%'
 	</select>
 	
+	<select id="getPostCountFor_HoliByCountry"
+		parameterType="com.project.main.sej.HomePostSelector"
+		resultType="java.lang.Integer">
+		select count(*)
+		from post
+		where postcountry like '%'||#{search}||'%'
+	</select>
+	
 	<select id="getPost" resultType="com.project.main.sej.PostContent" parameterType="HomePostSelector">
 		select *
 		from (
@@ -30,6 +38,20 @@
 		where posttitle like '%'||#{search}||'%' or postwriter like '%'||#{search}||'%' 
 		or posttxt like '%'||#{search}||'%' or postcountry like '%'||#{search}||'%'or postcategory like '%'||#{search}||'%'
 		order by postdate desc
+		)
+		)
+		where rn &gt;= #{start} and rn &lt;= #{end}
+		
+	</select>
+	
+	<select id="getHoliByCountry" resultType="com.project.main.sej.PostContent" parameterType="HomePostSelector">
+		select *
+		from (
+		select rownum as rn, postnum, posttitle, posttxt, postdate, postwriter, postcategory,
+		postcountry, postrecommend, postimg, postweather
+		from (
+		select * from post
+		where postcountry like '%'||#{search}||'%' order by postdate desc
 		)
 		)
 		where rn &gt;= #{start} and rn &lt;= #{end}

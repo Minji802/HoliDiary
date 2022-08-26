@@ -81,10 +81,10 @@
 	<br>
 
 	<hr>
-
+			<input type="" value="${sessionScope.loginUser.userID }" id="currentUser">
 	<h2>Comment</h2>
 	<!-- 댓글작성 -->
-	<form id="commentForm" name="commentForm" method="get">
+	<form id="commentForm" name="commentForm">
 		<div>
 			<strong>${sessionScope.loginUser.userID }</strong>
 		</div>
@@ -96,7 +96,8 @@
 				value="${sessionScope.loginUser.userID}">
 			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요."
 				style="width: 95%; height: 100px;"></textarea>
-			<button type="submit" id="commentSubmit">등록</button>
+			<button type="button" onclick="commentSubmit()">등록</button>
+<!-- 			<button type="submit" id="commentSubmit">등록</button> -->
 		</div>
 	</form>
 
@@ -182,13 +183,9 @@
 		
 		  
 		 /*댓글창*/
-		 $(function() {
 
-			$(function() {
-				getCommentList();
-			})
  			
-			$("#commentSubmit").on("click", function() {
+			/*$("#commentSubmit").on("click", function() {
 				
 				if($("#commentTxt").val() == ''){
 					alert('내용을 입력해주세요!');
@@ -212,6 +209,35 @@
 					}
 
 				});
+			});*/
+			
+			function commentSubmit() {
+
+				if($("#commentTxt").val() == ''){
+					alert('내용을 입력해주세요!');
+					$("#commentTxt").focus();
+				}
+
+				$.ajax({
+					url : "comment.do",
+					type : "GET",
+					dataType : "text",
+					data : $("#commentForm").serialize(),
+					success : function(data) {
+						if (data == 1){
+							getCommentList();
+							$("#commentTxt").val('');
+						} else {
+							//alert("댓글 등록 실패");
+						}
+					}
+
+				});
+			}
+				
+			
+			$(function() {
+				getCommentList();
 			});
 		
 		function getCommentList() {
@@ -223,6 +249,9 @@
 				data : $("#commentForm").serialize(),
 				success : function(data) {
 					var html = "";
+					let currentUser = $("#currentUser").val();
+					//alert(currentUser);
+					//alert(data[0]["commentWriter"]);
 					
 					if(data.length > 0) {
 							for (var i = 0; i < data.length; i++) {
@@ -230,14 +259,15 @@
 							html += '<div style="width: 100%; margin-bottom: 30px; border: 1px solid white">';
 							html += '<ul><strong>'+data[i]["commentWriter"]+'</strong></ul>';
 							html += '<ul>'+data[i]["commentTxt"]+'</ul>';
+							//html += '<ul>'+data[i]["commentNum"]+'</ul>';
+							html += '<input id="commentNum" value='+data[i]["commentNum"]+'>';
 							html += '<ul>'+data[i]["commentDate"]+'</ul>';
 							html += '<button style="float: right; text-align: right; margin-left: 20px;">답글</button>';
 							
-							/*var diasble="";
-							if(${sessionScope.loginUser.userID} != data['commentWriter'])
-							{diasble="disabled"}*/
-							html += '<button class="commentDelete" style="float: right; text-align: right; margin-left: 20px;">삭제</button>';
-							/*html += '<button class="commentDelete"'+ diasble + 'data-del=' + data["commentNum"] + 'value=' + data["commentNum"] + 'style="float: right; text-align: right; margin-left: 20px;">삭제</button>';*/
+							if(currentUser == data[i]["commentWriter"])	{
+						 /* html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; */
+						 	html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+								}
 							html += '</div>';
 							html += '<hr>';
 								
@@ -257,28 +287,27 @@
 			});
 			
 		}
+		 
 		
-		
-		$(".commentDelete").on("click", function() {
+	 function commentDelete(commentNum) {
+			var ok = confirm("정말 삭제하시겠습니까?");
+			alert(commentNum);
+			if (ok) {
+				$.ajax({
+					type: "GET",
+					url: "commentDelete.do",
+					data : {"commentNum": commentNum},
+					dataType: "text",
+					success: function(data) {
+						console.log("삭제성공")
+						getCommentList();
+					}
+				});
+			}
+		}
+			 
 			
-			var commentNum = $(this).attr("data-del");
-			var sendData = {"commentNum": commentNum}
 			
-			$.ajax({
-				type: "GET",
-				url: "commentDelete.do",
-				data : $("#commentForm").serialize(),
-				dataType: "text",
-				success: function(data) {
-					console.log(data)
-					$("#commentList").html('');
-					commentList();
-				}
-			});
-		
-		
-	 });
- });
 		 
 	</script>
 

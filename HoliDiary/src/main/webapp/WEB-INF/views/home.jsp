@@ -34,19 +34,29 @@
 	<div class="swiper-container swiper1">
 		<div class="swiper-wrapper swiper1">
 			<div class="swiper-slide">
+				<a href="javascript:void(0)" onclick="goHoliByCountry_Europe()">
 				<img src="resources/sej_img/slider/22.jpg">
+				</a>
 			</div>
 			<div class="swiper-slide">
+				<a href="javascript:void(0)" onclick="goHoliByCountry_America()">
 				<img src="resources/sej_img/slider/162.jpg">
+				</a>
 			</div>
 			<div class="swiper-slide">
+				<a href="javascript:void(0)" onclick="goHoliByCountry_Asia()">
 				<img src="resources/sej_img/slider/a2000366_main.jpg">
+				</a>
 			</div>
 			<div class="swiper-slide">
+				<a href="javascript:void(0)" onclick="goHoliByCountry_Africa()">
 				<img src="resources/sej_img/slider/다운로드 (2).jpg">
+				</a>
 			</div>
 			<div class="swiper-slide">
-				<img src="resources/sej_img/slider/임시 이미지.png">
+				<a href="javascript:void(0)" onclick="goHoliByCountry_Oceania()">
+				<img src="resources/sej_img/slider/오세아니아.jpg">
+				</a>
 			</div>
 			<div class="swiper-slide">
 				<img src="resources/sej_img/slider/임시 이미지.png">

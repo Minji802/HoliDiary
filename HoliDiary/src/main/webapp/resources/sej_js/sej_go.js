@@ -27,3 +27,19 @@ function goItemShop_sticker() {
 function goItemShop_other() {
 	location.href='itemShop_other.go';
 }
+
+function goHoliByCountry_Europe() {
+	location.href='holiByCountry.go?search=유럽';
+}
+function goHoliByCountry_America() {
+	location.href='holiByCountry.go?search=아메리카';
+}
+function goHoliByCountry_Asia() {
+	location.href='holiByCountry.go?search=아시아';
+}
+function goHoliByCountry_Africa() {
+	location.href='holiByCountry.go?search=아프리카';
+}
+function goHoliByCountry_Oceania() {
+	location.href='holiByCountry.go?search=오세아니아';
+}

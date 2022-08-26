@@ -8,8 +8,12 @@ public interface Sej_postMapper {
 
 	List<PostContent> getPost(HomePostSelector pSel);
 
+	List<PostContent> getHoliByCountry(HomePostSelector pSel);
+	
 	int getPostCountBeta(HomePostSelector pSel);
 
+	int getPostCountFor_HoliByCountry(HomePostSelector pSel);
+	
 	public List<PostContent> getHolinow();
 
 	public List<PostContent> getBestHoli();

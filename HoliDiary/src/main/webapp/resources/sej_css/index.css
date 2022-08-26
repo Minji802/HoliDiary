@@ -180,7 +180,7 @@ body {
 .menu_bar_li_first:hover {
 	color: #fffaf4;
 }
-@keyframes 왔다갔다 {
+@keyframes Yori {
   0% {
     transform: rotate(0deg);
   }
@@ -199,9 +199,10 @@ body {
 }
 
 .menu_diary_img:hover {
-  animation-name: 왔다갔다;
+  animation-name: Yori;
   animation-duration: 1s;
 }
+
 /* .menu_bar_diary_li p {
 	margin-top: -5px;
 } */

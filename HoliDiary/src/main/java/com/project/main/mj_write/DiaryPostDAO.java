@@ -356,32 +356,19 @@ public class DiaryPostDAO {
 
 	public int commentDelete(HttpServletRequest req, User u, DiaryPost p, Comment c) {
 
-		System.out.println(c.getPostNum());
 		System.out.println(c.getCommentNum());
-		
-		int postNum = c.getPostNum();
+
 		int commentNum = c.getCommentNum();
-		String CommentWriter = c.getCommentWriter();
-		String commentTxt = c.getCommentTxt();
 
-		try {
+		c.setCommentNum(commentNum);
 
-			c.setPostNum(postNum);
-			c.setCommentNum(commentNum);
-			c.setCommentWriter(CommentWriter);
-			c.setCommentTxt(commentTxt);
-
-			if (ss.getMapper(CommentMapper.class).commentDelete(c) == 1) {
-				System.out.println("댓글 삭제 성공");
-			} else {
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (ss.getMapper(CommentMapper.class).commentDelete(c) == 1) {
+			System.out.println("댓글 삭제 성공");
+			return 1;
+		} else {
+			return 0;
 		}
-		
-		return commentNum;
+
 	}
 
 }
