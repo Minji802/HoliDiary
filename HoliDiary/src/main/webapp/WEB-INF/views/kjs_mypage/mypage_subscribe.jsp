@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -17,16 +16,22 @@
 			</div>
 			<div style="background-color: #FFDE59;" class="mypage_index"
 				onclick="showFollowing()">
-				<span style="color: #6667AB;">나의구독</span>
+				<span style="color: #6667AB;">My Subscribe</span>
 			</div>
 			<div class="mypage_index"
 				onclick="showFollower()">
-				<span>다이어리 통계</span>
+				<span>My Diary</span>
 			</div>
 			<div class="mypage_content_box">
-				<div id="mypage_following">
-					<div>내가 구독하는 사람들</div>
+				<div>
+					<div class="mypage_mysub_title">나의 구독</div>
 				</div>
+				<c:forEach var="subscribe" items="${subscribes}">
+				<div>${subscribe.userID}</div>
+				<div>${subscribe.userImg}</div>
+				<div>${subscribe.userNickname}</div>
+				<div>${subscribe.diaryTitle}</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.mypage_mysub_title{
+	color: #6667AB;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 20pt;
+	padding: 10px;
+	margin-bottom: 30px;
+	border-bottom: 3px dashed #6667AB;
+}

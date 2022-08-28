@@ -17,11 +17,11 @@
 			</div>
 			<div  class="mypage_index"
 				onclick="showFollowing()">
-				<span>나의구독</span>
+				<span>My Subscribe</span>
 			</div>
 			<div class="mypage_index"
 				onclick="showFollower()">
-				<span>다이어리 통계</span>
+				<span>My Diary</span>
 			</div>
 			<div class="mypage_content_box">
 				<div>

@@ -40,10 +40,11 @@
 		<div id="placement">
 			<div class="heart"></div>
 			<div class="like_result">${DiaryPost.postRecommend }</div>
-			<input type="hidden" id="postNum" value="${DiaryPost.postNum }">
-			<input type="hidden" id="userID"
-				value="${sessionScope.loginUser.userID}"> <input
-				type="hidden" id="postWriter" value="${DiaryPost.postWriter}">
+			<input type="hidden" id="postRecommend"
+				value="${DiaryPost.postRecommend }"> <input type="hidden"
+				id="postNum" value="${DiaryPost.postNum }"> <input
+				type="hidden" id="userID" value="${sessionScope.loginUser.userID}">
+			<input type="hidden" id="postWriter" value="${DiaryPost.postWriter}">
 		</div>
 
 		<!-- 모달창 -->
@@ -81,7 +82,8 @@
 	<br>
 
 	<hr>
-			<input type="" value="${sessionScope.loginUser.userID }" id="currentUser">
+	<input type="hidden" value="${sessionScope.loginUser.userID }"
+		id="currentUser">
 	<h2>Comment</h2>
 	<!-- 댓글작성 -->
 	<form id="commentForm" name="commentForm">
@@ -97,7 +99,6 @@
 			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요."
 				style="width: 95%; height: 100px;"></textarea>
 			<button type="button" onclick="commentSubmit()">등록</button>
-<!-- 			<button type="submit" id="commentSubmit">등록</button> -->
 		</div>
 	</form>
 
@@ -106,6 +107,27 @@
 		<div id="commentList"></div>
 	</form>
 
+	<!-- 대댓글작성 -->
+	<div id="recommentVisible" style="width: 97%; margin-left: 25px; display: none;">
+		<form id="recommentForm" name="recommentForm">
+			<div>
+				<strong>${sessionScope.loginUser.userID }</strong>
+			</div>
+			<div>
+				<input type="hidden" id="postNum" name="postNum"
+					value="${DiaryPost.postNum }"> <input type="hidden"
+					id="userId" name="userId" value="${DiaryPost.postWriter }">
+				<input type="hidden" id="commentParent" name="commentParent"
+					value="${Comment.commentParent}"> <input type="hidden"
+					id="commentWriter" name="commentWriter"
+					value="${sessionScope.loginUser.userID}">
+				<textarea name="commentTxt" id="commentTxt"
+					placeholder="댓글을 입력해주세요." style="width: 95%; height: 100px;"></textarea>
+				<button type="button" onclick="recommentSubmit()">등록</button>
+				<button type="button" onclick="recommentCancel()">취소</button>
+			</div>
+		</form>
+	</div>
 
 	<script type="text/javascript">
 		function deleteDiaryPost(n, postWriter, userId) {
@@ -130,12 +152,9 @@
 			var postNum = document.getElementById("postNum").value;
 			var userID = document.getElementById("userID").value;
 			var postWriter = document.getElementById("postWriter").value;
+			var postRecommend = document.getElementById("postRecommend").value;
 
 			$(".heart").on("click", function() {
-				console.log(postNum);
-				console.log(userID);
-				console.log(postWriter);
-
 				$(this).toggleClass("is-active");
 				likeupdate();
 			});
@@ -148,7 +167,8 @@
 					data : {
 						'postNum' : postNum,
 						'userId' : userID,
-						'postWriter' : postWriter
+						'postWriter' : postWriter,
+						'postRecommend' : postRecommend
 					},
 					success : function(likeCount) {
 						if (likeCount == 0) {
@@ -165,7 +185,9 @@
 
 				});
 			}
-
+			
+			
+			
 		});
 		
 		/*모달창*/
@@ -183,34 +205,6 @@
 		
 		  
 		 /*댓글창*/
-
- 			
-			/*$("#commentSubmit").on("click", function() {
-				
-				if($("#commentTxt").val() == ''){
-					alert('내용을 입력해주세요!');
-					$("#commentTxt").focus();
-				}
-
-				$.ajax({
-					url : "comment.do",
-					type : "GET",
-					dataType : "text",
-					data : $("#commentForm").serialize(),
-					success : function(data) {
-						if (data == 1){
-							getCommentList();
-							$("#commentTxt").val('');
-						} else {
-							//alert("댓글 등록 실패");
-						}
-					},
-					error : function(request, status, error) {
-					}
-
-				});
-			});*/
-			
 			function commentSubmit() {
 
 				if($("#commentTxt").val() == ''){
@@ -252,26 +246,30 @@
 					let currentUser = $("#currentUser").val();
 					//alert(currentUser);
 					//alert(data[0]["commentWriter"]);
+					console.log(data);
 					
 					if(data.length > 0) {
-							for (var i = 0; i < data.length; i++) {
+						for (var i = 0; i < data.length; i++) {
 						
 							html += '<div style="width: 100%; margin-bottom: 30px; border: 1px solid white">';
 							html += '<ul><strong>'+data[i]["commentWriter"]+'</strong></ul>';
 							html += '<ul>'+data[i]["commentTxt"]+'</ul>';
-							//html += '<ul>'+data[i]["commentNum"]+'</ul>';
-							html += '<input id="commentNum" value='+data[i]["commentNum"]+'>';
+							html += '<input type="hidden" id="commentNum" value='+data[i]["commentNum"]+'>';
+							html += '<input id="commentParent" value='+data[i]["commentParent"]+'>';
+							html += '<input id="postNum" value='+data[i]["postNum"]+'>';
 							html += '<ul>'+data[i]["commentDate"]+'</ul>';
-							html += '<button style="float: right; text-align: right; margin-left: 20px;">답글</button>';
 							
 							if(currentUser == data[i]["commentWriter"])	{
-						 /* html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; */
-						 	html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
-								}
-							html += '</div>';
-							html += '<hr>';
-								
+								html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
 							}
+							
+							html += '<button type="button" onclick="recommentToggle('+ data[i]["commentParent"] + data[i]["postNum"] +')" style="float: right; text-align: right; margin-left: 20px;">답글</button>';
+							html += '</div>';
+							html += '<hr>'
+							
+								
+						}
+						
 					} else {
 						 html += "<div>";
 			             html += "<div style='width: 100%; height: 100px; text-align: center; margin-top: 50px;'><strong>등록된 댓글이 없습니다.</strong>";
@@ -290,21 +288,32 @@
 		 
 		
 	 function commentDelete(commentNum) {
-			var ok = confirm("정말 삭제하시겠습니까?");
-			alert(commentNum);
-			if (ok) {
-				$.ajax({
-					type: "GET",
-					url: "commentDelete.do",
-					data : {"commentNum": commentNum},
-					dataType: "text",
-					success: function(data) {
-						console.log("삭제성공")
-						getCommentList();
-					}
-				});
-			}
+		var ok = confirm("정말 삭제하시겠습니까?");
+		alert(commentNum);
+		if (ok) {
+			$.ajax({
+				type: "GET",
+				url: "commentDelete.do",
+				data : {"commentNum": commentNum},
+				dataType: "text",
+				success: function(data) {
+					console.log("삭제성공")
+					getCommentList();
+				}
+			});
 		}
+	}
+	 
+	 // 답글 작성칸 생성
+	 
+	 
+	 function recommentToggle(commentParent, postNum) {
+		 alert(commentParent);
+		 alert(postNum);
+		/* $("#recommentToggleBtn").click(function() {
+			$("#recommentVisible").toggle();
+		}); */
+	}
 			 
 			
 			

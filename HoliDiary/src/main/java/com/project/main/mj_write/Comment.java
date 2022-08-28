@@ -9,18 +9,23 @@ public class Comment {
 	private String commentWriter;
 	private Date commentDate;
 	private int postNum;
+	private int commentParent;
+	private int commentDepth;
 	
 	public Comment() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(int commentNum, String commentTxt, String commentWriter, Date commentDate, int postNum) {
+	public Comment(int commentNum, String commentTxt, String commentWriter, Date commentDate, int postNum,
+			int commentParent, int commentDepth) {
 		super();
 		this.commentNum = commentNum;
 		this.commentTxt = commentTxt;
 		this.commentWriter = commentWriter;
 		this.commentDate = commentDate;
 		this.postNum = postNum;
+		this.commentParent = commentParent;
+		this.commentDepth = commentDepth;
 	}
 
 	public final int getCommentNum() {
@@ -61,6 +66,22 @@ public class Comment {
 
 	public final void setPostNum(int postNum) {
 		this.postNum = postNum;
+	}
+
+	public final int getCommentParent() {
+		return commentParent;
+	}
+
+	public final void setCommentParent(int commentParent) {
+		this.commentParent = commentParent;
+	}
+
+	public final int getCommentDepth() {
+		return commentDepth;
+	}
+
+	public final void setCommentDepth(int commentDepth) {
+		this.commentDepth = commentDepth;
 	}
 	
 	

@@ -17,11 +17,11 @@
 			</div>
 			<div class="mypage_index" id="mypage_index_modi"
 				onclick="showFollowing()">
-				<span>나의구독</span>
+				<span>My Subscribe</span>
 			</div>
 			<div class="mypage_index" id="mypage_index_sub"
 				onclick="showFollower()">
-				<span>다이어리 통계</span>
+				<span>My Diary</span>
 			</div>
 			<div class="mypage_content_box">
 				<div id="mypage_myinfo">
@@ -134,8 +134,15 @@
 									<div>
 										<span>핸드폰번호</span>
 									</div>
-									<input id="mypage_phone" name="userPhoneNumber"
-										value="${sessionScope.loginUser.userPhoneNumber}" autocomplete="off">
+									<c:choose>
+										<c:when test="${sessionScope.loginUser.userPhoneNumber eq '없음'}">
+											<input id="mypage_phone" name="userPhoneNumber" placeholder="핸드폰 정보 없음" autocomplete="off">
+										</c:when>
+										<c:otherwise>
+											<input id="mypage_phone" name="userPhoneNumber"
+												value="${sessionScope.loginUser.userPhoneNumber}" autocomplete="off">
+										</c:otherwise>
+									</c:choose>
 									<span id="mypage_phone_error"></span>
 								</div>
 								<div class="myapge_myinfo_right_txt">

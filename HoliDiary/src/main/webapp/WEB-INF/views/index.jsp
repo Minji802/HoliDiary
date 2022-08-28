@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="resources/kjs_css/kjs_join.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_login.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_mypage.css">
+<link rel="stylesheet" href="resources/kjs_css/kjs_subscribe.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_find_user.css?ver=1">
 <script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/sej_js/jquery.js"></script>

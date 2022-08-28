@@ -563,15 +563,13 @@ public class UserDAO {
 	public void findID(User u, HttpServletRequest req) {
 		if(ss.getMapper(UserMapper.class).findID(u) != null) {
 			User dbUser = ss.getMapper(UserMapper.class).findID(u);
+			
 			System.out.println(dbUser.getKakaoID());
 			System.out.println(dbUser.getNaverID());
 			System.out.println(dbUser.getUserID());
-			if(u.getKakaoID() != null) {
-				req.setAttribute("kakao_user", dbUser.getKakaoID());
-			}
-			if(u.getNaverID() != null) {
-				req.setAttribute("naver_user", dbUser.getNaverID());
-			}
+			
+			req.setAttribute("kakao_user", dbUser.getKakaoID());
+			req.setAttribute("naver_user", dbUser.getNaverID());
 			req.setAttribute("db_user", dbUser.getUserID());
 		}
 		req.setAttribute("findID_r", "no");

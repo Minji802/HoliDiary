@@ -23,18 +23,20 @@
 						<span id="find_id_valid"></span>
 						<c:choose>
 							<c:when test="${null ne db_user}">
-								<span id="userID_show" style="color: blue;">${db_user}</span>
+								<span id="userID_show">${db_user}</span>
+								<span class="userSNS_show">
 								<c:if test="${null ne kakao_user}">
 									<br>
-									<span id="userID_show">카카오와 연동된 아이디입니다.</span>
+									카카오와 연동된 아이디입니다.
 								</c:if>
 								<c:if test="${null ne naver_user}">
 									<br>
-									<span id="userID_show">네이버와 연동된 아이디입니다.</span>
+									네이버와 연동된 아이디입니다.
 								</c:if>
+								</span>
 							</c:when>
 							<c:when test="${findID_r eq 'no' }">
-								<span id="userID_show">아이디를 찾을 수 없습니다.<br>입력정보를 다시 확인해주세요.</span>
+								<span id="userID_show" style="color: red; font-size: 13pt;">아이디를 찾을 수 없습니다.<br>입력정보를 다시 확인해주세요.</span>
 							</c:when>
 						</c:choose>
 					</div>
@@ -43,7 +45,7 @@
 							id="find_id_name">
 					</div>
 					<div class="find_id_phone_box">
-						<input name="userPhoneNumber" placeholder="휴대폰번호"
+						<input name="userPhoneNumber" placeholder="핸드폰번호"
 							autocomplete="off" id="find_id_phone">
 					</div>
 					<div class="find_id_btn_box">

@@ -2,7 +2,7 @@
 
 #content_find_user{
 	position: relative;
-	width: 80%;
+	width: 1200px;
 	height: 600px;
 	margin: 0 auto;
 }
@@ -63,14 +63,15 @@
 
 .userID_show_box{
 	position: relative;
-	width: 200px;
+	width: 350px;
 	height: 100px;
 	margin: 10px auto;	
+	border-bottom: 3px dashed #6667AB;
 }
 
 #find_id_valid{
 	position: absolute;
-	width: 100%;
+	width: 200px;
 	height: 30px;
 	top: 50%;
 	left: 50%;
@@ -82,13 +83,27 @@
 
 #userID_show{
 	position: absolute;
-	width: 100%;
-	height: 30px;
+	width: 250px;
+	height: 20px;
 	top: 50%;
 	left: 50%;
-	margin-left: -100px;	
+	margin-left: -125px;	
+	margin-top: -30px;
 	font-family: 'GangwonEdu_OTFBoldA';
-	font-size: 13pt;
+	font-size: 15pt;
+	color: blue;
+}
+
+.userSNS_show{
+	position: absolute;
+	width: 250px;
+	height: 20px;
+	top: 50%;
+	left: 50%;
+	margin-left: -125px;	
+	margin-top: -10px;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 12pt;
 	color: red;
 }
 
@@ -97,7 +112,6 @@
 	width: 200px;
 	height: 50px;
 	margin: 5px auto;	
-	text-align: center;
 }
 
 .find_id_name_box input{
@@ -117,7 +131,6 @@
 	width: 200px;
 	height: 50px;
 	margin: 5px auto;	
-	text-align: center;
 }
 
 .find_id_phone_box input{
@@ -206,8 +219,10 @@
 
 .find_pw_error_box{
 	position: relative;
-	width: 100%;
+	width: 350px;
 	height: 100px;
+	margin: 0 auto;
+	border-bottom: 3px dashed #6667AB;
 }
 
 .find_pw_error_box span{
@@ -279,11 +294,9 @@
 
 #find_pw_result_page_box{
 	position: absolute;
-	width: 1500px;
+	width: 100%;
 	height: 300px;
 	top: 5%;
-	left: 50%;
-	margin-left: -750px;
 }
 
 .find_pw_result_go_login{

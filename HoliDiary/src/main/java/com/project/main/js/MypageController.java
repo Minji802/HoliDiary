@@ -12,6 +12,8 @@ public class MypageController {
 	
 	@Autowired
 	UserDAO uDao;
+	@Autowired
+	SubscribeDAO sDao;
 	
 		// 마이 페이지 들어가기(내정보)
 		@RequestMapping(value = "/mypage.myinfo.go", method = RequestMethod.GET)
@@ -29,6 +31,9 @@ public class MypageController {
 		// 마이 페이지 들어가기(나의 구독)
 		@RequestMapping(value = "/mypage.mysubscribe.go", method = RequestMethod.GET)
 		public String mypageMysubscribeGo(HttpServletRequest req) {
+			
+			//구독 정보 가져오기
+			sDao.getMySubscribe(req);
 			
 			if(uDao.loginCheck(req)) {
 				req.setAttribute("contentPage", "kjs_mypage/mypage_subscribe.jsp");

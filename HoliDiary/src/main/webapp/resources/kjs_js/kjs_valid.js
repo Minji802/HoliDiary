@@ -30,13 +30,3 @@ function notEquals(input1, input2) {
 	return (input1.val() != input2.val());
 }
 
-
-//문자열세트에 포함된게 없으면 true, 있으면 false
-function notContains(input, set) {
-	for (var i = 0; i < set.length; i++) {
-		if (input.value.indexOf(set[i]) != -1) {
-			return false;
-		}
-	}
-	return true;
-}

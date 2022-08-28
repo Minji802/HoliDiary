@@ -66,7 +66,7 @@ public class UserController {
 		uDAO.join(u, req);
 		
 		req.setAttribute("contentPage", "kjs_user/join_last.jsp");
-		req.setAttribute("loginPage", "kjs_user/before_login.jsp");
+		uDAO.loginCheck(req);
 		return "index";
 	}
 	

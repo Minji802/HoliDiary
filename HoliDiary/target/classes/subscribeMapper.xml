@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.main.js.SubscribeMapper">
+	
+	<select id="getMySubscribe" resultType="String">
+		select subscribeto from subscribetable where subscribefrom = #{userID}
+	</select>
+	
+	<select id="getSubscribeInfo" parameterType="String" resultType="com.project.main.js.SubscribeInfo">
+	select d.diarytitle, u.userid, u.usernickname, u.userimg
+	from subscribetable s, diarytable d, user_table u
+	where s.subscribeto = #{subscribeID}
+	    and s.subscribeto = d.diaryuserid
+	    and d.diaryuserid = u.userid
+	</select>
+
+</mapper>
