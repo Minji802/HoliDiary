@@ -65,9 +65,9 @@
 			<c:if
 				test="${DiaryPost.postWriter eq sessionScope.loginUser.userID }">
 				<button
-					onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}')">수정</button>
+					onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}', '${DiaryPostPaging.nowPage }', '${DiaryPostPaging.cntPerPage }')">수정</button>
 				<button
-					onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }')">삭제</button>
+					onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }', '${DiaryPostPaging.nowPage }', '${DiaryPostPaging.cntPerPage }')">삭제</button>
 			</c:if>
 
 
@@ -76,7 +76,7 @@
 	<br>
 	<br>
 	<div id="goToListDiv">
-		<button onclick="location.href='post-list?userId=${User.userID}'"
+		<button onclick="location.href='post-list?userId=${User.userID}&nowPage=1&cntPerPage=15'"
 			id="GoToList">목록으로</button>
 	</div>
 	<br>
@@ -130,19 +130,18 @@
 	</div>
 
 	<script type="text/javascript">
-		function deleteDiaryPost(n, postWriter, userId) {
+		function deleteDiaryPost(n, postWriter, userId, nowPage, cntPerPage) {
 			var ok = confirm("정말 삭제하시겠습니까?");
 			if (ok) {
 				location.href = "diaryPost.delete?postNum=" + n
-						+ "&postWriter=" + postWriter + "&userId=" + userId;
+						+ "&postWriter=" + postWriter + "&userId=" + userId + "&nowPage=" + 1 + "&cntPerPage=" + 15;
 			}
 		}
 
-		function updateDiaryPost(userId, n) {
+		function updateDiaryPost(userId, n, nowPage, cntPerPage) {
 			var ok = confirm("정말 수정하시겠습니까?");
 			if (ok) {
-				location.href = "diaryPost.update.go?userId=" + userId
-						+ "&postNum=" + n;
+				location.href = "diaryPost.update.go?&postNum=" + n + "&userId=" + userId;
 			}
 		}
 		
@@ -255,8 +254,8 @@
 							html += '<ul><strong>'+data[i]["commentWriter"]+'</strong></ul>';
 							html += '<ul>'+data[i]["commentTxt"]+'</ul>';
 							html += '<input type="hidden" id="commentNum" value='+data[i]["commentNum"]+'>';
-							html += '<input id="commentParent" value='+data[i]["commentParent"]+'>';
-							html += '<input id="postNum" value='+data[i]["postNum"]+'>';
+							html += '<input type="hidden" id="commentParent" value='+data[i]["commentParent"]+'>';
+							html += '<input type="hidden" id="postNum" value='+data[i]["postNum"]+'>';
 							html += '<ul>'+data[i]["commentDate"]+'</ul>';
 							
 							if(currentUser == data[i]["commentWriter"])	{

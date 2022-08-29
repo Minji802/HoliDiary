@@ -22,19 +22,65 @@ public class DiaryPostDAO {
 	@Autowired
 	private SqlSession ss;
 
-	public void getAllList(HttpServletRequest req, String userId) {
+	public int countPostList(HttpServletRequest req, DiaryPost p, String userId) {
+		System.out.println(userId);
+		p.setPostWriter(userId);
 
-		try {
-			DiaryPost p = new DiaryPost();
+		return ss.getMapper(DiaryPostMapper.class).countPostList(p);
+	}
 
-			p.setPostWriter(userId);
-			DiaryPostMapper pm = ss.getMapper(DiaryPostMapper.class);
-			List<DiaryPost> posts = pm.showAllPostList(p);
-			req.setAttribute("DiaryPost", posts);
-
-		} catch (Exception e) {
-			e.printStackTrace();
+	public void getAllList(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
+			String cntPerPage) {
+		System.out.println(userId);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "15";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "15";
 		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		System.out.println(pp.getStart());
+		System.out.println(pp.getEnd());
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showAllPostList(p);
+
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+
+	}
+	
+	public void getAllList2(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
+			String cntPerPage) {
+		System.out.println(userId);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "16";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "16";
+		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		System.out.println(pp.getStart());
+		System.out.println(pp.getEnd());
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showAllPostList(p);
+
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+		
 	}
 
 	public void detailPost(DiaryPost p, HttpServletRequest req, Comment c, Like l) {
@@ -371,4 +417,26 @@ public class DiaryPostDAO {
 
 	}
 
+	
+
+	/*
+	 * public void paging(int page, HttpServletRequest req) {
+	 * 
+	 * System.out.println(page); req.setAttribute("curPageNo", page);
+	 * 
+	 * // 전체 페이지 계산 int cnt = 10; // 한 페이지 당 보여줄 갯수 int total = dp.size(); // 총 데이터의
+	 * 개수 int pageCount = (int) Math.ceil((double) total / cnt);
+	 * req.setAttribute("pageCount", pageCount);
+	 * 
+	 * // 최신 데이터가 가장 앞으로 나올 수 있게(역순 진행) int start = total - (cnt * (page - 1)); //
+	 * 시작하는 데이터 번호 int end = ((page == pageCount) ? -1 : start - (cnt + 1)); // 끝나는
+	 * 데이터 번호
+	 * 
+	 * ArrayList<DiaryPost> diaryPost = new ArrayList<DiaryPost>(); for (int i =
+	 * start - 1; i < end; i--) { diaryPost.add(dp.get(i)); }
+	 * 
+	 * req.setAttribute("DiaryPost", diaryPost);
+	 * 
+	 * }
+	 */
 }

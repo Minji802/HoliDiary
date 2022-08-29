@@ -15,6 +15,9 @@ public class DiaryPost {
 	private String postImg;
 	private String postWeather;
 	private int postView;
+	private int start;
+	private int end;
+	
 	
 	public DiaryPost() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +25,7 @@ public class DiaryPost {
 
 	public DiaryPost(int postNum, String postTitle, String postTxt, Date postDate, String postWriter,
 			String postCategory, String postCountry, int postRecommend, String postImg, String postWeather,
-			int postView) {
+			int postView, int start, int end) {
 		super();
 		this.postNum = postNum;
 		this.postTitle = postTitle;
@@ -35,6 +38,8 @@ public class DiaryPost {
 		this.postImg = postImg;
 		this.postWeather = postWeather;
 		this.postView = postView;
+		this.start = start;
+		this.end = end;
 	}
 
 	public final int getPostNum() {
@@ -124,7 +129,23 @@ public class DiaryPost {
 	public final void setPostView(int postView) {
 		this.postView = postView;
 	}
-	
+
+	public final int getStart() {
+		return start;
+	}
+
+	public final void setStart(int start) {
+		this.start = start;
+	}
+
+	public final int getEnd() {
+		return end;
+	}
+
+	public final void setEnd(int end) {
+		this.end = end;
+	}
+
 	
 	
 	

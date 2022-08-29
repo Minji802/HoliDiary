@@ -24,7 +24,7 @@
 		}
 	</script>
 
-	<form action="diaryPost.reg.do" method="post">
+	<form action="diaryPost.reg.do?nowPage=1&cntPerPage=15" method="post">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
 				제목<input type="text" name="postTitle" class="postTitleWriteContent"

@@ -2,6 +2,7 @@ package com.project.main.js;
 
 public class SubscribeInfo {
 	
+	private int subscribeNo;
 	private String userID;
 	private String userImg;
 	private String userNickname;
@@ -11,12 +12,21 @@ public class SubscribeInfo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SubscribeInfo(String userID, String userImg, String userNickname, String diaryTitle) {
+	public SubscribeInfo(int subscribeNo, String userID, String userImg, String userNickname, String diaryTitle) {
 		super();
+		this.subscribeNo = subscribeNo;
 		this.userID = userID;
 		this.userImg = userImg;
 		this.userNickname = userNickname;
 		this.diaryTitle = diaryTitle;
+	}
+
+	public int getSubscribeNo() {
+		return subscribeNo;
+	}
+
+	public void setSubscribeNo(int subscribeNo) {
+		this.subscribeNo = subscribeNo;
 	}
 
 	public String getUserID() {
@@ -50,6 +60,7 @@ public class SubscribeInfo {
 	public void setDiaryTitle(String diaryTitle) {
 		this.diaryTitle = diaryTitle;
 	}
+
 	
 	
 

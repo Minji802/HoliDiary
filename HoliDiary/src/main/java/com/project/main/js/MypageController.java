@@ -6,20 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MypageController {
 	
 	@Autowired
-	UserDAO uDao;
+	UserDAO uDAO;
+	
 	@Autowired
-	SubscribeDAO sDao;
+	SubscribeDAO sDAO;
 	
 		// 마이 페이지 들어가기(내정보)
 		@RequestMapping(value = "/mypage.myinfo.go", method = RequestMethod.GET)
 		public String mypageGo(HttpServletRequest req) {
 			
-			if(uDao.loginCheck(req)) {
+			if(uDAO.loginCheck(req)) {
 				req.setAttribute("contentPage", "kjs_mypage/mypage_myinfo.jsp");
 			}else {
 				req.setAttribute("contentPage", "home.jsp");
@@ -33,9 +35,9 @@ public class MypageController {
 		public String mypageMysubscribeGo(HttpServletRequest req) {
 			
 			//구독 정보 가져오기
-			sDao.getMySubscribe(req);
+			sDAO.getMySubscribe(req);
 			
-			if(uDao.loginCheck(req)) {
+			if(uDAO.loginCheck(req)) {
 				req.setAttribute("contentPage", "kjs_mypage/mypage_subscribe.jsp");
 			}else {
 				req.setAttribute("contentPage", "home.jsp");
@@ -48,7 +50,7 @@ public class MypageController {
 		@RequestMapping(value = "/mypage.mydiary.go", method = RequestMethod.GET)
 		public String mypageMydiaryGo(HttpServletRequest req) {
 			
-			if(uDao.loginCheck(req)) {
+			if(uDAO.loginCheck(req)) {
 				req.setAttribute("contentPage", "kjs_mypage/mypage_mydiary.jsp");
 			}else {
 				req.setAttribute("contentPage", "home.jsp");
@@ -61,7 +63,7 @@ public class MypageController {
 		@RequestMapping(value = "/mypage.changepw.go", method = RequestMethod.GET)
 		public String mypageChangepwGo(HttpServletRequest req) {
 			
-			if(uDao.loginCheck(req)) {
+			if(uDAO.loginCheck(req)) {
 				req.setAttribute("contentPage", "kjs_mypage/mypage_changePW.jsp");
 			}else {
 				req.setAttribute("contentPage", "home.jsp");
@@ -69,7 +71,6 @@ public class MypageController {
 			
 			return "index";
 		}
-
 
 
 }

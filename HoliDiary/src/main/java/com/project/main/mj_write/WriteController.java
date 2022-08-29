@@ -2,9 +2,6 @@ package com.project.main.mj_write;
 
 import java.io.File;
 import java.io.InputStream;
-import java.net.http.HttpHeaders;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,9 +10,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,13 +40,34 @@ public class WriteController {
 	// 게시글 목록 불러오기
 	@RequestMapping(value = "/post-list", method = RequestMethod.GET)
 	public String listGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
-			Category cate) {
+			Category cate, @RequestParam("nowPage") String nowPage,
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
+		
+		int total = pDAO.countPostList(req, p, userId);
+		
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
-			pDAO.getAllList(req, userId);
+			pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 		}
 
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
+		return "ksm_main/popup";
+	}
+	
+	// 게시글 목록 불러오기
+	@RequestMapping(value = "/post-Gallery", method = RequestMethod.GET)
+	public String GalleryGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
+			Category cate, @RequestParam("nowPage") String nowPage,
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
+		
+		int total = pDAO.countPostList(req, p, userId);
+		
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			pDAO.getAllList2(req, userId, pp, total, nowPage, cntPerPage);
+		}
+		
+		req.setAttribute("popupContentPage", "../mj_write/post_gallery.jsp");
 		return "ksm_main/popup";
 	}
 
@@ -128,14 +144,17 @@ public class WriteController {
 	public String postRegDo(Diary d, @RequestParam("userId") String userId, HttpServletRequest req,
 			@RequestParam("postImg") String postImg, @RequestParam("postTitle") String postTitle,
 			@RequestParam("postTxt") String postTxt, @RequestParam("postCategory") String postCategory,
-			@RequestParam("postCountry") String postCountry, User u, Category cate) {
+			@RequestParam("postCountry") String postCountry, User u, Category cate, @RequestParam("nowPage") String nowPage,
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp, DiaryPost p) {
 
+		int total = pDAO.countPostList(req, p, userId);
+		
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
 			pDAO.regPost(req, userId, postImg, postTitle, postTxt, postCategory, postCountry);
 		}
 		TokenMaker.make(req);
-		pDAO.getAllList(req, userId);
+		pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
 		return "ksm_main/popup";
@@ -145,15 +164,18 @@ public class WriteController {
 	@RequestMapping(value = "/diaryPost.delete", method = RequestMethod.GET)
 	public String deleteDiaryPost(HttpServletRequest req, DiaryPost p, Diary d,
 			@RequestParam("postWriter") String postWriter, @RequestParam("userId") String userId, User u,
-			Category cate) {
+			Category cate, @RequestParam("nowPage") String nowPage,
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
 
+		int total = pDAO.countPostList(req, p, userId);
+		
 		// dDAO.getDiaryInfo(req, d, userId);
 		System.out.println(p.getPostNum());
 		System.out.println(postWriter);
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
 			pDAO.deleteDiaryPost(req, p);
-			pDAO.getAllList(req, userId);
+			pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
 		return "ksm_main/popup";
@@ -175,13 +197,16 @@ public class WriteController {
 	// 글 수정하기
 	@RequestMapping(value = "/diaryPost.update.do", method = RequestMethod.POST)
 	public String updateDiaryPostDo(Diary d, DiaryPost p, @RequestParam("userId") String userId, HttpServletRequest req,
-			User u, Category cate) {
+			User u, Category cate, @RequestParam("nowPage") String nowPage,
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
 
+		int total = pDAO.countPostList(req, p, userId);
+		
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate);
 			pDAO.diaryPostUpdate(req, p, userId);
 		}
-		pDAO.getAllList(req, userId);
+		pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
 		return "ksm_main/popup";

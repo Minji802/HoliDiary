@@ -9,7 +9,41 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="styleSheet" href="resources/mj_css/postList.css">
 </head>
+<script type="text/javascript">
+	function countPostChange() {
+		var countPost = document.getElementById('cntPerPage').value;
+		location.href="post-list?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
+	}
+	
+	function getList() {
+		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=15";
+	}
+
+	function getGallery() {
+		location.href="post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=16";
+	}
+</script>
+
 <body>
+	
+	<input type="radio" name="listType" value="List" checked="checked" onclick="getList()"/>List
+	<input type="radio" name="listType" value="Gallery" onclick="getGallery()"/>Gallery
+	
+
+	<input type="hidden" id="postWriter" name="postWriter" value="${User.userID}">
+
+	<div id="countPost">
+		<div style="float: right;">
+			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
+				<option value="15"
+					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15줄 보기</option>
+				<option value="20"
+					<c:if test="${paging.cntPerPage == 20 }">selected</c:if>>20줄 보기</option>
+				<option value="25"
+					<c:if test="${paging.cntPerPage == 25 }">selected</c:if>>25줄 보기</option>
+			</select>
+		</div>
+	</div>
 
 	<h1>POST</h1>
 	<table id="postListTbl" border=1
@@ -21,19 +55,37 @@
 			<td class="postLike" style="width: 10%">좋아요</td>
 			<td class="postNo" style="width: 15%">조회수</td>
 		</tr>
-		<c:forEach var="posts" items="${DiaryPost }" varStatus="status">
+		<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
 			<tr class="postList">
 				<td class="postTitle"><a
-					href='post.detail.go?postNum=${posts.postNum } + &userId=${posts.postWriter }'>${posts.postTitle }</a></td>
-				<td class="postWriter">${posts.postWriter }</td>
-				<td class="postDate">${posts.postDate }</td>
-				<td class="postDate">${posts.postRecommend }</td>
-				<td class="postViewCount">${posts.postView }</td>
+					href='post.detail.go?postNum=${dp.postNum }&userId=${dp.postWriter }'>${dp.postTitle }</a></td>
+				<td class="postWriter">${dp.postWriter }</td>
+				<td class="postDate">${dp.postDate }</td>
+				<td class="postDate">${dp.postRecommend }</td>
+				<td class="postViewCount">${dp.postView }</td>
 			</tr>
 		</c:forEach>
 	</table>
 
-
+	<div style="text-align: center; margin-top: 15px; font-size: 10pt;">
+		<c:if test="${paging.startPage != 1 }">
+			<a href="post-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="post-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage }">
+			<a href="post-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }">&gt;</a>
+		</c:if>
+	</div>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.postList').hover(function() {
@@ -42,6 +94,7 @@
 				$(this).css("background-color", "#ffffff");
 			});
 		});
+		
 	</script>
 </body>
 </html>

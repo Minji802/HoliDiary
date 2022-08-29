@@ -23,7 +23,7 @@
 		}
 	</script>
 
-	<form action="diaryPost.update.do?postNum=${DiaryPost.postNum }" method="post">
+	<form action="diaryPost.update.do?postNum=${DiaryPost.postNum }&nowPage=1&cntPerPage=15" method="post">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
 				제목<input type="text" name="postTitle" class="postTitleWriteContent"

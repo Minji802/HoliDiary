@@ -3,8 +3,15 @@
 <mapper namespace="com.project.main.mj_write.DiaryPostMapper">
 
 	<!-- 게시글 관련 -->
+	<select id="countPostList" resultType="int">
+		select count(*) from post where postWriter = #{postWriter}
+	</select>
+	
 	<select id="showAllPostList" resultType="com.project.main.mj_write.DiaryPost">
-		select * from post where postWriter = #{postWriter} order by postDate desc
+		select * from 
+		(select rownum as rn, postNum, postTitle, postTxt, postDate, postWriter, postCategory, postCountry, postRecommend, postImg, postWeather, postView
+		from (select * from post where postWriter = #{postWriter} order by postDate desc)) where rn &gt;= #{start} and rn &lt;= #{end}
+		
 	</select>
 	
 	<select id="detailPost" resultType="com.project.main.mj_write.DiaryPost">

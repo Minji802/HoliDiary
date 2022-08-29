@@ -1,6 +1,8 @@
 package com.project.main.js;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,21 +21,41 @@ public class SubscribeDAO {
 		
 		String[] subscribes = ss.getMapper(SubscribeMapper.class).getMySubscribe(u);
 		
-		ArrayList<SubscribeInfo> subscribeInfos = new ArrayList<SubscribeInfo>();
+		ArrayList<SubscribeInfo> infos = new ArrayList<SubscribeInfo>();
 
 		for (int i = 0; i < subscribes.length; i++) {
 			String subscribeID = subscribes[i];
-			SubscribeInfo s = ss.getMapper(SubscribeMapper.class).getSubscribeInfo(subscribeID);
-			subscribeInfos.add(s);
-			System.out.println(subscribeID);
+			//System.out.println(subscribeID);
+			SubscribeInfo info = ss.getMapper(SubscribeMapper.class).getSubscribeInfo(subscribeID);
+			infos.add(info);
+			//System.out.println(i + "다이어리 : " + info.getDiaryTitle());
+			//System.out.println(i + "아이디 : " + info.getUserID());
 		}
+		req.setAttribute("infos", infos);
+	}
+
+	// 구독 리스트 검색
+	public SubscribeInfo mysubSearch(HttpServletRequest req, String search) {
 		
-		req.setAttribute("subscribes", subscribeInfos);
+		User u = (User) req.getSession().getAttribute("loginUser");
 		
-		System.out.println(subscribes[0]);
+		System.out.println(u.getUserID());
 		
+		String userID = u.getUserID();
 		
+		Map<String, String> element = new HashMap<String, String>();
+		element.put("search", search);
+		element.put("id", userID);
 		
+		return ss.getMapper(SubscribeMapper.class).mysubSearch(element);
+		
+	}
+
+	// 구독 취소
+	public void mysubCancel(String subscribeNo) {
+		if(ss.getMapper(SubscribeMapper.class).mysubCancel(subscribeNo) == 1) {
+			System.out.println("구독 취소");
+		}
 	}
 
 }
