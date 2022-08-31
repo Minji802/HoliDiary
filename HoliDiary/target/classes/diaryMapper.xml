@@ -25,6 +25,9 @@
 		select themeColor from DIARYTABLE where diaryUserId=#{diaryUserId}
 	</select>
 	
+	<update id="uploadImg" parameterType="com.project.main.sm.Diary">
+		update DIARYTABLE set diaryImg=#{diaryImg} where diaryUserId=#{diaryUserId}
+	</update>
 	
 
 </mapper>

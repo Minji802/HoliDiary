@@ -6,4 +6,21 @@
 	insert into ScheduleTable values (#{ScheduleUserId},#{ScheduleTitle},#{ScheduleDate},#{ScheduleStartTime},#{ScheduleEndTime},SCHEDULENUM_seq.nextval, #{ScheduleContent})
 </insert>
 
-</mapper>
+<select id="getSchedule" resultType="com.project.main.sm.Schedule">
+	select * from scheduletable where
+	scheduleuserid = #{ScheduleUserId} and scheduleDate = #{ScheduleDate}
+</select>
+
+<select id="getAllSchedule" parameterType="map" resultType="java.lang.String">
+	select scheduledate from scheduleTable where scheduledate like #{val1}||'%' and scheduleuserid = #{val2}
+</select>
+
+<delete id="deleteSchedule" parameterType="com.project.main.sm.Schedule">
+	delete from scheduletable where ScheduleDate = #{ScheduleDate}
+</delete>
+
+<update id="updateSchedule" parameterType="com.project.main.sm.Schedule">
+	update scheduletable set ScheduleContent = #{ScheduleContent} where ScheduleUserId = #{ScheduleUserId}
+</update>	
+	
+</mapper> 	

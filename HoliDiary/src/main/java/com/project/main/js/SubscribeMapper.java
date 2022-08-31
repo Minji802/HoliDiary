@@ -1,16 +1,26 @@
 package com.project.main.js;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SubscribeMapper {
 
-	String[] getMySubscribe(User u);
+	String[] getSubscribing(User u);
 
-	SubscribeInfo getSubscribeInfo(String subscribeID);
+	SubscribeInfo getSubscribingInfo(Subscribe s);
 
-	SubscribeInfo mysubSearch(Map<String, String> element);
+	List<SubscribeInfo> searchSubscribe(Map<String, String> element);
 
-	int mysubCancel(String subscribeNo);
+	int cancelSubscribe(String subscribeNo);
+
+	Subscribe checkMySubscribe(Subscribe s);
+
+	int subscribe(Subscribe subElement);
+
+	String[] getSubscriber(User u);
+
+	SubscribeInfo getSubscriberInfo(Subscribe s);
+
 
 
 }

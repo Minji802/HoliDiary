@@ -231,6 +231,11 @@ public class WriteController {
 
 		return likeCount;
 	}
+	@ResponseBody
+	@RequestMapping(value = "checkLike.do", method = RequestMethod.GET)
+	public int checkLike(HttpServletRequest req, Like l) throws Exception {
+		return pDAO.checkLike(req, l);
+	}
 
 	// 댓글 등록
 	@ResponseBody

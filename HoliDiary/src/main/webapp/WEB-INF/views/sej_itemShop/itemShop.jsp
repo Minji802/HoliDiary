@@ -30,6 +30,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -46,6 +48,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -62,6 +66,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -78,6 +84,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -93,6 +101,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -108,6 +118,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -123,6 +135,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -138,6 +152,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -153,6 +169,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -168,6 +186,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -183,6 +203,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -198,6 +220,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -213,6 +237,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -228,6 +254,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -243,6 +271,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>
@@ -258,6 +288,8 @@
 						<span class="itemBox_price_and_img">
 							<img class="itemBox_price_img" src="resources/sej_img/itemShop/holi.png">
 							<span class="itemBox_price">1,000</span>
+							<a class="itemBox_Buy" href="#">바로구매</a>
+							<a class="itemBox_Buy2" href="#">장바구니</a>
 						</span>
 					</div>
 			</li>

@@ -9,8 +9,8 @@
 	</select>
 	
 	<insert id="commentWrite" parameterType="com.project.main.mj_write.Comment">
-		insert into commentTable (commentNum, commentTxt, commentWriter, commentDate, postNum) 
-		values (commentNum_seq.nextval, #{commentTxt}, #{commentWriter}, sysdate, #{postNum})
+		insert into commentTable (commentNum, commentTxt, commentWriter, commentDate, postNum, commentSecret, postWriter) 
+		values (commentNum_seq.nextval, #{commentTxt}, #{commentWriter}, sysdate, #{postNum}, #{commentSecret}, #{postWriter})
 	</insert>
 	
 	<delete id="commentDelete" parameterType="com.project.main.mj_write.Comment">

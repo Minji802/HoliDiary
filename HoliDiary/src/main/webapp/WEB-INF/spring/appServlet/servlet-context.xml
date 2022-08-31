@@ -62,6 +62,8 @@
 				<beans:value>classpath:scheduleMapper.xml</beans:value>
 				<beans:value>classpath:likeMapper.xml</beans:value>
 				<beans:value>classpath:subscribeMapper.xml</beans:value>
+				<beans:value>classpath:guestBookMapper.xml</beans:value>
+				<beans:value>classpath:visitMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

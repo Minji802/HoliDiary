@@ -21,6 +21,7 @@
 			<div id="leftSide" style="width: 100%">
 				<div style="width: 10%"></div>
 				<div class="postDetailWriter">작성자 : ${DiaryPost.postWriter }</div>
+				<input type="hidden" id="postDetailWriter" name="postDetailWriter" value="${DiaryPost.postWriter }">
 				<div class="postDetailDate">${DiaryPost.postDate }</div>
 				<div class="postDetailCategory">카테고리 :
 					${DiaryPost.postCategory }</div>
@@ -40,10 +41,9 @@
 		<div id="placement">
 			<div class="heart"></div>
 			<div class="like_result">${DiaryPost.postRecommend }</div>
-			<input type="hidden" id="postRecommend"
-				value="${DiaryPost.postRecommend }"> <input type="hidden"
-				id="postNum" value="${DiaryPost.postNum }"> <input
-				type="hidden" id="userID" value="${sessionScope.loginUser.userID}">
+			<input type="hidden" id="postRecommend" value="${DiaryPost.postRecommend }"> 
+			<input type="hidden" id="postNum" value="${DiaryPost.postNum }"> 
+			<input type="hidden" id="userID" value="${sessionScope.loginUser.userID}">
 			<input type="hidden" id="postWriter" value="${DiaryPost.postWriter}">
 		</div>
 
@@ -87,13 +87,18 @@
 	<h2>Comment</h2>
 	<!-- 댓글작성 -->
 	<form id="commentForm" name="commentForm">
-		<div>
+		<div style="font-size: 11pt;">
 			<strong>${sessionScope.loginUser.userID }</strong>
 		</div>
 		<div>
+			<input type="checkbox" id="commentSecret" name="commentSecret">
+			<label for="commentSecret">비밀댓글</label>
+		</div>
+		<div>
 			<input type="hidden" id="postNum" name="postNum"
-				value="${DiaryPost.postNum }"> <input type="hidden"
-				id="userId" name="userId" value="${DiaryPost.postWriter }">
+				value="${DiaryPost.postNum }"> 
+			<input type="hidden"
+				id="postWriter" name="postWriter" value="${DiaryPost.postWriter }">
 			<input type="hidden" id="commentWriter" name="commentWriter"
 				value="${sessionScope.loginUser.userID}">
 			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요."
@@ -114,13 +119,10 @@
 				<strong>${sessionScope.loginUser.userID }</strong>
 			</div>
 			<div>
-				<input type="hidden" id="postNum" name="postNum"
-					value="${DiaryPost.postNum }"> <input type="hidden"
-					id="userId" name="userId" value="${DiaryPost.postWriter }">
-				<input type="hidden" id="commentParent" name="commentParent"
-					value="${Comment.commentParent}"> <input type="hidden"
-					id="commentWriter" name="commentWriter"
-					value="${sessionScope.loginUser.userID}">
+				<input type="hidden" id="postNum" name="postNum" value="${DiaryPost.postNum }"> 
+				<input type="hidden" id="userId" name="userId" value="${DiaryPost.postWriter }">
+				<input type="hidden" id="commentParent" name="commentParent" value="${Comment.commentParent}"> 
+				<input type="hidden" id="commentWriter" name="commentWriter" value="${sessionScope.loginUser.userID}">
 				<textarea name="commentTxt" id="commentTxt"
 					placeholder="댓글을 입력해주세요." style="width: 95%; height: 100px;"></textarea>
 				<button type="button" onclick="recommentSubmit()">등록</button>
@@ -145,14 +147,40 @@
 			}
 		}
 		
+		function checkLike2(postNum,userID) {
+			
+			$.ajax({
+				url : "checkLike.do",
+				type : "GET",
+				dataType : "text",
+				data : {
+					'postNum' : postNum,
+					'userId' : userID
+				},
+				success : function(check) {
+					if (check == 1) {
+						alert("누른거 그럼 하트 빨강색");
+						$(".heart").toggleClass("is-active");
+					} else  {
+						alert("안누른거 빈하트");
+					}
+				},
+				error : function(request, status, error) {
+					alert("ajax 실패1");
+				}
+
+			});	
+		}
+		
+		
 		/*좋아요 기능*/
 		$(function() {
-
 			var postNum = document.getElementById("postNum").value;
 			var userID = document.getElementById("userID").value;
 			var postWriter = document.getElementById("postWriter").value;
 			var postRecommend = document.getElementById("postRecommend").value;
-
+			checkLike2(postNum,userID);
+			alert(11);
 			$(".heart").on("click", function() {
 				$(this).toggleClass("is-active");
 				likeupdate();
@@ -172,10 +200,8 @@
 					success : function(likeCount) {
 						if (likeCount == 0) {
 							alert("추천완료.");
-							location.reload(true);
 						} else if (likeCount == 1) {
 							alert("추천취소");
-							location.reload(true);
 						}
 					},
 					error : function(request, status, error) {
@@ -188,6 +214,12 @@
 			
 			
 		});
+		
+		
+		
+		
+		
+		
 		
 		/*모달창*/
 		const open = () => {
@@ -205,6 +237,14 @@
 		  
 		 /*댓글창*/
 			function commentSubmit() {
+			 
+			 	//비밀댓글 체크여부
+			 	//var commentSecret = 0;
+			 	if($("#commentSecret").is(":checked")){
+			 		$("#commentSecret").val() == 1;
+			 	} else {
+			 		$("#commentSecret").val() == 0;
+			 	}
 
 				if($("#commentTxt").val() == ''){
 					alert('내용을 입력해주세요!');
@@ -229,9 +269,9 @@
 			}
 				
 			
-			$(function() {
-				getCommentList();
-			});
+		$(function() {
+			getCommentList();
+		});
 		
 		function getCommentList() {
 			
@@ -242,8 +282,9 @@
 				data : $("#commentForm").serialize(),
 				success : function(data) {
 					var html = "";
+					let postMaster = $("#postDetailWriter").val();
 					let currentUser = $("#currentUser").val();
-					//alert(currentUser);
+					//alert(postMaster);
 					//alert(data[0]["commentWriter"]);
 					console.log(data);
 					
@@ -251,8 +292,20 @@
 						for (var i = 0; i < data.length; i++) {
 						
 							html += '<div style="width: 100%; margin-bottom: 30px; border: 1px solid white">';
-							html += '<ul><strong>'+data[i]["commentWriter"]+'</strong></ul>';
-							html += '<ul>'+data[i]["commentTxt"]+'</ul>';
+							html += '<ul style="font-size: 11pt"><strong>'+data[i]["commentWriter"]+'</strong></ul>';
+							
+							if (data[i]["commentSecret"] == true) {
+								if(currentUser == data[i]["commentWriter"])	{
+									html += '<ul>'+data[i]["commentTxt"]+'</ul>';
+								} else if(postMaster == currentUser) {
+									html += '<ul>'+data[i]["commentTxt"]+'</ul>';
+								} else {
+									html += '<ul>비밀댓글입니다.</ul>';
+								}
+							} else if (data[i]["commentSecret"] == false){
+								html += '<ul>'+data[i]["commentTxt"]+'</ul>';
+							}
+							
 							html += '<input type="hidden" id="commentNum" value='+data[i]["commentNum"]+'>';
 							html += '<input type="hidden" id="commentParent" value='+data[i]["commentParent"]+'>';
 							html += '<input type="hidden" id="postNum" value='+data[i]["postNum"]+'>';

@@ -372,16 +372,18 @@ public class DiaryPostDAO {
 
 	public int commentReg(HttpServletRequest req, User u, DiaryPost p, Comment c) {
 
-		int postNum = c.getPostNum();
+		/*int postNum = c.getPostNum();
 		int commentNum = c.getCommentNum();
 		String CommentWriter = c.getCommentWriter();
 		String commentTxt = c.getCommentTxt();
+		String postWriter = c.getPostWriter();
 
 		c.setPostNum(postNum);
 		c.setCommentNum(commentNum);
 		c.setCommentWriter(CommentWriter);
 		c.setCommentTxt(commentTxt);
-
+		c.setPostWriter(postWriter);
+*/
 		if (ss.getMapper(CommentMapper.class).commentWrite(c) == 1) {
 			System.out.println("댓글 등록 성공");
 			return 1;
@@ -415,6 +417,10 @@ public class DiaryPostDAO {
 			return 0;
 		}
 
+	}
+
+	public int checkLike(HttpServletRequest req, Like l) {
+		return ss.getMapper(LikeMapper.class).checkLike(l);
 	}
 
 	

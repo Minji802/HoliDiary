@@ -25,6 +25,10 @@
 			<button id="worldButton" class="africaGo">아프리카</button>
 		</div>
 	</div>
+	
+	<div id="imageDownload">
+		<button class="imageDownloadButton">이미지로 저장하기</button>
+	</div>
 
 	<script>
 		function dp_menu() {
@@ -38,49 +42,23 @@
 		}
 	</script>
 
-	<input id="pac-input" class="controls" type="text"
-		placeholder="Search Box" />
-
-
-	<!-- <button id="europeGo">유럽</button>
-	<button id="asiaGo">아시아</button>
-	<button id="americaGo">아메리카</button>
-	<button id="oceaniaGo">오세아니아</button>
-	<button id="africaGo">아프리카</button> -->
-
-	<div id="imageDownload">
-		<button class="imageDownloadButton">이미지로 저장하기</button>
+	<div class="pac-card" id="pac-card">
+		<div id="pac-container">
+			<input id="pac-input" type="text" placeholder="위치 검색" />
+		</div>
+	</div>
+	<div id="map"></div>
+	<div id="infowindow-content">
+		<span id="place-name" class="title"></span><br /> <span
+			id="place-address"></span>
 	</div>
 
-
-	<!-- <div id="floating-panel">
-		<input id="hide-markers" type="button" value="Hide Markers" /> 
-		<input id="show-markers" type="button" value="Show Markers" /> 
-		<input id="delete-markers" type="button" value="Delete Markers" />
-	</div> -->
-
-	<div id="map"></div>
+	<!-- <div id="map"></div> -->
 
 	<p>
 
-	<script type="text/javascript">
-	/* $(".imageDownloadButton").on("click", function() {
-		html2canvas(document.querySelector("#map")).then(canvas => {
-			saveAs(canvas.toDataURL('image/png'), "map.png");
-		});
-		function saveAs(uri, filename) {
-			var link = document.createElement('a');
-			if(typeof link.download === 'string'){
-				link.href = uri;
-				link.download = filename;
-				document.body.appendChild(link);
-				link.click();
-				document.body.removeChild(link);
-			} else {
-				window.open(uri);
-			}
-		}
-	}); */
+<script type="text/javascript">
+	
 	
 	
 	$(".imageDownloadButton").on("click", function() {
@@ -118,11 +96,7 @@
 	</script>
 
 		<script
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb4vTBtJ5eI4DOAJXj4ov7YSdM066-PQ0&callback=initMap&libraries=places&libraries=drawing&v=weekly"
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb4vTBtJ5eI4DOAJXj4ov7YSdM066-PQ0&callback=initMap&libraries=places,drawing&v=weekly"
 			defer></script>
-
-		<!-- <script
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb4vTBtJ5eI4DOAJXj4ov7YSdM066-PQ0&callback=initAutocomplete&libraries=places&v=weekly"
-			defer></script> -->
 </body>
 </html>

@@ -30,6 +30,22 @@ function mainSliderEvent() {
 	    	  autoplaySpeed: 2000,
 	    	  arrows : true,      // 옆으로 이동하는 화살표 표시 여부
 	          dots : true, 
+	          /*responsive: [ // 반응형 웹 구현 옵션
+					{  
+						breakpoint: 960, //화면 사이즈 960px
+						settings: {
+							//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+							slidesToShow:3 
+						} 
+					},
+					{ 
+						breakpoint: 768, //화면 사이즈 768px
+						settings: {	
+							//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+							slidesToShow:2 
+						} 
+					}
+				]*/
 	      });
 }
 
@@ -89,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 slidesPerView: 3,
                 slidesPerGroup: 3,
             },
-            720: {
+            /*720*/767: {
                 slidesPerView: 1,
                 slidesPerGroup: 1,
             }

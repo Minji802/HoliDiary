@@ -736,8 +736,8 @@ body .pages_page:nth-of-type(3) .pages_page__inner .content {
   position: absolute;
 }
 body .pages_page:nth-of-type(6) .pages_page__inner {
-  background: #4a5f5c;
-}
+  background: #6667AB;
+} 
 body .pages_page:nth-of-type(4) .pages_page__inner .content {
   -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 100%, 50% 100%);
   clip-path: polygon(50% 0%, 100% 0, 100% 100%, 50% 100%);
@@ -757,12 +757,14 @@ body .pages_page:nth-of-type(4) .pages_page__inner .bg {
   left: -100%;
 }
 body .pages_page:nth-of-type(5) .pages_page__inner {
-   background: url("../../resources/sej_img/slider/99271D3C5A4F43E9223.jpg");
+   /* background: url("../../resources/sej_img/slider/n9907AA4C5A4F43E929.jpg");
   background-position: 0 0;
-  background-size: 1280px 650px !important;
+  background-size: 1280px 650px !important; */
+  background: #FFDE59;
 }
+
 body .pages_page:nth-of-type(7) .pages_page__inner {
-  background: url("http://ruthrose.co.uk/wp-content/uploads/2018/04/lingerie-fashion-photographer-photography-shoot-fitness-swimwear-shoot180317_POCKET9661-f1.jpg");
+  background: url("../../resources/sej_img/slider/travel-world-map.jpg");
   background-position: 0 0;
   background-size: 1400px !important;
 }
@@ -795,7 +797,7 @@ body .pages_page:nth-of-type(7) .pages_page__inner .content_section:nth-of-type(
   width: 260px;
 }
 body .pages_page:nth-of-type(8) .pages_page__inner {
-  background: url("http://ruthrose.co.uk/wp-content/uploads/2018/04/lingerie-fashion-photographer-photography-shoot-fitness-swimwear-shoot180317_POCKET9661-f1.jpg");
+    background: url("../../resources/sej_img/slider/travel-world-map.jpg");
   background-position: 0 0;
 }
 body .pages_page:nth-of-type(8) .pages_page__inner .content {
@@ -812,7 +814,7 @@ body .pages_page:nth-of-type(8) .pages_page__inner .bg {
   height: 100%;
   width: 200%;
   position: relative;
-  background: url("http://ruthrose.co.uk/wp-content/uploads/2018/04/lingerie-fashion-photographer-photography-shoot-fitness-swimwear-shoot180317_POCKET9661-f1.jpg");
+  background: url("../../resources/sej_img/slider/travel-world-map.jpg");
   background-size: 1400px !important;
   left: -100%;
 }
@@ -965,6 +967,9 @@ body .pages_page__inner .content_center h4 {
   border-top: 1px solid;
   border-bottom: 1px solid;
   padding: 15px 20px 29px;
+}
+#PageContentH {
+	color: #6667AB;
 }
 body .pages_page__inner .content_center h6 {
   font-size: 20px;
@@ -1261,4 +1266,88 @@ body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + d
 body .pages input[type=radio]:nth-of-type(4):checked + div + div + div + div + div + div {
   pointer-events: none;
   z-index: 9;
+}
+/* .nono {
+	position: absolute;
+	width:300px;
+	height: 200px;
+} */
+
+/* body {background: #eee;} */
+.swing {
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -20px;
+    float:left;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    width: 300px;
+    height: 200px;
+   	position: absolute;
+   	left: 60px;
+   	top: 60px;
+}
+.swing img {
+    border: 5px solid #f8f8f8;
+    display: block;
+}
+.swing:after{
+    content: '';
+    position: absolute;  
+    width: 20px; height: 20px;  
+    border: 1px solid #999;
+    top: -10px; left: 50%;
+    z-index: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+}
+/* nail */
+.swing:before{
+    content: '';
+    position: absolute;
+    width: 5px; height: 5px;
+    top: -14px;left: 54%;
+    z-index: 5;
+    border-radius: 50% 50%;
+    background: #000;
+}
+.swing2 {
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -20px;
+    float:left;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    width: 300px;
+    height: 250px;
+   	position: absolute;
+   	left: 250px;
+   	top: 330px;
+}
+.swing2 img {
+    border: 5px solid #f8f8f8;
+    display: block;
+}
+.swing2:after{
+    content: '';
+    position: absolute;  
+    width: 20px; height: 20px;  
+    border: 1px solid #999;
+    top: -10px; left: 50%;
+    z-index: 0;
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
+}
+/* nail */
+.swing2:before{
+    content: '';
+    position: absolute;
+    width: 5px; height: 5px;
+    top: -14px;left: 54%;
+    z-index: 5;
+    border-radius: 50% 50%;
+    background: #000;
+}
+ 
+@keyframes swing {
+    0% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
 }

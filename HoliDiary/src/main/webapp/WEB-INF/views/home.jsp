@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div class="home_container">
@@ -175,12 +176,14 @@
 		</div>
 		<div class='pages_page'>
 			<div class='pages_page__inner'>
-				<div class='logo'>Fashion</div>
+				<div class='logo'><!-- Fashion --></div>
 				<div class='pagenumber'>4 5</div>
 				<div class='content'>
+					<div><img class="swing" src="resources/sej_img/slider/Travel-Demand-is-Back-to-Pre-Pandemic-Levels-and-What-it-Means-To-You-This-Summer.jpg"></div>
+					<div><img class="swing2" src="resources/sej_img/slider/travel-experience-1x.jpg"></div>
 					<div class='content_center'>
-						<h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
-						<h6>Lorem ipsum dolor sit amet</h6>
+						<h4 id="PageContentH">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
+						<h6 id="PageContentH">Lorem ipsum dolor sit amet</h6>
 					</div>
 				</div>
 				<div class='control'>
@@ -196,7 +199,7 @@
 				<div class='bg'></div>
 				<div class='content_centerimage'>
 					<img
-						src='https://www.slrlounge.com/wp-content/uploads/2017/09/2brittany-smith-rachelbw6911-800x533.jpg'>
+						src="resources/sej_img/slider/travel-022.jpg">
 				</div>
 				<div class='content'>
 					<div class='content_center right'>
@@ -212,7 +215,7 @@
 		</div>
 		<div class='pages_page'>
 			<div class='pages_page__inner'>
-				<div class='logo'>Fashion</div>
+				<div class='logo'><!-- Fashion --></div>
 				<div class='pagenumber'>6 7</div>
 				<div class='content'>
 					<div class='content_section'>

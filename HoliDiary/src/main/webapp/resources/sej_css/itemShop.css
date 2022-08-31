@@ -141,7 +141,7 @@
 	height: 20px;
 	position: relative;
 	top: -7px;
-	left: 10px;
+	left: 5px;
 }
 .itemBox_price_and_img {
 	display: inline-block;
@@ -153,8 +153,28 @@
 .itemBox_price {
 	display: inline-block;
 	position: relative;
-	left: 15px;
+	left: 10px;
 	top: -10px;
 }
 
-
+.itemBox_Buy, .itemBox_Buy2 {
+	color: #fff;
+	width : 60px;
+	height: 25px;
+	text-decoration: none;
+	font-size: 12px;
+	background-color: #FFDE59;
+	text-align: center;
+	line-height: 25px;
+	border-radius: 5px;
+}
+.itemBox_Buy {
+	position: absolute;
+	left: 100px;
+	top: 267px;
+}
+.itemBox_Buy2  {
+	position: absolute;
+	left: 165px;
+	top: 267px;
+}

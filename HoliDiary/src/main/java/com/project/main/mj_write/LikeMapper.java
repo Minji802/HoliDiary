@@ -1,7 +1,6 @@
 package com.project.main.mj_write;
 
 import java.util.List;
-import java.util.Map;
 
 public interface LikeMapper {
 
@@ -20,6 +19,8 @@ public interface LikeMapper {
 	public int updateLike(DiaryPost p);
 
 	public List<Like> showAllLikeUsers(Like l);
+
+	public int checkLike(Like l);
 
 
 

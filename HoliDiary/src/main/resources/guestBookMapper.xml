@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.main.mj_guestBook.GuestBookMapper">
+
+	<select id="showAllGuestBook" resultType="com.project.main.mj_guestBook.GuestBook" parameterType="com.project.main.mj_guestBook.GuestBook">
+		select * from guestBook where guestBookOwner = #{guestBookOwner} order by guestBookDate desc
+	</select>
+	
+	<insert id="regGuestBook" parameterType="com.project.main.mj_guestBook.GuestBook">
+		insert into guestBook (guestBookNum, guestBookWriter, guestBookTxt, guestBookDate, guestBookOwner)
+			values (guestBookNum_seq.nextval, #{guestBookWriter}, #{guestBookTxt}, sysdate, #{guestBookOwner})
+	</insert>
+
+</mapper>

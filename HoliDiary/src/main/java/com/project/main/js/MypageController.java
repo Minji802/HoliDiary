@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MypageController {
@@ -16,6 +15,9 @@ public class MypageController {
 	
 	@Autowired
 	SubscribeDAO sDAO;
+	
+	@Autowired
+	VisitDAO vDAO;
 	
 		// 마이 페이지 들어가기(내정보)
 		@RequestMapping(value = "/mypage.myinfo.go", method = RequestMethod.GET)
@@ -34,10 +36,9 @@ public class MypageController {
 		@RequestMapping(value = "/mypage.mysubscribe.go", method = RequestMethod.GET)
 		public String mypageMysubscribeGo(HttpServletRequest req) {
 			
-			//구독 정보 가져오기
-			sDAO.getMySubscribe(req);
-			
 			if(uDAO.loginCheck(req)) {
+				//구독 정보 가져오기
+				sDAO.getSubscribing(req);
 				req.setAttribute("contentPage", "kjs_mypage/mypage_subscribe.jsp");
 			}else {
 				req.setAttribute("contentPage", "home.jsp");
@@ -51,6 +52,10 @@ public class MypageController {
 		public String mypageMydiaryGo(HttpServletRequest req) {
 			
 			if(uDAO.loginCheck(req)) {
+				//나를 구독하는 사람 가져오기
+				sDAO.getSubscriber(req);
+				// 통계를 위한 데이터 가져오기
+				vDAO.getVisit(req);
 				req.setAttribute("contentPage", "kjs_mypage/mypage_mydiary.jsp");
 			}else {
 				req.setAttribute("contentPage", "home.jsp");

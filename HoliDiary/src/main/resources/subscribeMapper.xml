@@ -2,29 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.main.js.SubscribeMapper">
 	
-	<select id="getMySubscribe" resultType="String">
+	<select id="getSubscribing" resultType="String">
 		select subscribeto from subscribetable where subscribefrom = #{userID}
 	</select>
 	
-	<select id="getSubscribeInfo" parameterType="String" resultType="com.project.main.js.SubscribeInfo">
+	<select id="getSubscriber" resultType="String">
+		select subscribefrom from subscribetable where subscribeto = #{userID}
+	</select>
+	
+	<select id="checkMySubscribe" resultType="com.project.main.js.Subscribe">
+		select * from subscribetable 
+		where subscribefrom = #{subscribeFrom} 
+			and subscribeto = #{subscribeTo}
+	</select>
+	
+	<select id="getSubscribingInfo" resultType="com.project.main.js.SubscribeInfo">
 		select s.subscribeno, d.diarytitle, u.userid, u.usernickname, u.userimg
 		from subscribetable s, diarytable d, user_table u
-		where s.subscribeto = #{subscribeID}
+		where s.subscribeto = #{subscribeTo} and s.subscribefrom = #{subscribeFrom}
 		    and s.subscribeto = d.diaryuserid
 		    and d.diaryuserid = u.userid
 	</select>
 	
-	<select id="mysubSearch" parameterType="map" resultType="com.project.main.js.SubscribeInfo">
+	<select id="getSubscriberInfo" resultType="com.project.main.js.SubscribeInfo">
+		select s.subscribeno, d.diarytitle, u.userid, u.usernickname, u.userimg
+		from subscribetable s, diarytable d, user_table u
+		where s.subscribeto = #{subscribeTo} and s.subscribefrom = #{subscribeFrom}
+		    and s.subscribefrom = d.diaryuserid
+		    and d.diaryuserid = u.userid
+	</select>
+	
+	<select id="searchSubscribe" parameterType="map" resultType="com.project.main.js.SubscribeInfo">
 	    select s.subscribeno, d.diarytitle, u.userid, u.usernickname, u.userimg
 		from subscribetable s, diarytable d, user_table u
 		where subscribefrom = #{id}
-			and (s.subscribeto like '%'||#{search}||'%' or d.diarytitle like '%'||#{search}||'%')
+			and (u.usernickname like '%'||#{search}||'%' or d.diarytitle like '%'||#{search}||'%')
 	    	and s.subscribeto = d.diaryuserid
 	   		and d.diaryuserid = u.userid
 	</select>
 	
-	<delete id="mysubCancel">
+	<delete id="cancelSubscribe">
 		delete from subscribetable where subscribeno = #{subscribeNo}
 	</delete>
+	
+	<insert id="subscribe">
+		insert into subscribetable values(subscribe_seq.nextval, #{subscribeFrom}, #{subscribeTo})
+	</insert>
 
 </mapper>

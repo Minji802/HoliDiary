@@ -10,6 +10,7 @@ public interface DiaryMapper {
 	public Diary getDiaryInfo(Diary d);
 	public void diaryTheme(Diary d);
 	public User getUserInfo(User u);
+	public int uploadImg(Diary d);
 
 
 }

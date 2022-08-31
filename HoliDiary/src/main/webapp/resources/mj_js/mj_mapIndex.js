@@ -32,6 +32,53 @@ function initMap() {
 	       },
 	  });
 	
+// 장소검색창
+	const card = document.getElementById("pac-card");
+    const input = document.getElementById("pac-input");
+    const biasInputElement = document.getElementById("use-location-bias");
+    const strictBoundsInputElement = document.getElementById("use-strict-bounds");
+    const options = {
+        fields: ["formatted_address", "geometry", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
+    // Bind the map's bounds (viewport) property to the autocomplete object,
+    // so that the autocomplete requests use the current map bounds for the
+    // bounds option in the request.
+    autocomplete.bindTo("bounds", map);
+    const infowindow = new google.maps.InfoWindow();
+    const infowindowContent = document.getElementById("infowindow-content");
+    infowindow.setContent(infowindowContent);
+    const marker = new google.maps.Marker({
+        map,
+        anchorPoint: new google.maps.Point(0, -29),
+    });
+    autocomplete.addListener("place_changed", () => {
+        infowindow.close();
+        marker.setVisible(false);
+        const place = autocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+        }
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        }
+        else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
+        infowindowContent.children["place-name"].textContent = place.name;
+        infowindowContent.children["place-address"].textContent =
+            place.formatted_address;
+    });
+  
+// 현재 위치찾기
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
   locationButton.textContent = "현재위치";
@@ -59,7 +106,9 @@ function initMap() {
           handleLocationError(false, infoWindow, map.getCenter());
       }
   });
-	  
+
+  
+  // 각 대륙 이동
   $('.europeGo').on('click', function() {
 		map.panTo(europe);
 		map.setZoom(4);
@@ -81,12 +130,13 @@ function initMap() {
 	  map.setZoom(3);
   });
 		
-	  
+	
+  // 지도 위에 그리기
   const drawingManager = new google.maps.drawing.DrawingManager({
         drawingMode: google.maps.drawing.OverlayType.MARKER,
         drawingControl: true,
         drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
+            position: google.maps.ControlPosition.TOP_RIGHT,
             drawingModes: [
                 google.maps.drawing.OverlayType.MARKER,
                 google.maps.drawing.OverlayType.CIRCLE,
@@ -165,31 +215,29 @@ function initMap() {
 	 }
 })
 	   
-
- // This event listener calls addMarker() when the map is clicked.
-google.maps.event.addListener(map, "click", (event) => {
-        addMarker(event.latLng, map);
-    });
+/*
+ * // This event listener calls addMarker() when the map is clicked.
+ * google.maps.event.addListener(map, "click", (event) => {
+ * addMarker(event.latLng, map); });
+ */
     
-    
 
-function addMarker(location, map) {
-    new google.maps.Marker({
-        position: location,
-        label: labels[labelIndex++ % labels.length],
-        map: map,
-    });
-    
-}
+/*
+ * function addMarker(location, map) { new google.maps.Marker({ position:
+ * location, label: labels[labelIndex++ % labels.length], map: map, });
+ *  }
+ */
 
-google.maps.event.addListener(addMarker, "click", (event) => {
-	map.removeOverlay(marker);
-});
+/*
+ * google.maps.event.addListener(addMarker, "click", (event) => {
+ * addMarker.removeOverlay(marker); });
+ */
 
 /*
  * google.maps.event.addListener(addMarker, 'click', function(m) { alert(11);
  * m.setLabel(null); m.setMap(null); });
  */
+
 
 /*
  * (function(addMarker,l){
@@ -219,7 +267,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 window.initMap = initMap;
-//window.initAutocomplete = initAutocomplete;
+// window.initAutocomplete = initAutocomplete;
 
 // window.initialize = initialize;
 export {};

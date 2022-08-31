@@ -409,33 +409,3 @@ function changePWValidCheck(){
 	
 	return true;
 }
-
-function mysubSearch(){
-	
-	let search = $("#mysubSearch").val();
-	
-	$.ajax({
-		url: 'mysub.search',
-		type : 'GET',
-		dataType : 'text',
-		data : {'mysubSearch': search},
-		success : function(result) {
-			console.log(result);
-		},
-		error : function(request,status,error) {
-			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			alert('문제가 발생했습니다. 다시 이용해주세요.')
-			flag = false;
-		}
-	});
-}
-
-function subscribeCancel(){
-	
-	let subNo = $("#subscribeNo").val();
-	//alert(subNo);
-	let ok = confirm('정말 구독 취소하시겠습니까?');
-	if(ok){
-		location.href="mysub.cancel?no="+subNo;
-	}
-}

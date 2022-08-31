@@ -49,10 +49,10 @@
 	<div style="display: inline-table;">
 	<c:forEach var="dp" items="${DiaryPosts}" varStatus="status">
 		<table id="postListTbl" class="postList" border=1
-			style="width: 236px; text-align: center; float: left;">
-			<tr>
-				<td colspan="2"><img src="${dp.postImg }"
-					style="width: 236px; height: 170px;"></td>
+			style="width: 235px; text-align: center; float: left;">
+		<tr>
+				<td colspan="2"><img src="${dp.postImg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"
+					style="width: 230px; height: 170px;"></td>
 			</tr>
 			<tr>
 				<td class="postTitle" colspan="2"><a
@@ -72,7 +72,7 @@
 	</c:forEach>
 	</div>
 
-	<div style="text-align: center;">
+	<div style="text-align: center; margin-top: 15px; font-size: 10pt;">
 		<c:if test="${paging.startPage != 1 }">
 			<a href="post-Gallery?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }">&lt;</a>
 		</c:if>

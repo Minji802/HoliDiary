@@ -1,5 +1,9 @@
 package com.project.main.js;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SubscribeController {
@@ -19,26 +24,30 @@ public class SubscribeController {
 	
 		// 나의구독 검색
 		@RequestMapping(value = "/mysub.search", method = RequestMethod.GET)
-		public SubscribeInfo mysubSearch(HttpServletRequest req, @RequestParam("mysubSearch") String search) {
+		public @ResponseBody List<SubscribeInfo> mysubSearch(HttpServletRequest req, @RequestParam("mysubSearch") String mysubSearch) throws UnsupportedEncodingException {
 			
-			return sDAO.mysubSearch(req, search);
+			String search = URLDecoder.decode(mysubSearch,"UTF-8");
+			System.out.println(search);
+			
+			
+			return sDAO.searchSubscribe(req, search);
 			
 		}
 
 		// 구독 취소
 		@RequestMapping(value = "/mysub.cancel", method = RequestMethod.GET)
-		public String mysubCancel(HttpServletRequest req, @RequestParam("no") String subscribeNo) {
+		public @ResponseBody int mysubCancel(HttpServletRequest req, @RequestParam("no") String subscribeNo) {
 			
-			sDAO.mysubCancel(subscribeNo);
+			return sDAO.cancelSubscribe(subscribeNo);
 			
-			sDAO.getMySubscribe(req);
-			if(uDAO.loginCheck(req)) {
-				req.setAttribute("contentPage", "kjs_mypage/mypage_subscribe.jsp");
-			}else {
-				req.setAttribute("contentPage", "home.jsp");
-			}
+		}
+		
+		// 구독
+		@RequestMapping(value = "/subscribe.do", method = RequestMethod.GET)
+		public @ResponseBody int subscribeDo(HttpServletRequest req, @RequestParam("id") String DiaryID) {
 			
-			return "index";
+			return sDAO.subscribe(req, DiaryID);
+			
 		}
 
 }

@@ -47,4 +47,9 @@
 	<select id="showAllLikeUsers" resultType="com.project.main.mj_write.Like">
 		select userId from post_like where postNum = #{postNum}
 	</select>
+	
+	<select id="checkLike" resultType="int">
+		select likeCount from POST_LIKE where postNum = #{postNum} and userId = #{userId}	
+	</select>
+	
 </mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.main.js.VisitMapper">
+
+	<select id="getVisit" parameterType="map" resultType="int">
+		select count(*) 
+		from diary_visit 
+		where diaryhost = #{host}
+			and to_char(visittime, 'YYYYMMDD') = #{day}
+	</select>
+
+</mapper>

@@ -85,7 +85,7 @@
 		$(document).ready(function() {
 			//여기 아래 부분
 			$('#postTxt').summernote({
-				height: 500,
+				height: 450,
 				focus: true,                
 				lang: "ko-KR",	
 				placeholder: '포스트를 작성해주세요',

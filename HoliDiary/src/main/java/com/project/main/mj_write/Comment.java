@@ -11,13 +11,15 @@ public class Comment {
 	private int postNum;
 	private int commentParent;
 	private int commentDepth;
+	private boolean commentSecret;
+	private String postWriter;
 	
 	public Comment() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Comment(int commentNum, String commentTxt, String commentWriter, Date commentDate, int postNum,
-			int commentParent, int commentDepth) {
+			int commentParent, int commentDepth, boolean commentSecret, String postWriter) {
 		super();
 		this.commentNum = commentNum;
 		this.commentTxt = commentTxt;
@@ -26,6 +28,8 @@ public class Comment {
 		this.postNum = postNum;
 		this.commentParent = commentParent;
 		this.commentDepth = commentDepth;
+		this.commentSecret = commentSecret;
+		this.postWriter = postWriter;
 	}
 
 	public final int getCommentNum() {
@@ -83,6 +87,23 @@ public class Comment {
 	public final void setCommentDepth(int commentDepth) {
 		this.commentDepth = commentDepth;
 	}
+
+	public final boolean isCommentSecret() {
+		return commentSecret;
+	}
+
+	public final void setCommentSecret(boolean commentSecret) {
+		this.commentSecret = commentSecret;
+	}
+
+	public final String getPostWriter() {
+		return postWriter;
+	}
+
+	public final void setPostWriter(String postWriter) {
+		this.postWriter = postWriter;
+	}
+
 	
 	
 	
