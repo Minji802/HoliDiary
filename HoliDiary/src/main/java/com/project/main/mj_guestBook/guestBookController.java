@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.main.js.Subscribe;
 import com.project.main.js.User;
 import com.project.main.js.UserDAO;
 import com.project.main.sm.Category;
@@ -31,10 +32,10 @@ public class guestBookController {
 
 	@RequestMapping(value = "/guestBookGo", method = RequestMethod.GET)
 	public String goGuestBook(HttpServletRequest req, Diary d, @RequestParam("userId") String userId,
-			User u, Category cate, GuestBook gb) {
+			User u, Category cate, GuestBook gb, Subscribe s) {
 		
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			
 		}
 		

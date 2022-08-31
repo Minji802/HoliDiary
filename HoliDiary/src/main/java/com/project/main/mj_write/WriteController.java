@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
+import com.project.main.js.Subscribe;
 import com.project.main.js.User;
 import com.project.main.js.UserDAO;
 import com.project.main.sej.TokenMaker;
@@ -41,12 +42,12 @@ public class WriteController {
 	@RequestMapping(value = "/post-list", method = RequestMethod.GET)
 	public String listGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
 			Category cate, @RequestParam("nowPage") String nowPage,
-			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp, Subscribe s) {
 		
 		int total = pDAO.countPostList(req, p, userId);
 		
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 		}
 
@@ -58,12 +59,12 @@ public class WriteController {
 	@RequestMapping(value = "/post-Gallery", method = RequestMethod.GET)
 	public String GalleryGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
 			Category cate, @RequestParam("nowPage") String nowPage,
-			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp, Subscribe s) {
 		
 		int total = pDAO.countPostList(req, p, userId);
 		
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			pDAO.getAllList2(req, userId, pp, total, nowPage, cntPerPage);
 		}
 		
@@ -74,10 +75,10 @@ public class WriteController {
 	// 게시글 상세보기
 	@RequestMapping(value = "/post.detail.go", method = RequestMethod.GET)
 	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req,
-			User u, Category cate, Comment c, Like l) {
+			User u, Category cate, Comment c, Like l, Subscribe s) {
 
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			pDAO.countPostView(p, req, u);
 			pDAO.detailPost(p, req, c, l);
 		}
@@ -89,10 +90,10 @@ public class WriteController {
 	// 글쓰기 페이지 바로가기
 	@RequestMapping(value = "/write.go", method = RequestMethod.GET)
 	public String writeGo(HttpServletRequest req, Diary d, @RequestParam("userId") String userId, User u,
-			Category cate) {
+			Category cate, Subscribe s) {
 
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			System.out.println(userId);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_write2.jsp");
@@ -145,12 +146,12 @@ public class WriteController {
 			@RequestParam("postImg") String postImg, @RequestParam("postTitle") String postTitle,
 			@RequestParam("postTxt") String postTxt, @RequestParam("postCategory") String postCategory,
 			@RequestParam("postCountry") String postCountry, User u, Category cate, @RequestParam("nowPage") String nowPage,
-			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp, DiaryPost p) {
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp, DiaryPost p, Subscribe s) {
 
 		int total = pDAO.countPostList(req, p, userId);
 		
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			pDAO.regPost(req, userId, postImg, postTitle, postTxt, postCategory, postCountry);
 		}
 		TokenMaker.make(req);
@@ -165,7 +166,7 @@ public class WriteController {
 	public String deleteDiaryPost(HttpServletRequest req, DiaryPost p, Diary d,
 			@RequestParam("postWriter") String postWriter, @RequestParam("userId") String userId, User u,
 			Category cate, @RequestParam("nowPage") String nowPage,
-			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp, Subscribe s) {
 
 		int total = pDAO.countPostList(req, p, userId);
 		
@@ -173,7 +174,7 @@ public class WriteController {
 		System.out.println(p.getPostNum());
 		System.out.println(postWriter);
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			pDAO.deleteDiaryPost(req, p);
 			pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 		}
@@ -184,10 +185,10 @@ public class WriteController {
 	// 글 수정하러 가기
 	@RequestMapping(value = "/diaryPost.update.go", method = RequestMethod.GET)
 	public String updateDiaryPost(HttpServletRequest req, Diary d, DiaryPost p, @RequestParam("userId") String userId,
-			User u, Category cate, Comment c, Like l) {
+			User u, Category cate, Comment c, Like l, Subscribe s) {
 
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			pDAO.detailPost(p, req, c, l);
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_update.jsp");
@@ -198,12 +199,12 @@ public class WriteController {
 	@RequestMapping(value = "/diaryPost.update.do", method = RequestMethod.POST)
 	public String updateDiaryPostDo(Diary d, DiaryPost p, @RequestParam("userId") String userId, HttpServletRequest req,
 			User u, Category cate, @RequestParam("nowPage") String nowPage,
-			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp) {
+			@RequestParam("cntPerPage") String cntPerPage, DiaryPostPaging pp, Subscribe s) {
 
 		int total = pDAO.countPostList(req, p, userId);
 		
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s);
 			pDAO.diaryPostUpdate(req, p, userId);
 		}
 		pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
