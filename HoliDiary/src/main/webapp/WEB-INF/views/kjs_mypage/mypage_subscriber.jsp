@@ -23,17 +23,17 @@
 			<div class="mypage_content_box">
 				<div>
 					<div class="mypage_mysub_title">
-						나의 구독
-						<a href="mypage.mysubscriber.go">나의 구독자</a>
+						나의 구독자
+						<a href="mypage.mysubscribe.go">나의 구독</a>
 					</div>
 				</div>
 				<div class="mypage_mysub_search">
-					<input id="mysubSearch" placeholder="닉네임 다이어리명으로 검색">
-					<button onclick="mysubSearch()">검색</button>
+					<input id="mysubscriberSearch" placeholder="닉네임 다이어리명으로 검색">
+					<button onclick="mysubscriberSearch()">검색</button>
 				</div>
 				<div class="mypage_mysub_scroll">
 					<c:forEach var="info" items="${infos}">
-						<div class="mysub_info_list_box" onclick="mypagePopup('${info.userID }')">
+						<div id="mysub_info_list_box" onclick="mypagePopup('${info.userID }')">
 							<div class="mysub_info_img_box">
 								<img src="./resources/kjs_profileImg/${info.userImg}">
 							</div>

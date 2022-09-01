@@ -10,5 +10,9 @@
 		insert into guestBook (guestBookNum, guestBookWriter, guestBookTxt, guestBookDate, guestBookOwner)
 			values (guestBookNum_seq.nextval, #{guestBookWriter}, #{guestBookTxt}, sysdate, #{guestBookOwner})
 	</insert>
+	
+	<delete id="guestBookDelete" parameterType="com.project.main.mj_guestBook.GuestBook">
+		delete guestBook where guestBookNum = #{guestBookNum}
+	</delete>
 
 </mapper>

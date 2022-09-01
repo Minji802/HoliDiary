@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MypageController {
@@ -47,15 +49,28 @@ public class MypageController {
 			return "index";
 		}
 		
+		// 마이 페이지 들어가기(나의 구독자)
+		@RequestMapping(value = "/mypage.mysubscriber.go", method = RequestMethod.GET)
+		public String mypageMysubscriberGo(HttpServletRequest req) {
+			
+			if(uDAO.loginCheck(req)) {
+				//구독 정보 가져오기
+				sDAO.getSubscriber(req);
+				req.setAttribute("contentPage", "kjs_mypage/mypage_subscriber.jsp");
+			}else {
+				req.setAttribute("contentPage", "home.jsp");
+			}
+			
+			return "index";
+		}
+		
 		// 마이 페이지 들어가기(다이어리 통계)
 		@RequestMapping(value = "/mypage.mydiary.go", method = RequestMethod.GET)
 		public String mypageMydiaryGo(HttpServletRequest req) {
 			
 			if(uDAO.loginCheck(req)) {
-				//나를 구독하는 사람 가져오기
-				sDAO.getSubscriber(req);
-				// 통계를 위한 데이터 가져오기
-				vDAO.getVisit(req);
+				//오늘 방문자
+				vDAO.getTodayVisit(req);
 				req.setAttribute("contentPage", "kjs_mypage/mypage_mydiary.jsp");
 			}else {
 				req.setAttribute("contentPage", "home.jsp");
@@ -63,6 +78,8 @@ public class MypageController {
 			
 			return "index";
 		}
+		
+		
 		
 		// 마이 페이지 들어가기(비번수정)
 		@RequestMapping(value = "/mypage.changepw.go", method = RequestMethod.GET)
@@ -75,6 +92,14 @@ public class MypageController {
 			}
 			
 			return "index";
+		}
+		
+		// 방문자 수 구하기
+		@RequestMapping(value = "/visit.get", method = RequestMethod.GET)
+		public @ResponseBody int[] visitGet(HttpServletRequest req) {
+			
+			return vDAO.getVisit(req);
+			
 		}
 
 

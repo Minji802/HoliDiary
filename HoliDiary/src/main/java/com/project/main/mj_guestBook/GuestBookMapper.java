@@ -8,4 +8,6 @@ public interface GuestBookMapper {
 
 	int regGuestBook(GuestBook gb);
 
+	int guestBookDelete(GuestBook gb);
+
 }

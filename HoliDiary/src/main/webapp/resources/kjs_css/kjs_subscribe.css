@@ -1,12 +1,27 @@
 @charset "UTF-8";
 
 .mypage_mysub_title{
+	position: relative;
 	color: #6667AB;
 	font-family: 'GangwonEdu_OTFBoldA';
 	font-size: 20pt;
 	padding: 10px;
 	margin-bottom: 30px;
 	border-bottom: 3px dashed #6667AB;
+}
+
+.mypage_mysub_title a{
+	border: 2px solid #6667AB;
+	color: #6667AB;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 10px;
+	right: 0;
+	text-decoration: none;
+	font-size: 13pt;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .mypage_mysub_search{

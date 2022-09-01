@@ -119,26 +119,11 @@
 /* 반응형 설정 부분 */
 /* PC (해상도 1024px)*/ 
 @media all and (min-width:1024px) {
-  ...
-} 
-
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
-@media all and (min-width:768px) and (max-width:1023px) {
-  ...
-} 
-
-/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/ 
-@media all and (max-width:767px) {
-  .main_slider {
-	width: 767px;
-	margin-left: auto;
-	margin-right: auto;
+  .swiper-container 
+{
+	width: 1200px;
+	overflow: visible;
 }
-
-}
-
-
-/* Second slider */
 .second_slider_title {
 	text-align: left;
 	font-family: 'GangwonEdu_OTFBoldA';
@@ -151,13 +136,6 @@
 	margin-right: auto;
 	display: block;
 }
-.second_slider_title_img {
-	width: 50px;
-	height: 50px;
-	position: relative;
-	top: 15px;
-	left: -10px;
-}
 .second_slider_title_border {
 	border-top: 5px dashed #FFDE59;
 	width: 910px;
@@ -166,11 +144,144 @@
 	top: -20px;
 	left: 290px;
 }
+.swiper-container img {
+    width: 100%;
+    height: 300px;
+    object-fit: fill;
+    object-position: center;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px #c5c5c5;
+    transition: transform 0.3s;
+}
+
+} 
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+	
+   .main_slider {
+	width: 1010px;
+	margin-left: auto;
+	margin-right: auto;
+}
 .swiper-container 
+{
+	width: 920px;
+	overflow: visible;
+}
+.second_slider_title {
+	text-align: left;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 30px;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 15px;
+	width: 1023px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding-left: 30px;
+}
+.second_slider_title_border {
+	border-top: 5px dashed #FFDE59;
+	width: 665px;
+	display: block;
+	position: relative;
+	top: -20px;
+	left: 290px;
+}
+.swiper-container img {
+    width: 100%;
+    height: 400px;
+    object-fit: fill;
+    object-position: center;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px #c5c5c5;
+    transition: transform 0.3s;
+}
+
+} 
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/ 
+@media all and (max-width:767px) {
+  .main_slider {
+	width: 767px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.swiper-container 
+{
+	width: 767px;
+	overflow: visible;
+}
+.second_slider_title {
+	text-align: left;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 30px;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 15px;
+	width: 767px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding-left: 30px;
+}
+.second_slider_title_border {
+	border-top: 5px dashed #FFDE59;
+	width: 420px;
+	display: block;
+	position: relative;
+	top: -20px;
+	left: 290px;
+}
+.swiper-container img {
+    width: 100%;
+    height: 400px;
+    object-fit: fill;
+    object-position: center;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px #c5c5c5;
+    transition: transform 0.3s;
+}
+
+}
+
+
+/* Second slider */
+
+/* .second_slider_title {
+	text-align: left;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 30px;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 15px;
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+} */
+.second_slider_title_img {
+	width: 50px;
+	height: 50px;
+	position: relative;
+	top: 15px;
+	left: -10px;
+}
+/* .second_slider_title_border {
+	border-top: 5px dashed #FFDE59;
+	width: 910px;
+	display: block;
+	position: relative;
+	top: -20px;
+	left: 290px;
+} */
+/* .swiper-container 
 {
 	width: 1200px;
 	overflow: visible;
-}
+} */
 .swiper-slide 
 {
 	opacity:0.4; transition:opacity 0.3s;
@@ -183,7 +294,7 @@
 {
 	opacity:1
 }
-.swiper-container img {
+/* .swiper-container img {
     width: 100%;
     height: 300px;
     object-fit: fill;
@@ -191,7 +302,7 @@
     border-radius: 5px;
     box-shadow: 3px 2px 5px #c5c5c5;
     transition: transform 0.3s;
-}
+} */
 .swiper-slide img:hover {
    transform: scale(1.2);
   -webkit-transform: scale(1.2); /* 크롬, 사파리 */

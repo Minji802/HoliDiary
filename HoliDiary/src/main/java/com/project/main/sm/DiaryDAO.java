@@ -21,6 +21,7 @@ import com.project.main.js.SubscribeDAO;
 import com.project.main.js.SubscribeInfo;
 import com.project.main.js.SubscribeMapper;
 import com.project.main.js.User;
+import com.project.main.mj_write.Comment;
 
 
 @Service
@@ -31,11 +32,12 @@ public class DiaryDAO {
 	
 
 	// 다이어리 정보 불러오기
-	public void getDiaryInfo(HttpServletRequest req, Diary d, String userId, User u, Category cate, Subscribe s) {
+	public void getDiaryInfo(HttpServletRequest req, Diary d, String userId, User u, Category cate, Subscribe s, Comment c) {
 		try {
 			d.setDiaryUserId(userId);
 			u.setUserID(userId);
 			cate.setCategoryUserId(userId);
+			c.setCommentWriter(userId);
 			
 			User loginUser = (User) req.getSession().getAttribute("loginUser");
 			s.setSubscribeTo(userId);

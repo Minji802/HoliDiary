@@ -18,6 +18,7 @@
 			<div style="font-size: 11pt;">
 				<strong>${sessionScope.loginUser.userID }</strong>
 			</div>
+			<br>
 			<div>
 				<input type="hidden" id="guestBookWriter" name="guestBookWriter"
 					value="${sessionScope.loginUser.userID}"> 
@@ -32,7 +33,7 @@
 
 		<hr>
 
-		<!-- 댓글목록 -->
+		<!-- 방명록 목록 -->
 		<form id="guestBookListForm" name="guestBookListForm" method="GET">
 			<div id="guestBookList"></div>
 		</form>
@@ -58,7 +59,7 @@
 						getGuestBookList();
 						$("#guestBookTxt").val('');
 					} else {
-						alert("댓글 등록 실패");
+						alert("방명록 등록 실패");
 					}
 				}
 
@@ -96,7 +97,11 @@
 							html += '<div>' + data[i]["guestBookTxt"] + '</div>';
 							html += '<br>';
 							html += '<div style="color: grey;">' + data[i]["guestBookDate"] + '</div>';
-							html += '<button style="float: right;">삭제</button>';
+							
+							if(currentUser == data[i]["guestBookWriter"])	{
+								html += '<button type="button" onclick="guestBookDelete('+ data[i]["guestBookNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+							}
+							
 							html += '</div>';
 							html += '<hr>';
 						}
@@ -114,6 +119,23 @@
 				}
 			});
 	
+		}
+		
+		function guestBookDelete(guestBookNum) {
+			var ok = confirm("정말 삭제하시겠습니까?");
+			//alert(guestBookNum);
+			if (ok) {
+				$.ajax({
+					type: "GET",
+					url: "guestBookDelete.do",
+					data : {"guestBookNum": guestBookNum},
+					dataType: "text",
+					success: function(data) {
+						console.log("삭제성공")
+						getGuestBookList();
+					}
+				});
+			}
 		}
 	
 		

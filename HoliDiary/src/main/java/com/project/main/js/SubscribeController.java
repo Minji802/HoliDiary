@@ -27,10 +27,16 @@ public class SubscribeController {
 		public @ResponseBody List<SubscribeInfo> mysubSearch(HttpServletRequest req, @RequestParam("mysubSearch") String mysubSearch) throws UnsupportedEncodingException {
 			
 			String search = URLDecoder.decode(mysubSearch,"UTF-8");
-			System.out.println(search);
-			
-			
 			return sDAO.searchSubscribe(req, search);
+			
+		}
+		
+		// 나의구독자 검색
+		@RequestMapping(value = "/mysubscriber.search", method = RequestMethod.GET)
+		public @ResponseBody List<SubscribeInfo> mysubscriberSearch(HttpServletRequest req, @RequestParam("mysubSearch") String mysubSearch) throws UnsupportedEncodingException {
+			
+			String search = URLDecoder.decode(mysubSearch,"UTF-8");
+			return sDAO.searchSubscriber(req, search);
 			
 		}
 

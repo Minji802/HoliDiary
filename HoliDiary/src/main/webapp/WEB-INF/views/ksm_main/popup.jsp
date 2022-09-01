@@ -14,7 +14,7 @@
 	href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap"
 	rel="stylesheet">
 <script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_mypage.js"></script>
+<script type="text/javascript" src="resources/kjs_js/kjs_subscribe.js"></script>
 
 <script type="text/javascript">
 	$(function() {
@@ -262,21 +262,21 @@ p, p a { font-size: 12px;text-align: center; color: #888; }
 			<div class="right-area-upper">
 			
 <!-- 토글 영역 -->
-<a href="#" id="toggle"><span></span></a>
+<!-- <a href="#" id="toggle"><span></span></a>
 
 <div id="menu">
  <ul class="album-list">
   <li class="album-card">
-   <!--  <img
+    <img
       class="album-cover" 
       src="//i1.sndcdn.com/artworks-000283850588-jz5ywm-t500x500.jpg"
       alt="Tobu - Calling"
-      width="200" height="200"> -->
+      width="200" height="200">
     <iframe class="album-player" src="//goo.gl/syBGn1"></iframe>
-    <!-- <embed class="album-player" src="https://soundcloud.com/5tudoyfzx1kc/sets/new-private-playlist?si=6f4c4519aec7422fb770289ca56b53c9&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"></embed> -->
+    <embed class="album-player" src="https://soundcloud.com/5tudoyfzx1kc/sets/new-private-playlist?si=6f4c4519aec7422fb770289ca56b53c9&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"></embed>
   </li>
   </ul>
-</div>
+</div> -->
 <!-- 토글 영역 -->
 
 				<button class="menu-button">

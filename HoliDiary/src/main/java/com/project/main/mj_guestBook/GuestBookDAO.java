@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.main.js.User;
+import com.project.main.mj_write.CommentMapper;
 
 @Service
 public class GuestBookDAO {
@@ -30,6 +31,23 @@ public class GuestBookDAO {
 
 		if (ss.getMapper(GuestBookMapper.class).regGuestBook(gb) == 1) {
 			System.out.println("나 왔다감");
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+
+	public int getGuestBookDelete(HttpServletRequest req, GuestBook gb, User u) {
+
+		System.out.println(gb.getGuestBookNum());
+
+		int guestBookNum = gb.getGuestBookNum();
+
+		gb.setGuestBookNum(guestBookNum);
+
+		if (ss.getMapper(GuestBookMapper.class).guestBookDelete(gb) == 1) {
+			System.out.println("방명록 삭제 성공");
 			return 1;
 		} else {
 			return 0;

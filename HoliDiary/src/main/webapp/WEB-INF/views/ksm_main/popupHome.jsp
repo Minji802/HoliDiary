@@ -6,8 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet" href="resources/sm_css/sm_music.css">
-<script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script> -->
+<link rel="stylesheet" href="resources/sm_css/sm_popup.css">
+<link rel="stylesheet" href="resources/sm_css/sm_music.css">
+<script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script> -->
 <style>
 .button {
 	position: absolute;
@@ -18,14 +21,15 @@
 	opacity: 0;
 	transition: opacity .35s ease;
 	font-weight: 600;
+	margin-left: -70px;
 }
 
 .button a {
 	width: 200px;
 	padding: 5px 20px;
 	text-align: center;
-	color: black;
-	border: solid 2px black;
+	color: white;
+	border: solid 2px white;
 	z-index: 1;
 }
 
@@ -47,7 +51,8 @@ span {
 			<div class="hero-img-wrapper">
 				<img style="border-radius: 6px;" src="resources/sm_img/${Diary.diaryImg }" 
 				onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2240&q=80';">
-				
+				<!-- <img class="diaryinfo-img" src="resources/sm_img/free-icon-question-953818-removebg-preview.png">
+				 -->
 				<c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 				<div class="button">
 					<a href="mainImg.updateGo?userId=${Diary.diaryUserId }"> 수정 </a>
@@ -55,9 +60,17 @@ span {
 				</div>
 				</c:if>
 			</div>
+				<img class="introduce-backImg" src="resources/sm_img/postmemo-removebg-preview.png" style="height: 250px; width: 370px;">
+				<span class="introduce-backImg-text">${Diary.diaryIntroduce }</span>
 		</div>
+			<a href="#" onclick="showMusicPlayer();"><img class="turntable-backImg" src="resources/sm_img/turntable2-removebg-preview.png"></a>
+			<img class="airplane-backImg" src="resources/sm_img/airplane-removebg-preview.png">
+			<img class="ticket-backImg" src="resources/sm_img/ticket-removebg-preview.png">
 	</div>
-	<span>${Diary.diaryIntroduce }</span>
+	<div>
+		<!-- <img class="introduce-backImg" src="resources/sm_img/postmemo-removebg-preview.png"> -->
+	</div>
+	<%-- <span class="introduce-backImg-text">${Diary.diaryIntroduce }</span> --%>
 
 	<!-- 뮤직 플레이어 -->
 <!-- 	<div id="app-cover">

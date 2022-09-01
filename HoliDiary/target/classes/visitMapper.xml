@@ -8,5 +8,17 @@
 		where diaryhost = #{host}
 			and to_char(visittime, 'YYYYMMDD') = #{day}
 	</select>
+	
+	<insert id="countVisit" parameterType="map">
+		insert into diary_visit values(diary_visit_seq.nextval, #{diaryID}, #{userID}, sysdate)
+	</insert>
+	
+	<select id="getTodayVisit" parameterType="map" resultType="com.project.main.js.User">
+		select distinct u.usernickname, u.userimg, u.userid
+		from diary_visit d, user_table u
+		where to_char(d.visittime, 'YYYYMMDD') = #{today}
+			and d.diaryhost = #{userID}
+			and d.diaryvisitant = u.userid
+	</select>
 
 </mapper>

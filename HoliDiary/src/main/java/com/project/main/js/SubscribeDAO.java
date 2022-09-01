@@ -17,6 +17,7 @@ public class SubscribeDAO {
 	@Autowired
 	private SqlSession ss;
 
+	// 내가 구독하는 사람
 	public void getSubscribing(HttpServletRequest req) {
 		User u = (User) req.getSession().getAttribute("loginUser");
 		
@@ -43,7 +44,7 @@ public class SubscribeDAO {
 		
 		User u = (User) req.getSession().getAttribute("loginUser");
 		
-		System.out.println(u.getUserID());
+		//System.out.println(u.getUserID());
 		
 		String userID = u.getUserID();
 		
@@ -51,10 +52,30 @@ public class SubscribeDAO {
 		element.put("search", search);
 		element.put("id", userID);
 		
-		List<SubscribeInfo> infos = ss.getMapper(SubscribeMapper.class).searchSubscribe(element);
-		System.out.println(infos.get(0).getDiaryTitle());
+		//List<SubscribeInfo> infos = ss.getMapper(SubscribeMapper.class).searchSubscribe(element);
+		//System.out.println(infos.get(0).getDiaryTitle());
 		
 		return ss.getMapper(SubscribeMapper.class).searchSubscribe(element);
+		
+	}
+	
+	// 구독자 리스트 검색
+	public List<SubscribeInfo> searchSubscriber(HttpServletRequest req, String search) {
+		
+		User u = (User) req.getSession().getAttribute("loginUser");
+		
+		//System.out.println(u.getUserID());
+		
+		String userID = u.getUserID();
+		
+		Map<String, String> element = new HashMap<String, String>();
+		element.put("search", search);
+		element.put("id", userID);
+		
+		//List<SubscribeInfo> infos = ss.getMapper(SubscribeMapper.class).searchSubscribe(element);
+		//System.out.println(infos.get(0).getDiaryTitle());
+		
+		return ss.getMapper(SubscribeMapper.class).searchSubscriber(element);
 		
 	}
 

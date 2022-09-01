@@ -8,3 +8,13 @@ album_player_show.addEventListener('change', function(){
     album_list.classList.remove('all-view-albums');
   }
 });
+
+
+function showMusicPlayer() {
+	let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=100, left=270";
+	
+//	var url = 'musicPlayer';
+	var url = 'musicPlayer.open';
+	
+	window.open(url, "_blank", options);
+}

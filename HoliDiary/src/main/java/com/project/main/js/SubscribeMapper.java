@@ -21,6 +21,8 @@ public interface SubscribeMapper {
 
 	SubscribeInfo getSubscriberInfo(Subscribe s);
 
+	List<SubscribeInfo> searchSubscriber(Map<String, String> element);
+
 
 
 }

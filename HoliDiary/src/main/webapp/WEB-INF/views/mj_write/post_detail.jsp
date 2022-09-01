@@ -21,7 +21,8 @@
 			<div id="leftSide" style="width: 100%">
 				<div style="width: 10%"></div>
 				<div class="postDetailWriter">작성자 : ${DiaryPost.postWriter }</div>
-				<input type="hidden" id="postDetailWriter" name="postDetailWriter" value="${DiaryPost.postWriter }">
+				<input type="hidden" id="postDetailWriter" name="postDetailWriter"
+					value="${DiaryPost.postWriter }">
 				<div class="postDetailDate">${DiaryPost.postDate }</div>
 				<div class="postDetailCategory">카테고리 :
 					${DiaryPost.postCategory }</div>
@@ -40,10 +41,13 @@
 		<!-- 로그인 상태일때 하트 클릭가능 -->
 		<div id="placement">
 			<div class="heart"></div>
-			<div class="like_result">${DiaryPost.postRecommend }</div>
-			<input type="hidden" id="postRecommend" value="${DiaryPost.postRecommend }"> 
-			<input type="hidden" id="postNum" value="${DiaryPost.postNum }"> 
-			<input type="hidden" id="userID" value="${sessionScope.loginUser.userID}">
+			<div class="like_result">
+				<span id="likeCnt">${DiaryPost.postRecommend }</span>
+			</div>
+			<input type="hidden" id="postRecommend"
+				value="${DiaryPost.postRecommend }"> <input type="hidden"
+				id="postNum" value="${DiaryPost.postNum }"> <input
+				type="hidden" id="userID" value="${sessionScope.loginUser.userID}">
 			<input type="hidden" id="postWriter" value="${DiaryPost.postWriter}">
 		</div>
 
@@ -76,7 +80,8 @@
 	<br>
 	<br>
 	<div id="goToListDiv">
-		<button onclick="location.href='post-list?userId=${User.userID}&nowPage=1&cntPerPage=15'"
+		<button
+			onclick="location.href='post-list?userId=${User.userID}&nowPage=1&cntPerPage=15'"
 			id="GoToList">목록으로</button>
 	</div>
 	<br>
@@ -96,8 +101,7 @@
 		</div>
 		<div>
 			<input type="hidden" id="postNum" name="postNum"
-				value="${DiaryPost.postNum }"> 
-			<input type="hidden"
+				value="${DiaryPost.postNum }"> <input type="hidden"
 				id="postWriter" name="postWriter" value="${DiaryPost.postWriter }">
 			<input type="hidden" id="commentWriter" name="commentWriter"
 				value="${sessionScope.loginUser.userID}">
@@ -113,16 +117,20 @@
 	</form>
 
 	<!-- 대댓글작성 -->
-	<div id="recommentVisible" style="width: 97%; margin-left: 25px; display: none;">
+	<div id="recommentVisible"
+		style="width: 97%; margin-left: 25px; display: none;">
 		<form id="recommentForm" name="recommentForm">
 			<div>
 				<strong>${sessionScope.loginUser.userID }</strong>
 			</div>
 			<div>
-				<input type="hidden" id="postNum" name="postNum" value="${DiaryPost.postNum }"> 
-				<input type="hidden" id="userId" name="userId" value="${DiaryPost.postWriter }">
-				<input type="hidden" id="commentParent" name="commentParent" value="${Comment.commentParent}"> 
-				<input type="hidden" id="commentWriter" name="commentWriter" value="${sessionScope.loginUser.userID}">
+				<input type="hidden" id="postNum" name="postNum"
+					value="${DiaryPost.postNum }"> <input type="hidden"
+					id="userId" name="userId" value="${DiaryPost.postWriter }">
+				<input type="hidden" id="commentParent" name="commentParent"
+					value="${Comment.commentParent}"> <input type="hidden"
+					id="commentWriter" name="commentWriter"
+					value="${sessionScope.loginUser.userID}">
 				<textarea name="commentTxt" id="commentTxt"
 					placeholder="댓글을 입력해주세요." style="width: 95%; height: 100px;"></textarea>
 				<button type="button" onclick="recommentSubmit()">등록</button>
@@ -146,6 +154,55 @@
 				location.href = "diaryPost.update.go?&postNum=" + n + "&userId=" + userId;
 			}
 		}
+		
+		
+		
+		/*좋아요 기능*/
+		$(function() {
+			var postNum = document.getElementById("postNum").value;
+			var userID = document.getElementById("userID").value;
+			var postWriter = document.getElementById("postWriter").value;
+			var postRecommend = document.getElementById("postRecommend").value;
+			checkLike2(postNum,userID);
+			alert(11);
+			$(".heart").on("click", function() {
+				$(this).toggleClass("is-active");
+				likeupdate();
+			});
+
+			function likeupdate() {
+				let likeCnt = $("#likeCnt");
+				$.ajax({
+					url : "updateLike.do",
+					type : "GET",
+					dataType : "json",
+					data : {
+						'postNum' : postNum,
+						'userId' : userID,
+						'postWriter' : postWriter,
+						'postRecommend' : postRecommend
+					},
+					success : function(likeResult) {
+						if (likeResult == 0) {
+							console.log("추천함");
+							$(likeCnt).html(parseInt($(likeCnt).text())+1);
+							
+							
+						} else if (likeResult == 1) {
+							console.log("추천취소");
+							$(likeCnt).html($(likeCnt).text()-1);
+						}
+					},
+					error : function(request, status, error) {
+						alert("ajax 실패1");
+					}
+
+				});
+			}
+			
+			
+			
+		});
 		
 		function checkLike2(postNum,userID) {
 			
@@ -173,51 +230,6 @@
 		}
 		
 		
-		/*좋아요 기능*/
-		$(function() {
-			var postNum = document.getElementById("postNum").value;
-			var userID = document.getElementById("userID").value;
-			var postWriter = document.getElementById("postWriter").value;
-			var postRecommend = document.getElementById("postRecommend").value;
-			checkLike2(postNum,userID);
-			alert(11);
-			$(".heart").on("click", function() {
-				$(this).toggleClass("is-active");
-				likeupdate();
-			});
-
-			function likeupdate() {
-				$.ajax({
-					url : "updateLike.do",
-					type : "GET",
-					dataType : "json",
-					data : {
-						'postNum' : postNum,
-						'userId' : userID,
-						'postWriter' : postWriter,
-						'postRecommend' : postRecommend
-					},
-					success : function(likeCount) {
-						if (likeCount == 0) {
-							alert("추천완료.");
-						} else if (likeCount == 1) {
-							alert("추천취소");
-						}
-					},
-					error : function(request, status, error) {
-						alert("ajax 실패1");
-					}
-
-				});
-			}
-			
-			
-			
-		});
-		
-		
-		
-		
 		
 		
 		
@@ -236,43 +248,44 @@
 		
 		  
 		 /*댓글창*/
-			function commentSubmit() {
+		function commentSubmit() {
 			 
-			 	//비밀댓글 체크여부
-			 	//var commentSecret = 0;
-			 	if($("#commentSecret").is(":checked")){
-			 		$("#commentSecret").val() == 1;
-			 	} else {
-			 		$("#commentSecret").val() == 0;
-			 	}
+			 //비밀댓글 체크여부
+			 //var commentSecret = 0;
+			 if($("#commentSecret").is(":checked")){
+			 	$("#commentSecret").val() == 1;
+			 } else {
+			 	$("#commentSecret").val() == 0;
+			 }
+			if($("#commentTxt").val() == ''){
+				alert('내용을 입력해주세요!');
+				$("#commentTxt").focus();
+			}
 
-				if($("#commentTxt").val() == ''){
-					alert('내용을 입력해주세요!');
-					$("#commentTxt").focus();
+			$.ajax({
+				url : "comment.do",
+				type : "GET",
+				dataType : "text",
+				data : $("#commentForm").serialize(),
+				success : function(data) {
+					if (data == 1){
+						getCommentList();
+						$("#commentTxt").val('');
+					} else {
+						//alert("댓글 등록 실패");
+					}
 				}
 
-				$.ajax({
-					url : "comment.do",
-					type : "GET",
-					dataType : "text",
-					data : $("#commentForm").serialize(),
-					success : function(data) {
-						if (data == 1){
-							getCommentList();
-							$("#commentTxt").val('');
-						} else {
-							//alert("댓글 등록 실패");
-						}
-					}
-
-				});
-			}
+			});
+		}
 				
 			
 		$(function() {
 			getCommentList();
+			goDiary();
 		});
 		
+			
 		function getCommentList() {
 			
 			$.ajax({
@@ -293,6 +306,9 @@
 						
 							html += '<div style="width: 100%; margin-bottom: 30px; border: 1px solid white">';
 							html += '<ul style="font-size: 11pt"><strong>'+data[i]["commentWriter"]+'</strong></ul>';
+							html += '<p class="arrow_box" value="' + data[i]["commentWriter"] + '" onclick="goDiary()">홈페이지 바로가기</p>';
+							//html += '<button type="button" onclick="goDiary('+ data[i]["commentWriter"] +')"> 홈페이지 바로가기 </button>';
+							html += '<br>';
 							
 							if (data[i]["commentSecret"] == true) {
 								if(currentUser == data[i]["commentWriter"])	{
@@ -337,6 +353,15 @@
 			});
 			
 		}
+			
+	function goDiary() {
+		alert(11);
+		/*document.getElementsByClassName("arrow_box");
+		$(".arrow_box").on("click",function(){
+			alert($(this).text())
+		});*/
+	}
+	
 		 
 		
 	 function commentDelete(commentNum) {

@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var mySwiper = new Swiper('.swiper1', {
         slidesPerView: 4,
-        slidesPerGroup: 4,
+        slidesPerGroup: 2,
         observer: true,
         observeParents: true,
         spaceBetween: 24,
@@ -102,8 +102,12 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         breakpoints: {
             1280: {
+                slidesPerView: 4,
+                slidesPerGroup: 2,
+            },
+            1023: {
                 slidesPerView: 3,
-                slidesPerGroup: 3,
+                slidesPerGroup: 2,
             },
             /*720*/767: {
                 slidesPerView: 1,
