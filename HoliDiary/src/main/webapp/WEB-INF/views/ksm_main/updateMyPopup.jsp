@@ -45,7 +45,7 @@ $(function(){
 			<td><span><h3>Diary Title</h3></span></td>
 		</tr>
 		<tr>
-			<td><input value="${Diary.diaryTitle }" type="text" name="diaryTitle" autocomplete="off" style="border-bottom: solid 1px;"></td>
+			<td><input value="${Diary.diaryTitle }" type="text" name="diaryTitle" autocomplete="off" style="border-bottom: solid 1px; width: 300px;"></td>
 		</tr>
 	</table>
 	<br>
@@ -54,7 +54,7 @@ $(function(){
 			<td><span><h3>Diary Introduce</h3></span></td>
 		</tr>
 		<tr>
-			<td><input value="${Diary.diaryIntroduce }" type="text" name="diaryIntroduce" autocomplete="off" style="border-bottom: solid 1px;"></td>
+			<td><input value="${Diary.diaryIntroduce }" type="text" name="diaryIntroduce" autocomplete="off" style="border-bottom: solid 1px; width: 300px;"></td>
 			<td><input type="hidden" value="${Diary.diaryUserId }" name="diaryUserId"></td>
 		</tr>
 	</table>
