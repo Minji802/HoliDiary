@@ -7,11 +7,20 @@
 		select count(*) from post where postWriter = #{postWriter}
 	</select>
 	
+	<select id="countPostList2" resultType="int">
+		select count(*) from post where postWriter = #{postWriter} and postCategory=#{postCategory}
+	</select>
+	
 	<select id="showAllPostList" resultType="com.project.main.mj_write.DiaryPost">
 		select * from 
 		(select rownum as rn, postNum, postTitle, postTxt, postDate, postWriter, postCategory, postCountry, postRecommend, postImg, postWeather, postView
-		from (select * from post where postWriter = #{postWriter} order by postDate desc)) where rn &gt;= #{start} and rn &lt;= #{end}
-		
+		from (select * from post where postWriter = #{postWriter} order by postDate desc)) where rn &gt;= #{start} and rn &lt;= #{end} 
+	</select>
+	
+	<select id="showCategoryPostList" resultType="com.project.main.mj_write.DiaryPost">
+	select * from 
+		(select rownum as rn, postNum, postTitle, postTxt, postDate, postWriter, postCategory, postCountry, postRecommend, postImg, postWeather, postView
+		from (select * from post where postWriter = #{postWriter} and postCategory=#{postCategory} order by postDate desc)) where rn &gt;= #{start} and rn &lt;= #{end}  
 	</select>
 	
 	<select id="detailPost" resultType="com.project.main.mj_write.DiaryPost">

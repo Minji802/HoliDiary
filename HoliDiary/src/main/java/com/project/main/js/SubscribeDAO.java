@@ -80,8 +80,18 @@ public class SubscribeDAO {
 	}
 
 	// 구독 취소
-	public int cancelSubscribe(String subscribeNo) {
-		return ss.getMapper(SubscribeMapper.class).cancelSubscribe(subscribeNo);
+	public int cancelSubscribe(HttpServletRequest req, String diaryID) {
+		
+		User u = (User) req.getSession().getAttribute("loginUser");
+		
+		Subscribe subElement = new Subscribe();		
+		
+		subElement.setSubscribeFrom(u.getUserID());
+		subElement.setSubscribeTo(diaryID);
+		System.out.println(u.getUserID());
+		System.out.println(diaryID);
+		
+		return ss.getMapper(SubscribeMapper.class).cancelSubscribe(subElement);
 	}
 
 	// 구독
@@ -102,23 +112,41 @@ public class SubscribeDAO {
 	public void getSubscriber(HttpServletRequest req) {
 		User u = (User) req.getSession().getAttribute("loginUser");
 		
-		String[] subscribes = ss.getMapper(SubscribeMapper.class).getSubscriber(u);
-		
+		String[] subscribers = ss.getMapper(SubscribeMapper.class).getSubscriber(u);
 		ArrayList<SubscribeInfo> infos = new ArrayList<SubscribeInfo>();
 		Subscribe s = new Subscribe(); 
+		
 
-		for (int i = 0; i < subscribes.length; i++) {
-			String subscribeID = subscribes[i];
+		for (int i = 0; i < subscribers.length; i++) {
+			String subscribeID = subscribers[i];
 			s.setSubscribeFrom(subscribeID);
 			s.setSubscribeTo(u.getUserID());
 			
 			//System.out.println(subscribeID);
 			SubscribeInfo info = ss.getMapper(SubscribeMapper.class).getSubscriberInfo(s);
-			infos.add(info);
 			//System.out.println(i + "다이어리 : " + info.getDiaryTitle());
 			//System.out.println(i + "아이디 : " + info.getUserID());
+			info.setSubCheck(subscriberCheck(req,subscribers[i]));
+			System.out.println(subscriberCheck(req,subscribers[i]));
+			infos.add(info);
 		}
+
 		req.setAttribute("infos", infos);
+	}
+	
+	// 구독 체크
+	public String subscriberCheck(HttpServletRequest req, String subscribers) {
+		User u = (User) req.getSession().getAttribute("loginUser");
+		String[] subscribings = ss.getMapper(SubscribeMapper.class).getSubscribing(u);
+		
+		for (int j = 0; j < subscribings.length; j++) {
+			//System.out.println("j : " + j);
+			if(subscribings[j].equals(subscribers)) {
+				return "yes";
+			}
+		}
+		
+		return "no";
 	}
 
 }

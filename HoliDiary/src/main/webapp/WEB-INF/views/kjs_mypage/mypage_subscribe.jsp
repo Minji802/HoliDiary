@@ -33,14 +33,14 @@
 				</div>
 				<div class="mypage_mysub_scroll">
 					<c:forEach var="info" items="${infos}">
-						<div class="mysub_info_list_box" onclick="mypagePopup('${info.userID }')">
+						<div id="mysub_info_list_box" onclick="mypagePopup('${info.userID }')">
 							<div class="mysub_info_img_box">
 								<img src="./resources/kjs_profileImg/${info.userImg}">
 							</div>
 							<div class="mysub_info_nickname">${info.userNickname}</div>
 							<div class="mysub_info_diarytitle">${info.diaryTitle}</div>
 							<div class="mysub_info_canclesub">
-								<button type="button" onclick="event.stopPropagation();subscribeCancel('${info.subscribeNo}');">구독취소</button>
+								<button type="button" onclick="event.stopPropagation();subscribeCancel('${info.userID}');">구독취소</button>
 							</div>
 						</div>
 					</c:forEach>

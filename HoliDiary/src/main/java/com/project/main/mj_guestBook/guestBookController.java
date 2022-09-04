@@ -15,6 +15,7 @@ import com.project.main.js.Subscribe;
 import com.project.main.js.User;
 import com.project.main.js.UserDAO;
 import com.project.main.mj_write.Comment;
+import com.project.main.mj_write.DiaryPost;
 import com.project.main.sm.Category;
 import com.project.main.sm.Diary;
 import com.project.main.sm.DiaryDAO;
@@ -33,10 +34,10 @@ public class guestBookController {
 
 	@RequestMapping(value = "/guestBookGo", method = RequestMethod.GET)
 	public String goGuestBook(HttpServletRequest req, Diary d, @RequestParam("userId") String userId, User u,
-			Category cate, GuestBook gb, Subscribe s, Comment c) {
+			Category cate, GuestBook gb, Subscribe s, Comment c, DiaryPost p) {
 
 		if (uDAO.loginCheck(req)) {
-			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c);
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 
 		}
 

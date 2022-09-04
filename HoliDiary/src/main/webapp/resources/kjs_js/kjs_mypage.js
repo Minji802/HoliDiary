@@ -24,42 +24,53 @@ $(function() {
 	    
 	    // 사용자 알림
 	    if(copy) {
-	    	alert("마이다이어리 주소가 복사되었습니다.");
+	    	swal("마이다이어리 주소가 복사되었습니다.");
 	    }
 	});
 	
 	// 마이페이지 카카오 연동 처리
 	$("#mypage_kakao_checkbox").click(function(){
 		if($(this).is(":checked") == true){
-			if(confirm('카카오를 연동하시겠습니까?')){
-				// 카카오 연결
-				  Kakao.Auth.login({
-				      success: function(authObj) {
-				        //alert(JSON.stringify(authObj));
-						            // db값에 kakaID값 넣기
-						        	Kakao.Auth.authorize({
-						        	redirectUri: 'http://localhost/main/connect.kakao'
-						        	});
-						          },
-				      fail: function(err) {
-				        alert(JSON.stringify(err))
-				      }
-				    })
+		// 카카오 연결
+		  Kakao.Auth.login({
+		      success: function(authObj) {
+		        //alert(JSON.stringify(authObj));
+				            // db값에 kakaID값 넣기
+				        	Kakao.Auth.authorize({
+				        	redirectUri: 'http://localhost/main/connect.kakao'
+				        	});
+				          },
+		      fail: function(err) {
+		        alert(JSON.stringify(err))
+		      }
+		    })
 				$(this).prop("checked", true);
-			}else{
-				$(this).prop("checked", false);
-				return;
-			}
 		}
 		if($(this).is(":checked") == false){
-			if(confirm('카카오로 로그인하신 후에 해제가 됩니다. 카카오연동 해제하시겠습니까?')){
-				// 카카오 아이디 값 삭제
-				$(this).prop("checked", false);
-				location.href='disconnect.sns';
-			}else{
-				$(this).prop("checked", true);
-				return;
+		swal("카카오로 로그인하신 후에 해제가 됩니다. 카카오연동 해제하시겠습니까?", {
+			buttons: {
+				  cancel: {
+					    text: "취소",
+					    value: false,
+					    visible: true,
+					    closeModal: true,
+					  },
+					  confirm: {
+					    text: "연동해제",
+					    value: true,
+					    visible: true,
+					    closeModal: true
+					  }
 			}
+				}).then((result) => {
+					if(result){
+						$(this).prop("checked", false);
+						location.href='disconnect.sns';
+					}else{
+						$(this).prop("checked", true);
+						return;
+					}
+				})
 		}
 	});
 	
@@ -67,6 +78,7 @@ $(function() {
 	$("#mypage_naver_checkbox").click(function(){
 		
 		if($(this).is(":checked") == true){
+			
 			if(confirm('네이버를 연동하시겠습니까?')){
 				// 네이버 연동
 				var btnNaverLogin = document.getElementById("naver_id_login").firstChild;
@@ -216,7 +228,7 @@ function mypageCheckUser(){
 			success : function(result) {
 				console.log(result);
 				if(result == 0){
-					alert('로그인 후 이용해주세요');
+					swal("로그인 후 이용해주세요");
 					return false;
 				} else{
 					location.href="mypage.myinfo.go";

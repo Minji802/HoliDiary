@@ -22,6 +22,7 @@ public class BestHoliController {
 	@RequestMapping(value = "/bestHoli.go", method = RequestMethod.GET)
 	public String bestHoliGo(HomePostSelector pSel,HttpServletRequest req) {
 		uDAO.loginCheck(req);
+		bDAO.getBestHoliRanking(req);
 		bDAO.getBestHoli(req);
 		req.setAttribute("contentPage", "sej_bestHoli/bestHoli.jsp");
 		return "index";

@@ -46,12 +46,14 @@
 		from subscribetable s, diarytable d, user_table u
 		where subscribeto = #{id}
 			and (u.usernickname like '%'||#{search}||'%' or d.diarytitle like '%'||#{search}||'%')
-	    	and s.subscribeto = d.diaryuserid
+	    	and s.subscribefrom = d.diaryuserid
 	   		and d.diaryuserid = u.userid
 	</select>
 	
 	<delete id="cancelSubscribe">
-		delete from subscribetable where subscribeno = #{subscribeNo}
+		delete from subscribetable 
+		where subscribefrom = #{subscribeFrom}
+			and subscribeto = #{subscribeTo}
 	</delete>
 	
 	<insert id="subscribe">

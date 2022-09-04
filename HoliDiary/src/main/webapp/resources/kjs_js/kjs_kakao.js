@@ -27,7 +27,7 @@ function loginWithKakao() {
 		        					redirectUri: 'http://localhost/main/social.kakao'
 		        				})
 		        			}else if(getData == 2 || getData == 0){
-		        				alert('회원가입을 먼저 진행해주세요');
+		        				swal("회원가입을 먼저 진행해주세요");
 		        			}
 		        		},
 		        		error : function(request,status,error) {
@@ -72,9 +72,9 @@ function joinWithKakao() {
 			        		success : function(getData){
 			        			console.log(getData);
 			        			if(getData == 1){
-			        				alert('이미 등록된 회원입니다')
+			        				swal("이미 등록된 회원입니다");
 			        			}else if(getData == 2){
-			        				alert('네이버로 이미 등록된 회원입니다. 아닌 경우 간편회원가입 이용후, 카카오연동을 이용해주세요.');
+			        				swal("네이버로 이미 등록된 회원입니다. 아닌 경우 간편회원가입 이용후, 카카오연동을 이용해주세요.");
 			        			} else {
 			        				Kakao.Auth.authorize({
 			        					redirectUri: 'http://localhost/main/social.kakao'

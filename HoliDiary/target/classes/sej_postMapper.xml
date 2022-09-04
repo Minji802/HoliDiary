@@ -71,5 +71,9 @@
 	<select id="getBestHoli" resultType="com.project.main.sej.PostContent">
 		select * from (select * from post order by postrecommend desc) where rownum &lt;=4
 	</select>
+	
+	<select id="getBestHoliRanking" resultType="com.project.main.sej.PostContent">
+		select * from (select * from post order by postrecommend desc) where rownum &lt;=3
+	</select>
 
 </mapper>

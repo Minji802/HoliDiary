@@ -95,10 +95,10 @@
 .mysub_info_img_box{
 	position: absolute;
 	width: 33px;
-	height: 40px;
+	height: 33px;
 	top: 50%;
-	margin-top: -20px;
-	left: 10px;
+	margin-top: -16.5px;
+	left: 20px;
 	border-radius: 50%;
 	text-align: center;
 	overflow: hidden;
@@ -112,8 +112,8 @@
 
 .mysub_info_nickname{
 	position: absolute;
-	bottom: 25px;
-	left: 45px;
+	bottom: 20px;
+	left: 60px;
 	width: 200px;
 	height: 20px;
 	font-size: 13pt;

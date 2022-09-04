@@ -39,9 +39,18 @@
 							</div>
 							<div class="mysub_info_nickname">${info.userNickname}</div>
 							<div class="mysub_info_diarytitle">${info.diaryTitle}</div>
-							<div class="mysub_info_canclesub">
-								<button type="button" onclick="event.stopPropagation();subscribeCancel('${info.subscribeNo}');">구독취소</button>
-							</div>
+							<c:choose>
+								<c:when test="${info.subCheck eq 'yes'}">
+									<div class="mysub_info_canclesub">
+										<button type="button" onclick="event.stopPropagation();subscribeCancel('${info.userID}');">구독취소</button>
+									</div>
+								</c:when>
+								<c:when test="${info.subCheck eq 'no'}">
+									<div class="mysub_info_canclesub">
+										<button type="button" onclick="event.stopPropagation();subscribeDo('${info.userID }');">구독</button>
+									</div>
+							</c:when>
+							</c:choose>
 						</div>
 					</c:forEach>
 					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

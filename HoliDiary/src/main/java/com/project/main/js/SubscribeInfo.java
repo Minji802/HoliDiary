@@ -7,18 +7,21 @@ public class SubscribeInfo {
 	private String userImg;
 	private String userNickname;
 	private String diaryTitle;
+	private String subCheck;
 	
 	public SubscribeInfo() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SubscribeInfo(int subscribeNo, String userID, String userImg, String userNickname, String diaryTitle) {
+	public SubscribeInfo(int subscribeNo, String userID, String userImg, String userNickname, String diaryTitle,
+			String subCheck) {
 		super();
 		this.subscribeNo = subscribeNo;
 		this.userID = userID;
 		this.userImg = userImg;
 		this.userNickname = userNickname;
 		this.diaryTitle = diaryTitle;
+		this.subCheck = subCheck;
 	}
 
 	public int getSubscribeNo() {
@@ -61,7 +64,13 @@ public class SubscribeInfo {
 		this.diaryTitle = diaryTitle;
 	}
 
-	
-	
+	public String getSubCheck() {
+		return subCheck;
+	}
 
+	public void setSubCheck(String subCheck) {
+		this.subCheck = subCheck;
+	}
+	
+	
 }

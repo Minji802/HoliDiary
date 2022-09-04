@@ -4,30 +4,30 @@
 	width: 100%;
 }
 
-#leftSide{
+#leftSide {
 	float: left;
 	margin-bottom: 10px;
 	color: grey;
 }
 
-.postDetailWriter{
+.postDetailWriter {
 	float: left;
 	width: 10%;
 }
 
-.postDetailDate{
+.postDetailDate {
 	float: left;
-	width: 10%;	
+	width: 10%;
 }
 
-.postDetailCategory{
+.postDetailCategory {
 	float: left;
-	width: 10%;	
+	width: 20%;
 }
 
-.postDetailCountry{
+.postDetailCountry {
 	float: left;
-	width: 60%;	
+	width: 50%;
 }
 
 #postDetailView {
@@ -40,9 +40,118 @@
 
 #rightSide {
 	float: right;
+	text-align: right;
 }
 
 #GoToList {
 	float: right;
+	text-align: right;
+	
 }
 
+.commentName {
+	cursor: pointer;
+}
+
+.popupLayer {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	border: solid 2px #d0d0d0;
+	width: 350px;
+	height: 150px;
+	padding: 10px;
+}
+
+.popupLayer div {
+	position: absolute;
+	top: 5px;
+	right: 5px
+}
+
+.link-icon2 {
+	position: relative;
+	display: inline-block;
+	width: auto;
+	font-size: 10px;
+	font-weight: 500;
+	color: #333;
+	margin-right: 10px;
+	padding-top: 50px;
+}
+
+.link-icon2.twitter {
+	background-repeat: no-repeat;
+}
+
+.link-icon2.facebook {
+	background-repeat: no-repeat;
+}
+
+.mypage_myinfo_mydiaryURL {
+	text-align: right;
+	position: relative;
+}
+
+#mapage_mydiaryURL_box {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	background-color: #FFDE59;
+	width: 130px;
+	height: 40px;
+	border-radius: 10px;
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 15pt;
+	cursor: pointer;
+}
+
+#mapage_mydiaryURL_box:hover {
+	background-color: #ffd737;
+}
+
+#mapage_mydiaryURL_box span {
+	position: absolute;
+	top: 28%;
+	left: 14%;
+}
+
+#mapage_mydiaryURL_box img {
+	width: 28px;
+	position: absolute;
+	top: 23%;
+	right: 10%;
+}
+
+.mypage_myinfo_mydiaryURL div:nth-child(2) {
+	display: none;
+	position: absolute;
+	top: 50px;
+	right: 0;
+	width: 300px;
+	height: 50px;
+	background-color: #fbf8f4;
+	border-radius: 10px;
+	box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 1);
+}
+
+#mp_mydiary_copyURL {
+	width: 200px;
+	height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+	margin-top: 10px;
+	border: 2px solid #c0c0c0;
+	outline: none;
+}
+
+#mp_mydiary_copy_btn {
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+	border: none;
+	background-color: #c0c0c0;
+	margin-top: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+}

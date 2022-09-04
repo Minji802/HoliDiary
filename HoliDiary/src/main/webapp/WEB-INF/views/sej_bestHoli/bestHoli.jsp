@@ -21,15 +21,58 @@
   justify-content: center;
   align-items: center;
 } */
+@font-face {
+    font-family: 'Ballet Hormony';
+    src: url('resources/sej_font/Ballet Harmony.ttf') format('truetype');
+}
+
 
 .bestHoliContent {
-  height: 80vh;
+  margin-top: 180px;
+}
+.bestHoliSliderPlace {
+  height: 1500px;
   width: 100%;
   display: flex;
   font-family: "Montserrat", sans-serif;
   flex-direction: column;
-  justify-content: center;
+ /*  justify-content: center; */
   align-items: center;
+  /* margin-top: 180px; */
+}
+.bestHoliTitle {
+ 	font-family: 'Ballet Hormony';
+ 	color: #FFDE59;
+ 	letter-spacing: 1px;
+ 	font-size: 50px;
+ 	position: relative;
+ 	/* top: -100px; */
+}
+.bestHoliTitle span {
+ 	color: #6667AB;
+}
+.bestHoliRanking {
+	display: flex;
+	margin-bottom: 200px;
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.bestHoliRankingCrown {
+	position: relative;
+	left: 600px;
+	top: -130px;
+	width: 150px;
+	height: 130px;
+}
+.bestHoliRankingImg {
+	width: 391px;
+	height: 315px;
+}
+.bestHoliRankingImg img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 .swiper-container {
   height: 400px;
@@ -179,6 +222,19 @@
 <body>
 <!-- partial:index.partial.html -->
 <div class="bestHoliContent">
+<div class="bestHoliRanking">
+	<div class="bestHoliTitle">
+	<img class="bestHoliRankingCrown" src="resources/sej_img/bestHoli/free-icon-crown-1076305.png">
+	<h1 style="display: inline">Best&nbsp;<span>Holi</span></h1>
+	</div>
+	<br>
+	<c:forEach var="bh1" items="${bestHolisR }">
+	<div class="bestHoliRankingImg">
+		<img src="${bh1.postimg }" onerror="this.src='resources/alterImg/free-icon-picture-6490775.png'">
+	</div>
+	</c:forEach>
+</div>
+<div class="bestHoliSliderPlace">
 <div class="swiper-container">
     <div class="swiper-wrapper">
     <c:forEach var="bh" items="${bestHolis }">
@@ -270,6 +326,8 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore molestias itaqu
     
     <div class="swiper-pagination"></div>
 </div>
+</div>
+
 </div>
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js'></script><script  src="./script.js"></script>

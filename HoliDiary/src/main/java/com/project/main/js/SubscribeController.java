@@ -42,17 +42,17 @@ public class SubscribeController {
 
 		// 구독 취소
 		@RequestMapping(value = "/mysub.cancel", method = RequestMethod.GET)
-		public @ResponseBody int mysubCancel(HttpServletRequest req, @RequestParam("no") String subscribeNo) {
+		public @ResponseBody int mysubCancel(HttpServletRequest req, @RequestParam("id") String diaryID) {
 			
-			return sDAO.cancelSubscribe(subscribeNo);
+			return sDAO.cancelSubscribe(req, diaryID);
 			
 		}
 		
 		// 구독
 		@RequestMapping(value = "/subscribe.do", method = RequestMethod.GET)
-		public @ResponseBody int subscribeDo(HttpServletRequest req, @RequestParam("id") String DiaryID) {
+		public @ResponseBody int subscribeDo(HttpServletRequest req, @RequestParam("id") String diaryID) {
 			
-			return sDAO.subscribe(req, DiaryID);
+			return sDAO.subscribe(req, diaryID);
 			
 		}
 

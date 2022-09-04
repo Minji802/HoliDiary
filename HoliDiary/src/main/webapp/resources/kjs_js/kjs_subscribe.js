@@ -86,18 +86,12 @@ function mysubscriberSearch(){
 	});
 }
 
-function subscribeCancel(no){
-	
-	//alert(no);
-	
-	let ok = confirm('정말 구독 취소하시겠습니까?');
-	if(ok){
-		
+function subscribeCancel(id){
 		$.ajax({
 			url: 'mysub.cancel',
 			type : 'GET',
 			dataType : 'text',
-			data : {'no': no},
+			data : {'id': id},
 			success : function(data) {
 				if(data == 1){
 					location.reload();
@@ -109,8 +103,6 @@ function subscribeCancel(no){
 				alert('문제가 발생했습니다. 다시 이용해주세요.')
 			}
 		});
-		
-	}
 }
 
 function mypagePopup(id){

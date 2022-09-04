@@ -18,4 +18,6 @@ public interface Sej_postMapper {
 
 	public List<PostContent> getBestHoli();
 
+	public List<PostContent> getBestHoliRanking();
+
 }

@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
 <body>
 	<div id="content_mypage">
@@ -34,16 +34,18 @@
 				<div class="mypage_mydiary_follower">
 					<div class="mypage_mydiary_follower_title"><span>오늘 방문자</span></div>
 					<div id="mypage_mydiary_scroll">
-					<c:forEach var="visit" items="${visits }">
-					<div class="mypage_mydiary_list" onclick="mypagePopup('${visit.userID }')">
-						<div class="mypage_mydiary_follower_img">
+ 					<c:forEach var="visit" items="${visits }">
+					<div class="mypage_mydiary_list" >
+						<div class="mypage_mydiary_visit_img" onclick="mypagePopup('${visit.userID }')">
 							<img src="./resources/kjs_profileImg/${visit.userImg}">
 						</div>
-						<div>
-							${visit.userNickname}
+						<div class="mypage_mydiary_follower_nickname">
+							<span onclick="mypagePopup('${visit.userID }')">${visit.userNickname}</span>
 						</div>
 					</div>
-					</c:forEach>
+					</c:forEach> 
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 					</div>
 				</div>
 			</div>
@@ -52,24 +54,24 @@
 
 	
 	<script type="text/javascript">
+	
 	// x축 날짜 구하기
 	var today = new Date();
 	var days = [];
 	
 	for(var i = 0; i < 6; i++){
 		today = new Date();
-		
 		days[i] = new Date(today.setDate(today.getDate() - (5-i)));
 		//console.log(days[i]);
 		
- 		var month = days[i].getMonth();
+ 		var month = days[i].getMonth() + 1;
  		var date = days[i].getDate();
  		
  		var labels = month + "월" + date + "일";
  		
  		days[i] = labels;
  		
-		//console.log(month + "월" + date + "일");
+		//console.log(days[i]);
 	}
 	
 	// y축 데이터 구하기
@@ -78,51 +80,29 @@
 		type : 'GET',
 		dataType : 'json',
 		success : function(visit) {
-			
-			console.log(visit)
-			
 			const ctx = document.getElementById('myChart').getContext('2d');
 			const myChart = new Chart(ctx, {
 			    type: 'line',
 			    data: {
-			    	labels: days,
+			        labels: days,
 			        datasets: [{
 			            label: '방문자 수',
 			            data: visit,
-			            fill: false,
-			            tension: 0,
 			            backgroundColor: '#6667AB',
-			            borderColor: "#6667AB",
+			            borderColor: '#6667AB',
 			            borderWidth: 1
 			        }]
 			    },
-			    options: { 
-			    	 plugins: {
-			    	      tooltip: {
-			    	        Mode: 'nearest',
-			    	        intersect: false,
-			    	        axis: 'xy'
-			    	      }
-			    },
-			    hover: {
-			        mode: 'nearest',
-			        intersec: false
-			      },
+			    options: {
+			    	interaction: {
+			    	      intersect: false,
+			    	      mode: 'index',
+			    	    },
 			    	responsive: true,
 			        scales: {
-			            x: {
-			                type: 'time',
-			                time: {
-			                  unit: 'day'
-			                }
-			            },
 			            y: {
-			                beginAtZero: true,
-			                ticks: {
-			                stepSize: 1
-			                }
+			                beginAtZero: true
 			            }
-
 			        }
 			    }
 			});

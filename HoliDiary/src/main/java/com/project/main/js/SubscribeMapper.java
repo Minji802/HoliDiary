@@ -11,7 +11,7 @@ public interface SubscribeMapper {
 
 	List<SubscribeInfo> searchSubscribe(Map<String, String> element);
 
-	int cancelSubscribe(String subscribeNo);
+	int cancelSubscribe(Subscribe subElement);
 
 	Subscribe checkMySubscribe(Subscribe s);
 

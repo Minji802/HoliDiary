@@ -23,5 +23,15 @@ public class BestHoliDAO {
 		
 		
 	}
+	
+	public void getBestHoliRanking(HttpServletRequest req) {
+		try {
+			req.setAttribute("bestHolisR", ss.getMapper(Sej_postMapper.class).getBestHoliRanking());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 }

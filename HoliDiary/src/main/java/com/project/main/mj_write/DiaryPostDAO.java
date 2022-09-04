@@ -23,15 +23,21 @@ public class DiaryPostDAO {
 	private SqlSession ss;
 
 	public int countPostList(HttpServletRequest req, DiaryPost p, String userId) {
-		System.out.println(userId);
 		p.setPostWriter(userId);
 
 		return ss.getMapper(DiaryPostMapper.class).countPostList(p);
 	}
+	
+	public int countPostList2(HttpServletRequest req, DiaryPost p, String userId, String category) {
+		p.setPostWriter(userId);
+		p.setPostCategory(category);
+
+		return ss.getMapper(DiaryPostMapper.class).countPostList2(p);
+	}
+
 
 	public void getAllList(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
 			String cntPerPage) {
-		System.out.println(userId);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "15";
@@ -41,8 +47,6 @@ public class DiaryPostDAO {
 			cntPerPage = "15";
 		}
 		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		System.out.println(pp.getStart());
-		System.out.println(pp.getEnd());
 		DiaryPost p = new DiaryPost();
 		p.setPostWriter(userId);
 		p.setStart(pp.getStart());
@@ -58,7 +62,6 @@ public class DiaryPostDAO {
 	
 	public void getAllList2(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
 			String cntPerPage) {
-		System.out.println(userId);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "16";
@@ -68,8 +71,6 @@ public class DiaryPostDAO {
 			cntPerPage = "16";
 		}
 		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		System.out.println(pp.getStart());
-		System.out.println(pp.getEnd());
 		DiaryPost p = new DiaryPost();
 		p.setPostWriter(userId);
 		p.setStart(pp.getStart());
@@ -82,6 +83,59 @@ public class DiaryPostDAO {
 		req.setAttribute("paging", pp);
 		
 	}
+	
+	public void getCategoryList(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
+			String cntPerPage, String category) {
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "15";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "15";
+		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		p.setPostCategory(category);
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showCategoryPostList(p);
+
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+		
+	}
+	
+	public void getcategoryGallery(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
+			String cntPerPage, String category) {
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "16";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "16";
+		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		p.setPostCategory(category);
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showCategoryPostList(p);
+
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+		
+	}
+
 
 	public void detailPost(DiaryPost p, HttpServletRequest req, Comment c, Like l) {
 		DiaryPostMapper pm = ss.getMapper(DiaryPostMapper.class);
@@ -423,6 +477,10 @@ public class DiaryPostDAO {
 		return ss.getMapper(LikeMapper.class).checkLike(l);
 	}
 
+	
+
+
+	
 	
 
 	/*

@@ -226,7 +226,7 @@ p, p a { font-size: 12px;text-align: center; color: #888; }
 					
 					
 					<c:forEach var="category" varStatus="status" items="${Diary.categoriesArray }">
-					<a href="#" class="item-link il-${status.count }" id="pageLink"> <svg
+					<a href="category-list?userId=${User.userID}&nowPage=1&cntPerPage=15&category=${category }" class="item-link il-${status.count }" id="pageLink"> <svg
 							class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16"
 							height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -314,7 +314,7 @@ p, p a { font-size: 12px;text-align: center; color: #888; }
 			 </c:when>
 			 <c:when test="${not empty Subcribe}">
 			 	<div class="action-buttons-wrapper">
-					<button class="action-buttons btn-upload" style="background: ${Diary.themeColor}" onclick="subscribeCancel('${Subcribe.subscribeNO}');">구독취소</button>
+					<button class="action-buttons btn-upload" style="background: ${Diary.themeColor}" onclick="subscribeCancel('${Diary.diaryUserId}');">구독취소</button>
 				</div>
 			 </c:when>
 			<c:otherwise>

@@ -5,6 +5,8 @@ import java.util.List;
 public interface DiaryPostMapper {
 	
 	public int countPostList(DiaryPost p);
+	
+	public int countPostList2(DiaryPost p);
 
 	public List<DiaryPost> showAllPostList(DiaryPost p);
 
@@ -19,6 +21,10 @@ public interface DiaryPostMapper {
 	public List<DiaryPost> showAllCommentList(Comment c);
 
 	public int countPostView(DiaryPost p);
+
+	public List<DiaryPost> showCategoryPostList(DiaryPost p);
+
+	
 
 
 	

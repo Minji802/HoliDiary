@@ -50,6 +50,10 @@
 	border-radius: 10px;
 }
 
+.mypage_mydiary_follower_title{
+	margin-bottom: 15px;
+}
+
 .mypage_mydiary_follower_title span{
 	display: inline-block;
 	font-family: 'GangwonEdu_OTFBoldA';
@@ -62,23 +66,33 @@
 
 .mypage_mydiary_list{
 	display: inline-block;
-	border: 1px solid black;
 	width: 80px;
-	height: 80px;
-	margin: 15px;
-	cursor: pointer;
+	height: 100px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
-.mypage_mydiary_follower_img{
+.mypage_mydiary_visit_img{
+	display:inline-block;
 	width: 33px;
-	height: 40px;
+	height: 33px;
 	border-radius: 50%;
 	text-align: center;
 	overflow: hidden;
+	cursor: pointer;
 }
 
-.mypage_mydiary_follower_img img{
+.mypage_mydiary_visit_img img{
 	width: 33px;
 	height: 33px;
 	object-fit: cover;
+}
+
+.mypage_mydiary_follower_nickname span{
+	cursor: pointer;
+}
+
+.mypage_mydiary_follower_nickname span:hover{
+	border-bottom: 1px solid gray;
 }
