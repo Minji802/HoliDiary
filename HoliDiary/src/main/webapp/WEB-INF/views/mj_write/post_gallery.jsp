@@ -16,11 +16,11 @@
 	}
 	
 	function getList() {
-		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=15";
+		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=10";
 	}
 
 	function getGallery() {
-		location.href="post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=15";
+		location.href="post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=9";
 	}
 </script>
 
@@ -34,12 +34,12 @@
 	<div id="countPost">
 		<div style="float: right;">
 			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
-				<option value="16"
-					<c:if test="${paging.cntPerPage == 16 }">selected</c:if>>16줄 보기</option>
-				<option value="24"
-					<c:if test="${paging.cntPerPage == 24 }">selected</c:if>>24줄 보기</option>
-				<option value="32"
-					<c:if test="${paging.cntPerPage == 32 }">selected</c:if>>32줄 보기</option>
+				<option value="9"
+					<c:if test="${paging.cntPerPage == 9 }">selected</c:if>>9개 보기</option>
+				<option value="15"
+					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15개 보기</option>
+				<option value="21"
+					<c:if test="${paging.cntPerPage == 21 }">selected</c:if>>21개 보기</option>
 			</select>
 		</div>
 	</div>
@@ -49,10 +49,10 @@
 	<div style="display: inline-table;">
 	<c:forEach var="dp" items="${DiaryPosts}" varStatus="status">
 		<table id="postListTbl" class="postList" border=1
-			style="width: 235px; text-align: center; float: left;">
+			style="width: 300px; text-align: center; float: left;">
 		<tr>
 				<td colspan="2"><img src="${dp.postImg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"
-					style="width: 230px; height: 170px;"></td>
+					style="width: 300px; height: 170px;"></td>
 			</tr>
 			<tr>
 				<td class="postTitle" colspan="2"><a

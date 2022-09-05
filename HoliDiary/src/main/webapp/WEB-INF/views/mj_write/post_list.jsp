@@ -16,11 +16,11 @@
 	}
 	
 	function getList() {
-		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=15";
+		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=10";
 	}
 
 	function getGallery() {
-		location.href="post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=16";
+		location.href="post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=9";
 	}
 </script>
 
@@ -35,12 +35,12 @@
 	<div id="countPost">
 		<div style="float: right;">
 			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
+				<option value="10"
+					<c:if test="${paging.cntPerPage == 10 }">selected</c:if>>10줄 보기</option>
 				<option value="15"
 					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15줄 보기</option>
 				<option value="20"
 					<c:if test="${paging.cntPerPage == 20 }">selected</c:if>>20줄 보기</option>
-				<option value="25"
-					<c:if test="${paging.cntPerPage == 25 }">selected</c:if>>25줄 보기</option>
 			</select>
 		</div>
 	</div>

@@ -40,11 +40,11 @@ public class DiaryPostDAO {
 			String cntPerPage) {
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "15";
+			cntPerPage = "10";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) {
-			cntPerPage = "15";
+			cntPerPage = "10";
 		}
 		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		DiaryPost p = new DiaryPost();
@@ -64,11 +64,11 @@ public class DiaryPostDAO {
 			String cntPerPage) {
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "16";
+			cntPerPage = "9";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) {
-			cntPerPage = "16";
+			cntPerPage = "9";
 		}
 		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		DiaryPost p = new DiaryPost();
@@ -89,11 +89,11 @@ public class DiaryPostDAO {
 		
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "15";
+			cntPerPage = "10";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) {
-			cntPerPage = "15";
+			cntPerPage = "10";
 		}
 		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		DiaryPost p = new DiaryPost();
@@ -115,11 +115,11 @@ public class DiaryPostDAO {
 		
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "16";
+			cntPerPage = "9";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) {
-			cntPerPage = "16";
+			cntPerPage = "9";
 		}
 		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		DiaryPost p = new DiaryPost();
