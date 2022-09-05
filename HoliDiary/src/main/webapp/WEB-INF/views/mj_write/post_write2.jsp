@@ -68,7 +68,7 @@
 			</div>
 
 			<div style="margin-top: 30px">
-				<textarea id="postTxt" name="postTxt"></textarea>
+				<textarea id="postTxt" name="postTxt" maxlength="10000"></textarea>
 			</div>
 			
 			<input type="hidden" id="postImg" name="postImg">

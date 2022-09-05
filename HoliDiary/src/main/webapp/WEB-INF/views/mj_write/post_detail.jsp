@@ -129,8 +129,8 @@
 				id="postWriter" name="postWriter" value="${DiaryPost.postWriter }">
 			<input type="hidden" id="commentWriter" name="commentWriter"
 				value="${sessionScope.loginUser.userID}">
-			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요."
-				style="width: 95%; height: 100px;"></textarea>
+			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요." maxlength="800"
+				style="width: 95%; height: 100px; resize: none;"></textarea>
 			<button type="button" onclick="commentSubmit()">등록</button>
 		</div>
 	</form>

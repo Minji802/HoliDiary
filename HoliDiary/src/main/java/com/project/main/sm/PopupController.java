@@ -116,10 +116,11 @@ public class PopupController {
 	
 	// 다이어리 - 도움말 들어가기
 	@RequestMapping(value = "/advicePage", method = RequestMethod.GET)
-	public String advicePage(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s, @RequestParam("userId") String userId, Comment c) {
+	public String advicePage(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s,
+			@RequestParam("userId") String userId, Comment c, DiaryPost p) {
 		
 		uDAO.loginCheck(req);
-		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c);
+		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 		req.setAttribute("popupContentPage", "advicePage.jsp");
 		return "ksm_main/popup";
 	}
