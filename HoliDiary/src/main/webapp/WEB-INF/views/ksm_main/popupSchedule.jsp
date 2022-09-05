@@ -539,6 +539,8 @@ $(function(){
 		let ScheduleEndTime1 = document.getElementById("makeEndTime").value;
 		let scheduleContent = $("#day-events-list").html();
 
+		
+		
 		$.ajax({
 			url : "schedule.insert",
 			type : "GET",
@@ -562,13 +564,17 @@ $(function(){
 				}				
 			}
 		});
+		
+		
 	});
 	 
 	 
 	 //스케줄러 삭제 - db 내용 동시에 삭제 - pk로 삭제 / 등록날짜 
 	$('#rewriteBtn').click(function(){
-			 
+		
+		
 		var result = confirm("모두 삭제하시겠습니까?"); 
+		
 		if(result){
 		    alert("일정을 모두 삭제합니다");
 		
@@ -647,7 +653,7 @@ $(function(){
 							<div class="qtr">
 								<label class="add-event-label"> 시작 시간 <input type="time"
 									id="makeStartTime" class="inputText" onblur="makeST();">
-									<input class="add-event-edit" placeholder="8:15"
+									<input type="hidden" class="add-event-edit" placeholder="8:15"
 									id="input-add-event-start-time"
 									data-options="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24"
 									data-format="datetime"> <input type="hidden"
@@ -659,7 +665,7 @@ $(function(){
 							<div class="qtr">
 								<label class="add-event-label"> 마침 시간 <input type="time"
 									id="makeEndTime" class="inputText" onblur="makeET()";>
-									<input class="add-event-edit" placeholder="9:00"
+									<input type="hidden" class="add-event-edit" placeholder="9:00"
 									id="input-add-event-end-time"
 									data-options="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24"
 									data-format="datetime"> <input type="hidden"
@@ -682,9 +688,9 @@ $(function(){
 					<div class="day-inspiration-quote" id="inspirational-quote">
 						Every child is an artist. The problem is how to remain an artist
 						once he grows up. –Pablo Picasso</div>
-					<div class="event-btn--lastsave-all">
-						<button id="rewriteBtn" class="event-btn--lastsave">모두
-							삭제하기</button>
+					
+					<div id="event-btn--lastsave-all" class="event-btn--lastsave-all">
+						<button id="rewriteBtn" class="event-btn--lastsave">모두 삭제하기</button>
 						<button id="saveBtn" class="event-btn--lastsave">스케줄러 저장</button>
 					</div>
 				</div>
@@ -791,6 +797,7 @@ $(function(){
 		  this.dayViewDateEle = document.getElementById("day-view-date");
 		  this.addDayEventEle = document.getElementById("add-event");
 		  this.dayEventsEle = document.getElementById("day-events");
+		  
 		  
 		  this.dayEventAddForm = {
 		    cancelBtn: document.getElementById("add-event-cancel"),
@@ -982,6 +989,10 @@ $(function(){
 		     this.addDayEventEle.style.display = "inline";
 		  }
 		  this.addDayEventEle.setAttribute("data-date", day);
+		  
+		 
+		  
+		  
 		  
 		  var eventsToday;
 		  alert(eventsToday + '=== 1');

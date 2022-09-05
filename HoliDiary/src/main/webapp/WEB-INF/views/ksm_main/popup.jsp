@@ -139,13 +139,13 @@ li a {
 }
 li a:hover,
 li a:focus {
-  background: #1ABC9C;
+
   color: #fff;
 }
 
 
 /* demo styles */
-body { background: #eee; color: #555; font-family: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif; }
+body { background: #eee; color: #555; font-family: "Open Sans", "Segoe UI", Helvetica, Ar ial, sans-serif; }
 p, p a { font-size: 12px;text-align: center; color: #888; }
 </style>
 </head>
@@ -154,11 +154,11 @@ p, p a { font-size: 12px;text-align: center; color: #888; }
 <!-- 우클릭 시 메뉴 -->
 <c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 	<ul class="contextmenu">
-		<li><a href="">포스트 작성</a></li>
+		<li><a href="write.go?userId=${sessionScope.loginUser.userID }">포스트 작성</a></li>
 		<li><a href="updateCategory?userId=${sessionScope.loginUser.userID }">카테고리 편집</a></li>
 		<li><a href="mainImg.updateGo?userId=${sessionScope.loginUser.userID }">홈 화면 편집</a></li>
-		<li><a href="updateMyPopup?userId=${sessionScope.loginUser.userID }">다이어리 설정</a></li>
-		<li><a href="#">도움말</a></li>
+		<li><a href="updateMyPopup?userId=${sessionScope.loginUser.userID }">다이어리 편집</a></li>
+		<li><a href="advicePage?userId=${sessionScope.loginUser.userID }">도움말</a></li>
 	</ul>
 </c:if>
 

@@ -114,6 +114,16 @@ public class PopupController {
 		return "ksm_main/popup";
 	}
 	
+	// 다이어리 - 도움말 들어가기
+	@RequestMapping(value = "/advicePage", method = RequestMethod.GET)
+	public String advicePage(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s, @RequestParam("userId") String userId, Comment c) {
+		
+		uDAO.loginCheck(req);
+		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c);
+		req.setAttribute("popupContentPage", "advicePage.jsp");
+		return "ksm_main/popup";
+	}
+	
 	// 다이어리 - 카테고리 업데이트 (추가)
 	@RequestMapping(value = "/category.add", method = RequestMethod.GET)
 	public String updateCategoryAdd(HttpServletRequest req, Diary d, User u, Subscribe s, @RequestParam("diaryUserId") String userId, Category cate, Comment c, DiaryPost p) {

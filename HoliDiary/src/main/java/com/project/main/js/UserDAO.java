@@ -186,6 +186,7 @@ public class UserDAO {
 		}
 		
 		req.setAttribute("loginPage", "kjs_user/before_login.jsp");
+		req.setAttribute("popupContentPage", "popupBack.jsp");
 		return false;
 		
 	}

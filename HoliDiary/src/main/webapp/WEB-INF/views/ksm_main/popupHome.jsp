@@ -41,6 +41,43 @@ span {
 	font-weight: 600;
 }
 
+/* 말풍선 적절한 top 과 margin-left 로 위치조정 */
+.arrow_box2 {
+  display: none;
+  position: fixed;
+  width: 150px;
+  
+  padding: 5px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  z-index: 9999;
+	margin-left: 600px;
+	margin-top: -410px;
+}
+
+.arrow_box2:after {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  height: 50px;
+  margin-left: 25px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #333;
+  border-width: 10px;
+  pointer-events: none;
+  content: ' ';
+}
+
+span:hover + p.arrow_box2 {
+  display: block;
+}
+
 
 </style>
 </head>
@@ -51,8 +88,7 @@ span {
 			<div class="hero-img-wrapper">
 				<img style="border-radius: 6px;" src="resources/sm_img/${Diary.diaryImg }" 
 				onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2240&q=80';">
-				<!-- <img class="diaryinfo-img" src="resources/sm_img/free-icon-question-953818-removebg-preview.png">
-				 -->
+				 
 				<c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 				<div class="button">
 					<a href="mainImg.updateGo?userId=${Diary.diaryUserId }"> 수정 </a>
@@ -64,12 +100,21 @@ span {
 				<span class="introduce-backImg-text">${Diary.diaryIntroduce }</span>
 		</div>
 			<a href="#" onclick="showMusicPlayer();"><img class="turntable-backImg" src="resources/sm_img/turntable2-removebg-preview.png"></a>
-			<img class="airplane-backImg" src="resources/sm_img/airplane-removebg-preview.png">
-			<img class="ticket-backImg" src="resources/sm_img/ticket-removebg-preview.png">
+			<a href="#" onclick="showTicket();"><img class="airplane-backImg" src="resources/sm_img/airplane-removebg-preview.png"></a>
+			<a href="#" onclick="showAirplane();"><img class="ticket-backImg" src="resources/sm_img/ticket-removebg-preview.png"></a>
+			
+			<div id="hover-info">
+			<div>
+			<span><img class="question-backImg" src="resources/sm_img/png-clipart-question-mark-question-mark-removebg-preview.png"></span>
+			<p class="arrow_box2">Click on the sticker!</p>
+			</div>
+			</div>
 	</div>
 	<div>
+		<!-- <img class="diaryinfo-img" src="resources/sm_img/free-icon-question-953818-removebg-preview.png"> -->
 		<!-- <img class="introduce-backImg" src="resources/sm_img/postmemo-removebg-preview.png"> -->
 	</div>
+		<hr style="height: 1px; border:0; border-top: 3px dashed ${Diary.themeColor};">
 	<%-- <span class="introduce-backImg-text">${Diary.diaryIntroduce }</span> --%>
 
 	<!-- 뮤직 플레이어 -->
