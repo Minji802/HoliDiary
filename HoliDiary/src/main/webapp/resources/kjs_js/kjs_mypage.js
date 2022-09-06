@@ -31,20 +31,42 @@ $(function() {
 	// 마이페이지 카카오 연동 처리
 	$("#mypage_kakao_checkbox").click(function(){
 		if($(this).is(":checked") == true){
-		// 카카오 연결
-		  Kakao.Auth.login({
-		      success: function(authObj) {
-		        //alert(JSON.stringify(authObj));
-				            // db값에 kakaID값 넣기
-				        	Kakao.Auth.authorize({
-				        	redirectUri: 'http://localhost/main/connect.kakao'
-				        	});
-				          },
-		      fail: function(err) {
-		        alert(JSON.stringify(err))
-		      }
-		    })
-				$(this).prop("checked", true);
+			swal("카카오를 연동하시겠습니까?", {
+				buttons: {
+					  cancel: {
+						    text: "취소",
+						    value: false,
+						    visible: true,
+						    closeModal: true,
+						  },
+						  confirm: {
+						    text: "연동",
+						    value: true,
+						    visible: true,
+						    closeModal: true
+						  }
+				}
+					}).then((result) => {
+						if(result){
+							// 카카오 연결
+							  Kakao.Auth.login({
+							      success: function(authObj) {
+							        //alert(JSON.stringify(authObj));
+									            // db값에 kakaID값 넣기
+									        	Kakao.Auth.authorize({
+									        	redirectUri: 'http://localhost/main/connect.kakao'
+									        	});
+									          },
+							      fail: function(err) {
+							    	  swal(JSON.stringify(err));
+							      }
+							    })
+									$(this).prop("checked", true);
+						}else{
+							$(this).prop("checked", false);
+							return;
+						}
+					})
 		}
 		if($(this).is(":checked") == false){
 		swal("카카오로 로그인하신 후에 해제가 됩니다. 카카오연동 해제하시겠습니까?", {
@@ -78,27 +100,60 @@ $(function() {
 	$("#mypage_naver_checkbox").click(function(){
 		
 		if($(this).is(":checked") == true){
-			
-			if(confirm('네이버를 연동하시겠습니까?')){
-				// 네이버 연동
-				var btnNaverLogin = document.getElementById("naver_id_login").firstChild;
-				btnNaverLogin.click();
-				$(this).prop("checked", true);
-			}else{
-				$(this).prop("checked", false);
-				return;
-			}
+			swal("네이버를 연동하시겠습니까?", {
+				buttons: {
+					  cancel: {
+						    text: "취소",
+						    value: false,
+						    visible: true,
+						    closeModal: true,
+						  },
+						  confirm: {
+						    text: "연동",
+						    value: true,
+						    visible: true,
+						    closeModal: true
+						  }
+				}
+					}).then((result) => {
+						if(result){
+							// 네이버 연동
+							var btnNaverLogin = document.getElementById("naver_id_login").firstChild;
+							btnNaverLogin.click();
+							$(this).prop("checked", true);
+						}else{
+							$(this).prop("checked", false);
+							return;
+						}
+					})
 		}
 		
 		if($(this).is(":checked") == false){
-			if(confirm('네이버로 로그인하신 후에 해제가 됩니다. 네이버연동 해제하시겠습니까?')){
-				// 네이버 아이디 삭제
-				$(this).prop("checked", false);
-				location.href='disconnect.sns';
-			}else{
-				$(this).prop("checked", true);
-				return;
-			}
+			swal("네이버로 로그인하신 후에 해제가 됩니다. 네이버연동 해제하시겠습니까?", {
+				buttons: {
+					  cancel: {
+						    text: "취소",
+						    value: false,
+						    visible: true,
+						    closeModal: true,
+						  },
+						  confirm: {
+						    text: "연동해제",
+						    value: true,
+						    visible: true,
+						    closeModal: true
+						  }
+				}
+					}).then((result) => {
+						if(result){
+							// 네이버 아이디 삭제
+							$(this).prop("checked", false);
+							location.href='disconnect.sns';
+						}else{
+							$(this).prop("checked", true);
+							return;
+						}
+					})
 		}
 	});
 	
@@ -238,7 +293,7 @@ function mypageCheckUser(){
 			},
 			error : function(request,status,error) {
     			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    			alert('문제가 발생했습니다. 다시 이용해주세요.')
+    			swal("문제가 발생했습니다. 다시 이용해주세요.");
     			return false;
     		}
 		});
@@ -269,7 +324,7 @@ function deleteUser(){
 	let id = $("#mypage_id");
 	
 	if(isEmpty(pw)){
-		alert('비밀번호를 입력해주세요. 소셜회원가입을 하셨다면 비밀번호를 재발급 받아주세요.');
+		swal("비밀번호를 입력해주세요. 소셜회원가입을 하셨다면 '비밀번호찾기'를 통해 비밀번호를 재발급 받아주세요.");
 		pw.focus();
 	}else{
 		$.ajax({
@@ -280,17 +335,33 @@ function deleteUser(){
 			success : function(result) {
 				console.log(result);
 				if(result == 1){
-					let ok = confirm('정말 탈퇴하시겠습니까? 탈퇴와 동시에 소셜 로그인 연동도 해제됩니다.');
-					if(ok){
-						location.href="delete.do";
-					}
+					swal("정말 탈퇴하시겠습니까? 소셜 연동 해체는 네이버와 카카오 홈페이지에서 이용해주세요.", {
+						buttons: {
+							  cancel: {
+								    text: "취소",
+								    value: false,
+								    visible: true,
+								    closeModal: true,
+								  },
+								  confirm: {
+								    text: "연동해제",
+								    value: true,
+								    visible: true,
+								    closeModal: true
+								  }
+						}
+							}).then((result) => {
+								if(result){
+									location.href="delete.do";
+								}
+							})
 				}else{
-					alert('비밀번호를 확인해주세요');
+					swal("비밀번호를 확인해주세요");
 				}
 			},
 			error : function(request,status,error) {
     			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    			alert('문제가 발생했습니다. 다시 이용해주세요.')
+    			swal("문제가 발생했습니다. 다시 이용해주세요.");
     			return false;
     		}
 		});
@@ -342,7 +413,7 @@ function updateValidCheck(){
 	}
 	
 	if(isEmpty(pw)){
-		alert('비밀번호를 확인해주세요.');
+		swal("비밀번호를 확인해주세요.");
 		pw.focus();
 		return false;
 	}
@@ -412,7 +483,7 @@ function changePWValidCheck(){
 			},
 			error : function(request,status,error) {
     			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    			alert('문제가 발생했습니다. 다시 이용해주세요.')
+    			swal("문제가 발생했습니다. 다시 이용해주세요.");
     			flag = false;
     		}
 		});

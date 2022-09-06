@@ -5,33 +5,37 @@
 }
 
 #leftSide {
-	float: left;
-	margin-bottom: 10px;
 	color: grey;
+	float: left;
+	font-family: "DM Sans", sans-serif;
 }
 
 .postDetailWriter {
 	float: left;
-	width: 10%;
+	padding-right: 15px;
+	font-family: "DM Sans", sans-serif;
 }
 
 .postDetailDate {
 	float: left;
-	width: 10%;
+	padding-right: 15px;
+	font-family: "DM Sans", sans-serif;
 }
 
 .postDetailCategory {
 	float: left;
-	width: 20%;
+	padding-right: 15px;
+	font-family: "DM Sans", sans-serif;
 }
 
 .postDetailCountry {
 	float: left;
-	width: 50%;
+	font-family: "DM Sans", sans-serif;
 }
 
-#postDetailView {
-	width: 10%;
+.postDetailView {
+	float: right;
+	font-family: "DM Sans", sans-serif;
 }
 
 .postDetailTxt {
@@ -41,16 +45,17 @@
 #rightSide {
 	float: right;
 	text-align: right;
+	font-family: "DM Sans", sans-serif;
 }
 
 #GoToList {
 	float: right;
 	text-align: right;
-	
 }
 
 .commentName {
 	cursor: pointer;
+	font-family: "DM Sans", sans-serif;
 }
 
 .popupLayer {
@@ -58,9 +63,11 @@
 	display: none;
 	background-color: #ffffff;
 	border: solid 2px #d0d0d0;
-	width: 350px;
-	height: 150px;
+	width: 300px;
+	height: 60px;
 	padding: 10px;
+	text-align: center;
+	font-family: "DM Sans", sans-serif;
 }
 
 .popupLayer div {
@@ -146,12 +153,87 @@
 }
 
 #mp_mydiary_copy_btn {
+	font-family: "DM Sans", sans-serif;
 	width: 50px;
 	height: 30px;
-	border-radius: 5px;
+	border-radius: 10px;
 	border: none;
-	background-color: #c0c0c0;
+	background-color: #7d7d7d;
+	color: #fff;
+	font-size: 12px;
 	margin-top: 10px;
 	margin-right: 10px;
 	cursor: pointer;
+}
+
+/* -------------추가 css 작업-------------- */
+.postTitle {
+	font-family: "DM Sans", sans-serif;
+}
+
+#likeCnt {
+	font-family: "DM Sans", sans-serif;
+}
+
+.postDetailUpDel-Btn {
+	font-family: "DM Sans", sans-serif;
+	background-color: #7d7d7d;
+	border: none;
+	color: #fff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 0 auto;
+}
+
+.postDetailShare-Btn {
+	font-family: "DM Sans", sans-serif;
+	background-color: #6667AB;
+	border: none;
+	color: #ffffff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 30px;
+	padding: 3.5px;
+	/* float: right; */
+}
+
+.postDetailReg-Btn {
+	font-family: "DM Sans", sans-serif;
+	background-color: #7d7d7d;
+	border: none;
+	color: #ffffff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 30px;
+	padding: 3.5px;
+	width: 100px;
+}
+
+#myDIV {
+	margin-top: -15px;
+	padding: 20px 10px 10px 10px;
+	background-color: #e3e3e3;
+	border-radius: 10px;
+}
+
+.goToList-Btn {
+	font-family: "DM Sans", sans-serif;
+}
+
+h2 {
+	font-family: "DM Sans", sans-serif;
+}
+
+strong {
+	font-family: "DM Sans", sans-serif;
+}
+
+textarea::placeholder {
+	font-family: "DM Sans", sans-serif;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid gray;
 }

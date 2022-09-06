@@ -25,15 +25,20 @@
 </script>
 
 <body>
+
+	<h1>POST</h1>
 	
-	<input type="radio" name="listType" value="List" checked="checked" onclick="getList()"/>List
-	<input type="radio" name="listType" value="Gallery" onclick="getGallery()"/>Gallery
-	
+	<div class="checks" style="text-align: right; margin-top: -25px;">
+	<input type="radio" id="ex_rd1" name="listType" value="List" checked="checked" onclick="getList()"/>
+	<label for="ex_rd1">List</label>&nbsp;
+	<input type="radio" id="ex_rd2" name="listType" value="Gallery" onclick="getGallery()"/>
+	<label for="ex_rd2">Gallery</label>
+	</div>
 
 	<input type="hidden" id="postWriter" name="postWriter" value="${User.userID}">
 
-	<div id="countPost">
-		<div style="float: right;">
+	<div id="countPost" style="height: 50px;">
+		<div style="float: right; margin-top: 10px;">
 			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
 				<option value="10"
 					<c:if test="${paging.cntPerPage == 10 }">selected</c:if>>10줄 보기</option>
@@ -45,15 +50,14 @@
 		</div>
 	</div>
 
-	<h1>POST</h1>
-	<table id="postListTbl" border=1
-		style="width: 100%; text-align: center;">
+	<table id="postListTbl" border=0
+		style="width: 100%; text-align: center; border-collapse: collapse;">
 		<tr class="postTbl">
-			<td class="postTitle" style="width: 30%">글제목</td>
-			<td class="postWriter" style="width: 20%">작성자</td>
-			<td class="postDate" style="width: 25%">작성날짜</td>
-			<td class="postLike" style="width: 10%">좋아요</td>
-			<td class="postNo" style="width: 15%">조회수</td>
+			<td class="postTitle" style="width: 30%">Title</td>
+			<td class="postWriter" style="width: 20%">Writer</td>
+			<td class="postDate" style="width: 25%">Date</td>
+			<td class="postLike" style="width: 10%">Likes</td>
+			<td class="postNo" style="width: 15%">Views</td>
 		</tr>
 		<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
 			<tr class="postList">

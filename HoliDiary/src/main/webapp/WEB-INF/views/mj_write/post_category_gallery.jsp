@@ -29,16 +29,22 @@
 
 <body>
 
-	<input type="radio" name="listType" value="List" onclick="getList()" />List
-	<input type="radio" name="listType" value="Gallery" checked="checked"
-		onclick="getGallery()" />Gallery
+	<h1>POST</h1>
+	
+	<div class="checks" style="text-align: right; margin-top: -25px;">
+		<input type="radio" id="ex_rd1" name="listType" value="List" onclick="getList()" />
+		<label for="ex_rd1">List</label>&nbsp;
+		<input type="radio" id="ex_rd2" name="listType" value="Gallery" checked="checked"
+			onclick="getGallery()" />
+		<label for="ex_rd2">Gallery</label>
+	</div>
 
 	<input type="hidden" id="postWriter" name="postWriter"
 		value="${User.userID}">
 	<input type="hidden" id="categoryName" name="categoryName" value="${param.category }">
 	
-	<div id="countPost">
-		<div style="float: right;">
+	<div id="countPost" style="height: 45px;">
+		<div style="float: right; margin-top: 10px;">
 			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
 				<option value="9"
 					<c:if test="${paging.cntPerPage == 9 }">selected</c:if>>9개
@@ -54,15 +60,14 @@
 	</div>
 
 
-	<h1>POST</h1>
 	<div style="display: inline-table;">
 		<c:forEach var="dp" items="${DiaryPosts}" varStatus="status">
-			<table id="postListTbl" class="postList" border=1
-				style="width: 300px; text-align: center; float: left;">
+			<table id="postListTbl" class="postList" border=0 
+				style="width: 232px; text-align: center; float: left;">
 				<tr>
 					<td colspan="2"><img src="${dp.postImg }"
 						onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"
-						style="width: 300px; height: 170px;"></td>
+						style="width: 232px; height: 170px;"></td>
 				</tr>
 				<tr>
 					<td class="postTitle" colspan="2"><a
@@ -75,9 +80,9 @@
 					<td class="postDate" colspan="2">${dp.postDate }</td>
 				</tr>
 				<tr>
-					<td class="postDate" style="font-size: 9pt;">좋아요 :
-						${dp.postRecommend }</td>
-					<td class="postViewCount" style="font-size: 9pt;">조회수 :
+					<td class="postDate" style="font-size: 9pt; text-align: right;">likes 
+						${dp.postRecommend } /</td>
+					<td class="postViewCount" style="font-size: 9pt; text-align: left;">views 
 						${dp.postView }</td>
 				</tr>
 			</table>

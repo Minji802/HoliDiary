@@ -11,7 +11,7 @@
 
 <!-- src에 대체 이미지 주소 -->
 <h1>Edit Home</h1>
-<form action="mainImg.upload" method="post" enctype="multipart/form-data">
+<form action="mainImg.upload" method="post" enctype="multipart/form-data" onsubmit="return imgValidCheck();">
 	<table>
 		<tr>
 			<td><h3>Diary Main Img</h3></td>

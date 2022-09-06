@@ -298,6 +298,14 @@ public class WriteController {
 
 		return pDAO.commentDelete(req, u, p, c);
 	}
+	
+	// 댓글수정
+	@ResponseBody
+	@RequestMapping(value = "/commentUpdate.do", method = RequestMethod.GET, produces = "application/json")
+	public int commentUpdateDo(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+
+		return pDAO.commentUpdate(req, u, p, c);
+	}
 
 	// 지도 만들기
 	@RequestMapping(value = "/map.open", method = RequestMethod.GET)

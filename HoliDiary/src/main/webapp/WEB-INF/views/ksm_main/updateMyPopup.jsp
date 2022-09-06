@@ -47,27 +47,31 @@
 <h1>Edit Diary</h1>
 
 	<form action="diary.update">
-		<table>
+		<table class="checks" >
 			<tr>
 				<td colspan="10"><span><h3>Theme Color</h3></span></td>
 			</tr>
 			<tr>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="holi" 
-						value="linear-gradient(to top, #FFDE59, #5D5FB2)" />holi</label></td>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="orange" 
-						value="#FFB22C" />orange</label></td>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="dark" 
-						value="gray" />dark</label></td>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="love" 
-						value="#FF9EBB" />love</label></td>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="sky" 
-						value="#99CCFF" />sky</label></td>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="sujin" 
-						value="linear-gradient(to top, #00656E, #FDC04E)" />sujin</label></td>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="yongjun" 
-						value="linear-gradient(to top, #673AB7, #9575CD, #D1C4E9)" />yongjun</label></td>
-				<td><label><input type="radio" name="themeColor" class="themeColor" id="minji" 
-						value="linear-gradient(to top, #1A237E, #FF7F27)" />minji</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="holi" 
+						value="linear-gradient(to top, #FFDE59, #5D5FB2)" />
+						<label for="holi">holi&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="orange" 
+						value="#FFB22C" /><label for="orange">orange&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="dark" 
+						value="gray" /><label for="dark">dark&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="love" 
+						value="#FF9EBB" /><label for="love">love&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="sky" 
+						value="#99CCFF" /><label for="sky">sky&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="sujin" 
+						value="linear-gradient(to top, #00656E, #FDC04E)" />
+						<label for="sujin">sujin&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="yongjun" 
+						value="linear-gradient(to top, #673AB7, #9575CD, #D1C4E9)" />
+						<label for="yongjun">yongjun&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="minji" 
+						value="linear-gradient(to top, #1A237E, #FF7F27)" />
+						<label for="minji">minji&emsp;</label></td>
 				<td><input type="hidden" id="selectThemeColor" value="${Diary.themeColor }"> </td>
 			</tr>
 		</table>
@@ -80,6 +84,7 @@
 				<td><input value="${Diary.diaryTitle }" type="text"
 					name="diaryTitle" autocomplete="off" maxlength="20"
 					style="border-bottom: solid 1px; width: 330px;"></td>
+				<td>(20자 이내)</td>
 			</tr>
 		</table>
 		<br>
@@ -93,6 +98,7 @@
 					style="border-bottom: solid 1px; width: 330px;"></td>
 				<td><input type="hidden" value="${Diary.diaryUserId }"
 					name="diaryUserId"></td>
+				<td>(25자 이내)</td>
 			</tr>
 		</table>
 		<br> <br>

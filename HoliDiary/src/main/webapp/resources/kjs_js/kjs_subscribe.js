@@ -96,11 +96,11 @@ function subscribeCancel(id){
 				if(data == 1){
 					location.reload();
 				}else{
-					alert('구독 취소에 실패했습니다')
+					swal('구독 취소에 실패했습니다');
 				}
 			},
 			error : function(error) {
-				alert('문제가 발생했습니다. 다시 이용해주세요.')
+				swal('문제가 발생했습니다. 다시 이용해주세요.');
 			}
 		});
 }
@@ -125,11 +125,11 @@ function subscribeDo(id){
 			if(data == 1){
 				location.reload();
 			}else{
-				alert('구독에 실패했습니다')
+				swal('문제가 발생했습니다. 다시 이용해주세요.');
 			}
 		},
 		error : function(error) {
-			alert('문제가 발생했습니다. 다시 이용해주세요.')
+			swal('문제가 발생했습니다. 다시 이용해주세요.');
 		}
 	});
 }

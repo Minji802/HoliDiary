@@ -42,7 +42,7 @@ function loginWithKakao() {
 		        })
       },
       fail: function(err) {
-        alert(JSON.stringify(err))
+    	  swal(JSON.stringify(err));
       },
     })
 	
@@ -74,7 +74,7 @@ function joinWithKakao() {
 			        			if(getData == 1){
 			        				swal("이미 등록된 회원입니다");
 			        			}else if(getData == 2){
-			        				swal("네이버로 이미 등록된 회원입니다. 아닌 경우 간편회원가입 이용후, 카카오연동을 이용해주세요.");
+			        				swal("이미 등록된 회원입니다. 아닌 경우 간편회원가입 이용후, 카카오연동을 이용해주세요.");
 			        			} else {
 			        				Kakao.Auth.authorize({
 			        					redirectUri: 'http://localhost/main/social.kakao'
@@ -93,7 +93,7 @@ function joinWithKakao() {
 			        })
 	      },
 	      fail: function(err) {
-	        alert(JSON.stringify(err))
+	    	  swal(JSON.stringify(err));
 	      },
 	    })
 }

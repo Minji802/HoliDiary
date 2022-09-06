@@ -68,28 +68,28 @@
 					success : function(result) {
 						//console.log(result);
 						if(result == 1){
-							alert('회원가입 성공');
 							window.close();
 							window.opener.location.href= "http://localhost/main/social.login.naver?naverID=" + naverID + "&naver_token=" + naver_id_login.oauthParams.access_token;
 						}
 					},
 					error : function(request, status, error) {
 						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-							alert('회원가입에 실패했습니다. 간편회원가입을 이용해주세요.');
+						swal("회원가입에 실패했습니다. 간편회원가입을 이용해주세요.");
 							window.close();
 					}
 				}); 
 
 			}else if(getData == 2){
-				alert('카카오로 이미 등록된 회원입니다. 아닌 경우 간편회원가입 이용후, 네이버연동을 이용해주세요.');
+				swal("이미 등록된 회원입니다. 아닌 경우 간편회원가입 이용후, 네이버연동을 이용해주세요.");
 				window.close();
 			}else{
-				alert('이미 등록된 회원입니다');
+				swal("이미 등록된 회원입니다");
 				window.close();
 			}
 		},
 		error : function(request,status,error) {
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			swal("문제가 발생했습니다. 다시 이용해주세요.");
 		} 
   })
      

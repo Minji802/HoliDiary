@@ -20,15 +20,15 @@ hr {
 </head>
 <body>
 
-	<h1>Edit Category</h1>
+	<h1>Edit Category</h1><br>
 
 	<%-- ${Diary }
 	<br> ${Diary.diaryUserId }
 	<br> ${Diary.categoriesArray }
 	<br> --%>
 
-	<form action="category.add">
-		<input type="text" name="categories" placeholder="카테고리 이름을 입력하세요" maxlength="10" style="border-bottom: solid 1px; width: 200px;">
+	<form action="category.add" onsubmit="return categoryValidCheck();">
+		<input type="text" id="categoryName" name="categories" placeholder="카테고리 이름을 입력하세요" maxlength="10" style="border-bottom: solid 1px; width: 200px;">
 		<input type="submit" value="추가" class="btn-update-save">
 		<input type="hidden" value="${Diary.diaryUserId }" name="diaryUserId" id="diaryUserId">
 	</form><br>

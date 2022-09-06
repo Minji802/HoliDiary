@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -39,16 +40,17 @@
 		success : function(getData){
 			console.log(getData);
 			if(getData == 1){
-				alert('로그인성공');
 				window.close();
 				window.opener.location.href = "http://localhost/main/social.login.naver?naverID=" + naverID + "&naver_token=" + naver_id_login.oauthParams.access_token;
 			}else{
-				alert('회원가입을 먼저 진행해주세요');
+				swal("회원가입을 먼저 진행해주세요");
 				window.close();
 			}
 			},
 		error : function(request,status,error) {
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			swal("문제가 발생했습니다. 다시 시도해주세요.");
+			window.close();
 		} 
   })
      

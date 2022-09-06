@@ -10,30 +10,33 @@
 <link rel="stylesheet" href="resources/mj_css/postDetail.css">
 <link rel="stylesheet" href="resources/mj_css/likeButton.css">
 </head>
-<body>
+<body">
 
-	<div>
+	<div class="postTitle">
 		<h1>${DiaryPost.postTitle }</h1>
 	</div>
 
-	<div id="#postDetail" style="width: 100%">
-		<div>
-			<div id="leftSide" style="width: 100%">
-				<div style="width: 10%"></div>
-				<div class="postDetailWriter">작성자 : ${DiaryPost.postWriter }</div>
-				<input type="hidden" id="postDetailWriter" name="postDetailWriter"
-					value="${DiaryPost.postWriter }">
-				<div class="postDetailDate">${DiaryPost.postDate }</div>
-				<div class="postDetailCategory">카테고리 :
-					${DiaryPost.postCategory }</div>
-				<div class="postDetailCountry">국가 : ${DiaryPost.postCountry }</div>
-				<div class="postDetailView">조회수 ${DiaryPost.postView }</div>
+	<div>
+		<div id="#postDetail" style="width: 100%">
+			<div>
+				<div id="leftSide" style="width: 100%">
+					<div class="postDetailWriter">Writer: ${DiaryPost.postWriter }</div>
+					<input type="hidden" id="postDetailWriter" name="postDetailWriter"
+						value="${DiaryPost.postWriter }">
+					<div class="postDetailDate">Date: ${DiaryPost.postDate }</div>
+					<div class="postDetailCategory">Category:
+						${DiaryPost.postCategory }</div>
+					<div class="postDetailCountry">Country:
+						${DiaryPost.postCountry }</div>
+					<div class="postDetailView">Views ${DiaryPost.postView }</div>
+				</div>
 			</div>
 		</div>
-		<hr>
-		<div class="postDetailTxt">${DiaryPost.postTxt }</div>
+		<div>
+			<hr>
+			<div class="postDetailTxt">${DiaryPost.postTxt }</div>
+		</div>
 	</div>
-
 
 
 
@@ -69,20 +72,22 @@
 		<div id="rightSide">
 			<c:if
 				test="${DiaryPost.postWriter eq sessionScope.loginUser.userID }">
-				<button
+				<button class="postDetailUpDel-Btn"
 					onclick="updateDiaryPost('${DiaryPost.postWriter }', '${DiaryPost.postNum}', '${DiaryPostPaging.nowPage }', '${DiaryPostPaging.cntPerPage }')">수정</button>
-				<button
+				<button class="postDetailUpDel-Btn"
 					onclick="deleteDiaryPost('${DiaryPost.postNum}', '${DiaryPost.postWriter }', '${DiaryPost.postWriter }', '${DiaryPostPaging.nowPage }', '${DiaryPostPaging.cntPerPage }')">삭제</button>
 			</c:if>
+			
 			<!-- 공유버튼 -->
-			<a href="javascript:doDisplay();" style="float: right; font-size: 10pt; margin-left: 10px; color: black;"> 공유하기</a><br />
-			<br />
-			<div id="myDIV" style="display: none; float: right; text-align: right; position: relative;">
+			<a href="javascript:doDisplay();" class="postDetailShare-Btn">공유하기</a><br /> <br />
+			<div id="myDIV"
+				style="display: none; float: right; text-align: right; position: relative;">
 				<div id="mapage_mydiaryURL">
 					<input id="mp_mydiary_copyURL"
 						value="localhost/main/post.detail.go?postNum=${DiaryPost.postNum }&userId=${DiaryPost.postWriter }"
 						readonly />
 					<button type="button" id="mp_mydiary_copy_btn">copy</button>
+					
 					<div style="float: right;">
 						<div style="margin-right: 15px;">
 							<img alt="트위터" src="resources/btnDesign/icon-twitter.png">
@@ -90,8 +95,8 @@
 						</div>
 						<div style="margin-top: -50px;">
 							<a id="btnTwitter" class="link-icon2 twitter"
-								href="javascript:shareTwitter()">트위터</a> <a id="btnFacebook"
-								class="link-icon2 facebook" href="javascript:shareFacebook()">페이스북</a><br>
+								href="javascript:shareTwitter()">twitter</a> <a id="btnFacebook"
+								class="link-icon2 facebook" href="javascript:shareFacebook()">facebook</a><br>
 						</div>
 					</div>
 				</div>
@@ -101,25 +106,22 @@
 	</div>
 
 	<div id="goToListDiv" style="margin-top: 165px;">
-		<button
+		<button class="goToList-Btn" 
 			onclick="location.href='post-list?userId=${User.userID}&nowPage=1&cntPerPage=15'"
 			id="GoToList">목록으로</button>
 		<br>
 	</div>
-	<br>
-
-	<hr>
-	
-	
+		<hr>
 	<input type="hidden" value="${sessionScope.loginUser.userID }"
 		id="currentUser">
+
 	<h2>Comment</h2>
 	<!-- 댓글작성 -->
 	<form id="commentForm" name="commentForm">
 		<div style="font-size: 11pt;">
 			<strong>${sessionScope.loginUser.userID }</strong>
 		</div>
-		<div>
+		<div style="float: right;">
 			<input type="checkbox" id="commentSecret" name="commentSecret">
 			<label for="commentSecret">비밀댓글</label>
 		</div>
@@ -129,15 +131,16 @@
 				id="postWriter" name="postWriter" value="${DiaryPost.postWriter }">
 			<input type="hidden" id="commentWriter" name="commentWriter"
 				value="${sessionScope.loginUser.userID}">
-			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요." maxlength="800"
-				style="width: 95%; height: 100px; resize: none;"></textarea>
-			<button type="button" onclick="commentSubmit()">등록</button>
+			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요 (800자 이내)"
+				maxlength="800" style="width: 100%; height: 80px; resize: none;"></textarea>
+			<button class="postDetailReg-Btn" style="float: right" type="button" onclick="commentSubmit()">등록</button>
 		</div>
 	</form>
+	<div style="height: 50px;"></div>
 
 	<!-- 댓글목록 -->
 	<form id="commentListForm" name="commentListForm" method="GET">
-		<div id="commentList"></div>
+		<div id="commentList" style="position: relative;"></div>
 	</form>
 
 	<!-- 대댓글작성 -->
@@ -357,7 +360,7 @@
 						for (var i = 0; i < data.length; i++) {
 						
 							html += '<div class ="commentBox" style="width: 100%; margin-bottom: 30px; border: 1px solid white">';
-							html += '<ul class="commentName" style="font-size: 11pt"><strong>'+data[i]["commentWriter"]+'123</strong></ul>';
+							html += '<ul class="commentName" style="font-size: 11pt"><strong>'+data[i]["commentWriter"]+'</strong></ul>';
 							
 							
 							/* html += '<div class="popupLayer">'
@@ -367,14 +370,11 @@
 							html += '</div>' */
 							
 							
-							html += '<div class="popupLayer" tabindex="1" onblur="closeLayer2(this)">';
-							html += '<div>';
-							html += '<span onclick="closeLayer(this)" style="cursor:pointer; font-size:1.5em" title="닫기">X</span>';
-							html += '</div>'
+							html += '<div class="popupLayer" tabindex="1">';
+							html += '<span onclick="closeLayer(this)" style="float:right; cursor:pointer; font-size:1.5em" title="닫기"></span>';
 //							html += '<p class="arrow_box" onclick="'+'location.href="popupHomeGo?userId="'+ data[i]["commentWriter"] + '>홈페이지 바로가기</p>';
-							html += '<p class="arrow_box" onclick="goThere('+data[i]["commentWriter"]+')">홈페이지 바로가기'+data[i]["commentWriter"]+'456</p>';
+							html += '<p class="arrow_box" style="float:left; margin-top: -7px;" onclick="goThere('+"'"+data[i]["commentWriter"]+"'"+')">'+data[i]["commentWriter"]+'의 다이어리 바로가기</p>';
 							html += '</div>'
-							
 							
 							
 							//html += '<button type="button" onclick="goDiary('+ data[i]["commentWriter"] +')"> 홈페이지 바로가기 </button>';
@@ -392,16 +392,36 @@
 								html += '<ul>'+data[i]["commentTxt"]+'</ul>';
 							}
 							
-							html += '<input type="hidden" id="commentNum" value='+data[i]["commentNum"]+'>';
+							html += '<input type="hidden" id="commentNum" class="commentNum" value='+data[i]["commentNum"]+'>';
 							html += '<input type="hidden" id="commentParent" value='+data[i]["commentParent"]+'>';
 							html += '<input type="hidden" id="postNum" value='+data[i]["postNum"]+'>';
-							html += '<ul>'+data[i]["commentDate"]+'</ul>';
+							html += '<br><ul>'+data[i]["commentDate"]+'</ul>';
 							
 							if(currentUser == data[i]["commentWriter"])	{
 								html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+								html += '<button id="commentUpdateBtn" type="button" onclick="commentUpdate('+ data[i]["postNum"] + ',' + data[i]["commentNum"] + ',' + "'" + data[i]["commentWriter"] + "'" + ',' + "'" + data[i]["commentTxt"] + "'" + ')" style="float: right; text-align: right; margin-left: 20px;">수정</button>';
+							}  else if(postMaster == currentUser) {
+								html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
 							}
 							
-							html += '<button type="button" onclick="recommentToggle('+ data[i]["commentParent"] + data[i]["postNum"] +')" style="float: right; text-align: right; margin-left: 20px;">답글</button>';
+							html += '<div id="updateCommentDIV" style="position: relative;">';
+							html += '<form id="commentUpdateForm" name="commentUpdateForm">';
+							html += '<div style="font-size: 11pt;">';
+							html += '<strong>' + data[i]["commentWriter"] + '</strong>';
+							html += '</div>';
+							html += '<div>';
+							html +=	'<input type="hidden" id="postNum_update" name="postNum" value="' + data[i]["postNum"] + '">'; 
+							html +=	'<input type="hidden" id="commentNum_update" name="commentNum" value="' + data[i]["commentNum"] + '">'; 
+							html +=	'<input type="hidden" id="commentWriter_update" name="commentWriter" value="' + data[i]["commentWriter"] + '">';
+							html +=	'<textarea name="commentTxt" id="commentTxt_update" maxlength="800" style="width: 95%; height: 100px; resize: none;">';
+							html += data[i]["commentTxt"];
+							html += '</textarea>';
+//							html +=	'<button type="button" onclick="commentTxtUpdate('+ data[i]["postNum"] + ',' + data[i]["commentNum"] + ',' + "'" + data[i]["commentWriter"] + "'" + ',' + "'" + data[i]["commentTxt"] + "'" + ')">수정</button>';
+							html +=	'<button type="button" onclick="commentTxtUpdate('+ data[i]["commentNum"] + ',' + "'" + data[i]["commentTxt"] + "'" + ')">수정</button>';
+							html += '</div>';
+							html += '</form>';
+							html += '</div>'
+							
 							html += '</div>';
 							html += '<hr>'
 								
@@ -424,6 +444,37 @@
 			});
 			
 		}
+		
+		
+	var bDisplay2 = true;	
+	function commentUpdate(postNum, commentNum, commentWriter, commentTxt) {
+		
+		console.log(commentNum);
+		console.log(postNum);
+		console.log(commentWriter);
+		console.log(commentTxt);
+		
+		var con = document.getElementById("updateCommentDIV"); 	
+        if(bDisplay2){ 		
+            con.style.display = 'none';
+            bDisplay2 = !bDisplay2;
+            
+        }else{ 		
+            con.style.display = 'block'; 	
+            bDisplay2 = !bDisplay2;
+        } 
+		
+		alert('33333333333333333');
+		
+		
+		//$("#commentNum" + commentNum).replaceWith(html);
+		//$("commentNum" + commentNum + "#commentTxt").focus();
+		
+		alert('안돼????????');
+	}
+		
+	
+		
 	function goThere(a) {
 		location.href="popupHomeGo?userId="+a;
 	}	
@@ -432,15 +483,12 @@
 		$(obj).parent().parent().hide();
 	}
 
-	function closeLayer2(obj) {
-		alert(111);
-		$(obj).css("display","none");
-	}
 			
 	function goDiary() {
 			let myStrong = $(".commentName").children();
+			let popupLayer;
 		$(myStrong).on("click", function(e) {
-			let popupLayer = $(this).parent().parent().find(".popupLayer");
+			popupLayer = $(this).parent().parent().find(".popupLayer");
 			console.log(popupLayer);
 			/* 클릭 클릭시 클릭을 클릭한 위치 근처에 레이어가 나타난다. */
 			var sWidth = window.innerWidth;
@@ -449,25 +497,33 @@
 			var oHeight = $(popupLayer).height();
 
 			// 레이어가 나타날 위치를 셋팅한다.
-			var divLeft = e.clientX + 10;
-			var divTop = e.clientY + 5;
+//			var divLeft = e.clientX;
+//			var divTop = e.clientY;
+			var divLeft = e.offsetX;
+			var divTop = e.offsetYY;
 
+ 			console.log(divLeft);
+ 			console.log(divTop);
 			// 레이어가 화면 크기를 벗어나면 위치를 바꾸어 배치한다.
-			if( divLeft + oWidth > sWidth ) divLeft -= oWidth;
-			if( divTop + oHeight > sHeight ) divTop -= oHeight;
+			//if( divLeft + oWidth > sWidth ) divLeft -= oWidth;
+			//if( divTop + oHeight > sHeight ) divTop -= oHeight;
 
 			// 레이어 위치를 바꾸었더니 상단기준점(0,0) 밖으로 벗어난다면 상단기준점(0,0)에 배치하자.
-			if( divLeft < 0 ) divLeft = 0;
-			if( divTop < 0 ) divTop = 0;
+			//if( divLeft < 0 ) divLeft = 0;
+			//if( divTop < 0 ) divTop = 0;
 			
 			$(popupLayer).css({
+				"width": 200,
+				"height": 30,
 				"top": divTop,
 				"left": divLeft,
 				"position": "absolute"
 			}).show();
 
-			
-			
+			$(popupLayer).focus();
+			$(popupLayer).blur(function() {
+				$(this).hide();
+			});
 			
 		});
 	}
@@ -494,23 +550,33 @@
 		}
 	}
 	 
-	 // 답글 작성칸 생성
-	 
-	 
-	 function recommentToggle(commentParent, postNum) {
-		 alert(commentParent);
-		 alert(postNum);
-		/* $("#recommentToggleBtn").click(function() {
-			$("#recommentVisible").toggle();
-		}); */
+	 function commentTxtUpdate(commentNum, commentTxt) {
+		 
+			$.ajax({
+				url : "commentUpdate.do",
+				type : "GET",
+				dataType : "text",
+				data : {
+					"commentNum": commentNum,
+					"commentTxt" : commentTxt
+				},
+				success : function(data) {
+					console.log(data);
+					if (data == 1){
+						alert('댓글 수정 성공');
+						getCommentList();
+					} else {
+						alert("댓글 수정 실패");
+					}
+				}
+
+			});
 	}
+	 
 			 
 			
 			
 		 
 	</script>
-
-
-
 </body>
 </html>

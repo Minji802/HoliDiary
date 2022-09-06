@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/mj_css/postDetail.css">
 </head>
 <body>
 	<h1>Guest Book</h1>
@@ -26,10 +27,12 @@
 					type="hidden" id="guestBookOwner" name="guestBookOwner"
 					value="${User.userID}">
 				<textarea name="guestBookTxt" id="guestBookTxt"
-					placeholder="방명록을 입력해주세요." style="width: 95%; height: 100px;"></textarea>
-				<button type="button" onclick="guestBookSubmit()">등록</button>
+					placeholder="방명록을 입력해주세요 (800자 이내)" maxlength="800" style="width: 100%; height: 80px; resize: none;"></textarea>
+				<button class="postDetailReg-Btn" type="button" onclick="guestBookSubmit()" style="float: right;">등록</button>
 			</div>
 		</form>
+		
+		<div style="height: 50px;"></div>
 
 		<hr>
 
@@ -99,7 +102,7 @@
 							html += '<div style="color: grey;">' + data[i]["guestBookDate"] + '</div>';
 							
 							if(currentUser == data[i]["guestBookWriter"])	{
-								html += '<button type="button" onclick="guestBookDelete('+ data[i]["guestBookNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+								html += '<button type="button" class="postDetailUpDel-Btn" onclick="guestBookDelete('+ data[i]["guestBookNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
 							}
 							
 							html += '</div>';

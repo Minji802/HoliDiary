@@ -17,4 +17,8 @@
 		delete commentTable where commentNum = #{commentNum}
 	</delete>
 	
+	<update id="commentUpdate" parameterType="com.project.main.mj_write.Comment">
+		update commentTable set commentTxt = #{commentTxt} where commentNum = #{commentNum}
+	</update>
+	
 </mapper>

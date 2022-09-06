@@ -473,9 +473,20 @@ public class DiaryPostDAO {
 
 	}
 
+	public int commentUpdate(HttpServletRequest req, User u, DiaryPost p, Comment c) {
+		
+		if (ss.getMapper(CommentMapper.class).commentUpdate(c) == 1) {
+			System.out.println("댓글 수정성공");
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
 	public int checkLike(HttpServletRequest req, Like l) {
 		return ss.getMapper(LikeMapper.class).checkLike(l);
 	}
+
 
 	
 

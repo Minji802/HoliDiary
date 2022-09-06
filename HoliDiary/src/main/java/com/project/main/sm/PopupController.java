@@ -56,10 +56,14 @@ public class PopupController {
 	@RequestMapping(value = "/popupHomeGo", method = RequestMethod.GET)
 	public String popupHome(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s, @RequestParam("userId") String userId, Comment c, DiaryPost p) {
 
-		uDAO.loginCheck(req);
-		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p); 
-		req.setAttribute("popupContentPage", "popupHome.jsp");
-		return "ksm_main/popup";
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p); 
+			req.setAttribute("popupContentPage", "popupHome.jsp");
+			return "ksm_main/popup";			
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
+		}
 	}
 
 	// 팝업창 - 스케줄
@@ -67,10 +71,14 @@ public class PopupController {
 	public String popupScedule(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s, 
 			@RequestParam("userId") String userId, Comment c, DiaryPost p) {
 
-		uDAO.loginCheck(req);
-		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
-		req.setAttribute("popupContentPage", "popupSchedule.jsp");
-		return "ksm_main/popup";
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			req.setAttribute("popupContentPage", "popupSchedule.jsp");
+			return "ksm_main/popup";			
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
+		}
 	}
 
 	
@@ -80,10 +88,14 @@ public class PopupController {
 	public String updateMyPopup(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s, 
 			@RequestParam("userId") String userId, Comment c, DiaryPost p) {
 
-		uDAO.loginCheck(req);
-		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
-		req.setAttribute("popupContentPage", "updateMyPopup.jsp");
-		return "ksm_main/popup";
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			req.setAttribute("popupContentPage", "updateMyPopup.jsp");
+			return "ksm_main/popup";
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
+		}
 	}
 
 	// 다이어리 - 정보 업데이트
@@ -108,10 +120,14 @@ public class PopupController {
 	public String updateCategory(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s,
 			@RequestParam("userId") String userId, Comment c, DiaryPost p) {
 
-		uDAO.loginCheck(req);
-		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
-		req.setAttribute("popupContentPage", "updateCategory.jsp");
-		return "ksm_main/popup";
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			req.setAttribute("popupContentPage", "updateCategory.jsp");
+			return "ksm_main/popup";
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
+		}
 	}
 	
 	// 다이어리 - 도움말 들어가기
@@ -119,10 +135,14 @@ public class PopupController {
 	public String advicePage(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s,
 			@RequestParam("userId") String userId, Comment c, DiaryPost p) {
 		
-		uDAO.loginCheck(req);
-		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
-		req.setAttribute("popupContentPage", "advicePage.jsp");
-		return "ksm_main/popup";
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			req.setAttribute("popupContentPage", "advicePage.jsp");
+			return "ksm_main/popup";
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
+		}
 	}
 	
 	// 다이어리 - 카테고리 업데이트 (추가)
@@ -130,7 +150,6 @@ public class PopupController {
 	public String updateCategoryAdd(HttpServletRequest req, Diary d, User u, Subscribe s, @RequestParam("diaryUserId") String userId, Category cate, Comment c, DiaryPost p) {
 		
 		if (uDAO.loginCheck(req)) {
-//			dDAO.updateDiary(req, d, userId);
 			cDAO.updateCategoryAdd(req, d, userId, cate);
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			req.setAttribute("popupContentPage", "popupHome.jsp");
@@ -164,7 +183,6 @@ public class PopupController {
 	@RequestMapping(value = "/schedule.insert", method = RequestMethod.GET)
 	public int insertSchedule(HttpServletRequest req, Schedule s) {
 		
-		
 		uDAO.loginCheck(req);
 		return dDAO.insertSchedule(req, s);
 	}
@@ -174,8 +192,6 @@ public class PopupController {
 	@RequestMapping(value = "/schedule.delete", method = RequestMethod.GET)
 	public int deleteSchedule(HttpServletRequest req, Schedule s) {
 		
-		System.out.println(req.getParameter("ScheduleContent"));
-		
 		uDAO.loginCheck(req);
 		return dDAO.deleteSchedule(req, s);
 	}
@@ -184,8 +200,6 @@ public class PopupController {
 	@ResponseBody
 	@RequestMapping(value = "/schedule.get", method = RequestMethod.GET, produces="application/json")
 	public Schedule getSchedule(HttpServletRequest req, Schedule s) {
-		System.out.println(s.getScheduleDate());
-		System.out.println(s.getScheduleUserId());
  
 		return dDAO.getSchedule(s);
 	}
@@ -194,10 +208,14 @@ public class PopupController {
 	@RequestMapping(value = "/mainImg.updateGo", method = RequestMethod.GET)
 	public String updateMainImgGo(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s, @RequestParam("userId") String userId, Comment c, DiaryPost p) {
 		
-		uDAO.loginCheck(req);
-		dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
-		req.setAttribute("popupContentPage", "updateMainImg.jsp");
-		return "ksm_main/popup";
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			req.setAttribute("popupContentPage", "updateMainImg.jsp");
+			return "ksm_main/popup";			
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
+		}
 	}
 	
 	// 다이어리 - 메인 이미지 (수정)
@@ -221,6 +239,7 @@ public class PopupController {
 	@ResponseBody
 	@RequestMapping(value = "/schedule.getAllEvents", produces="application/json")
 	public String[] getAllEvents(HttpServletRequest req) {
+		uDAO.loginCheck(req);
 		return dDAO.getAllEvent(req);
 	}
 

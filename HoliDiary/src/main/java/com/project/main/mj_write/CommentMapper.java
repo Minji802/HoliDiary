@@ -10,4 +10,6 @@ public interface CommentMapper {
 
 	public int commentDelete(Comment c);
 
+	public int commentUpdate(Comment c);
+
 }

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	font-family: "DM Sans", sans-serif;
+}
+
 #postListTbl {
 	font-size: 12pt;
 }
@@ -7,6 +11,9 @@
 .postTbl {
 	color: black;
 	font-weight: 600;
+	background: #eeeeee;
+	border-bottom: 1px solid gray;
+	height: 30px;
 }
 
 .postList {
@@ -14,9 +21,95 @@
 }
 
 .postTitle {
-	text-decoration: none;	
+	text-decoration: none;
 }
 
-.postTitle > a {
+.postTitle>a {
 	color: black;
+}
+
+#countPost {
+	height: 30px;
+}
+
+/* ---------------라디오버튼----------------- */
+.checks {
+	position: relative;
+}
+
+.checks input[type="radio"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.checks input[type="radio"]+label {
+	display: inline-block;
+	position: relative;
+	padding-left: 30px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.checks input[type="radio"]+label:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: -4px;
+	width: 21px;
+	height: 21px;
+	text-align: center;
+	background: #fafafa;
+	border: 1px solid #cacece;
+	border-radius: 100%;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
+		rgba(0, 0, 0, 0.05);
+}
+
+.checks input[type="radio"]+label:active:before, .checks input[type="radio"]:checked+label:active:before
+	{
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px
+		rgba(0, 0, 0, 0.1);
+}
+
+.checks input[type="radio"]:checked+label:before {
+	background: #E9ECEE;
+	border-color: #adb8c0;
+}
+
+.checks input[type="radio"]:checked+label:after {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left: 5px;
+	width: 13px;
+	height: 13px;
+	background: #99a1a7;
+	border-radius: 100%;
+	box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------------셀렉트 박스----------------- */
+select {
+	width: 80px;
+	height: 30px;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('arrow.jpg') no-repeat 95% 50%;
+	border-radius: 5px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	text-align: center;
+}
+
+select::-ms-expand {
+	    display: none;
 }
