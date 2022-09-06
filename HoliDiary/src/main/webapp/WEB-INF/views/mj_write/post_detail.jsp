@@ -398,13 +398,13 @@
 							html += '<br><ul>'+data[i]["commentDate"]+'</ul>';
 							
 							if(currentUser == data[i]["commentWriter"])	{
-								html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
-								html += '<button id="commentUpdateBtn" type="button" onclick="commentUpdate('+ data[i]["postNum"] + ',' + data[i]["commentNum"] + ',' + "'" + data[i]["commentWriter"] + "'" + ',' + "'" + data[i]["commentTxt"] + "'" + ')" style="float: right; text-align: right; margin-left: 20px;">수정</button>';
+								html += '<button type="button" class="postDetailUpDel-Btn" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+								html += '<button id="commentUpdateBtn" class="postDetailUpDel-Btn" type="button" onclick="commentUpdate('+ data[i]["postNum"] + ',' + data[i]["commentNum"] + ',' + "'" + data[i]["commentWriter"] + "'" + ',' + "'" + data[i]["commentTxt"] + "'" + ')" style="float: right; text-align: right; margin-left: 20px;">수정</button>';
 							}  else if(postMaster == currentUser) {
-								html += '<button type="button" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+								html += '<button type="button" class="postDetailUpDel-Btn" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
 							}
 							
-							html += '<div id="updateCommentDIV" style="position: relative;">';
+							/*html += '<div id="updateCommentDIV" style="position: relative;">';
 							html += '<form id="commentUpdateForm" name="commentUpdateForm">';
 							html += '<div style="font-size: 11pt;">';
 							html += '<strong>' + data[i]["commentWriter"] + '</strong>';
@@ -423,7 +423,7 @@
 							html += '</div>'
 							
 							html += '</div>';
-							html += '<hr>'
+							html += '<hr>'*/
 								
 						}
 						

@@ -49,6 +49,9 @@ public class WriteController {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
 
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
@@ -84,6 +87,9 @@ public class WriteController {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.getCategoryList(req, userId, pp, total, nowPage, cntPerPage, category);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
 
 		req.setAttribute("popupContentPage", "../mj_write/post_category_list.jsp");
@@ -101,6 +107,9 @@ public class WriteController {
 			if (uDAO.loginCheck(req)) {
 				dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 				pDAO.getcategoryGallery(req, userId, pp, total, nowPage, cntPerPage, category);
+			} else {
+				req.setAttribute("popupContentPage", "popupBack.jsp");
+				return "ksm_main/popupBack";
 			}
 
 			req.setAttribute("popupContentPage", "../mj_write/post_category_gallery.jsp");
@@ -116,7 +125,12 @@ public class WriteController {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.countPostView(p, req, u);
 			pDAO.detailPost(p, req, c, l);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
+		
+		
 		req.setAttribute("popupContentPage", "../mj_write/post_detail.jsp");
 
 		return "ksm_main/popup";
@@ -130,7 +144,12 @@ public class WriteController {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			System.out.println(userId);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
+		
+		
 		req.setAttribute("popupContentPage", "../mj_write/post_write2.jsp");
 		return "ksm_main/popup";
 	}
@@ -189,7 +208,12 @@ public class WriteController {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.regPost(req, userId, postImg, postTitle, postTxt, postCategory, postCountry);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
+		
+		
 		TokenMaker.make(req);
 		pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 
@@ -213,6 +237,9 @@ public class WriteController {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.deleteDiaryPost(req, p);
 			pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
 		return "ksm_main/popup";
@@ -226,6 +253,9 @@ public class WriteController {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.detailPost(p, req, c, l);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
 		req.setAttribute("popupContentPage", "../mj_write/post_update.jsp");
 		return "ksm_main/popup";
@@ -242,7 +272,11 @@ public class WriteController {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.diaryPostUpdate(req, p, userId);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
+		
 		pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");

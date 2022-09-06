@@ -39,6 +39,9 @@ public class guestBookController {
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
 		}
 
 		req.setAttribute("popupContentPage", "../mj_guestBook/guestBook.jsp");
