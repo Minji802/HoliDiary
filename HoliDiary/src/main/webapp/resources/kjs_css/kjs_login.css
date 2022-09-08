@@ -30,22 +30,19 @@
   width: 200px; 
 }
 
-.logout_box{
-	margin-top: 20px;
-	text-align: center;
-}
-
-.logout_box button{
-  transition: 0.3s;
+#logout_btn{
+    transition: 0.3s;
+  	width: 90px;
 	height: 30px;
-	background-color: transparent;
+	background-color: #FFDE59;
 	font-family: 'GangwonEdu_OTFBoldA';
 	font-size: 15pt;
-	color:#FFDE59;
+	color:#6667AB;
 	border-radius: 10px;
 	border: none;
 	cursor: pointer;
-	
+	margin: 20px 105px 0px 105px;
+	padding-top: 5px;
 }
 
 

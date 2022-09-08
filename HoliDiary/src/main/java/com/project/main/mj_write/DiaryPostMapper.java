@@ -2,6 +2,8 @@ package com.project.main.mj_write;
 
 import java.util.List;
 
+import com.project.main.sm.Diary;
+
 public interface DiaryPostMapper {
 	
 	public int countPostList(DiaryPost p);
@@ -23,6 +25,8 @@ public interface DiaryPostMapper {
 	public int countPostView(DiaryPost p);
 
 	public List<DiaryPost> showCategoryPostList(DiaryPost p);
+
+	public String getPostNum(DiaryPost p);
 
 	
 

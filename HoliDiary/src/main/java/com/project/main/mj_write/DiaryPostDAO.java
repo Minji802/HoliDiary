@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
 import com.project.main.js.User;
+import com.project.main.sm.Diary;
 
 @Service
 public class DiaryPostDAO {
@@ -484,8 +485,13 @@ public class DiaryPostDAO {
 	}
 	
 	public int checkLike(HttpServletRequest req, Like l) {
+			return ss.getMapper(LikeMapper.class).checkLike(l);
+	}
+
+	public String getPostNum(DiaryPost p) {
 		
-		return ss.getMapper(LikeMapper.class).checkLike(l);
+		return ss.getMapper(DiaryPostMapper.class).getPostNum(p);
+		
 	}
 
 

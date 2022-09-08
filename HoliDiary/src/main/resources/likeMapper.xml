@@ -49,7 +49,7 @@
 	</select>
 	
 	<select id="checkLike" resultType="int">
-		select likeCount from POST_LIKE where postNum = #{postNum} and userId = #{userId}	
+		select count(likeCount) from POST_LIKE where postNum = #{postNum} and userId = #{userId}	
 	</select>
 	
 </mapper>

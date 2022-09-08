@@ -46,6 +46,10 @@
 		update post set postView = postView + 1 where postNum = #{postNum}
 	</update>
 	
+	<select id="getPostNum" parameterType="com.project.main.mj_write.DiaryPost" resultType="String">
+		select * from (select postNum from post where postWriter = #{postWriter} order by postDate desc)
+		where rownum &lt;= 1
+	</select>
 	
 	
 </mapper>

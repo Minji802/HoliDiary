@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.guestBookReg-Btn {
+	font-family: "DM Sans", sans-serif;
+	background-color: #7d7d7d;
+	border: none;
+	color: #ffffff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 30px;
+	padding: 3.5px;
+	width: 100px;
+}
+
+#guestBookList {
+	font-family: "DM Sans", sans-serif;
+}
+
+.arrow_box {
+	font-family: "DM Sans", sans-serif;
+}
+
+.guestBookDelete-Btn{
+	font-family: "DM Sans", sans-serif;
+	background-color: #7d7d7d;
+	border: none;
+	color: #fff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 0 auto;
+}
+
+.guestBookListNone {
+	font-family: "DM Sans", sans-serif;
+}
+

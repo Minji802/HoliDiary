@@ -12,8 +12,6 @@
 		<!-- <p>My 다이어리</p> -->
 	</a>
 	<a class="menu_bar_li_first" href="#" id="modal_btn" onclick=popup()>${sessionScope.loginUser.userNickname }'s Diary</a>
-	<div class="logout_box">
-		<button id="logout_btn" onclick="location.href='logout.do'">로그아웃</button>
-	</div>
+	<button id="logout_btn" onclick="location.href='logout.do'">로그아웃</button>
 </body>
 </html>

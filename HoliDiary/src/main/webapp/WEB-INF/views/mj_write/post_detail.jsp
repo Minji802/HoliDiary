@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="resources/mj_css/postDetail.css">
 <link rel="stylesheet" href="resources/mj_css/likeButton.css">
 </head>
@@ -56,7 +57,8 @@
 		</div>
 
 		<!-- 모달창 -->
-		<div class="modal hidden">
+		<!-- tabindex 속성을 주게되면 해당 속성을 가진 태그에 focus할 수 있게되고 focus가 가는 순간부터 키보드 입력이 가능해진다 -->
+		<div class="modal hidden" tabindex="0" >
 			<div class="bg"></div>
 			<div class="modalBox" style="z-index: 100">
 				<p>
@@ -146,18 +148,59 @@
 
 	<script type="text/javascript">
 		function deleteDiaryPost(n, postWriter, userId, nowPage, cntPerPage) {
-			var ok = confirm("정말 삭제하시겠습니까?");
-			if (ok) {
-				location.href = "diaryPost.delete?postNum=" + n
-						+ "&postWriter=" + postWriter + "&userId=" + userId + "&nowPage=" + 1 + "&cntPerPage=" + 15;
-			}
+			confirm == swal("정말 삭제하시겠습니까?", {
+				                buttons: {
+				                      cancel: {
+				                            text: "취소",
+				                            value: false,
+				                            visible: true,
+				                            closeModal: true,
+				                          },
+				                          confirm: {
+				                            text: "삭제",
+				                            value: true,
+				                            visible: true,
+				                            closeModal: true
+				                          }
+				                }
+				                    }).then((result) => {
+				                        if(result){
+				                        	location.href = "diaryPost.delete?postNum=" + n
+				    						+ "&postWriter=" + postWriter + "&userId=" + userId + "&nowPage=" + 1 + "&cntPerPage=" + 15;
+				    						alert == swal("게시글이 삭제되었습니다");
+				                        }else{
+				                            $(this).prop("checked", true);
+				                            return;
+				                        }
+				                    })
+
 		}
 
 		function updateDiaryPost(userId, n, nowPage, cntPerPage) {
-			var ok = confirm("정말 수정하시겠습니까?");
-			if (ok) {
-				location.href = "diaryPost.update.go?&postNum=" + n + "&userId=" + userId;
-			}
+			confirm == swal("정말 수정하시겠습니까?", {
+                buttons: {
+                      cancel: {
+                            text: "취소",
+                            value: false,
+                            visible: true,
+                            closeModal: true,
+                          },
+                          confirm: {
+                            text: "수정",
+                            value: true,
+                            visible: true,
+                            closeModal: true
+                          }
+                }
+                    }).then((result) => {
+                        if(result){
+                        	location.href = "diaryPost.update.go?&postNum=" + n + "&userId=" + userId;
+                        }else{
+                            $(this).prop("checked", true);
+                            return;
+                        }
+                    })
+			
 		}
 		
 		/*공유기능*/
@@ -182,7 +225,7 @@
 		    var copy = document.execCommand('copy');
 		    // 사용자 알림
 		    if(copy) {
-		    	alert("마이다이어리 주소가 복사되었습니다.");
+		    	alert == swal("마이다이어리 주소가 복사되었습니다.");
 		    }
 		});
 		
@@ -191,7 +234,7 @@
 			var postNum = document.getElementById("postNum").value;
 			var userId = document.getElementById("postWriter").value;
    			var sendUrl = "localhost/main/post.detail.go?postNum="+postNum+"&userId="+userId; // 전달할 URL
-   			console.log(sendUrl);
+   			//console.log(sendUrl);
    			window.open("https://twitter.com/intent/tweet?text=HoliDiary에서 나만의 여행 후기를 남겨보세요!😊 &url=" + sendUrl);
 		}
 		
@@ -210,7 +253,7 @@
 			var postWriter = document.getElementById("postWriter").value;
 			var postRecommend = document.getElementById("postRecommend").value;
 			checkLike2(postNum,userID);
-			alert(11);
+			//alert(11);
 			$(".heart").on("click", function() {
 				$(this).toggleClass("is-active");
 				likeupdate();
@@ -230,13 +273,15 @@
 					},
 					success : function(likeResult) {
 						if (likeResult == 0) {
-							console.log("추천함");
+							//console.log("추천함");
 							$(likeCnt).html(parseInt($(likeCnt).text())+1);
+							alert == swal("추천되었습니다")
 							
 							
 						} else if (likeResult == 1) {
-							console.log("추천취소");
+							//console.log("추천취소");
 							$(likeCnt).html($(likeCnt).text()-1);
+							alert == swal("추천이 취소되었습니다")
 						}
 					},
 					error : function(request, status, error) {
@@ -266,25 +311,38 @@
 					}
 				},
 				error : function(request, status, error) {
-					alert("ajax 실패1");
+					//alert("ajax 실패1");
+					//console.log(request.responseText);
+					//console.log(request.status);
+					//console.log(error);
 				}
 
 			});	
 		}
 		
-		/*모달창*/
+		/*모달창*/	
+		const $modal = document.querySelector('.modal');
+
+		//$modal.style.display ='flex';
+		
 		const open = () => {
-		    document.querySelector(".modal").classList.remove("hidden");
+			$modal.classList.remove("hidden");
+			$modal.focus();
 		  }
 
-		  const close = () => {
-		    document.querySelector(".modal").classList.add("hidden");
-		  }
+		const close = () => {
+			$modal.classList.add("hidden");
+			
+		}
 
 		  document.querySelector(".like_result").addEventListener("click", open);
 		  document.querySelector(".closeBtn").addEventListener("click", close);
 		  document.querySelector(".bg").addEventListener("click", close);
-		
+		  $modal.addEventListener("keydown", close, e => {
+	    		//console.log(e);
+	    		 if(e.key==='Escape') $modal.style.display = 'none';
+			});
+		  
 		  
 		 /*댓글창*/
 		function commentSubmit() {
@@ -302,7 +360,7 @@
 			 }
 			 
 			if($("#commentTxt").val() == ''){
-				alert('내용을 입력해주세요!');
+				alert == swal('내용을 입력해주세요!');
 				$("#commentTxt").focus();
 			}
 
@@ -339,7 +397,7 @@
 					var html = "";
 					let postMaster = $("#postDetailWriter").val();
 					let currentUser = $("#currentUser").val();
-					console.log(data);
+					//console.log(data);
 					
 					if(data.length > 0) {
 						for (var i = 0; i < data.length; i++) {
@@ -412,11 +470,11 @@
 					}
 					
 					$("#commentList").html(html);
-					console.log('댓글로드');
+					//console.log('댓글로드');
 					goDiary();
 				},
 				error : function(request, status, error){
-					alert("통신실패22222");
+					//alert("통신실패22222");
 				}
 			});
 			
@@ -425,18 +483,18 @@
 		
 	function commentUpdate(obj, commentNum, commentTxt) {
 		let btnElement = $(obj);
-		console.log($(btnElement).val());
+		//console.log($(btnElement).val());
 		
 		let myDiv = $(obj).parent().find('.updateCommentDIV');
           if($(btnElement).val() == 1){ 		
-        	 console.log($(btnElement).val());
-        	 console.log('val 1일때');
+        	 //console.log($(btnElement).val());
+        	 //console.log('val 1일때');
            $(myDiv).css("display","block");
            $(btnElement).val('0');
              
          }else{ 		
-        	 console.log($(btnElement).val());
-        	 console.log('val 0일때');
+        	 //console.log($(btnElement).val());
+        	 //console.log('val 0일때');
            $(myDiv).css("display","none");
            $(btnElement).val('1');
          }  
@@ -456,7 +514,7 @@
 			let popupLayer;
 		$(myStrong).on("click", function(e) {
 			popupLayer = $(this).parent().parent().find(".popupLayer");
-			console.log(popupLayer);
+			//console.log(popupLayer);
 			/* 클릭 클릭시 클릭을 클릭한 위치 근처에 레이어가 나타난다. */
 			var sWidth = window.innerWidth;
 			var sHeight = window.innerHeight;
@@ -467,8 +525,8 @@
 			var divLeft = e.offsetX;
 			var divTop = e.offsetYY;
 
- 			console.log(divLeft);
- 			console.log(divTop);
+ 			//console.log(divLeft);
+ 			//console.log(divTop);
 			
 			$(popupLayer).css({
 				"width": 200,
@@ -488,32 +546,50 @@
 	
 	$(function() {
 		getCommentList();
-		console.log('레디호출끝')
+		//console.log('레디호출끝')
 	});
 		
 	 function commentDelete(commentNum) {
-		var ok = confirm("정말 삭제하시겠습니까?");
-		alert(commentNum);
-		if (ok) {
-			$.ajax({
-				type: "GET",
-				url: "commentDelete.do",
-				data : {"commentNum": commentNum},
-				dataType: "text",
-				success: function(data) {
-					console.log("삭제성공")
-					getCommentList();
-				}
-			});
-		}
+		confirm == swal("정말 삭제하시겠습니까?", {
+            buttons: {
+                  cancel: {
+                        text: "취소",
+                        value: false,
+                        visible: true,
+                        closeModal: true,
+                      },
+                      confirm: {
+                        text: "삭제",
+                        value: true,
+                        visible: true,
+                        closeModal: true
+                      }
+            }
+                }).then((result) => {
+                	if (result) {
+            			$.ajax({
+            				type: "GET",
+            				url: "commentDelete.do",
+            				data : {"commentNum": commentNum},
+            				dataType: "text",
+            				success: function(data) {
+            					//console.log("삭제성공")
+            					getCommentList();
+            				}
+            			});
+            		}
+                });
+		
+		//alert(commentNum);
+		
 	}
 	 
 	function commentTxtUpdate(obj, commentNum, commentTxt) {
 		 var commentTxt_update = $(obj).parent().parent().find(".commentTxt_update");
 		 var commentText = commentTxt_update.val().replaceAll("\n", "<br>");
-		 console.log("1" + commentTxt_update.val());
-		 console.log("2" + commentNum);
-		 console.log("3" + commentTxt);
+		 //console.log("1" + commentTxt_update.val());
+		 //console.log("2" + commentNum);
+		 //console.log("3" + commentTxt);
 				 $.ajax({
 				
 				url : "commentUpdate.do",
@@ -524,12 +600,12 @@
 					"commentTxt" : commentText
 				},
 				success : function(data) {
-					console.log(data);
+					//console.log(data);
 					if (data == 1){
-						alert('댓글 수정 성공');
+						alert == swal("댓글을 수정했습니다");
 						getCommentList();
 					} else {
-						alert("댓글 수정 실패");
+						alert == swal("댓글 수정이 실패했습니다");
 					}
 				}
 
