@@ -29,5 +29,12 @@ public class MapController {
 		
 		return "mj_map/map";
 	}
+	
+	@RequestMapping(value = "/mapHelp.open", method = RequestMethod.GET)
+	public String mapHelp(HttpServletRequest req) {
+		
+		
+		return "mj_map/mapHelp";
+	}
 
 }

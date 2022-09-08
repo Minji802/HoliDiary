@@ -12,11 +12,12 @@
 <script type="text/javascript"
 	src="resources/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="styleSheet" href="resources/summernote/summernote-lite.css">
+<link rel="stylesheet" href="resources/mj_css/mj_write.css">
 </head>
 <body>
-
-	<input type="button" value="Map" onclick="showPopupMap();" />
-
+<div id="write-map-Btn-Div">
+	<input class="write-map-Btn" type="button" value="Map" onclick="showPopupMap();" />
+</div>
 	<script language="javascript">
 		function showPopupMap() {
 			let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=800, height=650, top=100, left=270";
@@ -27,8 +28,8 @@
 	<form action="diaryPost.reg.do?nowPage=1&cntPerPage=15" method="post">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
-				제목<input type="text" name="postTitle" class="postTitleWriteContent"
-					style="width: 60%; margin-left: 20px; border: 1px solid grey;">                     
+				title : <input type="text" name="postTitle" class="postTitleWriteContent"
+					style="width: 70%; margin-left: 5px; border-bottom: 1px solid grey;">                     
 			</div>
 
 			<div>

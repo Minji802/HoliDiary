@@ -98,7 +98,7 @@
 		</c:forEach>
 		</c:if>
 		<c:if test="${DiaryPosts.size()==0}">
-			<tr style="height: 400px;">
+			<tr style="height: 300px;">
 				<td class="nonePost2" colspan="5" rowspan="10">등록된 포스트가 없습니다</td>
 			</tr>
 		</c:if>

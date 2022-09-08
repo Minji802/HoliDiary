@@ -10,11 +10,12 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/mj_css/mj_map.css" />
 <script type="module" src="resources/mj_js/mj_mapIndex.js"></script>
+<script type="text/javascript" src="resources/mj_js/map_help.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
-
+<div id="whole">
 	<div class="dropdown">
 		<button onclick="dp_menu()" class="worldGoButton">국가 바로가기</button>
 		<div style="display: none;" id="drop-content">
@@ -25,10 +26,14 @@
 			<button id="worldButton" class="africaGo">아프리카</button>
 		</div>
 	</div>
+
+	<img class="mapHelp" alt="도움말" 
+		onclick="helpOpen()" src="resources/sm_img/png-clipart-question-mark-question-mark-removebg-preview.png">
 	
 	<div id="imageDownload">
 		<button class="imageDownloadButton">이미지로 저장하기</button>
 	</div>
+	
 
 	<script>
 		function dp_menu() {
@@ -56,7 +61,7 @@
 	<!-- <div id="map"></div> -->
 
 	<p>
-
+</div>
 <script type="text/javascript">
 	
 	
@@ -66,7 +71,7 @@
         	return node.nodeName === 'IFRAME';
       	}
 		
-		html2canvas(document.querySelector("#map"), {
+		html2canvas(document.querySelector("#whole"), {
 	      useCORS: true,
     	  allowTaint: false,
 	      ignoreElements: (node) => {

@@ -15,6 +15,16 @@ html, body {
 	padding: 0;
 }
 
+.mapHelp {
+	float: right;
+	width: 20px;
+	height: 30px;
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
 #imageDownload {
 	text-align: right;
 	float: right;
@@ -27,8 +37,6 @@ html, body {
 	background-color: #6667AB;
 	color: #FFDE59;
 }
-
-
 
 /*드롭다운*/
 .dropdown {
