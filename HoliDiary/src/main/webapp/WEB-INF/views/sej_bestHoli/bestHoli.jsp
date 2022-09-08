@@ -264,7 +264,7 @@
 	<br>
 	<c:forEach var="bh1" items="${bestHolisR }">
 	<div class="bestHoliRankingImg">
-		<img onclick="mypagePopup('${bh1.postwriter }')" src="${bh1.postimg }" onerror="this.src='resources/alterImg/free-icon-picture-6490775.png'">
+		<img onclick="searchPopup('${bh1.postnum }','${bh1.postwriter }')" src="${bh1.postimg }" onerror="this.src='resources/alterImg/free-icon-picture-6490775.png'">
 	</div>
 	</c:forEach>
 </div>
@@ -276,7 +276,7 @@
             <div 
                 class="slide-image" 
                 style="background-image: url('${bh.postimg}'),url('resources/alterImg/free-icon-picture-6490775.png')"
-                onclick="mypagePopup('${bh.postwriter }')">
+                onclick="searchPopup('${bh.postnum }','${bh.postwriter }')">
             </div>
         </div>
         <div class="swiper-slide">
@@ -288,7 +288,7 @@
                 <footer>
                     <div><fmt:formatDate value="${bh.postdate }" pattern="yyyy/MM/dd"/> </div>
                     <c:if test="${sessionScope.loginUser.userID != null}">
-                    <a <%-- href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }" --%>onclick="mypagePopup('${bh.postwriter }')">READ MORE</a>
+                    <a <%-- href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }" --%>onclick="searchPopup('${bh.postnum }','${bh.postwriter }')">READ MORE</a>
                 	</c:if>
                     <c:if test="${sessionScope.loginUser.userID == null}">
                     <a href="login.go">READ MORE</a>

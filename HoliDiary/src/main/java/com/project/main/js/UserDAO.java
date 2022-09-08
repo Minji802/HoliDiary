@@ -691,12 +691,6 @@ public class UserDAO {
 		try {
 			User u = (User) req.getSession().getAttribute("loginUser");
 			
-			System.out.println(req.getSession().getAttribute("kakao_token"));
-			System.out.println(req.getSession().getAttribute("naver_token"));
-			
-			String kakao_token = (String) req.getSession().getAttribute("kakao_token");
-			String naver_token = (String) req.getSession().getAttribute("naver_token");
-
 			if (ss.getMapper(UserMapper.class).deleteUser(u) == 1) {
 				String path = req.getSession().getServletContext().getRealPath("resources/kjs_profileImg");
 				String img = u.getUserImg();
@@ -705,53 +699,11 @@ public class UserDAO {
 					new File(path + "/" + img).delete();
 				}
 				
-				// 카카오 연동 해제
-				if(kakao_token != null) {
-					
-					String reqURL = "https://kapi.kakao.com/v1/user/unlink";
-					
-					URL url = new URL(reqURL);
-				    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-				    conn.setRequestMethod("POST");
-				    conn.setDoOutput(true);
-				    conn.setRequestProperty("Authorization", "Bearer " + req.getSession().getAttribute("kakao_token")); //전송할 header 작성, access_token전송
-
-				    //결과 코드가 200이라면 성공
-				    int responseCode = conn.getResponseCode();
-				    System.out.println("responseCode : " + responseCode);
+				// 구독정보 삭제
+				if(ss.getMapper(SubscribeMapper.class).deleteSubscribe(u) == 1) {
+					System.out.println("구독 삭제");
 				}
 				
-				// 네이버 연동 해제
-				if(naver_token != null) {
-					String apiUrl = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=rX3BsIpQkj6CJiShI2rn" +
-							"&client_secret=V8T2DziKhJ&access_token="+naver_token.replaceAll("'", "")+"&service_provider=NAVER";
-					
-					URL url = new URL(apiUrl);
-				    HttpURLConnection conn = (HttpURLConnection) url.openConnection();	
-				    conn.setRequestMethod("GET");
-				    int responseCode = conn.getResponseCode();
-				    
-				    System.out.println(responseCode);
-				    
-				    BufferedReader  br;
-				    
-				    if(responseCode==200) { // 정상 호출
-				    	br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-				      } else {  // 에러 발생
-				    	br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-				      }
-				      String inputLine;
-				      StringBuffer res = new StringBuffer();
-				      while ((inputLine = br.readLine()) != null) {
-				        res.append(inputLine);
-				      }
-				      
-				      br.close();
-				    
-				      System.out.println(res);
-				}
-
 				logout(req);
 
 				System.out.println("탈퇴성공");

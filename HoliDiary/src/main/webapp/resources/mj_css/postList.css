@@ -1,7 +1,14 @@
-@charset "UTF-8";
-
 body {
 	font-family: "DM Sans", sans-serif;
+}
+
+#postListOrder{
+	float: left;
+}
+
+.postListOrderA {
+	color : black;
+	font-size: 12pt;
 }
 
 #postListTbl {
@@ -15,6 +22,23 @@ body {
 	border-bottom: 1px solid gray;
 	height: 30px;
 }
+
+.nonePost {
+	font-size: 12pt;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 370px;
+	margin-top: 38%;
+}
+
+.nonePost2 {
+	font-size: 12pt;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 370px;
+	margin-top: 38%;
+}
+
 
 .postList {
 	color: #717171;

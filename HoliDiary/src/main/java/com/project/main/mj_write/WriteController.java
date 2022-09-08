@@ -57,7 +57,47 @@ public class WriteController {
 		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
 		return "ksm_main/popup";
 	}
-
+	
+	// 게시글 목록 불러오기 - 오래된순
+	@RequestMapping(value = "/post-list.past", method = RequestMethod.GET)
+	public String pastList(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
+			Category cate, @RequestParam("nowPage") String nowPage, @RequestParam("cntPerPage") String cntPerPage,
+			DiaryPostPaging pp, Subscribe s, Comment c) {
+		
+		int total = pDAO.countPostList(req, p, userId);
+		
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			pDAO.getAllPastList(req, userId, pp, total, nowPage, cntPerPage);
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return "ksm_main/popupBack";
+		}
+		
+		req.setAttribute("popupContentPage", "../mj_write/post_list_past.jsp");
+		return "ksm_main/popup";
+	}
+	
+	// 게시글 목록 불러오기 - 추천순
+		@RequestMapping(value = "/post-list.recommend", method = RequestMethod.GET)
+		public String recommendList(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
+				Category cate, @RequestParam("nowPage") String nowPage, @RequestParam("cntPerPage") String cntPerPage,
+				DiaryPostPaging pp, Subscribe s, Comment c) {
+			
+			int total = pDAO.countPostList(req, p, userId);
+			
+			if (uDAO.loginCheck(req)) {
+				dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+				pDAO.getAllRecommendList(req, userId, pp, total, nowPage, cntPerPage);
+			} else {
+				req.setAttribute("popupContentPage", "popupBack.jsp");
+				return "ksm_main/popupBack";
+			}
+			
+			req.setAttribute("popupContentPage", "../mj_write/post_list_recommend.jsp");
+			return "ksm_main/popup";
+		}
+	
 	// 게시글 목록 불러오기 - 갤러리 형식
 	@RequestMapping(value = "/post-Gallery", method = RequestMethod.GET)
 	public String GalleryGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
@@ -72,6 +112,40 @@ public class WriteController {
 		}
 
 		req.setAttribute("popupContentPage", "../mj_write/post_gallery.jsp");
+		return "ksm_main/popup";
+	}
+	
+	// 게시글 목록 불러오기 - 갤러리 형식 - 오래된순
+	@RequestMapping(value = "/post-Gallery.past", method = RequestMethod.GET)
+	public String GalleryPastGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
+			Category cate, @RequestParam("nowPage") String nowPage, @RequestParam("cntPerPage") String cntPerPage,
+			DiaryPostPaging pp, Subscribe s, Comment c) {
+		
+		int total = pDAO.countPostList(req, p, userId);
+		
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			pDAO.getAllPastList2(req, userId, pp, total, nowPage, cntPerPage);
+		}
+		
+		req.setAttribute("popupContentPage", "../mj_write/post_gallery_past.jsp");
+		return "ksm_main/popup";
+	}
+	
+	// 게시글 목록 불러오기 - 갤러리 형식 - 추천순
+	@RequestMapping(value = "/post-Gallery.recommend", method = RequestMethod.GET)
+	public String GalleryRecommendGo(HttpServletRequest req, DiaryPost p, Diary d, @RequestParam("userId") String userId, User u,
+			Category cate, @RequestParam("nowPage") String nowPage, @RequestParam("cntPerPage") String cntPerPage,
+			DiaryPostPaging pp, Subscribe s, Comment c) {
+		
+		int total = pDAO.countPostList(req, p, userId);
+		
+		if (uDAO.loginCheck(req)) {
+			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
+			pDAO.getAllRecommendList2(req, userId, pp, total, nowPage, cntPerPage);
+		}
+		
+		req.setAttribute("popupContentPage", "../mj_write/post_gallery_recommend.jsp");
 		return "ksm_main/popup";
 	}
 

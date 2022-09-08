@@ -13,13 +13,6 @@
 <script type="text/javascript" src="resources/sm_js/sm_scheduleJs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
-/* #saveBtn {
-	position: relative;
-}
-
-#rewriteBtn {
-	position: relative;
-} */
 .calendar {
 	color: #fff;
 	margin: 10px auto;
@@ -51,7 +44,6 @@
 	transform: scale(0.9) translate(30px, 30px);
 	opacity: 0;
 	visibility: hidden;
-	/*   border-radius: 5px; */
 	display: none;
 	align-items: flex-start;
 	flex-wrap: wrap;
@@ -155,60 +147,15 @@ input.add-event-edit {
 	animation: shake 300ms 1 forwards;
 }
 
-@
-keyframes shake { 20%, 60%{
-	transform: translateX(4px);
+@keyframes shake { 
+	20%, 60%{
+		transform: translateX(4px);
+	}
+	40%, 80%{
+		transform: translateX(-4px);
+	}
 }
 
-40%,
-80%{
-transform
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
- 
-
-
-
-
-
-translateX
-
-
-
-
-
-
-
-
-
-
-(-4
-px
-
-
-
-
-
-
-
-
-);
-}
-}
 input.add-event-edit::-webkit-input-placeholder {
 	color: #fff;
 }
@@ -322,7 +269,6 @@ input.add-event-edit:-ms-input-placeholder {
 
 .day-inspiration-quote {
 	position: absolute;
-	/*   top: 90px; */
 	margin-top: -40px;
 	left: 10%;
 	width: 80%;
@@ -351,8 +297,6 @@ input.add-event-edit:-ms-input-placeholder {
 .day-event-list-ul li {
 	padding: 10px;
 	margin: 10px 0;
-	/*   background: #6667AB; */
-	/*   box-shadow: 0px 1px 1px  rgba(2,2,2,0.5); */
 	position: relative;
 }
 
@@ -367,7 +311,6 @@ input.add-event-edit:-ms-input-placeholder {
 	color: #6667AB;
 	font-size: 18px;
 	text-transform: lowercase;
-	/*   position: relative; */
 }
 
 .event-delete {
@@ -531,6 +474,7 @@ keyframes popIn { 100%{
 </style>
 <script type="text/javascript">
 $(function(){
+	
 	 $('#saveBtn').click(function() {
 		let userID = document.getElementById("userID").value;
 		let ScheduleTitle = $("#input-add-event-name").val();
@@ -539,8 +483,6 @@ $(function(){
 		let ScheduleEndTime1 = document.getElementById("makeEndTime").value;
 		let scheduleContent = $("#day-events-list").html();
 
-		
-		
 		$.ajax({
 			url : "schedule.insert",
 			type : "GET",
@@ -554,9 +496,9 @@ $(function(){
 					},
 			success : function(getData) {
 				console.log(getData);
-				alert('일정이 저장되었습니다.');
+				alert == swal('일정이 저장되었습니다.');
 				if (getData == 1) {
-					console.log("성공");
+					console.log("일정 저장 성공");
 					$("#input-add-event-name").val('');
 					$(".inputText").val("");
 				
@@ -568,50 +510,58 @@ $(function(){
 		
 	});
 	 
-	 
 	 //스케줄러 삭제 - db 내용 동시에 삭제 - pk로 삭제 / 등록날짜 
 	$('#rewriteBtn').click(function(){
-		
-		
-		var result = confirm("모두 삭제하시겠습니까?"); 
-		
-		if(result){
-		    alert("일정을 모두 삭제합니다");
-		
-		 
 		let userID = document.getElementById("userID").value;
 		let ScheduleTitle = $("#input-add-event-name").val();
 		let ScheduleDate1 = document.getElementById("day-events2").value;
 		let ScheduleStartTime1 = document.getElementById("makeStartTime").value;
 		let ScheduleEndTime1 = document.getElementById("makeEndTime").value;
 		let scheduleContent = $("#day-events-list").html();
-		 
-		 $.ajax({
-				url : "schedule.delete",
-				type : "GET",
-				dataType : "text",
-				data :	{"ScheduleUserId" : userID,
-				  	"ScheduleTitle" : ScheduleTitle,
-				  	"ScheduleDate" : ScheduleDate1,
-				  	"ScheduleStartTime1" : ScheduleStartTime1,
-				  	"ScheduleEndTime1" : ScheduleEndTime1,
-				  	"ScheduleContent" : scheduleContent,
-						},
-				success : function(getData) {
-					console.log(getData);
-					var userID = document.getElementById("userID").value;
-					location.href = "popupScheduleGo?userId="+userID;
-					if (getData == 1) {
-						console.log("성공");
-					}else {
-					}				
+		
+		confirm == swal("모두 삭제하시겠습니까?", {
+			buttons: {
+				cancel: {
+					text: "취소",
+					value: false,
+					visible: true,
+					closeModal: true,
+				},
+				confirm: {
+					text: "삭제",
+					value: true,
+					visible: true,
+					closeModal: true
 				}
-			});
-		 
-	};
-	 });       
+			}
+			}).then((result) => {
 
+			if(result){
+				 
+				 $.ajax({
+						url : "schedule.delete",
+						type : "GET",
+						dataType : "text",
+						data :	{"ScheduleUserId" : userID,
+						  	"ScheduleTitle" : ScheduleTitle,
+						  	"ScheduleDate" : ScheduleDate1,
+						  	"ScheduleStartTime1" : ScheduleStartTime1,
+						  	"ScheduleEndTime1" : ScheduleEndTime1,
+						  	"ScheduleContent" : scheduleContent,
+								},
+						success : function(getData) {
+							console.log(getData);
+							var userID = document.getElementById("userID").value;
+							location.href = "popupScheduleGo?userId="+userID;
+										
+						}
+					});
+				};
 
+			})
+
+		})
+		
 });	
 
 	
@@ -632,8 +582,6 @@ $(function(){
 						<input id="day-events2" name="dayEventsEle2" value=""
 							type="hidden"> <input type="hidden" id="ScheduleNum"
 							name="ScheduleNum" value="${Schedule.ScheduleNum }">
-						<!-- <span class="day-events"
-							id="day-events">had no events for today</span>. &nbsp; -->
 						<span tabindex="0"
 							onkeyup="if(event.keyCode != 13) return; this.click();"
 							class="day-events-link" id="add-event" data-date>일정을
@@ -688,9 +636,10 @@ $(function(){
 					<div class="day-inspiration-quote" id="inspirational-quote">
 						Every child is an artist. The problem is how to remain an artist
 						once he grows up. –Pablo Picasso</div>
-					
+
 					<div id="event-btn--lastsave-all" class="event-btn--lastsave-all">
-						<button id="rewriteBtn" class="event-btn--lastsave">모두 삭제하기</button>
+						<button id="rewriteBtn" class="event-btn--lastsave">모두
+							삭제하기</button>
 						<button id="saveBtn" class="event-btn--lastsave">스케줄러 저장</button>
 					</div>
 				</div>
@@ -726,7 +675,6 @@ $(function(){
 	let hour = st.substring(0,2);
 	let ampm = 'am';
 	if(hour > 12){
-		//hour = hour - 12;
 		ampm = 'pm';
 	}
 	
@@ -739,7 +687,6 @@ $(function(){
 	let hour = et.substring(0,2);
 	let ampm = 'am';
 	if(hour > 12){
-		//hour = hour - 12;
 		ampm = 'pm';
 	}
 	
@@ -791,13 +738,14 @@ $(function(){
 		  this.dayInspirationalQuote = document.getElementById("inspirational-quote");
 		   
 		  this.todayIsSpan = document.getElementById("footer-date");
-		  // this.eventsCountSpan = document.getElementById("footer-events");
 		  this.dayViewEle = document.getElementById("day-view");
 		  this.dayViewExitEle = document.getElementById("day-view-exit");
 		  this.dayViewDateEle = document.getElementById("day-view-date");
 		  this.addDayEventEle = document.getElementById("add-event");
 		  this.dayEventsEle = document.getElementById("day-events");
 		  
+		  let rewriteBtn = document.getElementById("rewriteBtn");
+		  let saveBtn = document.getElementById("saveBtn");
 		  
 		  this.dayEventAddForm = {
 		    cancelBtn: document.getElementById("add-event-cancel"),
@@ -811,7 +759,6 @@ $(function(){
 		  this.dayEventsList = document.getElementById("day-events-list");
 		  this.dayEventBoxEle = document.getElementById("add-day-event-box");
 		  
-		  /* Start the app */
 		  this.showView(date);
 		  this.addEventListeners();
 		  this.todayIsSpan.textContent = "Today is " + this.months[date.getMonth()] + " " + date.getDate();  
@@ -882,7 +829,6 @@ $(function(){
 			
 		 
 		  for ( var z = 1; z <= lastDayOfM; z++ ) {
-			//console.log(getArrayData);
 		    var _date = new Date(y, m ,z);
 		    var day = document.createElement("div");
 		    day.className = "cview--date";
@@ -901,25 +847,13 @@ $(function(){
 		    myMonth = myMonth >= 10 ? myMonth : '0' + myMonth;
 		    myDay = myDay >= 10 ? myDay : '0' + myDay;          //day 두자리로 저장
 		    let myDate = myYear + '-' + myMonth + '-' + myDay; 
-//		    console.log(myDate);
 		    
 			for (var i = 0; i < getArrayData.length; i++) {
 				if(myDate == getArrayData[i]){
 		      		day.classList.add("has-events");
 				}
 			}
-		    
 		   
-		     // check if has events to show
-		     /* if ( this.aptDates.indexOf(_date.toString()) !== -1 ) {
-		      day.classList.add("has-events");
-		    }   */
-		    
-		    // 도트찍기
-		/*     if(getArrayData){
-		   	day.classList.add("has-events");
-		   }*/ 
-		    
 		    this.calendarView.appendChild(day);
 		  }
 		 
@@ -954,10 +888,9 @@ $(function(){
 		  
 		};
 		CalendarApp.prototype.openDayWindow = function(date){
-		  alert(date) // 날짜 누르면
+		  //alert(date)
 		  let id = $("#userID").val();
 		  let getdayEvents;
-		  // ing
 			 $.ajax({
 			 url : "schedule.get",
 			 data : {"scheduleUserId" : id , "scheduleDate": date},
@@ -970,8 +903,6 @@ $(function(){
 			 
 			  
 		  });
-//		  console.log(getdayEvents?.scheduleContent);
-		  
 		  
 		  var now = new Date();
 		  var day = new Date(date);
@@ -990,29 +921,21 @@ $(function(){
 		  }
 		  this.addDayEventEle.setAttribute("data-date", day);
 		  
-		 
-		  
-		  
-		  
 		  var eventsToday;
-		  alert(eventsToday + '=== 1');
+		  
 		  if(getdayEvents){
 			 eventsToday = true;
-			 /* day.classList.add("has-events"); */ /*여기*/
 		  }
 		  if ( !eventsToday ) {
 		    _dayTopbarText += "0 ";
 		    var _rand = Math.round(Math.random() * ((this.quotes.length - 1 ) - 0) + 0);
 		    this.dayInspirationalQuote.textContent = this.quotes[_rand];
 		  } else {
-			  //alert('명언');
-		   // eventsToday = this.showEventsByDay(day);
-			//eventsToday = getdayEvents.scheduleContent;
+			 //alert('이벤트 있음');
 		    this.dayInspirationalQuote.textContent = null;
 		    
 		  }
 		  eventsToday = this.showEventsByDay(day);
-		  //this.dayEventsList.innerHTML = this.showEventsCreateHTMLView(eventsToday);
 		   while(this.dayEventsList.firstChild) {
 		    this.dayEventsList.removeChild(this.dayEventsList.firstChild);
 		  } 
@@ -1023,41 +946,26 @@ $(function(){
 		  let myScheduleContent = this.dayEventsList.firstChild;
 		  let myUL = $(getdayEvents.scheduleContent);
 		  $(myScheduleContent).append($(myUL).find('li'));
-		 console.log("getdayEvents 있는 곳");
+		  console.log("getdayEvents 있는 곳");
+			rewriteBtn.style.display = "inline";
+			saveBtn.style.display = "inline";
 		 
 		  }else{
-		 console.log("getdayEvents 없으면!!");
+		  console.log("getdayEvents 없으면!!");
+		  	rewriteBtn.style.display = "none";
+		  	saveBtn.style.display = "none";
 		  }
 		  	  
-		  
-		  
-		  
-		  //this.dayEventsEle.textContent = _dayTopbarText + "개의 일정이 있습니다. " + this.months[day.getMonth()] + " " + day.getDate() + ", " + day.getFullYear();
-		  //this.dayEventsEle2.value = date;
 		  document.getElementById("day-events2").value = date;
-		  
-		 
-		 /*  if ( this.aptDates.indexOf(_date.toString()) !== -1 ) {
-		      day.classList.add("has-events");
-		    } */
-		    
 		  
 		};
 
 		CalendarApp.prototype.showEventsCreateElesView = function(events) {
- 		 // if(getdayEvents){
-		//var ul = getdayEvents.scheduleContent; //쌤!!! 추가된걸 불러오는게 아니라 db에 있는걸 불러와버림
-		//console.log(getdayEvents.scheduleContent);
- 		 // }	
-		//if(!getdayEvents){
 		  ul = document.createElement("ul");
 		  ul.className = 'day-event-list-ul';
-		//}
-
 		  
 		  events = this.sortEventsByTime(events);
 		  var _this = this;
-		alert(events + '=== 3');
 		  
 		  
 		  events.forEach(function(event){
@@ -1066,25 +974,14 @@ $(function(){
 		    var idx = event.index;
 		    var li = document.createElement("li");
 		    li.className = "event-dates";
-		    // li.innerHtml
 		    var html = "<span class='start-time'>" + _start.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + "</span> <small>부터</small> ";
 		    html += "<span class='end-time'>" + _end.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + ( (_end.getDate() != _start.getDate()) ? ' <small>on ' + _end.toLocaleDateString() + "</small>" : '') +"</span>";
 		    
-
 		    html += "<span class='event-name'>" + event.name + "</span>";
 		    
 		    var div = document.createElement("div");
 		    div.className = "event-dates";
 		    div.innerHTML = html;
-		    
-		  //  var deleteBtn = document.createElement("span");
-		  //  var deleteText = document.createTextNode("삭제"); //삭제 버튼
-		  //  deleteBtn.className = "event-delete"; //삭제 버튼의 class
-		   // deleteBtn.setAttribute("data-idx", idx);
-		   // deleteBtn.appendChild(deleteText);
-		   // deleteBtn.onclick = _this.deleteEvent.bind(_this);
-		    
-		   // div.appendChild(deleteBtn);
 		    
 		    li.appendChild(div);
 		    ul.appendChild(li);
@@ -1164,6 +1061,7 @@ $(function(){
 		};
 		CalendarApp.prototype.saveAddNewEvent = function() {
 		  var saveErrors = this.validateAddEventInput();
+		  
 		  if ( !saveErrors ) {
 		    this.addEvent();
 		  }
@@ -1189,7 +1087,12 @@ $(function(){
 		  if ( this.aptDates.indexOf(dateObjectDay.toString()) === -1 ) {
 		    this.aptDates.push(dateObjectDay.toString());
 		  }
-		  
+		  let saveBtn = document.getElementById("saveBtn");
+		  let rewriteBtn = document.getElementById("rewriteBtn");
+		  saveBtn.style.display = "inline";
+		  rewriteBtn.style.display = "inline";
+//		  document.getElementById("inspirational-quote").text = null;
+		  document.getElementById("inspirational-quote").textContent = null;
 		};
 		CalendarApp.prototype.convertTo23HourTime = function(stringOfTime, AMPM) {
 		  // convert to 0 - 23 hour time
@@ -1245,15 +1148,7 @@ $(function(){
 		     this.dayEventAddForm.nameEvent.classList.remove("add-event-edit--error");
 		  }
 		  
-		//   if (!startTime || startTime == null) {
-//		     _errors = true;
-//		     this.dayEventAddForm.startTime.classList.add("add-event-edit--error");
-		//   } else {
-//		      this.dayEventAddForm.startTime.classList.remove("add-event-edit--error");
-		//   }
-		  
 		  return _errors;
-		  
 		  
 		};
 		var timeOut = null;

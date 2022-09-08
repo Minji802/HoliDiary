@@ -13,43 +13,53 @@
 	function countPostChange() {
 		var countPost = document.getElementById('cntPerPage').value;
 		var category = document.getElementById('categoryName').value;
-		location.href="category-list?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost+"&category="+category;
+		location.href = "category-list?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="
+				+ countPost + "&category=" + category;
 	}
-	
+
 	function getList() {
 		var category = document.getElementById('categoryName').value;
-		location.href="category-list?userId=${User.userID}&nowPage=1&cntPerPage=10&category="+category;
+		location.href = "category-list?userId=${User.userID}&nowPage=1&cntPerPage=10&category="
+				+ category;
 	}
 
 	function getGallery() {
 		var category = document.getElementById('categoryName').value;
-		location.href="category-gallery?userId=${User.userID}&nowPage=1&cntPerPage=9&category="+category;
+		location.href = "category-gallery?userId=${User.userID}&nowPage=1&cntPerPage=9&category="
+				+ category;
 	}
 </script>
 
 <body>
-	
-	<h1>POST</h1>
+
+	<h1>${param.category }</h1>
 
 	<div class="checks" style="text-align: right; margin-top: -25px;">
-	<input type="radio" id="ex_rd1" name="listType" value="List" checked="checked" onclick="getList()"/>
-	<label for="ex_rd1">List</label>&nbsp;
-	<input type="radio" id="ex_rd2" name="listType" value="Gallery" onclick="getGallery()"/>
-	<label for="ex_rd2">Gallery</label>
+		<input type="radio" id="ex_rd1" name="listType" value="List"
+			checked="checked" onclick="getList()" /> <label for="ex_rd1">List</label>&nbsp;
+		<input type="radio" id="ex_rd2" name="listType" value="Gallery"
+			onclick="getGallery()" /> <label for="ex_rd2">Gallery</label>
 	</div>
 
-	<input type="hidden" id="postWriter" name="postWriter" value="${User.userID}">
-	<input type="hidden" id="categoryName" name="categoryName" value="${param.category }">
+	<input type="hidden" id="postWriter" name="postWriter"
+		value="${User.userID}">
+	<input type="hidden" id="categoryName" name="categoryName"
+		value="${param.category }">
+
+
 
 	<div id="countPost" style="height: 50px;">
 		<div style="float: right; margin-top: 10px;">
 			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
 				<option value="10"
-					<c:if test="${paging.cntPerPage == 10 }">selected</c:if>>10줄 보기</option>
+					<c:if test="${paging.cntPerPage == 10 }">selected</c:if>>10줄
+					보기</option>
 				<option value="15"
-					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15줄 보기</option>
+					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15줄
+					보기</option>
 				<option value="20"
-					<c:if test="${paging.cntPerPage == 20 }">selected</c:if>>20줄 보기</option>
+					<c:if test="${paging.cntPerPage == 20 }">selected</c:if>>20줄
+					보기</option>
 			</select>
 		</div>
 	</div>
@@ -63,37 +73,48 @@
 			<td class="postLike" style="width: 10%">Likes</td>
 			<td class="postNo" style="width: 15%">Views</td>
 		</tr>
-		<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
-			<tr class="postList">
-				<td class="postTitle"><a
-					href='post.detail.go?postNum=${dp.postNum }&userId=${dp.postWriter }'>${dp.postTitle }</a></td>
-				<td class="postWriter">${dp.postWriter }</td>
-				<td class="postDate">${dp.postDate }</td>
-				<td class="postDate">${dp.postRecommend }</td>
-				<td class="postViewCount">${dp.postView }</td>
+		<c:if test="${DiaryPosts.size() != 0}">
+			<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
+				<tr class="postList">
+					<td class="postTitle"><a
+						href='post.detail.go?postNum=${dp.postNum }&userId=${dp.postWriter }'>${dp.postTitle }</a></td>
+					<td class="postWriter">${dp.postWriter }</td>
+					<td class="postDate">${dp.postDate }</td>
+					<td class="postDate">${dp.postRecommend }</td>
+					<td class="postViewCount">${dp.postView }</td>
+				</tr>
+			</c:forEach>
+		</c:if>
+		<c:if test="${DiaryPosts.size()==0}">
+			<tr style="height: 400px;">
+				<td class="nonePost2" colspan="5" rowspan="10">등록된 포스트가 없습니다</td>
 			</tr>
-		</c:forEach>
+		</c:if>
 	</table>
 
 	<div style="text-align: center; margin-top: 15px; font-size: 10pt;">
 		<c:if test="${paging.startPage != 1 }">
-			<a href="category-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&lt;</a>
+			<a
+				href="category-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&lt;</a>
 		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+			var="p">
 			<c:choose>
 				<c:when test="${p == paging.nowPage }">
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="category-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }&category=${param.category }">${p }</a>
+					<a
+						href="category-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }&category=${param.category }">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage }">
-			<a href="category-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&gt;</a>
+			<a
+				href="category-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&gt;</a>
 		</c:if>
 	</div>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.postList').hover(function() {
@@ -102,7 +123,6 @@
 				$(this).css("background-color", "#ffffff");
 			});
 		});
-		
 	</script>
 </body>
 </html>

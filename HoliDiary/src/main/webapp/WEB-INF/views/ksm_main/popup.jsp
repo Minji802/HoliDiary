@@ -17,16 +17,16 @@
 <script type="text/javascript" src="resources/kjs_js/kjs_subscribe.js"></script>
 <script type="text/javascript" src="resources/sm_js/sm_valid.js"></script>
 <script type="text/javascript" src="resources/sm_js/sm_validCheck.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		document.addEventListener("contextmenu", function(e) {
-			e.preventDefault(); // 원래 있던 오른쪽 마우스 이벤트를 무효화한다.
+			e.preventDefault(); // 원래 있던 오른쪽 마우스 이벤트를 무효화
 			var x = e.pageX + 'px'; // 현재 마우스의 X좌표
 			var y = e.pageY + 'px'; // 현재 마우스의 Y좌표
 			const popMenu = document.getElementById('popMenu'); // 팝업창을 담아옴
 			/*
-			    스타일 지정, 우클릭 한 위치에 팝업창 띄워줌..
+			    스타일 지정, 우클릭 한 위치에 팝업창 띄워줌.
 			 */
 			popMenu.style.position = 'relative';
 			popMenu.style.left = x;
@@ -155,13 +155,13 @@ body {
 			<li><a href="write.go?userId=${sessionScope.loginUser.userID }">포스트
 					작성</a></li>
 			<li><a
-				href="updateCategory?userId=${sessionScope.loginUser.userID }">카테고리
-					편집</a></li>
-			<li><a
 				href="mainImg.updateGo?userId=${sessionScope.loginUser.userID }">홈
 					화면 편집</a></li>
 			<li><a
 				href="updateMyPopup?userId=${sessionScope.loginUser.userID }">다이어리
+					편집</a></li>
+			<li><a
+				href="updateCategory?userId=${sessionScope.loginUser.userID }">카테고리
 					편집</a></li>
 			<li><a
 				href="advicePage?userId=${sessionScope.loginUser.userID }">도움말</a></li>
@@ -176,14 +176,7 @@ body {
 
 				<div class="profile">
 					<a><img src="resources/kjs_profileImg/${User.userImg }" alt=""></a>
-
-					<!-- <details>
-						<summary> -->
 					<span class="profile-name">${User.userID}</span>
-					<%-- </summary>
-						<p class="profile-introduce">${Diary.diaryIntroduce }</p>
-					</details> --%>
-
 				</div>
 
 
@@ -235,7 +228,7 @@ body {
           </svg> POST
 					</a>
 
-					<!--   ====== 카테고리 수정 &삭제 & 추가 -->
+<!-- 카테고리 수정 &삭제 & 추가 -->
 
 
 					<c:forEach var="category" varStatus="status"
@@ -279,24 +272,6 @@ body {
 		<div class="right-area">
 			<div class="right-area-upper">
 
-				<!-- 토글 영역 -->
-				<!-- <a href="#" id="toggle"><span></span></a>
-
-<div id="menu">
- <ul class="album-list">
-  <li class="album-card">
-    <img
-      class="album-cover" 
-      src="//i1.sndcdn.com/artworks-000283850588-jz5ywm-t500x500.jpg"
-      alt="Tobu - Calling"
-      width="200" height="200">
-    <iframe class="album-player" src="//goo.gl/syBGn1"></iframe>
-    <embed class="album-player" src="https://soundcloud.com/5tudoyfzx1kc/sets/new-private-playlist?si=6f4c4519aec7422fb770289ca56b53c9&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"></embed>
-  </li>
-  </ul>
-</div> -->
-				<!-- 토글 영역 -->
-
 				<button class="menu-button">
 					<svg width="24" height="24" fill="none" stroke="#51a380"
 						stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -304,8 +279,6 @@ body {
           <path d="M3 12h18M3 6h18M3 18h18" />
         </svg>
 				</button>
-
-
 
 				<div class="search-part-wrapper">
 					<div class="diary-title-name">${Diary.diaryTitle }</div>
@@ -359,52 +332,6 @@ body {
 		</div>
 
 	</div>
-
-	<script type="text/javascript">
-		var theToggle = document.getElementById('toggle');
-
-		//based on Todd Motto functions
-		//https://toddmotto.com/labs/reusable-js/
-
-		//hasClass
-		function hasClass(elem, className) {
-			return new RegExp(' ' + className + ' ').test(' ' + elem.className
-					+ ' ');
-		}
-		//addClass
-		function addClass(elem, className) {
-			if (!hasClass(elem, className)) {
-				elem.className += ' ' + className;
-			}
-		}
-		//removeClass
-		function removeClass(elem, className) {
-			var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, ' ') + ' ';
-			if (hasClass(elem, className)) {
-				while (newClass.indexOf(' ' + className + ' ') >= 0) {
-					newClass = newClass.replace(' ' + className + ' ', ' ');
-				}
-				elem.className = newClass.replace(/^\s+|\s+$/g, '');
-			}
-		}
-		//toggleClass
-		function toggleClass(elem, className) {
-			var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, " ") + ' ';
-			if (hasClass(elem, className)) {
-				while (newClass.indexOf(" " + className + " ") >= 0) {
-					newClass = newClass.replace(" " + className + " ", " ");
-				}
-				elem.className = newClass.replace(/^\s+|\s+$/g, '');
-			} else {
-				elem.className += ' ' + className;
-			}
-		}
-
-		theToggle.onclick = function() {
-			toggleClass(this, 'on');
-			return false;
-		}
-	</script>
 
 </body>
 </html>

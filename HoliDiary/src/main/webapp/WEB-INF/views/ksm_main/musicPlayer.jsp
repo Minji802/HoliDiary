@@ -13,11 +13,5 @@
 
 <iframe width="100%" height="489" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/274409682&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
 
-<div id="music-player">	
-    <!-- <iframe class="album-player" frameborder="no" scrolling="no" 
-    src="//goo.gl/syBGn1"></iframe> -->
-</div>
-
-
 </body>
 </html>

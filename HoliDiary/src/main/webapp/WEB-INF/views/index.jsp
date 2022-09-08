@@ -22,6 +22,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="resources/sej_js/sej_go.js"></script>
+<script type="text/javascript" src="resources/sej_js/sej_popup.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_kakao.js?ver=1"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_mypage.js?ver=1"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_subscribe.js"></script>

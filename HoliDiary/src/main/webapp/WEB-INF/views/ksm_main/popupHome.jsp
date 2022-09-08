@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="resources/sm_css/sm_music.css">
 <script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- <script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script> -->
 <style>
 .button {
 	position: absolute;
@@ -55,8 +54,8 @@ span {
   color: #fff;
   font-size: 14px;
   z-index: 9999;
-	margin-left: 600px;
-	margin-top: -410px;
+	margin-left: 590px;
+	margin-top: -178px;
 }
 
 .arrow_box2:after {
@@ -106,64 +105,51 @@ span:hover + p.arrow_box2 {
 			<div id="hover-info">
 			<div>
 			<span><img class="question-backImg" src="resources/sm_img/png-clipart-question-mark-question-mark-removebg-preview.png"></span>
-			<p class="arrow_box2">Click on the sticker!</p>
+			<p class="arrow_box2"> Click on the sticker!</p>
 			</div>
 			</div>
+			<span style="z-index: 3"><img class="question-backImg2" src="resources/sm_img/weather-sticker.PNG"></span>
 	</div>
-	<div>
-		<!-- <img class="diaryinfo-img" src="resources/sm_img/free-icon-question-953818-removebg-preview.png"> -->
-		<!-- <img class="introduce-backImg" src="resources/sm_img/postmemo-removebg-preview.png"> -->
-	</div>
+	
+	<!-- 날씨 api -->
+	<table id="weatherArea" style="background: ${Diary.themeColor}">
+      <tr>
+         <td rowspan="2"><img id="weatherImg"></td>
+         <td id="weatherDesc"></td>
+      </tr>
+      <tr>
+         <td id="weatherTemp"></td>
+      </tr>
+   </table>
+	
 		<hr style="height: 1px; border:0; border-top: 3px dashed ${Diary.themeColor};">
-	<%-- <span class="introduce-backImg-text">${Diary.diaryIntroduce }</span> --%>
 
-	<!-- 뮤직 플레이어 -->
-<!-- 	<div id="app-cover">
-  <div id="bg-artwork"></div>
-  <div id="bg-layer"></div>
-  <div id="player">
-    <div id="player-track">
-      <div id="album-name"></div>
-      <div id="track-name"></div>
-      <div id="track-time">
-        <div id="current-time"></div>
-        <div id="track-length"></div>
-      </div>
-      <div id="s-area">
-        <div id="ins-time"></div>
-        <div id="s-hover"></div>
-        <div id="seek-bar"></div>
-      </div>
-    </div>
-    <div id="player-content">
-      <div id="album-art">
-        <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_1.jpg" class="active" id="_1">
-        <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_2.jpg" id="_2">
-        <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_3.jpg" id="_3">
-        <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_4.jpg" id="_4">
-        <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_5.jpg" id="_5">
-        <div id="buffer-box">Buffering ...</div>
-      </div>
-      <div id="player-controls">
-        <div class="control">
-          <div class="button" id="play-previous">
-            <i class="fas fa-backward"></i>
-          </div>
-        </div>
-        <div class="control">
-          <div class="button" id="play-pause-button">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="control">
-          <div class="button" id="play-next">
-            <i class="fas fa-forward"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+<script>
+
+
+$(document).ready(function(){
+	$(".question-backImg2").click(function(e) {
+	      
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=seoul&appid=e7b1a57cd2158c8d195bfb24b7597bad&units=metric&lang=kr";
+         $.getJSON(url, function(data){
+           var icon = "https://openweathermap.org/img/wn/"+data.weather[0].icon+".png";
+           $("#weatherImg").attr("src", icon);
+           $("#weatherDesc").text(data.weather[0].description);
+           $("#weatherTemp").text(data.main.temp + "℃(" + data.main.humidity + "%)");
+           
+           $("#weatherArea").css("display", "block");
+           $("#weatherArea").css("z-index", "10000");
+           $("#weatherArea").css("top", "110px");
+           $("#weatherArea").css("left", "705px");
+           
+           setTimeout(function(){
+              $("#weatherArea").css("display", "none");
+              $("#weatherArea").css("z-index", "0");
+           }, 3000);
+        });
+	});
+});
+</script>
 
 
 </body>

@@ -37,9 +37,6 @@ public class PopupController {
 	public String popupOpen(HttpServletRequest req, Diary d, User u, Category cate, Subscribe s,
 			@RequestParam("userId") String userId, Comment c, DiaryPost p) {
 
-		// System.out.println(d.getDiaryUserId());
-		// System.out.println(userId);
-
 		if (uDAO.loginCheck(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			vDAO.countVisit(userId,req);
@@ -183,8 +180,13 @@ public class PopupController {
 	@RequestMapping(value = "/schedule.insert", method = RequestMethod.GET)
 	public int insertSchedule(HttpServletRequest req, Schedule s) {
 		
-		uDAO.loginCheck(req);
-		return dDAO.insertSchedule(req, s);
+		if (uDAO.loginCheck(req)) {
+			return dDAO.insertSchedule(req, s);			
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return 0;
+		}
+			
 	}
 	
 	// 다이어리 - 스케줄러 내용 삭제
@@ -192,8 +194,12 @@ public class PopupController {
 	@RequestMapping(value = "/schedule.delete", method = RequestMethod.GET)
 	public int deleteSchedule(HttpServletRequest req, Schedule s) {
 		
-		uDAO.loginCheck(req);
-		return dDAO.deleteSchedule(req, s);
+		if (uDAO.loginCheck(req)) {
+			return dDAO.deleteSchedule(req, s);			
+		} else {
+			req.setAttribute("popupContentPage", "popupBack.jsp");
+			return 0;
+		}
 	}
 	
 	// 스케줄러 정보 얻기
@@ -239,6 +245,7 @@ public class PopupController {
 	@ResponseBody
 	@RequestMapping(value = "/schedule.getAllEvents", produces="application/json")
 	public String[] getAllEvents(HttpServletRequest req) {
+		
 		uDAO.loginCheck(req);
 		return dDAO.getAllEvent(req);
 	}

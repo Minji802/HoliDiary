@@ -22,11 +22,6 @@ hr {
 
 	<h1>Edit Category</h1><br>
 
-	<%-- ${Diary }
-	<br> ${Diary.diaryUserId }
-	<br> ${Diary.categoriesArray }
-	<br> --%>
-
 	<form action="category.add" onsubmit="return categoryValidCheck();">
 		<input type="text" id="categoryName" name="categories" placeholder="카테고리 이름을 입력하세요" maxlength="10" style="border-bottom: solid 1px; width: 200px;">
 		<input type="submit" value="추가" class="btn-update-save">
@@ -53,7 +48,7 @@ hr {
 			newCategory += e.value + '!'
 		});
 		
-		alert(newCategory);
+		//alert(newCategory);
 		var diaryUserId = document.getElementById("diaryUserId").value;
 		location.href="category.update?newCategory=" + newCategory + "&diaryUserId=" + diaryUserId;
 	});

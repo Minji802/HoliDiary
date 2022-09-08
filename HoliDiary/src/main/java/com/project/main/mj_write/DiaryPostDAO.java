@@ -494,31 +494,102 @@ public class DiaryPostDAO {
 		
 	}
 
+	public void getAllPastList(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
+			String cntPerPage) {
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showAllPastList(p);
 
-	
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+		
+	}
+
+	public void getAllRecommendList(HttpServletRequest req, String userId, DiaryPostPaging pp, int total,
+			String nowPage, String cntPerPage) {
+
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showAllRecommendList(p);
+
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+		
+	}
+
+	public void getAllPastList2(HttpServletRequest req, String userId, DiaryPostPaging pp, int total, String nowPage,
+			String cntPerPage) {
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "9";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "9";
+		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showAllPastList(p);
+
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+	}
+
+	public void getAllRecommendList2(HttpServletRequest req, String userId, DiaryPostPaging pp, int total,
+			String nowPage, String cntPerPage) {
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "9";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) {
+			cntPerPage = "9";
+		}
+		pp = new DiaryPostPaging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		DiaryPost p = new DiaryPost();
+		p.setPostWriter(userId);
+		p.setStart(pp.getStart());
+		p.setEnd(pp.getEnd());
+		
+		List<DiaryPost> posts = ss.getMapper(DiaryPostMapper.class).showAllRecommendList(p);
+
+		req.setAttribute("DiaryPosts", posts);
+		
+		req.setAttribute("paging", pp);
+	}
 
 
-	
-	
-
-	/*
-	 * public void paging(int page, HttpServletRequest req) {
-	 * 
-	 * System.out.println(page); req.setAttribute("curPageNo", page);
-	 * 
-	 * // 전체 페이지 계산 int cnt = 10; // 한 페이지 당 보여줄 갯수 int total = dp.size(); // 총 데이터의
-	 * 개수 int pageCount = (int) Math.ceil((double) total / cnt);
-	 * req.setAttribute("pageCount", pageCount);
-	 * 
-	 * // 최신 데이터가 가장 앞으로 나올 수 있게(역순 진행) int start = total - (cnt * (page - 1)); //
-	 * 시작하는 데이터 번호 int end = ((page == pageCount) ? -1 : start - (cnt + 1)); // 끝나는
-	 * 데이터 번호
-	 * 
-	 * ArrayList<DiaryPost> diaryPost = new ArrayList<DiaryPost>(); for (int i =
-	 * start - 1; i < end; i--) { diaryPost.add(dp.get(i)); }
-	 * 
-	 * req.setAttribute("DiaryPost", diaryPost);
-	 * 
-	 * }
-	 */
 }

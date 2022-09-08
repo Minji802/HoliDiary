@@ -17,6 +17,18 @@
 		from (select * from post where postWriter = #{postWriter} order by postDate desc)) where rn &gt;= #{start} and rn &lt;= #{end} 
 	</select>
 	
+	<select id="showAllPastList" resultType="com.project.main.mj_write.DiaryPost">
+		select * from 
+		(select rownum as rn, postNum, postTitle, postTxt, postDate, postWriter, postCategory, postCountry, postRecommend, postImg, postWeather, postView
+		from (select * from post where postWriter = #{postWriter} order by postDate)) where rn &gt;= #{start} and rn &lt;= #{end} 
+	</select>
+	
+	<select id="showAllRecommendList" resultType="com.project.main.mj_write.DiaryPost">
+		select * from 
+		(select rownum as rn, postNum, postTitle, postTxt, postDate, postWriter, postCategory, postCountry, postRecommend, postImg, postWeather, postView
+		from (select * from post where postWriter = #{postWriter} order by postRecommend desc)) where rn &gt;= #{start} and rn &lt;= #{end} 
+	</select>
+	
 	<select id="showCategoryPostList" resultType="com.project.main.mj_write.DiaryPost">
 	select * from 
 		(select rownum as rn, postNum, postTitle, postTxt, postDate, postWriter, postCategory, postCountry, postRecommend, postImg, postWeather, postView

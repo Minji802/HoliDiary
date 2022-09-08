@@ -55,6 +55,12 @@
 		where subscribefrom = #{subscribeFrom}
 			and subscribeto = #{subscribeTo}
 	</delete>
+
+	<delete id="deleteSubscribe">
+		delete subscribetable 
+		where subscribefrom = #{userID} 
+			or subscribeto = #{userID}
+	</delete>
 	
 	<insert id="subscribe">
 		insert into subscribetable values(subscribe_seq.nextval, #{subscribeFrom}, #{subscribeTo})

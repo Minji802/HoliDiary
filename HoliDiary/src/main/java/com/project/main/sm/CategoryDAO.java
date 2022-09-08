@@ -24,16 +24,16 @@ public class CategoryDAO {
 			
 			//List<Category> categories = new ArrayList<Category>();
 			
-				System.out.println(c.getCategories());
+				//System.out.println(c.getCategories());
 			
 			String categories2 = c.getCategories() + "!";
 			
-				System.out.println(categories2);
+				//System.out.println(categories2);
 			
 			c.setCategories(categories2);
 			c.setCategoryUserId(userId);
 			
-				System.out.println(c.getCategories());
+				//System.out.println(c.getCategories());
 			
 			ss.getMapper(CategoryMapper.class).addCategory(c);
 			
@@ -51,12 +51,8 @@ public class CategoryDAO {
 			
 			String newCategories = req.getParameter("newCategory");
 			
-			System.out.println(newCategories);
-			
 			c.setCategories(newCategories);
 			c.setCategoryUserId(userId);
-			
-			System.out.println(c.getCategories());
 			
 			ss.getMapper(CategoryMapper.class).updateCategory(c);
 			

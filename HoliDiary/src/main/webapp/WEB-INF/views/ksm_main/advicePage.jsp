@@ -45,8 +45,8 @@
 	<br>
 
 	<div style="float: right;">
-		<a href="#" onclick=popupclose()><img style="height: 150px;"
-			src="resources/sm_img/close-removebg-preview.png"></a>
+		<a href="#" onclick=popupclose()><img style="height: 45px;"
+			src="resources/sm_img/close-removebg-preview2.png"></a>
 	</div>
 
 </body>

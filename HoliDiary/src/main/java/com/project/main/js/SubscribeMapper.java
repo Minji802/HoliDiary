@@ -23,6 +23,8 @@ public interface SubscribeMapper {
 
 	List<SubscribeInfo> searchSubscriber(Map<String, String> element);
 
+	int deleteSubscribe(User u);
+
 
 
 }

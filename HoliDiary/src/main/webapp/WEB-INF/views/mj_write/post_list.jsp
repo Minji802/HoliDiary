@@ -22,6 +22,23 @@
 	function getGallery() {
 		location.href="post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=9";
 	}
+	
+	function recentList() {
+		var countPost = document.getElementById('cntPerPage').value;
+		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=10";
+	}
+	
+	function pastList() {
+		var countPost = document.getElementById('cntPerPage').value;
+		location.href="post-list.past?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
+	}
+	
+	function recommendList() {
+		var countPost = document.getElementById('cntPerPage').value;
+		location.href="post-list.recommend?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
+	}
+	
+	
 </script>
 
 <body>
@@ -36,6 +53,14 @@
 	</div>
 
 	<input type="hidden" id="postWriter" name="postWriter" value="${User.userID}">
+	
+	<div id="postListOrder">
+		<p>
+			<button class="postListOrderA" style="font-weight: 600" onclick="recentList();">최신순</button>	&nbsp;&nbsp;&nbsp;	
+			<button class="postListOrderA" onclick="pastList();">과거순</button>	&nbsp;&nbsp;&nbsp;	
+			<button class="postListOrderA" onclick="recommendList();">추천순</button>		
+		</p>
+	</div>
 
 	<div id="countPost" style="height: 50px;">
 		<div style="float: right; margin-top: 10px;">
@@ -50,6 +75,7 @@
 		</div>
 	</div>
 
+	<div id="ajaxForPostList">
 	<table id="postListTbl" border=0
 		style="width: 100%; text-align: center; border-collapse: collapse;">
 		<tr class="postTbl">
@@ -59,6 +85,7 @@
 			<td class="postLike" style="width: 10%">Likes</td>
 			<td class="postNo" style="width: 15%">Views</td>
 		</tr>
+		<c:if test="${DiaryPosts.size() != 0}">
 		<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
 			<tr class="postList">
 				<td class="postTitle"><a
@@ -69,7 +96,14 @@
 				<td class="postViewCount">${dp.postView }</td>
 			</tr>
 		</c:forEach>
+		</c:if>
+		<c:if test="${DiaryPosts.size()==0}">
+			<tr style="height: 400px;">
+				<td class="nonePost2" colspan="5" rowspan="10">등록된 포스트가 없습니다</td>
+			</tr>
+		</c:if>
 	</table>
+</div>
 
 	<div style="text-align: center; margin-top: 15px; font-size: 10pt;">
 		<c:if test="${paging.startPage != 1 }">
@@ -98,6 +132,7 @@
 				$(this).css("background-color", "#ffffff");
 			});
 		});
+		
 		
 	</script>
 </body>

@@ -1,12 +1,10 @@
 function popup() {
 	let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=1000, height=600, top=100, left=270";
 	
-	/*var userId = document.getElementById("userID").value;
-	var url = 'popup.open?userId=' +userId;*/
 	var userId = document.getElementById("userID").value;
 	var url = 'popup.open?userId=' +userId;
 	
-	alert(userId);
+	//alert(userId);
 	
 	window.open(url,"_blank", options);
 }

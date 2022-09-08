@@ -4,7 +4,7 @@
 
 	<insert id="diaryInsert" parameterType="com.project.main.js.User">
 		insert into DIARYTABLE (DiaryNum, DiaryUrl, DiaryTitle, DiaryIntroduce, DiaryImg, DiaryUserId, DiaryUserNickName, ThemeColor, DiaryCategory)
-		values(diarynum_seq.nextval, #{userDiaryUrl}, 555, 666, 777, #{userID}, #{userNickname}, '#FF92BB', 999)
+		values(diarynum_seq.nextval, #{userDiaryUrl}, '마이 다이어리', '안녕하세요 반갑습니다', 777, #{userID}, #{userNickname}, '#FF92BB', 999)
 	</insert>
 	
 	<select id="getDiaryInfo" parameterType="com.project.main.sm.Diary" resultType="com.project.main.sm.Diary">
