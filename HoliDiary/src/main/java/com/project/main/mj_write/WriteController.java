@@ -337,7 +337,7 @@ public class WriteController {
 	@ResponseBody
 	@RequestMapping(value = "/commentUpdate.do", method = RequestMethod.GET, produces = "application/json")
 	public int commentUpdateDo(HttpServletRequest req, User u, DiaryPost p, Comment c) {
-
+		
 		return pDAO.commentUpdate(req, u, p, c);
 	}
 

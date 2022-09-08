@@ -58,7 +58,7 @@
 		<!-- 모달창 -->
 		<div class="modal hidden">
 			<div class="bg"></div>
-			<div class="modalBox">
+			<div class="modalBox" style="z-index: 100">
 				<p>
 					<c:forEach items="${Like }" var="Like">
 						<li>${Like.userId }</li>
@@ -133,7 +133,7 @@
 				value="${sessionScope.loginUser.userID}">
 			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요 (800자 이내)"
 				maxlength="800" style="width: 100%; height: 80px; resize: none;"></textarea>
-			<button class="postDetailReg-Btn" style="float: right" type="button" onclick="commentSubmit()">등록</button>
+			<button id="commentRegBtn" style="float: right" type="button" onclick="commentSubmit()">등록</button>
 		</div>
 	</form>
 	<div style="height: 50px;"></div>
@@ -143,28 +143,6 @@
 		<div id="commentList" style="position: relative;"></div>
 	</form>
 
-	<!-- 대댓글작성 -->
-	<div id="recommentVisible"
-		style="width: 97%; margin-left: 25px; display: none;">
-		<form id="recommentForm" name="recommentForm">
-			<div>
-				<strong>${sessionScope.loginUser.userID }</strong>
-			</div>
-			<div>
-				<input type="hidden" id="postNum" name="postNum"
-					value="${DiaryPost.postNum }"> <input type="hidden"
-					id="userId" name="userId" value="${DiaryPost.postWriter }">
-				<input type="hidden" id="commentParent" name="commentParent"
-					value="${Comment.commentParent}"> <input type="hidden"
-					id="commentWriter" name="commentWriter"
-					value="${sessionScope.loginUser.userID}">
-				<textarea name="commentTxt" id="commentTxt"
-					placeholder="댓글을 입력해주세요." style="width: 95%; height: 100px;"></textarea>
-				<button type="button" onclick="recommentSubmit()">등록</button>
-				<button type="button" onclick="recommentCancel()">취소</button>
-			</div>
-		</form>
-	</div>
 
 	<script type="text/javascript">
 		function deleteDiaryPost(n, postWriter, userId, nowPage, cntPerPage) {
@@ -262,7 +240,7 @@
 						}
 					},
 					error : function(request, status, error) {
-						alert("ajax 실패1");
+						//alert("ajax 실패1");
 					}
 
 				});
@@ -282,10 +260,9 @@
 				},
 				success : function(check) {
 					if (check == 1) {
-						//alert("누른거 그럼 하트 빨강색");
 						$(".heart").toggleClass("is-active");
-					} else  {
-						//alert("안누른거 빈하트");
+					} else if (check == null){
+						$(".heart").toggleClass();
 					}
 				},
 				error : function(request, status, error) {
@@ -312,13 +289,18 @@
 		 /*댓글창*/
 		function commentSubmit() {
 			 
+			let postNum = document.getElementById("postNum").value;
+			let postWriter = document.getElementById("postWriter").value;
+			let commentWriter = document.getElementById("commentWriter").value;
+			let commentTxt = $("#commentTxt").val().replaceAll("\n", "<br>");
+			
 			 //비밀댓글 체크여부
-			 //var commentSecret = 0;
 			 if($("#commentSecret").is(":checked")){
 			 	$("#commentSecret").val() == 1;
 			 } else {
 			 	$("#commentSecret").val() == 0;
 			 }
+			 
 			if($("#commentTxt").val() == ''){
 				alert('내용을 입력해주세요!');
 				$("#commentTxt").focus();
@@ -328,7 +310,12 @@
 				url : "comment.do",
 				type : "GET",
 				dataType : "text",
-				data : $("#commentForm").serialize(),
+				data : {
+					"postNum": postNum,
+					"postWriter": postWriter,
+					"commentWriter": commentWriter,
+					"commentTxt": commentTxt
+				},
 				success : function(data) {
 					if (data == 1){
 						getCommentList();
@@ -352,32 +339,20 @@
 					var html = "";
 					let postMaster = $("#postDetailWriter").val();
 					let currentUser = $("#currentUser").val();
-					//alert(postMaster);
-					//alert(data[0]["commentWriter"]);
 					console.log(data);
 					
 					if(data.length > 0) {
 						for (var i = 0; i < data.length; i++) {
 						
-							html += '<div class ="commentBox" style="width: 100%; margin-bottom: 30px; border: 1px solid white">';
+							html += '<div class ="commentBox" style="width: 100%; margin-bottom: 30px;">';
 							html += '<ul class="commentName" style="font-size: 11pt"><strong>'+data[i]["commentWriter"]+'</strong></ul>';
-							
-							
-							/* html += '<div class="popupLayer">'
-							html += '<div>'
-							html += '<p class="arrow_box" value="' + data[i]["commentWriter"] + '">홈페이지 바로가기</p>';
-							html += '</div>'
-							html += '</div>' */
-							
 							
 							html += '<div class="popupLayer" tabindex="1">';
 							html += '<span onclick="closeLayer(this)" style="float:right; cursor:pointer; font-size:1.5em" title="닫기"></span>';
-//							html += '<p class="arrow_box" onclick="'+'location.href="popupHomeGo?userId="'+ data[i]["commentWriter"] + '>홈페이지 바로가기</p>';
 							html += '<p class="arrow_box" style="float:left; margin-top: -7px;" onclick="goThere('+"'"+data[i]["commentWriter"]+"'"+')">'+data[i]["commentWriter"]+'의 다이어리 바로가기</p>';
 							html += '</div>'
 							
 							
-							//html += '<button type="button" onclick="goDiary('+ data[i]["commentWriter"] +')"> 홈페이지 바로가기 </button>';
 							html += '<br>';
 							
 							if (data[i]["commentSecret"] == true) {
@@ -398,32 +373,34 @@
 							html += '<br><ul>'+data[i]["commentDate"]+'</ul>';
 							
 							if(currentUser == data[i]["commentWriter"])	{
-								html += '<button type="button" class="postDetailUpDel-Btn" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
-								html += '<button id="commentUpdateBtn" class="postDetailUpDel-Btn" type="button" onclick="commentUpdate('+ data[i]["postNum"] + ',' + data[i]["commentNum"] + ',' + "'" + data[i]["commentWriter"] + "'" + ',' + "'" + data[i]["commentTxt"] + "'" + ')" style="float: right; text-align: right; margin-left: 20px;">수정</button>';
+								html += '<button type="button" class="commentDeleteBtn" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+								html += '<button class="commentUpdateBtn" type="button" value="1" onclick="commentUpdate(this,' + data[i]["commentNum"] + ','  + "'" + data[i]["commentTxt"] + "'" + ')" style="float: right; text-align: right; margin-left: 20px; ">수정</button>';
+							
+								html += '<div class="updateCommentDIV" style="position: relative; margin-top: 20px; margin-left: 20px; display:none;">';
+								html += '<form id="commentUpdateForm" name="commentUpdateForm">';
+								html += '<div style="font-size: 11pt;">';
+								html += '<strong>' + data[i]["commentWriter"] + '</strong>';
+								html += '</div>';
+								html += '<div>';
+								html +=	'<input type="hidden" id="postNum_update" name="postNum" value="' + data[i]["postNum"] + '">'; 
+								html +=	'<input type="hidden" id="commentNum_update" name="commentNum" value="' + data[i]["commentNum"] + '">'; 
+								html +=	'<input type="hidden" id="commentWriter_update" name="commentWriter" value="' + data[i]["commentWriter"] + '">';
+								html +=	'<textarea name="commentTxt" placeholder="수정할 댓글을 입력해주세요(800자 이내)" class="commentTxt_update" maxlength="800" style="width: 94%; height: 100px; resize: none;">';
+								html += '</textarea>';
+								html +=	'<button type="button" class="commentUpdateCompleteBtn" onclick="commentTxtUpdate(this, '+ data[i]["commentNum"] + ',' + "'" + data[i]["commentTxt"] + "'" + ')">수정</button>';
+								html += '</div>';
+								html += '</form>';
+								html += '</div>';
+							
+							
 							}  else if(postMaster == currentUser) {
-								html += '<button type="button" class="postDetailUpDel-Btn" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
+								html += '<button type="button" class="commentDeleteBtn" onclick="commentDelete('+ data[i]["commentNum"] +')" style="float: right; text-align: right; margin-left: 20px;">삭제</button>'; 
 							}
+						
 							
-							/*html += '<div id="updateCommentDIV" style="position: relative;">';
-							html += '<form id="commentUpdateForm" name="commentUpdateForm">';
-							html += '<div style="font-size: 11pt;">';
-							html += '<strong>' + data[i]["commentWriter"] + '</strong>';
-							html += '</div>';
-							html += '<div>';
-							html +=	'<input type="hidden" id="postNum_update" name="postNum" value="' + data[i]["postNum"] + '">'; 
-							html +=	'<input type="hidden" id="commentNum_update" name="commentNum" value="' + data[i]["commentNum"] + '">'; 
-							html +=	'<input type="hidden" id="commentWriter_update" name="commentWriter" value="' + data[i]["commentWriter"] + '">';
-							html +=	'<textarea name="commentTxt" id="commentTxt_update" maxlength="800" style="width: 95%; height: 100px; resize: none;">';
-							html += data[i]["commentTxt"];
-							html += '</textarea>';
-//							html +=	'<button type="button" onclick="commentTxtUpdate('+ data[i]["postNum"] + ',' + data[i]["commentNum"] + ',' + "'" + data[i]["commentWriter"] + "'" + ',' + "'" + data[i]["commentTxt"] + "'" + ')">수정</button>';
-							html +=	'<button type="button" onclick="commentTxtUpdate('+ data[i]["commentNum"] + ',' + "'" + data[i]["commentTxt"] + "'" + ')">수정</button>';
-							html += '</div>';
-							html += '</form>';
-							html += '</div>'
 							
 							html += '</div>';
-							html += '<hr>'*/
+							html += '<hr>';
 								
 						}
 						
@@ -446,34 +423,24 @@
 		}
 		
 		
-	var bDisplay2 = true;	
-	function commentUpdate(postNum, commentNum, commentWriter, commentTxt) {
+	function commentUpdate(obj, commentNum, commentTxt) {
+		let btnElement = $(obj);
+		console.log($(btnElement).val());
 		
-		console.log(commentNum);
-		console.log(postNum);
-		console.log(commentWriter);
-		console.log(commentTxt);
-		
-		var con = document.getElementById("updateCommentDIV"); 	
-        if(bDisplay2){ 		
-            con.style.display = 'none';
-            bDisplay2 = !bDisplay2;
-            
-        }else{ 		
-            con.style.display = 'block'; 	
-            bDisplay2 = !bDisplay2;
-        } 
-		
-		alert('33333333333333333');
-		
-		
-		//$("#commentNum" + commentNum).replaceWith(html);
-		//$("commentNum" + commentNum + "#commentTxt").focus();
-		
-		alert('안돼????????');
+		let myDiv = $(obj).parent().find('.updateCommentDIV');
+          if($(btnElement).val() == 1){ 		
+        	 console.log($(btnElement).val());
+        	 console.log('val 1일때');
+           $(myDiv).css("display","block");
+           $(btnElement).val('0');
+             
+         }else{ 		
+        	 console.log($(btnElement).val());
+        	 console.log('val 0일때');
+           $(myDiv).css("display","none");
+           $(btnElement).val('1');
+         }  
 	}
-		
-	
 		
 	function goThere(a) {
 		location.href="popupHomeGo?userId="+a;
@@ -497,20 +464,11 @@
 			var oHeight = $(popupLayer).height();
 
 			// 레이어가 나타날 위치를 셋팅한다.
-//			var divLeft = e.clientX;
-//			var divTop = e.clientY;
 			var divLeft = e.offsetX;
 			var divTop = e.offsetYY;
 
  			console.log(divLeft);
  			console.log(divTop);
-			// 레이어가 화면 크기를 벗어나면 위치를 바꾸어 배치한다.
-			//if( divLeft + oWidth > sWidth ) divLeft -= oWidth;
-			//if( divTop + oHeight > sHeight ) divTop -= oHeight;
-
-			// 레이어 위치를 바꾸었더니 상단기준점(0,0) 밖으로 벗어난다면 상단기준점(0,0)에 배치하자.
-			//if( divLeft < 0 ) divLeft = 0;
-			//if( divTop < 0 ) divTop = 0;
 			
 			$(popupLayer).css({
 				"width": 200,
@@ -550,15 +508,20 @@
 		}
 	}
 	 
-	 function commentTxtUpdate(commentNum, commentTxt) {
-		 
-			$.ajax({
+	function commentTxtUpdate(obj, commentNum, commentTxt) {
+		 var commentTxt_update = $(obj).parent().parent().find(".commentTxt_update");
+		 var commentText = commentTxt_update.val().replaceAll("\n", "<br>");
+		 console.log("1" + commentTxt_update.val());
+		 console.log("2" + commentNum);
+		 console.log("3" + commentTxt);
+				 $.ajax({
+				
 				url : "commentUpdate.do",
 				type : "GET",
 				dataType : "text",
 				data : {
 					"commentNum": commentNum,
-					"commentTxt" : commentTxt
+					"commentTxt" : commentText
 				},
 				success : function(data) {
 					console.log(data);
@@ -570,8 +533,9 @@
 					}
 				}
 
-			});
+			}); 
 	}
+			
 	 
 			 
 			

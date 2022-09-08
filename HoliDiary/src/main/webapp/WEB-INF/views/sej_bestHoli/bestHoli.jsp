@@ -31,7 +31,7 @@
   margin-top: 180px;
 }
 .bestHoliSliderPlace {
-  height: 1500px;
+  height: 700px;
   width: 100%;
   display: flex;
   font-family: "Montserrat", sans-serif;
@@ -39,14 +39,24 @@
  /*  justify-content: center; */
   align-items: center;
   /* margin-top: 180px; */
+  margin-top: 400px;
 }
 .bestHoliTitle {
  	font-family: 'Ballet Hormony';
  	color: #FFDE59;
  	letter-spacing: 1px;
- 	font-size: 50px;
+ 	font-size: 40px;
  	position: relative;
  	/* top: -100px; */
+}
+.bestHoliTitle h1 {
+	position: relative;
+	top: -140px;
+	left: 530px;
+}
+.bestHoliTitle img {
+	position: relative;
+	left: 600px;
 }
 .bestHoliTitle span {
  	color: #6667AB;
@@ -54,7 +64,7 @@
 .bestHoliRanking {
 	display: flex;
 	margin-bottom: 200px;
-	width: 1200px;
+	width: 1400px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -68,11 +78,26 @@
 .bestHoliRankingImg {
 	width: 391px;
 	height: 315px;
+	position: relative;
+	top: 110px;
+	left: -200px;
+	background-color: #FFDE59;
+	border: 5px dashed #6667AB;
+}
+.bestHoliRankingImg img {
+	padding-right: 50px;
+}
+.bestHoliRankingImg:first-child {
+	position: relative;
+	top: 100px;
 }
 .bestHoliRankingImg img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+.bestHoliRankingImg img:hover {
+	cursor: pointer;
 }
 .swiper-container {
   height: 400px;
@@ -111,6 +136,15 @@
   .swiper-slide.swiper-slide-next .slide-image, .swiper-slide.swiper-slide-prev .slide-image, .swiper-slide.swiper-slide-duplicate-next .slide-image, .swiper-slide.swiper-slide-duplicate-prev .slide-image {
     transform: scale3d(1, 1, 1);
   }
+  .bestHoliRankingImg {
+	width: 391px;
+	height: 315px;
+	position: relative;
+	top: 110px;
+	left: -200px;
+	background-color: #FFDE59;
+	border: 5px dashed #6667AB;
+}
 }
 @media (min-width: 1024px) {
   .swiper-slide {
@@ -230,7 +264,7 @@
 	<br>
 	<c:forEach var="bh1" items="${bestHolisR }">
 	<div class="bestHoliRankingImg">
-		<img src="${bh1.postimg }" onerror="this.src='resources/alterImg/free-icon-picture-6490775.png'">
+		<img onclick="mypagePopup('${bh1.postwriter }')" src="${bh1.postimg }" onerror="this.src='resources/alterImg/free-icon-picture-6490775.png'">
 	</div>
 	</c:forEach>
 </div>
@@ -241,7 +275,8 @@
         <div class="swiper-slide">
             <div 
                 class="slide-image" 
-                style="background-image: url('${bh.postimg}'),url('resources/alterImg/free-icon-picture-6490775.png')">
+                style="background-image: url('${bh.postimg}'),url('resources/alterImg/free-icon-picture-6490775.png')"
+                onclick="mypagePopup('${bh.postwriter }')">
             </div>
         </div>
         <div class="swiper-slide">
@@ -253,7 +288,7 @@
                 <footer>
                     <div><fmt:formatDate value="${bh.postdate }" pattern="yyyy/MM/dd"/> </div>
                     <c:if test="${sessionScope.loginUser.userID != null}">
-                    <a href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }">READ MORE</a>
+                    <a <%-- href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }" --%>onclick="mypagePopup('${bh.postwriter }')">READ MORE</a>
                 	</c:if>
                     <c:if test="${sessionScope.loginUser.userID == null}">
                     <a href="login.go">READ MORE</a>

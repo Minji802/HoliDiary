@@ -27,7 +27,8 @@
 			<span>${c.postmap }</span>
 			<p class="home_search_content_img">
 			<c:if test="${sessionScope.loginUser.userID != null}">
-			<a href="post.detail.go?postNum=${c.postnum } + &userId=${c.postwriter }">
+			<a <%-- href="post.detail.go?postNum=${c.postnum } + &userId=${c.postwriter }" --%>onclick="mypagePopup('${c.postwriter }')"
+			class="class_for_search_img">
 			<img src="${c.postimg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';">
 			</a>
 			</c:if>

@@ -175,7 +175,7 @@
 	font-family: "DM Sans", sans-serif;
 }
 
-.postDetailUpDel-Btn {
+.commentDeleteBtn{
 	font-family: "DM Sans", sans-serif;
 	background-color: #7d7d7d;
 	border: none;
@@ -184,6 +184,29 @@
 	font-size: 12px;
 	line-height: 20px;
 	margin: 0 auto;
+}
+
+.commentUpdateBtn{
+	font-family: "DM Sans", sans-serif;
+	background-color: #7d7d7d;
+	border: none;
+	color: #fff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 0 auto;
+}
+
+.commentUpdateCompleteBtn {
+	font-family: "DM Sans", sans-serif;
+	background-color: #7d7d7d;
+	border: none;
+	color: #fff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 0 auto;
+	margin-left: 21px;
 }
 
 .postDetailShare-Btn {
@@ -198,7 +221,7 @@
 	/* float: right; */
 }
 
-.postDetailReg-Btn {
+#commentRegBtn {
 	font-family: "DM Sans", sans-serif;
 	background-color: #7d7d7d;
 	border: none;

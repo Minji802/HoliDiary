@@ -497,7 +497,9 @@
 	line-height: 1;
 }
 
-
+.class_for_search_img:hover {
+	cursor: pointer;
+}
 
 
 
