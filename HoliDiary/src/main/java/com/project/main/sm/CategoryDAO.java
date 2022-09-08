@@ -22,18 +22,10 @@ public class CategoryDAO {
 		
 		try {
 			
-			//List<Category> categories = new ArrayList<Category>();
-			
-				//System.out.println(c.getCategories());
-			
 			String categories2 = c.getCategories() + "!";
-			
-				//System.out.println(categories2);
 			
 			c.setCategories(categories2);
 			c.setCategoryUserId(userId);
-			
-				//System.out.println(c.getCategories());
 			
 			ss.getMapper(CategoryMapper.class).addCategory(c);
 			

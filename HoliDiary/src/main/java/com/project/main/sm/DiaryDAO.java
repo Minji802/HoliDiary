@@ -48,7 +48,6 @@ public class DiaryDAO {
 			User uu = (User) ss.getMapper(DiaryMapper.class).getUserInfo(u);
 			Subscribe sub = ss.getMapper(SubscribeMapper.class).checkMySubscribe(s);
 			
-			//System.out.println(dd.getCategories());
 			dd.setCategoriesArray(makeCategory(dd.getCategories()));
 			
 			req.setAttribute("Diary", dd);
@@ -63,10 +62,8 @@ public class DiaryDAO {
 	
 	// 다이어리 카테고리 만들기
 	public String[] makeCategory(String dd) {
-		//System.out.println(dd);
 		String categories[] = dd.split("!");
 		for (String string : categories) {
-			//System.out.println(string);
 		}
 		return categories;
 	}
@@ -82,10 +79,6 @@ public class DiaryDAO {
 			String diaryIntroduce = req.getParameter("diaryIntroduce");
 			String themeColor = req.getParameter("themeColor");
 
-			//System.out.println(diaryTitle);
-			//System.out.println(diaryIntroduce);
-			//System.out.println(themeColor);
-			
 			d.setDiaryTitle(diaryTitle);
 			d.setDiaryIntroduce(diaryIntroduce);
 			d.setThemeColor(themeColor);
@@ -108,20 +101,10 @@ public class DiaryDAO {
 	// 스케줄러 내용 추가
 	public int insertSchedule(HttpServletRequest req, Schedule s) {
 	try {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
 		
-//		System.out.println(s.getScheduleDate());
-//		System.out.println(s.getScheduleUserId());
-//		System.out.println(s.getScheduleTitle());
-//		sdf.format(req.getParameter("ScheduleDate1"));
 		req.getParameter("ScheduleStartTime1");
 		req.getParameter("ScheduleEndTime1");
-//		System.out.println(req.getParameter("ScheduleDate1"));
-//		System.out.println(req.getParameter("ScheduleStartTime1"));
-//		System.out.println(req.getParameter("ScheduleEndTime1"));
-		
-//		s.setScheduleDate(scheduleDate);
 		s.setScheduleStartTime(req.getParameter("ScheduleStartTime1"));
 		s.setScheduleEndTime(req.getParameter("ScheduleEndTime1"));
 		
@@ -138,7 +121,6 @@ public class DiaryDAO {
 			return 0;
 		}
 	
-		/*ss.getMapper(ScheduleMapper.class).insertSchedule(s);*/
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -157,24 +139,12 @@ public class DiaryDAO {
 		System.out.println(path);
 		
 		try {
-			/*mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8",
-					new DefaultFileRenamePolicy());
-			
-			String diaryImg = mr.getFilesystemName("mainImg");*/
-			
-			
 			String fileName = file.getOriginalFilename();
-//			System.out.println(path);
 		
 			String saveFileName = UUID.randomUUID().toString() + fileName.substring(fileName.lastIndexOf("."));
-//			System.out.println(fileName);
-//			System.out.println(saveFileName);
-			
 			
 			d.setDiaryImg(saveFileName);
 			d.setDiaryUserId(userId);
-			
-//			System.out.println(saveFileName);
 			
 			if(!file.getOriginalFilename().isEmpty()) {
 					file.transferTo(new File(path, saveFileName));
@@ -183,13 +153,6 @@ public class DiaryDAO {
 				}else {
 					System.out.println("업로드 실패");
 				}
-			
-			
-			/*if (ss.getMapper(DiaryMapper.class).uploadImg(d) == 1) {
-				System.out.println("업로드 성공");
-			} else {
-				System.out.println("업로드 실패");
-			}*/
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,10 +166,6 @@ public class DiaryDAO {
 	}
 	
 	
-	/*public List<Schedule> getSchedule(Schedule s) {
-		return ss.getMapper(ScheduleMapper.class).getSchedule(s);
-	}*/
-
 	// 스케줄러 전체 정보 얻기
 	public String[] getAllEvent(HttpServletRequest req) {
 		String year = req.getParameter("year");
@@ -214,8 +173,6 @@ public class DiaryDAO {
 		String userId = req.getParameter("userId");
 		String month2 = String.format("%02d", month);
 		String date = year + "/" + month2;
-//		System.out.println(date);
-		
 		
 		Map<String, String> vals = new HashMap<String, String>();
 		

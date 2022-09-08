@@ -19,14 +19,16 @@
 			$("#dark").prop("checked", true);
 		} else if (selectThemeColor == "#FF9EBB") {
 			$("#love").prop("checked", true);
-		} else if (selectThemeColor == "linear-gradient(to top, #00656E, #FDC04E)") {
-			$("#sujin").prop("checked", true);
+		} else if (selectThemeColor == "linear-gradient(to top, #C3DEF0, #ECCCF0)") {
+			$("#eunju").prop("checked", true);
 		} else if (selectThemeColor == "#99CCFF") {
 			$("#sky").prop("checked", true);
-		} else if (selectThemeColor == "linear-gradient(to top, #673AB7, #9575CD, #D1C4E9)") {
-			$("#yongjun").prop("checked", true);
-		} else if (selectThemeColor == "linear-gradient(to top, #1A237E, #FF7F27)") {
+		} else if (selectThemeColor == "linear-gradient(to top, #F0CBEC, #F0D7BF)") {
+			$("#sumin").prop("checked", true);
+		} else if (selectThemeColor == "linear-gradient(to top, #B7B7F0, #F0CEA3)") {
 			$("#minji").prop("checked", true);
+		} else if (selectThemeColor == "linear-gradient(to top, #F08784, #ECFBA3)") {
+			$("#jisu").prop("checked", true);
 		}
 			
 
@@ -63,14 +65,17 @@
 						value="#FF9EBB" /><label for="love">love&emsp;</label></td>
 				<td><input type="radio" name="themeColor" class="themeColor" id="sky" 
 						value="#99CCFF" /><label for="sky">sky&emsp;</label></td>
-				<td><input type="radio" name="themeColor" class="themeColor" id="sujin" 
-						value="linear-gradient(to top, #00656E, #FDC04E)" />
-						<label for="sujin">sujin&emsp;</label></td>
-				<td><input type="radio" name="themeColor" class="themeColor" id="yongjun" 
-						value="linear-gradient(to top, #673AB7, #9575CD, #D1C4E9)" />
-						<label for="yongjun">yongjun&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="eunju" 
+						value="linear-gradient(to top, #C3DEF0, #ECCCF0)" />
+						<label for="eunjoo">eunju&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="sumin" 
+						value="linear-gradient(to top, #F0CBEC, #F0D7BF)" />
+						<label for="sumin">sumin&emsp;</label></td>
+				<td><input type="radio" name="themeColor" class="themeColor" id="jisu" 
+						value="linear-gradient(to top, #F08784, #ECFBA3)" />
+						<label for="jisoo">jisu&emsp;</label></td>
 				<td><input type="radio" name="themeColor" class="themeColor" id="minji" 
-						value="linear-gradient(to top, #1A237E, #FF7F27)" />
+						value="linear-gradient(to top, #B7B7F0, #F0CEA3)" />
 						<label for="minji">minji&emsp;</label></td>
 				<td><input type="hidden" id="selectThemeColor" value="${Diary.themeColor }"> </td>
 			</tr>

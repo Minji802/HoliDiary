@@ -57,10 +57,8 @@
 	<div id="postListOrder">
 		<p>
 			<button class="postListOrderA" onclick="recentList();">최신순</button>
-			&nbsp;&nbsp;&nbsp;
 			<button class="postListOrderA" style="font-weight: 600"
 				onclick="pastList();">과거순</button>
-			&nbsp;&nbsp;&nbsp;
 			<button class="postListOrderA" onclick="recommendList();">추천순</button>
 		</p>
 	</div>
