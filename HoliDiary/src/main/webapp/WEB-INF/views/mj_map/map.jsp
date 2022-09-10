@@ -3,12 +3,11 @@
 
 <html>
 <head>
-<title>The places you traveled to</title>
+<title>Map</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<link rel="stylesheet" type="text/css"
-	href="resources/mj_css/mj_map.css" />
+<link rel="stylesheet" type="text/css" href="resources/mj_css/mj_map.css" />
 <script type="module" src="resources/mj_js/mj_mapIndex.js"></script>
 <script type="text/javascript" src="resources/mj_js/map_help.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>

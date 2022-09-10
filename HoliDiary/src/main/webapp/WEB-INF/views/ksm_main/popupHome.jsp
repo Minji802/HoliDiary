@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOLIDIARY</title>
 <link rel="stylesheet" href="resources/sm_css/sm_popup.css">
 <link rel="stylesheet" href="resources/sm_css/sm_music.css">
 <script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script>

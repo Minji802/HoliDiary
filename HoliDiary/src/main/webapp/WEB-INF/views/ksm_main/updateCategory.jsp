@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOLIDIARY</title>
 <link rel="stylesheet" href="resources/sm_css/sm_popup.css">
 <style type="text/css">
 hr {

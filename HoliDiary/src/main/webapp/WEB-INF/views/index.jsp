@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOLIDIARY</title>
 
 <link rel="stylesheet" href="resources/sej_css/index.css">
 <link rel="stylesheet" href="resources/sej_css/home.css">
@@ -32,8 +32,6 @@
 <script type="text/javascript" src="resources/kjs_js/kjs_validCheck.js"></script>
 <script type="text/javascript" src="resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="resources/summernote/lang/summernote-ko-KR.js"></script>
-<script type="text/javascript" src="resources/mj_js/postWrite.js"></script>
-
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>

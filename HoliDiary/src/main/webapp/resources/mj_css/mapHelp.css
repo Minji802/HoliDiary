@@ -1,0 +1,80 @@
+#helpMap hr{
+	background-color: #FFDE59;
+	border-top: 5px dashed #6667AB;
+}
+
+.mapHelpImg {
+	width: 100%;
+}
+
+.one h3 {
+	float: left;
+}
+
+.one img {
+	width: 100px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.two h3 {
+	float: left;
+}
+
+.two img {
+	width: 300px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.three h3 {
+	float: left;
+}
+
+.three img {
+	width: 100px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.four h3 {
+	float: left;
+}
+
+.four img {
+	width: 15px;
+	height: 25px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.five h3 {
+	float: left;
+}
+
+.fiveDrawingManager {
+	width: 100px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.drawingManager {
+	width: 20px;
+	height: 20px;
+}
+
+.six h3 {
+	float: left;
+}
+
+.six img {
+	width: 60px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}

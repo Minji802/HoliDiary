@@ -6,7 +6,8 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Swiper slide transition</title>
+  <title>HOLIDIARY</title>
+<!-- <title>CodePen - Swiper slide transition</title> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;display=swap'>
 <link rel='stylesheet' href='https://unpkg.com/swiper@5.2.0/css/swiper.min.css'><link rel="stylesheet" href="./style.css">

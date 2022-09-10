@@ -4,14 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" name="viewport"
-	content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<script type="text/javascript" src="resources/summernote/summernote-lite.js"></script>
-<script type="text/javascript" src="resources/summernote/lang/summernote-ko-KR.js"></script>
-<script type="text/javascript" src="resources/mj_js/postWrite.js"></script>
-<link rel="styleSheet" href="resources/summernote/summernote-lite.css">
-<link rel="stylesheet" href="resources/mj_css/mj_write.css">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<title>HOLIDIARY</title>
 </head>
 <body>
 <div id="write-map-Btn-Div">
@@ -135,7 +129,23 @@
 			
 		});
 		
-		
+		function postSubmitCheck() {
+			var postTitle = document.postSubmitForm.postTitle;
+			var postTxt = document.postSubmitForm.postTxt;
+			
+			if (postTitle.value == '') {
+				alert == swal("제목을 입력해주세요");
+				postTitle.focus();
+				return false;
+			} else if (postTxt.value == ''){
+				alert == swal("내용을 입력해주세요");
+				postTxt.focus();
+				return false;
+			}
+					
+			return true;
+					
+		}
 	</script>
 
 			

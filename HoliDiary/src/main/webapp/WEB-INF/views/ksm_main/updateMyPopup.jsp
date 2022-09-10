@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOLIDIARY</title>
 <link rel="stylesheet" href="resources/sm_css/sm_popup.css">
 <script type="text/javascript" src="resources/jquery/jquery.js"></script>
 <script type="text/javascript">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOLIDIARY</title>
 </head>
 <body>
 	<a class="menu_bar_diary_li" href="#" onclick=popup()>

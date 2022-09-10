@@ -5,11 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="resources/mj_css/postDetail.css">
-<link rel="stylesheet" href="resources/mj_css/guestBook.css">
+<title>HOLIDIARY</title>
 </head>
 <body>
 	<h1>Guest Book</h1>

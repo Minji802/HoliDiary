@@ -6,12 +6,7 @@
 <head>
 <meta charset="UTF-8" name="viewport"
 	content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<script type="text/javascript"
-	src="resources/summernote/summernote-lite.js"></script>
-<script type="text/javascript"
-	src="resources/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="styleSheet" href="resources/summernote/summernote-lite.css">
+<title>HOLIDIARY</title>
 </head>
 <body>
 

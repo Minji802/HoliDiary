@@ -5,13 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOLIDIARY</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="resources/mj_css/postDetail.css">
-<link rel="stylesheet" href="resources/mj_css/likeButton.css">
 </head>
-<body">
+<body>
 
 	<div class="postTitle">
 		<h1>${DiaryPost.postTitle }</h1>
@@ -351,6 +348,7 @@
 			let postWriter = document.getElementById("postWriter").value;
 			let commentWriter = document.getElementById("commentWriter").value;
 			let commentTxt = $("#commentTxt").val().replaceAll("\n", "<br>");
+			let checkbox = document.getElementsByName("commentSecret");
 			
 			 //비밀댓글 체크여부
 			 if($("#commentSecret").is(":checked")){

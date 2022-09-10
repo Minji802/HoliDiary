@@ -5,14 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="resources/sm_css/sm_music.css">
+<title>HOLIDIARY</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="resources/summernote/summernote-lite.js"></script>
+<script type="text/javascript" src="resources/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="styleSheet" href="resources/summernote/summernote-lite.css">
+<link rel="stylesheet" href="resources/sm_css/sm_music.css">
 <link rel="stylesheet" href="resources/sm_css/sm_popup.css">
+<link rel="styleSheet" href="resources/mj_css/postList.css">
+<link rel="stylesheet" href="resources/mj_css/postDetail.css">
+<link rel="stylesheet" href="resources/mj_css/likeButton.css">
+<link rel="stylesheet" href="resources/mj_css/guestBook.css">
 <link
 	href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap"
 	rel="stylesheet">
+<link rel="stylesheet" href="resources/mj_css/mj_write.css">
 <script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_subscribe.js"></script>
 <script type="text/javascript" src="resources/sm_js/sm_valid.js"></script>
