@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<img src="resources/mj_img/map_help.png">
+	<img src="resources/mj_img/map_help.png" style="width: 100%;">
 	
 
 </body>

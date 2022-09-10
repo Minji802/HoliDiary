@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="resources/kjs_css/kjs_subscribe.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_mydiary.css">
 <link rel="stylesheet" href="resources/kjs_css/kjs_find_user.css?ver=1">
+<link rel="styleSheet" href="resources/summernote/summernote-lite.css">
+<link rel="stylesheet" href="resources/mj_css/mj_write.css">
 <script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/sej_js/jquery.js"></script>
 <script type="text/javascript" src="resources/sej_js/sej_home.js"></script>
@@ -28,6 +30,10 @@
 <script type="text/javascript" src="resources/kjs_js/kjs_subscribe.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_valid.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_validCheck.js"></script>
+<script type="text/javascript" src="resources/summernote/summernote-lite.js"></script>
+<script type="text/javascript" src="resources/summernote/lang/summernote-ko-KR.js"></script>
+<script type="text/javascript" src="resources/mj_js/postWrite.js"></script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>

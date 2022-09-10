@@ -67,13 +67,13 @@
 						value="#99CCFF" /><label for="sky">sky&emsp;</label></td>
 				<td><input type="radio" name="themeColor" class="themeColor" id="eunju" 
 						value="linear-gradient(to top, #C3DEF0, #ECCCF0)" />
-						<label for="eunjoo">eunju&emsp;</label></td>
+						<label for="eunju">eunju&emsp;</label></td>
 				<td><input type="radio" name="themeColor" class="themeColor" id="sumin" 
 						value="linear-gradient(to top, #F0CBEC, #F0D7BF)" />
 						<label for="sumin">sumin&emsp;</label></td>
 				<td><input type="radio" name="themeColor" class="themeColor" id="jisu" 
 						value="linear-gradient(to top, #F08784, #ECFBA3)" />
-						<label for="jisoo">jisu&emsp;</label></td>
+						<label for="jisu">jisu&emsp;</label></td>
 				<td><input type="radio" name="themeColor" class="themeColor" id="minji" 
 						value="linear-gradient(to top, #B7B7F0, #F0CEA3)" />
 						<label for="minji">minji&emsp;</label></td>

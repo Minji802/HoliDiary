@@ -209,6 +209,17 @@
 	margin-left: 21px;
 }
 
+.postDetailUpDel-Btn {
+	font-family: "DM Sans", sans-serif;
+	background-color: #7d7d7d;
+	border: none;
+	color: #fff;
+	border-radius: 10px;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 0 auto;
+}
+
 .postDetailShare-Btn {
 	font-family: "DM Sans", sans-serif;
 	background-color: #6667AB;

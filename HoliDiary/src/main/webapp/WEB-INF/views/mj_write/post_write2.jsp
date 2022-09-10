@@ -7,10 +7,9 @@
 <meta charset="UTF-8" name="viewport"
 	content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="resources/summernote/summernote-lite.js"></script>
-<script type="text/javascript"
-	src="resources/summernote/lang/summernote-ko-KR.js"></script>
+<script type="text/javascript" src="resources/summernote/summernote-lite.js"></script>
+<script type="text/javascript" src="resources/summernote/lang/summernote-ko-KR.js"></script>
+<script type="text/javascript" src="resources/mj_js/postWrite.js"></script>
 <link rel="styleSheet" href="resources/summernote/summernote-lite.css">
 <link rel="stylesheet" href="resources/mj_css/mj_write.css">
 </head>
@@ -25,11 +24,11 @@
 		}
 	</script>
 
-	<form action="diaryPost.reg.do?nowPage=1&cntPerPage=15" method="post">
+	<form action="diaryPost.reg.do?nowPage=1&cntPerPage=10" method="post" name="postSubmitForm" onsubmit="return postSubmitCheck();">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
-				title : <input type="text" name="postTitle" class="postTitleWriteContent"
-					style="width: 70%; margin-left: 5px; border-bottom: 1px solid grey;">                     
+				<input type="text" name="postTitle" class="postTitleWriteContent" placeholder="제목을 입력하세요" 
+					style="width: 75%; margin-left: 5px; font-size:17pt; border-bottom: 1px solid grey;">                     
 			</div>
 
 			<div>
@@ -53,6 +52,7 @@
 				</select>
 				</c:if>                  
 			</div>
+			
 
 			<div class="diaryPostCountry">
 				<div class="diaryPostCountry"
@@ -75,7 +75,7 @@
 			<input type="hidden" id="postImg" name="postImg">
 			
 			<div class="row justify-content-md-center">
-				<button type="submit" class="writeUpload" style="font-weight: bold"> 등록 </button>
+				<button class="writeUpload" style="font-weight: bold"> 등록 </button>
 				<button type="button" onclick="history.go(-1)" class="writeCancel"
 					style="font-weight: bold"> 취소 </button>
 			</div>
@@ -89,7 +89,7 @@
 				height: 450,
 				focus: true,                
 				lang: "ko-KR",	
-				placeholder: '포스트를 작성해주세요',
+				placeholder: '포스트를 작성하세요',
 				callbacks : { 
 	            	onImageUpload : function(files, editor, welEditable) {
 	            // 파일 업로드(다중업로드를 위해 반복문 사용)
@@ -134,6 +134,7 @@
 				}
 			
 		});
+		
 		
 	</script>
 
