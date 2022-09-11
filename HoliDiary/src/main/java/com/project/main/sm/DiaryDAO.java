@@ -201,10 +201,4 @@ public class DiaryDAO {
 			return 0;
 	}
 
-	
-
-
-
-
-
 }

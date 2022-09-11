@@ -52,9 +52,9 @@
 	<div id="postListOrder">
 		<p>
 			<button class="postListOrderA" style="font-weight: 600"
-				onclick="recentList();">최신순</button>
-			<button class="postListOrderA" onclick="pastList();">과거순</button>
-			<button class="postListOrderA" onclick="recommendList();">추천순</button>
+				onclick="recentList();">最新順</button>
+			<button class="postListOrderA" onclick="pastList();">過去順</button>
+			<button class="postListOrderA" onclick="recommendList();">いいね順</button>
 		</p>
 	</div>
 
@@ -62,14 +62,11 @@
 		<div style="float: right; margin-top: 10px;">
 			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
 				<option value="9"
-					<c:if test="${paging.cntPerPage == 9 }">selected</c:if>>9개
-					보기</option>
+					<c:if test="${paging.cntPerPage == 9 }">selected</c:if>>9個で見る</option>
 				<option value="15"
-					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15개
-					보기</option>
+					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15個で見る</option>
 				<option value="21"
-					<c:if test="${paging.cntPerPage == 21 }">selected</c:if>>21개
-					보기</option>
+					<c:if test="${paging.cntPerPage == 21 }">selected</c:if>>21個で見る</option>
 			</select>
 		</div>
 	</div>
@@ -79,11 +76,11 @@
 		<c:if test="${DiaryPosts.size() != 0}">
 			<c:forEach var="result" items="${DiaryPosts}" varStatus="status">
 				<table id="postListTbl" class="postList" border=0
-					style="width: 220px; text-align: center; float: left;">
+					style="width: 232px; text-align: center; float: left;">
 					<tr>
 						<td colspan="2"><img src="${result.postImg }"
 							onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"
-							style="width: 220px; height: 170px;"></td>
+							style="width: 232px; height: 170px;"></td>
 					</tr>
 					<tr>
 						<td class="postTitle" colspan="2"><a
@@ -106,7 +103,7 @@
 			</c:forEach>
 		</c:if>
 		<c:if test="${DiaryPosts.size()==0}">
-			<div class="nonePost">등록된 포스트가 없습니다</div>
+			<div class="nonePost">登録された掲示物がありません。</div>
 		</c:if>
 	</div>
 

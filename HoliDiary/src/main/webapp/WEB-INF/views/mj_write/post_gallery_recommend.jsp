@@ -79,11 +79,11 @@
 		<c:if test="${DiaryPosts.size() != 0}">
 			<c:forEach var="result" items="${DiaryPosts}" varStatus="status">
 				<table id="postListTbl" class="postList" border=0
-					style="width: 232px; text-align: center; float: left;">
+					style="width: 220px; text-align: center; float: left;">
 					<tr>
 						<td colspan="2"><img src="${result.postImg }"
 							onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"
-							style="width: 232px; height: 170px;"></td>
+							style="width: 220px; height: 170px;"></td>
 					</tr>
 					<tr>
 						<td class="postTitle" colspan="2"><a

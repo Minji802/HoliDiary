@@ -14,4 +14,5 @@ public interface CategoryMapper {
 
 	Category getCategoryInfo(Category c);
 
+
 }

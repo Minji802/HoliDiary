@@ -149,13 +149,15 @@ public class PopupController {
 		if (uDAO.loginCheck(req)) {
 			cDAO.updateCategoryAdd(req, d, userId, cate);
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
-			req.setAttribute("popupContentPage", "popupHome.jsp");
+			//req.setAttribute("popupContentPage", "popupHome.jsp");
 		} else {
 			req.setAttribute("popupContentPage", "popupBack.jsp");
 			return "ksm_main/popupBack";
 		}
 		
-		return "ksm_main/popup";
+		d.setDiaryUserId(userId);
+		return "redirect:updateCategory?userId=" + userId;
+		//return "ksm_main/popup";
 	}
 	
 	// 다이어리 - 카테고리 업데이트 (수정 및 삭제)
@@ -166,13 +168,15 @@ public class PopupController {
 		if (uDAO.loginCheck(req)) {
 			cDAO.updateCategoryup(req, d, userId, cate, newCategory);
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
-			req.setAttribute("popupContentPage", "popupHome.jsp");
+			//req.setAttribute("popupContentPage", "popupHome.jsp");
 		} else {
 			req.setAttribute("popupContentPage", "popupBack.jsp");
 			return "ksm_main/popupBack";
 		}
 		
-		return "ksm_main/popup";
+		d.setDiaryUserId(userId);
+		return "redirect:updateCategory?userId=" + userId;
+		//return "ksm_main/popup";
 	}
 	
 	// 다이어리 - 스케줄러 추가

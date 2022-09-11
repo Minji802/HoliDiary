@@ -34,9 +34,9 @@
 
 	<div class="checks" style="text-align: right; margin-top: -25px;">
 		<input type="radio" id="ex_rd1" name="listType" value="List"
-			onclick="getList()" /> <label for="ex_rd1">List</label>&nbsp; <input
-			type="radio" id="ex_rd2" name="listType" value="Gallery"
-			checked="checked" onclick="getGallery()" /> <label for="ex_rd2">Gallery</label>
+			checked="checked" onclick="getList()" /> <label for="ex_rd1">List</label>&nbsp;
+		<input type="radio" id="ex_rd2" name="listType" value="Gallery"
+			onclick="getGallery()" /> <label for="ex_rd2">Gallery</label>
 	</div>
 
 	<input type="hidden" id="postWriter" name="postWriter"
@@ -44,62 +44,53 @@
 	<input type="hidden" id="categoryName" name="categoryName"
 		value="${param.category }">
 
-	<div id="countPost" style="height: 45px;">
+
+
+	<div id="countPost" style="height: 50px;">
 		<div style="float: right; margin-top: 10px;">
 			<select id="cntPerPage" name="countPost" onchange="countPostChange()">
-				<option value="9"
-					<c:if test="${paging.cntPerPage == 9 }">selected</c:if>>9개
-					보기</option>
+				<option value="10"
+					<c:if test="${paging.cntPerPage == 10 }">selected</c:if>>10行で見る</option>
 				<option value="15"
-					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15개
-					보기</option>
-				<option value="21"
-					<c:if test="${paging.cntPerPage == 21 }">selected</c:if>>21개
-					보기</option>
+					<c:if test="${paging.cntPerPage == 15 }">selected</c:if>>15行で見る</option>
+				<option value="20"
+					<c:if test="${paging.cntPerPage == 20 }">selected</c:if>>20行で見る</option>
 			</select>
 		</div>
 	</div>
 
-
-	<div style="display: inline-table;">
+	<table id="postListTbl" border=0
+		style="width: 100%; text-align: center; border-collapse: collapse;">
+		<tr class="postTbl">
+			<td class="postTitle" style="width: 30%">Title</td>
+			<td class="postWriter" style="width: 20%">Writer</td>
+			<td class="postDate" style="width: 25%">Date</td>
+			<td class="postLike" style="width: 10%">Likes</td>
+			<td class="postNo" style="width: 15%">Views</td>
+		</tr>
 		<c:if test="${DiaryPosts.size() != 0}">
-			<c:forEach var="dp" items="${DiaryPosts}" varStatus="status">
-				<table id="postListTbl" class="postList" border=0
-					style="width: 220px; text-align: center; float: left;">
-					<tr>
-						<td colspan="2"><img src="${dp.postImg }"
-							onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"
-							style="width: 220px; height: 170px;"></td>
-					</tr>
-					<tr>
-						<td class="postTitle" colspan="2"><a
-							href='post.detail.go?postNum=${dp.postNum } + &userId=${dp.postWriter }'><strong>${dp.postTitle }</strong></a></td>
-					</tr>
-					<tr>
-						<td class="postWriter" colspan="2">${dp.postWriter }</td>
-					</tr>
-					<tr>
-						<td class="postDate" colspan="2">${dp.postDate }</td>
-					</tr>
-					<tr>
-						<td class="postDate" style="font-size: 9pt; text-align: right;">likes
-							${dp.postRecommend } /</td>
-						<td class="postViewCount"
-							style="font-size: 9pt; text-align: left;">views
-							${dp.postView }</td>
-					</tr>
-				</table>
+			<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
+				<tr class="postList">
+					<td class="postTitle"><a
+						href='post.detail.go?postNum=${dp.postNum }&userId=${dp.postWriter }'>${dp.postTitle }</a></td>
+					<td class="postWriter">${dp.postWriter }</td>
+					<td class="postDate">${dp.postDate }</td>
+					<td class="postDate">${dp.postRecommend }</td>
+					<td class="postViewCount">${dp.postView }</td>
+				</tr>
 			</c:forEach>
 		</c:if>
 		<c:if test="${DiaryPosts.size()==0}">
-			<div class="nonePost">등록된 포스트가 없습니다</div>
+			<tr style="height: 300px;">
+				<td class="nonePost2" colspan="5" rowspan="10">登録された掲示物がありません。</td>
+			</tr>
 		</c:if>
-	</div>
+	</table>
 
 	<div style="text-align: center; margin-top: 15px; font-size: 10pt;">
 		<c:if test="${paging.startPage != 1 }">
 			<a
-				href="category-gallery?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&lt;</a>
+				href="category-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 			var="p">
@@ -109,13 +100,13 @@
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
 					<a
-						href="category-gallery?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }&category=${param.category }">${p }</a>
+						href="category-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }&category=${param.category }">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage }">
 			<a
-				href="category-gallery?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&gt;</a>
+				href="category-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&gt;</a>
 		</c:if>
 	</div>
 
