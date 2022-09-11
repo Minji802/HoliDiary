@@ -356,8 +356,8 @@ public class WriteController {
 		
 		pDAO.getAllList(req, userId, pp, total, nowPage, cntPerPage);
 
-		req.setAttribute("popupContentPage", "../mj_write/post_list.jsp");
-		return "ksm_main/popup";
+		p.setPostWriter(userId);
+		return "redirect:post.detail.go?postNum=" + pDAO.getPostNum(p) + "&userId=" + userId;
 	}
 
 	// 좋아요

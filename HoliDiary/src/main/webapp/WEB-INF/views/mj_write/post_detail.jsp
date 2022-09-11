@@ -60,7 +60,8 @@
 			<div class="modalBox" style="z-index: 100">
 				<p>
 					<c:forEach items="${Like }" var="Like">
-						<li>${Like.userId }</li>
+						<li><strong>${Like.userId }</strong></li>
+						<hr>
 					</c:forEach>
 				</p>
 				<button class="closeBtn">✖</button>
@@ -273,12 +274,13 @@
 							//console.log("추천함");
 							$(likeCnt).html(parseInt($(likeCnt).text())+1);
 							alert == swal("추천되었습니다")
-							
+							location.reload(true);
 							
 						} else if (likeResult == 1) {
 							//console.log("추천취소");
 							$(likeCnt).html($(likeCnt).text()-1);
 							alert == swal("추천이 취소되었습니다")
+							location.reload(true);
 						}
 					},
 					error : function(request, status, error) {
@@ -289,6 +291,7 @@
 			}
 			
 		});
+		
 		
 		function checkLike2(postNum,userID) {
 			
@@ -348,13 +351,11 @@
 			let postWriter = document.getElementById("postWriter").value;
 			let commentWriter = document.getElementById("commentWriter").value;
 			let commentTxt = $("#commentTxt").val().replaceAll("\n", "<br>");
-			let checkbox = document.getElementsByName("commentSecret");
+			let commentSecret = 0;
 			
 			 //비밀댓글 체크여부
 			 if($("#commentSecret").is(":checked")){
-			 	$("#commentSecret").val() == 1;
-			 } else {
-			 	$("#commentSecret").val() == 0;
+				 commentSecret = 1;
 			 }
 			 
 			if($("#commentTxt").val() == ''){
@@ -370,7 +371,8 @@
 					"postNum": postNum,
 					"postWriter": postWriter,
 					"commentWriter": commentWriter,
-					"commentTxt": commentTxt
+					"commentTxt": commentTxt,
+					"commentSecret": commentSecret
 				},
 				success : function(data) {
 					if (data == 1){
