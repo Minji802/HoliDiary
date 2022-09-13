@@ -24,23 +24,23 @@ $(function() {
 	    
 	    // 사용자 알림
 	    if(copy) {
-	    	swal("마이다이어리 주소가 복사되었습니다.");
+	    	swal("マイダイアリーURLがコピーされました。");
 	    }
 	});
 	
 	// 마이페이지 카카오 연동 처리
 	$("#mypage_kakao_checkbox").click(function(){
 		if($(this).is(":checked") == true){
-			swal("카카오를 연동하시겠습니까?", {
+			swal("カカオトークの連動をしますか。", {
 				buttons: {
 					  cancel: {
-						    text: "취소",
+						    text: "cancel",
 						    value: false,
 						    visible: true,
 						    closeModal: true,
 						  },
 						  confirm: {
-						    text: "연동",
+						    text: "connect",
 						    value: true,
 						    visible: true,
 						    closeModal: true
@@ -54,7 +54,7 @@ $(function() {
 							        //alert(JSON.stringify(authObj));
 									            // db값에 kakaID값 넣기
 									        	Kakao.Auth.authorize({
-									        	redirectUri: 'http://localhost/main/connect.kakao'
+									        	redirectUri: 'http://localhost/main/jp.connect.kakao'
 									        	});
 									          },
 							      fail: function(err) {
@@ -69,16 +69,16 @@ $(function() {
 					})
 		}
 		if($(this).is(":checked") == false){
-		swal("카카오로 로그인하신 후에 해제가 됩니다. 카카오연동 해제하시겠습니까?", {
+		swal("カカオトークでログインした後で解除されます。連動を開場しますか。", {
 			buttons: {
 				  cancel: {
-					    text: "취소",
+					    text: "cancel",
 					    value: false,
 					    visible: true,
 					    closeModal: true,
 					  },
 					  confirm: {
-					    text: "연동해제",
+					    text: "disconnect",
 					    value: true,
 					    visible: true,
 					    closeModal: true
@@ -87,7 +87,7 @@ $(function() {
 				}).then((result) => {
 					if(result){
 						$(this).prop("checked", false);
-						location.href='disconnect.sns';
+						location.href='jp.disconnect.sns';
 					}else{
 						$(this).prop("checked", true);
 						return;
@@ -100,16 +100,16 @@ $(function() {
 	$("#mypage_naver_checkbox").click(function(){
 		
 		if($(this).is(":checked") == true){
-			swal("네이버를 연동하시겠습니까?", {
+			swal("ネイバーの連動をしますか。", {
 				buttons: {
 					  cancel: {
-						    text: "취소",
+						    text: "cancel",
 						    value: false,
 						    visible: true,
 						    closeModal: true,
 						  },
 						  confirm: {
-						    text: "연동",
+						    text: "connect",
 						    value: true,
 						    visible: true,
 						    closeModal: true
@@ -129,16 +129,16 @@ $(function() {
 		}
 		
 		if($(this).is(":checked") == false){
-			swal("네이버로 로그인하신 후에 해제가 됩니다. 네이버연동 해제하시겠습니까?", {
+			swal("ネイバーでログインした後で解除されます。連動を開場しますか。", {
 				buttons: {
 					  cancel: {
-						    text: "취소",
+						    text: "cancel",
 						    value: false,
 						    visible: true,
 						    closeModal: true,
 						  },
 						  confirm: {
-						    text: "연동해제",
+						    text: "disconnect",
 						    value: true,
 						    visible: true,
 						    closeModal: true
@@ -148,7 +148,7 @@ $(function() {
 						if(result){
 							// 네이버 아이디 삭제
 							$(this).prop("checked", false);
-							location.href='disconnect.sns';
+							location.href='jp.disconnect.sns';
 						}else{
 							$(this).prop("checked", true);
 							return;
@@ -195,7 +195,7 @@ $(function() {
 			let name = $(this);
 			
 			if(isEmpty(name)){
-				$('#mypage_name_error').text('이름을 입력해주세요');
+				$('#mypage_name_error').text('氏名を入力してください。');
 				$('#mypage_name_error').css('color','red');
 			}else{
 				$('#mypage_name_error').text('');
@@ -211,7 +211,7 @@ $(function() {
 			
 			// 닉네임 중복확인
 			$.ajax({
-				url : "nick.check",
+				url : "jp.nick.check",
 				type : "GET",
 				dataType : "text",
 				data : {"userNickname" : nickname.val()},
@@ -219,14 +219,14 @@ $(function() {
 					console.log(getData);
 					if(getData == '' || getData == nickname.val()){
 						if(isEmpty(nickname)){
-							$('#mypage_nickname_error').text('닉네임을 입력해주세요');
+							$('#mypage_nickname_error').text('ニックネームを入力してください。');
 							$('#mypage_nickname_error').css('color','red');
 						}else{
-							$('#mypage_nickname_error').text('사용가능한 닉네임입니다');
+							$('#mypage_nickname_error').text('使えるニックネームです。');
 							$('#mypage_nickname_error').css('color','blue');
 						}
 					}else{
-						$('#mypage_nickname_error').text('이미 사용중인 닉네임입니다');
+						$('#mypage_nickname_error').text('使えないニックネームです。');
 						$('#mypage_nickname_error').css('color','red');
 					}
 				},
@@ -243,7 +243,7 @@ $(function() {
 			let name = $(this);
 			
 			if(isEmpty(name)){
-				$('#mypage_phone_error').text('핸드폰번호를 입력해주세요');
+				$('#mypage_phone_error').text('電話番号を入力してください。');
 				$('#mypage_phone_error').css('color','red');
 			}else{
 				$('#mypage_phone_error').text('');
@@ -258,7 +258,7 @@ $(function() {
 			let name = $(this);
 			
 			if(isEmpty(name)){
-				$('#mypage_email_error').text('이메일을 입력해주세요');
+				$('#mypage_email_error').text('メールアドレスを入力してください。');
 				$('#mypage_email_error').css('color','red');
 			}else{
 				$('#mypage_email_error').text('');
@@ -276,24 +276,24 @@ function mypageCheckUser(){
 		//alert(id.val());
 		
 		$.ajax({
-			url: 'id.check',
+			url: 'jp.id.check',
 			type : 'GET',
 			dataType : 'text',
 			data : {'userID' : id.val()},
 			success : function(result) {
 				console.log(result);
 				if(result == 0){
-					swal("로그인 후 이용해주세요");
+					swal("ログインしてください。");
 					return false;
 				} else{
-					location.href="mypage.myinfo.go";
+					location.href="jp.mypage.myinfo.go";
 					return true;
 				}
 				
 			},
 			error : function(request,status,error) {
     			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    			swal("문제가 발생했습니다. 다시 이용해주세요.");
+    			swal("問題が発生しました。もう一度利用してください。");
     			return false;
     		}
 		});
@@ -303,17 +303,17 @@ function mypageCheckUser(){
 // 마이페이지 내 정보 이동
 
 function showMyinfo(){
-	location.href='mypage.myinfo.go'
+	location.href='jp.mypage.myinfo.go'
 }
 
 // 마이페이지 정보수정 이동
 function showFollowing(){
-	location.href='mypage.mysubscribe.go'
+	location.href='jp.mypage.mysubscribe.go'
 }
 
 // 마이페이지 구독정보 확인
 function showFollower(){
-	location.href='mypage.mydiary.go'
+	location.href='jp.mypage.mydiary.go'
 }
 
 
@@ -324,27 +324,27 @@ function deleteUser(){
 	let id = $("#mypage_id");
 	
 	if(isEmpty(pw)){
-		swal("비밀번호를 입력해주세요. 소셜회원가입을 하셨다면 '비밀번호찾기'를 통해 비밀번호를 재발급 받아주세요.");
+		swal("パスワードを入力してください。SNS会員登録をした場合、「パスワードをお忘れの方」でパスワードを再発行してください。");
 		pw.focus();
 	}else{
 		$.ajax({
-			url: 'pw.check',
+			url: 'jp.pw.check',
 			type : 'POST',
 			dataType : 'text',
 			data : {'userID': id.val(), 'userPW' : pw.val()},
 			success : function(result) {
 				console.log(result);
 				if(result == 1){
-					swal("정말 탈퇴하시겠습니까? 소셜 연동 해체는 네이버와 카카오 홈페이지에서 이용해주세요.", {
+					swal("脱退しますか。SNS連動の解除はネイバーやカカオトークで利用してください。", {
 						buttons: {
 							  cancel: {
-								    text: "취소",
+								    text: "cancel",
 								    value: false,
 								    visible: true,
 								    closeModal: true,
 								  },
 								  confirm: {
-								    text: "탈퇴",
+								    text: "脱退",
 								    value: true,
 								    visible: true,
 								    closeModal: true
@@ -352,16 +352,16 @@ function deleteUser(){
 						}
 							}).then((result) => {
 								if(result){
-									location.href="delete.do";
+									location.href="jp.delete.do";
 								}
 							})
 				}else{
-					swal("비밀번호를 확인해주세요");
+					swal("パスワードを確認してください。");
 				}
 			},
 			error : function(request,status,error) {
     			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    			swal("문제가 발생했습니다. 다시 이용해주세요.");
+    			swal("問題が発生しました。もう一度利用してください。");
     			return false;
     		}
 		});
@@ -385,35 +385,35 @@ function updateValidCheck(){
 	if(isEmpty(name) || nameError == 'rgb(255, 0, 0)'){
 		name.focus();
 		if(isEmpty(name)){
-			$('#join_name_error').text('이름을 입력해주세요');
+			$('#join_name_error').text('氏名を入力してください。');
 			$('#join_name_error').css('color','red');
 		}
 		return false;
 	} else if (isEmpty(nickname) || nickError == 'rgb(255, 0, 0)'){
 		nickname.focus();
 		if(isEmpty(nickname)){
-			$('#join_nickname_error').text('닉네임을 입력해주세요');
+			$('#join_nickname_error').text('ニックネームを入力してください。');
 			$('#join_nickname_error').css('color','red');
 		}
 		return false;
 	} else if(isEmpty(phone) || phoneError == 'rgb(255, 0, 0)'){
 		phone.focus();
 		if(isEmpty(phone)){
-			$('#join_phone_error').text('전화번호를 입력해주세요');
+			$('#join_phone_error').text('電話番号を入力してください。');
 			$('#join_phone_error').css('color','red');
 		}
 		return false;
 	} else if(isEmpty(email) || emailError == 'rgb(255, 0, 0)'){
 		email.focus();
 		if(isEmpty(email)){
-			$('#join_email_error').text('이메일을 입력해주세요');
+			$('#join_email_error').text('メールアドレスを入力してください。');
 			$('#join_email_error').css('color','red');
 		}
 		return false;
 	}
 	
 	if(isEmpty(pw)){
-		swal("비밀번호를 확인해주세요.");
+		swal("パスワードを入力してください。");
 		pw.focus();
 		return false;
 	}
@@ -430,12 +430,12 @@ function changePWValidCheck(){
 	let id = $("#mypage_id")
 	
 	if(isEmpty(newPW)){
-		$('#mypage_newPW_error').text('새 비밀번호를 입력해주세요');
+		$('#mypage_newPW_error').text('新しいパスワードを入力してください。');
 		$('#mypage_newPW_error').css('color','red');
 		newPW.focus();
 		return false;
 	}else if(lessThan(newPW, 8) || containsHS(newPW)){
-		$('#mypage_newPW_error').text('비밀번호는 8~16자 영문 소문자, 숫자로 입력해주세요');
+		$('#mypage_newPW_error').text('英語小文字、半角数字で号8〜16文字で入力してください。');
 		$('#mypage_newPW_error').css('color','red');
 		newPW.focus();
 		return false;
@@ -444,12 +444,12 @@ function changePWValidCheck(){
 	}
 	
 	if(isEmpty(newPWCheck)){
-		$('#mypage_newPWCheck_error').text('비밀번호를 입력해주세요')
+		$('#mypage_newPWCheck_error').text('パスワードを入力してください。')
 		$('#mypage_newPWCheck_error').css('color','red');
 		newPWCheck.focus();
 		return false;
 	}else if(notEquals(newPW, newPWCheck)){
-		$('#mypage_newPWCheck_error').text('비밀번호가 일치하지 않습니다')
+		$('#mypage_newPWCheck_error').text('パスワードが一致しません。')
 		$('#mypage_newPWCheck_error').css('color','red');
 		newPWCheck.focus();
 		return false;
@@ -458,13 +458,13 @@ function changePWValidCheck(){
 	}
 	
 	if(isEmpty(oldPW)){
-		$('#mypage_oldPW_error').text('기존의 비밀번호를 입력해주세요')
+		$('#mypage_oldPW_error').text('現在のパスワードを入力してください。')
 		$('#mypage_oldPW_error').css('color','red');
 		oldPW.focus();
 		return false;
 	}else{
 		$.ajax({
-			url: 'pw.check',
+			url: 'jp.pw.check',
 			type : 'POST',
 			dataType : 'text',
 			data : {'userID': id.val(), 'userPW' : oldPW.val()},
@@ -475,7 +475,7 @@ function changePWValidCheck(){
 					$('#mypage_oldPW_error').text('')
 					flag = true;
 				}else{
-					$('#mypage_oldPW_error').text('비밀번호가 틀렸습니다')
+					$('#mypage_oldPW_error').text('パスワードが間違っています。')
 					$('#mypage_oldPW_error').css('color','red');
 					oldPW.focus();
 					flag = false;
@@ -483,7 +483,7 @@ function changePWValidCheck(){
 			},
 			error : function(request,status,error) {
     			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    			swal("문제가 발생했습니다. 다시 이용해주세요.");
+    			swal("問題が発生しました。もう一度利用してください。");
     			flag = false;
     		}
 		});

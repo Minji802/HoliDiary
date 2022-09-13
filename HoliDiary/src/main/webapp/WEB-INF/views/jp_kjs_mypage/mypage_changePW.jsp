@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HOLIDIARY</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<div id="content_mypage">
@@ -26,32 +26,32 @@
 			<div class="mypage_content_box">
 				<div>
 					<div class="mypage_changePW_title">
-						<span>비밀번호 수정하기</span><span style="font-size: 12pt; color: red; margin-left: 20px;">${result}</span>
+						<span>パスワード変更</span><span style="font-size: 12pt; color: red; margin-left: 20px;">${result}</span>
 					</div>
 					<form action="update.pw" method="post" onsubmit="return changePWValidCheck()">
 					<div class="mypage_changePW_content_box">
 						<div class="mypage_changePW_input_box">
 							<div>
-								<span>새 비밀번호</span>
+								<span>新しいパスワード</span>
 								<span class="mypage_changePW_error" id="mypage_newPW_error"></span>
 							</div>
-							<input type="password" id="mypage_new_pw" name="userPW" placeholder="8~16자 영문 소문자, 숫자" maxlength="16">
+							<input type="password" id="mypage_new_pw" name="userPW" placeholder="英語小文字、半角数字で号8〜16文字" maxlength="16">
 						</div>
 						<div class="mypage_changePW_input_box">
 							<div>
-								<span>새 비밀번호 확인</span><span class="mypage_changePW_error" id="mypage_newPWCheck_error"></span>
+								<span>パスワード確認</span><span class="mypage_changePW_error" id="mypage_newPWCheck_error"></span>
 							</div>
-							<input type="password" id="mypage_pw_check" placeholder="변경할 비밀번호 확인">
+							<input type="password" id="mypage_pw_check" placeholder="確認のためパスワードを再入力してください">
 						</div>
 						<div class="mypage_changePW_input_box">
 							<div>
-								<span>비밀번호 확인</span><span class="mypage_changePW_error" id="mypage_oldPW_error"></span>
+								<span>現在のパスワード</span><span class="mypage_changePW_error" id="mypage_oldPW_error"></span>
 							</div>
-							<input type="password" id="mypage_old_pw" placeholder="기존 비밀번호 확인">
+							<input type="password" id="mypage_old_pw" placeholder="現在のパスワード確認">
 							<input type="hidden" id="mypage_id" name="userID" value="${sessionScope.loginUser.userID}">
 						</div>
 						<div class="mypage_changePW_btn">
-							<button>비밀번호 변경</button>
+							<button>パスワード変更</button>
 						</div>
 					</div>
 					</form>

@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HOLIDIARY</title>
+<title>Insert title here</title>
 </head>
 <body>
 
 	<div id="content_join_option">
-		<div class="go_back_login"><a href="javascript:window.history.back();"> 로그인 페이지로</a></div> 
+		<div class="go_back_login"><a href="javascript:window.history.back();"> ログインページへ</a></div> 
 		<div id="join_option_box">
-			<div class="join_page"><button onclick="location.href='join.go'">간편회원가입</button></div>
-			<div class="join_social_info"><span>소셜 아이디로 회원가입하기</span></div>
+			<div class="join_page"><button onclick="location.href='jp.join.go'">一般会員登録</button></div>
+			<div class="join_social_info"><span>SNS会員登録</span></div>
 			<div class="join_social">
 				<button onclick="joinWithKakao()"><img src="./resources/kjs_img/kakao_login_medium_narrow.png"></button>
 				<button id="joinWithNaver"><img src="./resources/kjs_img/naver_login.jpg" style="width: 98%;"></button>
@@ -32,7 +32,7 @@
 									btnNaverLogin.click();
 							  	});
 						  </script>
-					</div>
+				</div>
 			</div>
 		</div>
 

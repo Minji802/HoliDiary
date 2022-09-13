@@ -9,8 +9,9 @@
 <title>HOLIDIARY</title>
 </head>
 <body>
-
-	<input type="button" value="Map" onclick="showPopupMap();" />
+<div id="write-map-Btn-Div">
+	<input class="write-map-Btn" type="button" value="Map" onclick="showPopupMap();" />
+</div>
 
 	<script language="javascript">
 		function showPopupMap() {
@@ -22,9 +23,9 @@
 	<form action="diaryPost.update.do?postNum=${DiaryPost.postNum }&nowPage=1&cntPerPage=15" method="post">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
-				제목<input type="text" name="postTitle" class="postTitleWriteContent"
+				<input type="text" name="postTitle" class="postTitleWriteContent"
 					value="${DiaryPost.postTitle }"
-					style="width: 60%; margin-left: 20px; border: 1px solid grey;">                              
+					style="width: 75%; margin-left: 5px; font-size:17pt; border-bottom: 1px solid grey;">                              
 			</div>
 
 			<div>

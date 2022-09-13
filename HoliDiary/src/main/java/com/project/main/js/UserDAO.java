@@ -188,6 +188,19 @@ public class UserDAO {
 			return false;
 		}
 	}
+	
+	// 유저 세션 확인(JP)
+	public boolean loginCheckJP(HttpServletRequest req) {
+		
+		User u = (User) req.getSession().getAttribute("loginUser");
+		if(u != null) {
+			req.setAttribute("loginPage", "jp_kjs_user/after_login.jsp");
+			return true;
+		} else {
+			req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
+			return false;
+		}
+	}
 
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("loginUser", null);
@@ -353,7 +366,10 @@ public class UserDAO {
 		
 		// 카카오톡 인가코드 받기 (토큰 받기 위함: 세션)
 		String code = req.getParameter("code");
-		String redirect = "http://localhost/main/social.kakao";
+		//KOR
+		//String redirect = "http://localhost/main/social.kakao";
+		//JPN
+		String redirect = "http://localhost/main/jp.social.kakao";
 		//System.out.println(code);
 			
 		// 유저정보 가져오기
@@ -432,7 +448,10 @@ public class UserDAO {
 		// 카카오톡 인가코드 받기 (토큰 받기 위함: 세션)
 				String code = req.getParameter("code");
 				User u = (User) req.getSession().getAttribute("loginUser");
-				String redirect = "http://localhost/main/connect.kakao";
+				//KOR
+				//String redirect = "http://localhost/main/connect.kakao";
+				//JPN
+				String redirect = "http://localhost/main/jp.connect.kakao";
 				//System.out.println(code);
 					
 				// 유저정보 가져오기
@@ -606,6 +625,39 @@ public class UserDAO {
 		}
 		
 	}
+
+	// 비밀번호 찾기 : 회원정보 여부 확인(JP)
+		public void findPWJP(User u, HttpServletRequest req) {
+			
+			if(ss.getMapper(UserMapper.class).findPW(u) != null) {
+				User dbUser = ss.getMapper(UserMapper.class).findPW(u);
+
+				String name = dbUser.getUserNickname();
+				String email = dbUser.getUserEmail();
+				// 8자리 랜덤 문자열 생성
+				String temporaryPW = getRandomString(8);
+
+				dbUser.setUserPW(temporaryPW);
+				
+				//System.out.println(dbUser.getUserNickname());
+				//System.out.println(dbUser.getUserEmail());
+				//System.out.println(dbUser.getUserPW());
+				
+				// 이메일 돌리기
+				mailSendJP(name, email, temporaryPW);
+				
+				// 임시 비밀번호 DB에 저장
+				ss.getMapper(UserMapper.class).updatePW(dbUser);
+				//System.out.println(ss.getMapper(UserMapper.class).updatePW(dbUser));
+				
+				req.setAttribute("userEmail", email);
+				req.setAttribute("r", "일치");
+			} else {
+				req.setAttribute("r", "불일치");
+			}
+			
+		}
+
 	
 	// 임시비밀번호 메일로 보내기
 	public void mailSend(String userName, String userEmail, String pw) {
@@ -646,6 +698,45 @@ public class UserDAO {
 		}
 	}
 	
+	// 임시비밀번호 메일로 보내기(JP)
+		public void mailSendJP(String userName, String userEmail, String pw) {
+			// Mail Server 설정
+			String charSet = "utf-8";
+			String hostSMTP = "smtp.naver.com";		
+			String hostSMTPid = "tlawl912@naver.com"; // 본인의 아이디 입력		
+			String hostSMTPpwd = ""; // 비밀번호 입력
+				
+			// 보내는 사람 EMail, 제목, 내용 
+			String fromEmail = "tlawl912@naver.com"; // 보내는 사람 eamil
+			String fromName = "HOLIDIARY";  // 보내는 사람 이름
+			String subject = "[HOLIDIARY]臨時パスワードが発行されました。"; // 제목
+					
+			// 받는 사람 E-Mail 주소
+			String mail = userEmail;  // 받는 사람 email		
+					
+			try {
+				HtmlEmail email = new HtmlEmail();
+				email.setDebug(true);
+				email.setCharset(charSet);
+				email.setSSL(true);
+				email.setHostName(hostSMTP);
+				email.setSmtpPort(587);	// SMTP 포트 번호 입력
+
+				email.setAuthentication(hostSMTPid, hostSMTPpwd);
+				email.setTLS(true);
+				email.addTo(mail, charSet);
+				email.setFrom(fromEmail, fromName, charSet);
+				email.setSubject(subject);
+				email.setHtmlMsg("<h2>いつもご利用いただきありがとうございます。" +  userName + "様</h2><br><br>\r\n" + 
+						""				+ "<p>臨時パスワードを発行いたしました。</p>\r\n" + 
+						""				+ "<p>臨時パスワードは<h2 style='color : blue'>" + pw +"</h2>でございます。" 
+										+ "ログインをした後、マイページでパスワードを変更してください。</p><br>\\r\\n\" " +
+						""				+ "(もし間違ったメールだったら、このメールは無視してもいいです。)"); // 본문 내용
+				email.send();			
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
 	
 	// 랜덤 문자열 생성 : 임시 비밀번호
 	static String getRandomString(int i){ 
@@ -878,6 +969,14 @@ public class UserDAO {
 			req.setAttribute("result", "비밀번호가 수정되었습니다");
 		}else {
 			req.setAttribute("result", "오류가 발생하여 비밀번호 수정을 하지 못했습니다");
+		}
+	}
+	
+	public void updatePWJP(User u, HttpServletRequest req) {
+		if(ss.getMapper(UserMapper.class).updatePW(u) == 1) {
+			req.setAttribute("result", "パスワードが修正されました。");
+		}else {
+			req.setAttribute("result", "問題が発生されました。パスワード修正失敗しました。");
 		}
 	}
 

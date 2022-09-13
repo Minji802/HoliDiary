@@ -70,7 +70,7 @@
         	return node.nodeName === 'IFRAME';
       	}
 		
-		html2canvas(document.querySelector("#whole"), {
+		html2canvas(document.querySelector("#map"), {
 	      useCORS: true,
     	  allowTaint: false,
 	      ignoreElements: (node) => {
