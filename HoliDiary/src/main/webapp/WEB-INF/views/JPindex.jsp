@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HOLIDIARY</title>
-<link href="resources/sej_img/logofit-removebg-preview.png" rel="shortcut icon" type="image/x-icon">
+
 <link rel="stylesheet" href="resources/sej_css/index.css">
 <link rel="stylesheet" href="resources/sej_css/home.css">
 <link rel="stylesheet" href="resources/sej_css/home_search.css">
@@ -79,10 +79,10 @@
 			<input type="hidden" value="${sessionScope.loginUser.userID }" id="userID">
 			<input type="hidden" value="${Category.categoryUserId }" id="CuserID">
 			<span class="menu_bar_border"></span>
-			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">마이페이지</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goHolinow()">홀리 NOW</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goBestHoli()">Best 홀리</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goItemShop()">아이템샵</a>
+			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">マイページ</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_Holinow()">ホリー NOW</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_BestHoli()">Best ホリー</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_ItemShop()">アイテムショップ</a>
 			<!-- <a class="menu_bar_li" href="">Map(임시)</a> -->
 			
 			
@@ -92,20 +92,19 @@
 	<!-- HEADER 영역 -->
 	<header id="top_header">
 		<div class="header_contents_box">
-		<a class="logo_img_go_home" href="javascript:void(0)" onclick="goHome()">
+		<a class="logo_img_go_home" href="javascript:void(0)" onclick="goJP_home()">
 		<img class="header_logo_img" src="resources/sej_img/logofit-removebg-preview.png">
 		</a>
 		<div>
-			<a class="japan_home_button" href="javascript:void(0)" onclick="goJP_home()">JAPAN</a>
+			<a class="japan_home_button" href="javascript:void(0)" onclick="goHome()">KOREA</a>
 		</div>
-		<!-- 일본어 버튼 추가 -->
 		<div class="search_box">
 		<div class="search_img">
 		<a href="javascript:void(0)" onclick="goSearch()">
 		<img src="resources/sej_img/search_berry.png">
 		</a>
 		</div>
-		<input class="search_input" type="text" placeholder="검색">
+		<input class="search_input" type="text" placeholder="検索">
 		</div>
 
 		<div class="top_menu_img_box">
@@ -139,22 +138,21 @@
 				<div class="second_footer_contentsBox">
 				<div class="second_footer_first_box">
 					<span>CS CENTER</span><br>
-					위 로고를 클릭하면<br>
-					HoliDiary의 GitHub 주소로<br>
-					갈 수 있답니다
+					上のロゴイメージをクリックすると<br>
+					HoliDiaryの GitHubリンクに行けます！
 				</div>
 				<div class="second_footer_second_box">
 					<span>BANK INFO</span><br>
-					후원은 저희에게 큰 힘이 됩니다<br>
+					後援はHoliDiaryに大きな力になります。<br>
 					농협 207177-000-0000<br>
-					예금주 : ㅇㅇㅇ/ㅇㅇㅇ/ㅇㅇㅇ
+					口座名義 : ㅇㅇㅇ/ㅇㅇㅇ/ㅇㅇㅇ
 				</div>
 				<div class="second_footer_third_box">
 					<span>COMPANY INFO</span><br>
 					PROJECT NAME: HoliDiary<br>
-					TEAM MEMBER: 박민지/김수민/김지수/손은주<br>
+					TEAM MEMBER: パク·ミンジ/キム·スミン/キム·ジス/ソン·ウンジュ<br>
 					GITHUB ADDRESS: <a href="https://github.com/Minji802/HoliDiary">https://github.com/Minji802/HoliDiary</a><br>
-					♥최선을 다해서 만들었습니다! HoliDiary 팀 예쁘게 봐주세요♥
+					♥最善を尽くして作りました! HoliDiaryチームをよろしくお願いします♥
 				</div>
 				</div>
 			</div>

@@ -58,13 +58,6 @@ public class HomePostDAO {
 			req.setAttribute("contentPage", "sej_search/home_search.jsp");
 		}
 		
-		/*PostContent pc = new PostContent();
-		String postT = pc.getPosttxt();
-		
-		if (postT.length()>=24) {
-			
-		} */
-		
 		int pageCount = (int) Math.ceil(postCount / (double) count);
 		req.setAttribute("pageCount", pageCount);
 
