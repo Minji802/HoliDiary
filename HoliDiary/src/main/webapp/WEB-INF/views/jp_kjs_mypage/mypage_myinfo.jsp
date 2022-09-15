@@ -16,18 +16,18 @@
 				<span style="color: #6667AB;">My Page</span>
 			</div>
 			<div class="mypage_index" id="mypage_index_modi"
-				onclick="showFollowing()">
+				onclick="showSubscribeInfo()">
 				<span>My Subscribe</span>
 			</div>
 			<div class="mypage_index" id="mypage_index_sub"
-				onclick="showFollower()">
+				onclick="showMyDiary()">
 				<span>My Diary</span>
 			</div>
 			<div class="mypage_content_box">
 				<div id="mypage_myinfo">
 					<div class="mypage_myinfo_title">
 						<span>プロフィール</span> 
-						<a href="mypage.changepw.go">パスワード変更</a>
+						<a href="jp.mypage.changepw.go">パスワード変更</a>
 					</div>
 					<form action="update.do" method="post"
 						enctype="multipart/form-data" onsubmit="return updateValidCheck();">
@@ -86,7 +86,7 @@
 										  <div id=naver_id_login style="display: none;"></div>
 										  <!-- //네이버 로그인 버튼 노출 영역 -->
 										  <script type="text/javascript">
-										  	var naver_id_login = new naver_id_login("rX3BsIpQkj6CJiShI2rn", "http://localhost/main/callback.connect.naver");
+										  	var naver_id_login = new naver_id_login("rX3BsIpQkj6CJiShI2rn", "http://localhost/main/jp.callback.connect.naver");
 										  	var state = naver_id_login.getUniqState();
 										  	naver_id_login.setState(state);
 										  	naver_id_login.setPopup();

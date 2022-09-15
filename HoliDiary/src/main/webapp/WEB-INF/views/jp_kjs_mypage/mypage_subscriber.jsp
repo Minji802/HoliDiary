@@ -14,17 +14,17 @@
 				<span>My Page</span>
 			</div>
 			<div style="background-color: #FFDE59;" class="mypage_index"
-				onclick="showFollowing()">
+				onclick="showSubscribeInfo()">
 				<span style="color: #6667AB;">My Subscribe</span>
 			</div>
-			<div class="mypage_index" onclick="showFollower()">
+			<div class="mypage_index" onclick="showMyDiary()">
 				<span>My Diary</span>
 			</div>
 			<div class="mypage_content_box">
 				<div>
 					<div class="mypage_mysub_title">
 						登録者
-						<a href="mypage.mysubscribe.go">登録情報</a>
+						<a href="jp.mypage.mysubscribe.go">登録情報</a>
 					</div>
 				</div>
 				<div class="mypage_mysub_search">
@@ -42,12 +42,12 @@
 							<c:choose>
 								<c:when test="${info.subCheck eq 'yes'}">
 									<div class="mysub_info_canclesub">
-										<button type="button" onclick="event.stopPropagation();subscribeCancel('${info.userID}');">구독취소</button>
+										<button type="button" onclick="event.stopPropagation();subscribeCancel('${info.userID}');">登録キャンセル</button>
 									</div>
 								</c:when>
 								<c:when test="${info.subCheck eq 'no'}">
 									<div class="mysub_info_canclesub">
-										<button type="button" onclick="event.stopPropagation();subscribeDo('${info.userID }');">구독</button>
+										<button type="button" onclick="event.stopPropagation();subscribeDo('${info.userID }');">登録</button>
 									</div>
 							</c:when>
 							</c:choose>

@@ -21,7 +21,7 @@ public class JPBestHoliController {
 	
 	@RequestMapping(value = "/JPbestHoli.go", method = RequestMethod.GET)
 	public String JPbestHoliGo(HomePostSelector pSel,HttpServletRequest req) {
-		uDAO.loginCheck(req);
+		uDAO.loginCheckJP(req);
 		bDAO.getBestHoliRanking(req);
 		bDAO.getBestHoli(req);
 		req.setAttribute("contentPage", "jp_sej_bestHoli/JPbestHoli.jsp");

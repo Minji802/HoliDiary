@@ -11,7 +11,7 @@
 <div id="content_find_user">
 	<div id="find_pw_result_page_box"> 
 		<div class="find_pw_result_go_login">
-			<a href="jp.login.go">로그인 페이지로</a>
+			<a href="jp.login.go">ログインページへ</a>
 		</div>
 		<c:choose>
 			<c:when test="${r eq '불일치'}">

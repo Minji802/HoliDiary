@@ -6,10 +6,10 @@ function goJP_home() {
 	location.href='JPindex.go';
 }
 
-function goSearch() {
+function goJPSearch() {
 	let search = document.getElementsByClassName("search_input")[0].value
 	
-	location.href='home.search?search='+ search;
+	location.href='JPhome.search?search='+ search;
 }
 
 function goJP_Holinow() {

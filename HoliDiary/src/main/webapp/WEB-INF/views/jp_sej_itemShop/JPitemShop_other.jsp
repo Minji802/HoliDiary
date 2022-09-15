@@ -9,10 +9,10 @@
 <body>
 <div class="itemContainer">
 	<div class="itemMenuList">
-		<ul class="itemMenuList_ul">
-			<li><a class="theme_li" href="javascript:void(0)" onclick="goJP_ItemShop()">다이어리 테마</a></li>
-			<li><a href="javascript:void(0)" onclick="goJP_ItemShop_sticker()">스티커</a></li>
-			<li><a href="javascript:void(0)" onclick="goJP_ItemShop_other()">기타</a></li>
+		<ul>
+			<li><a id="jp_theme_li" class="theme_li" href="javascript:void(0)" onclick="goJP_ItemShop()">ダイアリーテーマ</a></li>
+			<li><a id="jp_theme_li" href="javascript:void(0)" onclick="goJP_ItemShop_sticker()">ステッカー</a></li>
+			<li><a id="jp_theme_li" href="javascript:void(0)" onclick="goJP_ItemShop_other()">その他</a></li>
 		</ul>
 	</div>
 	<div class="itemBox">
@@ -23,7 +23,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -39,7 +39,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -55,7 +55,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -71,7 +71,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -86,7 +86,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -101,7 +101,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -116,7 +116,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -131,7 +131,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -146,7 +146,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -161,7 +161,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -176,7 +176,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -191,7 +191,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -206,7 +206,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -221,7 +221,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -236,7 +236,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">
@@ -251,7 +251,7 @@
 						<img class="itemBox_new_img2" src="resources/sej_img/itemShop/hotbutton.png">						
 					</div>
 					<span class="itemBox_img">
-						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중3.png">
+						<img class="itemBox_img_file" src="resources/sej_img/itemShop/상품준비중일본어.png">
 					</span>
 					<span class="itemBox_title"></span>
 					<div class="itemBox_PriceButton">

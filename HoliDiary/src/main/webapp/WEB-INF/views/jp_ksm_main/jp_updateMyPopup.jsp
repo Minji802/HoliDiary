@@ -48,7 +48,7 @@
 <body>
 <h1>Edit Diary</h1>
 
-	<form action="diary.update">
+	<form action="jp_diary.update">
 		<table class="checks" >
 			<tr>
 				<td colspan="10"><span><h3>Theme Color</h3></span></td>

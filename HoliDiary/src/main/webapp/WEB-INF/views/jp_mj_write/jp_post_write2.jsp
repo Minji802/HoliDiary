@@ -114,7 +114,7 @@
 					$.ajax({
 						data : data,
 						type : "POST",
-						url : "uploadSummernoteImageFile",
+						url : "jp_uploadSummernoteImageFile",
 						contentType : false,
 						enctype : 'multipart/form-data',
 						processData : false,

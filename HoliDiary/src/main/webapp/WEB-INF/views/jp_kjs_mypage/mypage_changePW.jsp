@@ -16,11 +16,11 @@
 				<span style="color: #6667AB;">My Page</span>
 			</div>
 			<div  class="mypage_index"
-				onclick="showFollowing()">
+				onclick="showSubscribeInfo()">
 				<span>My Subscribe</span>
 			</div>
 			<div class="mypage_index"
-				onclick="showFollower()">
+				onclick="showMyDiary()">
 				<span>My Diary</span>
 			</div>
 			<div class="mypage_content_box">

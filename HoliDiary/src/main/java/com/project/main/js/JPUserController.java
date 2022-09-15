@@ -23,7 +23,7 @@ public class JPUserController {
 		req.setAttribute("contentPage", "jp_kjs_user/login.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 로그인 하기
@@ -31,14 +31,14 @@ public class JPUserController {
 	public String loginDo(User u ,HttpServletRequest req) {
 		
 		if(uDAO.login(u,req)) {
-			req.setAttribute("contentPage", "home.jsp");
+			req.setAttribute("contentPage", "JPhome.jsp");
 		} else {
 			req.setAttribute("contentPage", "jp_kjs_user/login.jsp");
 		}
 		
 		uDAO.loginCheckJP(req);
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 회원가입 옵션 선택
@@ -47,7 +47,7 @@ public class JPUserController {
 		
 		req.setAttribute("contentPage", "jp_kjs_user/join_option.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
-		return "index";
+		return "JPindex";
 	}
 	
 	// 회원가입 페이지 들어가기
@@ -56,7 +56,7 @@ public class JPUserController {
 		
 		req.setAttribute("contentPage", "jp_kjs_user/join.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
-		return "index";
+		return "JPindex";
 	}
 	
 	// 회원가입하기
@@ -67,7 +67,7 @@ public class JPUserController {
 		
 		req.setAttribute("contentPage", "jp_kjs_user/join_last.jsp");
 		uDAO.loginCheckJP(req);
-		return "index";
+		return "JPindex";
 	}
 	
 	// 마지막 사진 저장
@@ -77,8 +77,8 @@ public class JPUserController {
 		uDAO.fileUpdate(req, userID, mf);
 		
 		uDAO.loginCheckJP(req);
-		req.setAttribute("contentPage", "home.jsp");
-		return "index";
+		req.setAttribute("contentPage", "JPhome.jsp");
+		return "JPindex";
 	}
 	
 	// ID체크하기(ajax)
@@ -108,8 +108,8 @@ public class JPUserController {
 		uDAO.logout(req);
 		uDAO.loginCheckJP(req);
 		
-		req.setAttribute("contentPage", "home.jsp");
-		return "index";
+		req.setAttribute("contentPage", "JPhome.jsp");
+		return "JPindex";
 	}
 	
 	// 카카오톡으로 회원가입 및 로그인하기
@@ -117,10 +117,10 @@ public class JPUserController {
 	public String socialKakao(HttpServletRequest req) {
 		uDAO.loginWithKakao(req);
 		uDAO.loginCheckJP(req);
-		req.setAttribute("contentPage", "home.jsp");
+		req.setAttribute("contentPage", "JPhome.jsp");
 		
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 카카오 연동하기
@@ -131,7 +131,7 @@ public class JPUserController {
 		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_kjs_mypage/mypage_myinfo.jsp");
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 네이버 콜백 주소(회원가입)
@@ -163,7 +163,7 @@ public class JPUserController {
 		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_kjs_mypage/mypage_myinfo.jsp");
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 네이버 로그인(세션저장)
@@ -177,12 +177,12 @@ public class JPUserController {
 		}
 		
 		if(uDAO.loginCheckJP(req)) {
-			req.setAttribute("contentPage", "home.jsp");
+			req.setAttribute("contentPage", "JPhome.jsp");
 		}else {
 			req.setAttribute("contentPage", "jp_kjs_user/login.jsp");
 		}
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 네이버 (회원가입: DB저장)
@@ -199,7 +199,7 @@ public class JPUserController {
 		req.setAttribute("contentPage", "jp_kjs_user/find_id.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 아이디찾기
@@ -211,7 +211,7 @@ public class JPUserController {
 		req.setAttribute("contentPage", "jp_kjs_user/find_id.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 비번찾기 페이지 이동
@@ -221,7 +221,7 @@ public class JPUserController {
 		req.setAttribute("contentPage", "jp_kjs_user/find_pw.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 비번찾기 이메일 전송
@@ -233,7 +233,7 @@ public class JPUserController {
 		req.setAttribute("contentPage", "jp_kjs_user/find_pw_result.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
 		
-		return "index";
+		return "JPindex";
 	}
 	
 	// 탈퇴하기
@@ -242,9 +242,9 @@ public class JPUserController {
 		
 		uDAO.delete(req);
 		
-		req.setAttribute("contentPage", "home.jsp");
+		req.setAttribute("contentPage", "JPhome.jsp");
 		req.setAttribute("loginPage", "jp_kjs_user/before_login.jsp");
-		return "index";
+		return "JPindex";
 	}
 	
 	// 소셜 로그인 연동해제
@@ -254,7 +254,7 @@ public class JPUserController {
 		uDAO.disconnectSNS(req);
 		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_kjs_mypage/mypage_myinfo.jsp");
-		return "index";
+		return "JPindex";
 	}
 	
 	// 수정하기
@@ -277,7 +277,7 @@ public class JPUserController {
 		
 		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_kjs_mypage/mypage_myinfo.jsp");
-		return "index";
+		return "JPindex";
 	}
 	
 	// 비밀번호 수정
@@ -290,7 +290,7 @@ public class JPUserController {
 		
 		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_kjs_mypage/mypage_changePW.jsp");
-		return "index";
+		return "JPindex";
 	}
 
 }

@@ -69,7 +69,7 @@ $(function() {
 					})
 		}
 		if($(this).is(":checked") == false){
-		swal("カカオトークでログインした後で解除されます。連動を開場しますか。", {
+		swal("カカオトークでログインした後で解除ができます。連動を解除しますか。", {
 			buttons: {
 				  cancel: {
 					    text: "cancel",
@@ -301,18 +301,17 @@ function mypageCheckUser(){
 }
 
 // 마이페이지 내 정보 이동
-
 function showMyinfo(){
 	location.href='jp.mypage.myinfo.go'
 }
 
-// 마이페이지 정보수정 이동
-function showFollowing(){
+// 마이페이지 구독정보 이동
+function showSubscribeInfo(){
 	location.href='jp.mypage.mysubscribe.go'
 }
 
-// 마이페이지 구독정보 확인
-function showFollower(){
+// 마이페이지 마이다이어리 현황 확인
+function showMyDiary(){
 	location.href='jp.mypage.mydiary.go'
 }
 

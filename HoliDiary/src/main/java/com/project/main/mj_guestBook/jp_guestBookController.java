@@ -41,7 +41,7 @@ public class jp_guestBookController {
 
 		} else {
 			req.setAttribute("popupContentPage", "jp_popupBack.jsp");
-			return "jp_ksm_main/popupBack";
+			return "jp_ksm_main/jp_popupBack";
 		}
 
 		req.setAttribute("popupContentPage", "../jp_mj_guestBook/jp_guestBook.jsp");

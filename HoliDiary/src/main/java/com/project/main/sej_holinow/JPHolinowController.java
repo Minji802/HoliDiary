@@ -21,7 +21,7 @@ public class JPHolinowController {
 	
 	@RequestMapping(value = "/JPholinow.go", method = RequestMethod.GET)
 	public String JPholiNowGo(HomePostSelector pSel,HttpServletRequest req) {
-		uDAO.loginCheck(req);
+		uDAO.loginCheckJP(req);
 		hDAO.getHolinow(req);
 		req.setAttribute("contentPage", "jp_sej_holinow/JPholinow.jsp");
 		return "JPindex";

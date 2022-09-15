@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>HOLIDIARY</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_musicJs.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="resources/summernote/lang/summernote-ko-KR.js"></script>
@@ -22,10 +22,10 @@
 	href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/mj_css/mj_write.css">
-<script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/kjs_js/kjs_subscribe.js"></script>
-<script type="text/javascript" src="resources/sm_js/sm_valid.js"></script>
-<script type="text/javascript" src="resources/sm_js/sm_validCheck.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_valid.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_validCheck.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -161,15 +161,15 @@ body {
 	<!-- 우클릭 시 메뉴 -->
 	<c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 		<ul class="contextmenu">
-			<li><a href="write.go?userId=${sessionScope.loginUser.userID }">ポスト作成</a></li>
+			<li><a href="jp_write.go?userId=${sessionScope.loginUser.userID }">ポスト作成</a></li>
 			<li><a
-				href="mainImg.updateGo?userId=${sessionScope.loginUser.userID }">ホーム編集</a></li>
+				href="jp_mainImg.updateGo?userId=${sessionScope.loginUser.userID }">ホーム編集</a></li>
 			<li><a
-				href="updateMyPopup?userId=${sessionScope.loginUser.userID }">ダイアリー編集</a></li>
+				href="jp_updateMyPopup?userId=${sessionScope.loginUser.userID }">ダイアリー編集</a></li>
 			<li><a
-				href="updateCategory?userId=${sessionScope.loginUser.userID }">カテゴリー編集</a></li>
+				href="jp_updateCategory?userId=${sessionScope.loginUser.userID }">カテゴリー編集</a></li>
 			<li><a
-				href="advicePage?userId=${sessionScope.loginUser.userID }">ヘルプ</a></li>
+				href="jp_advicePage?userId=${sessionScope.loginUser.userID }">ヘルプ</a></li>
 		</ul>
 	</c:if>
 
@@ -187,7 +187,7 @@ body {
 
 				<!-- 좌측 카테고리 리스트 -->
 				<div class="page-link-list">
-					<a href="popupHomeGo?userId=${User.userID}" class="item-link"
+					<a href="jp_popupHomeGo?userId=${User.userID}" class="item-link"
 						id="pageLink"> <svg class="link-icon" fill="none"
 							stroke="currentColor" stroke-linecap="round"
 							stroke-linejoin="round" stroke-width="2"
@@ -198,7 +198,7 @@ body {
 					</a>
 
 					<c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
-						<a href="popupScheduleGo?userId=${User.userID}" class="item-link"
+						<a href="jp_popupScheduleGo?userId=${User.userID}" class="item-link"
 							id="pageLink"> <svg class="link-icon"
 								xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -260,12 +260,12 @@ body {
 				<c:when
 					test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 					<button class="btn-invite"
-						onclick="location.href='updateMyPopup?userId=${sessionScope.loginUser.userID }'"
+						onclick="location.href='jp_updateMyPopup?userId=${sessionScope.loginUser.userID }'"
 						style="background: ${Diary.themeColor}">ダイアリー編集</button>
 				</c:when>
 				<c:otherwise>
 					<button class="btn-invite"
-						onclick="location.href='popupHomeGo?userId=${sessionScope.loginUser.userID }'"
+						onclick="location.href='jp_popupHomeGo?userId=${sessionScope.loginUser.userID }'"
 						style="background: ${Diary.themeColor}">My ダイアリーへ</button>
 				</c:otherwise>
 			</c:choose>
@@ -305,7 +305,7 @@ body {
 						test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 						<div class="action-buttons-wrapper">
 							<button class="action-buttons btn-upload"
-								onclick="location.href='write.go?userId=${sessionScope.loginUser.userID }'"
+								onclick="location.href='jp_write.go?userId=${sessionScope.loginUser.userID }'"
 								style="background: ${Diary.themeColor}">ポスト作成</button>
 						</div>
 					</c:when>

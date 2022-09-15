@@ -1,7 +1,7 @@
 function showMusicPlayer() {
 	let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=100, left=270";
 
-	var url = 'musicPlayer.open';
+	var url = 'jp_musicPlayer.open';
 
 	window.open(url, "_blank", options);
 }

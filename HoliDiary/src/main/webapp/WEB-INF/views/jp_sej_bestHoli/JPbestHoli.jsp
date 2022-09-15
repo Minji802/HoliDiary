@@ -86,7 +86,8 @@
 	border: 5px dashed #6667AB;
 }
 .bestHoliRankingImg img {
-	padding-right: 50px;
+	/* padding-right: 50px; */
+	padding-left: 10px;
 }
 .bestHoliRankingImg:first-child {
 	position: relative;
@@ -225,6 +226,7 @@
  white-space : nowrap; /* (text의 길이가 길어지면 자동으로 줄이 바뀌는데 이를 한줄로 설정한다.) */
  overflow : hidden; /* (width가 고정되어있는 상태에서 text가 길어지면 해당 element를 넘어서는데 이를 표시하지 않는다.) */
  text-overflow : ellipsis; /* (넘어간 text대신 ...으로 text를 대체한다.) */
+ display: block;
 }
 .slide-content footer {
   display: flex;
@@ -251,6 +253,9 @@
 	display : -webkit-box;
 	-webkit-line-clamp : 1; 
 	-webkit-box-orient: vertical;  */
+	width: 330px;
+    height: 200px;
+    overflow: hidden;
 }
 </style>
 </head>
@@ -283,9 +288,9 @@
         <div class="swiper-slide">
             <article class="slide-content">
                 <h4>${bh.posttitle }</h4>
-                <p class="bestHoliTxt">
+                <div class="bestHoliTxt">
 				${bh.posttxt }
-               </p>
+               </div>
                 <footer>
                     <div><fmt:formatDate value="${bh.postdate }" pattern="yyyy/MM/dd"/> </div>
                     <c:if test="${sessionScope.loginUser.userID != null}">

@@ -22,7 +22,7 @@ hr {
 
 	<h1>Edit Category</h1><br>
 
-	<form action="category.add" onsubmit="return categoryValidCheck();">
+	<form action="jp_category.add" onsubmit="return categoryValidCheck();">
 		<input type="text" id="categoryName" name="categories" placeholder="カテゴリー名を入力してください。" maxlength="10" style="border-bottom: solid 1px; width: 200px;">
 		<input type="submit" value="追加" class="btn-update-save">
 		<input type="hidden" value="${Diary.diaryUserId }" name="diaryUserId" id="diaryUserId">
@@ -50,7 +50,7 @@ hr {
 		
 		//alert(newCategory);
 		var diaryUserId = document.getElementById("diaryUserId").value;
-		location.href="category.update?newCategory=" + newCategory + "&diaryUserId=" + diaryUserId;
+		location.href="jp_category.update?newCategory=" + newCategory + "&diaryUserId=" + diaryUserId;
 	});
 	
 	

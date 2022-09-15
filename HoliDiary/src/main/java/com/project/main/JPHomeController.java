@@ -18,7 +18,7 @@ public class JPHomeController {
 	
 	@RequestMapping(value = "/JPindex.go", method = RequestMethod.GET)
 	public String JPindexGo(HttpServletRequest req) {
-		uDAO.loginCheck(req);
+		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "JPhome.jsp");
 		return "JPindex";
 	}

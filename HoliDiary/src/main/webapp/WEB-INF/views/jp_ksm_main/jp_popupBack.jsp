@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HOLIDIARY</title>
-<script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_popupJs.js"></script>
 </head>
 <style>
 body {

@@ -55,7 +55,7 @@ public class jp_WriteController {
 		}
 
 		req.setAttribute("popupContentPage", "../jp_mj_write/jp_post_list.jsp");
-		return "jp_ksm_main/popup";
+		return "jp_ksm_main/jp_popup";
 	}
 	
 	// 게시글 목록 불러오기 - 오래된순
@@ -71,7 +71,7 @@ public class jp_WriteController {
 			pDAO.getAllPastList(req, userId, pp, total, nowPage, cntPerPage);
 		} else {
 			req.setAttribute("popupContentPage", "jp_popupBack.jsp");
-			return "ksm_main/popupBack";
+			return "jp_ksm_main/jp_popupBack";
 		}
 		
 		req.setAttribute("popupContentPage", "../jp_mj_write/jp_post_list_past.jsp");
@@ -228,7 +228,7 @@ public class jp_WriteController {
 		return "jp_ksm_main/jp_popup";
 	}
 
-	@RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
+	@RequestMapping(value = "/jp_uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
 			HttpServletRequest request) {

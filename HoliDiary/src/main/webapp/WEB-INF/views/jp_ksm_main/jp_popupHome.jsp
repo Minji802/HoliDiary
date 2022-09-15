@@ -8,7 +8,7 @@
 <title>HOLIDIARY</title>
 <link rel="stylesheet" href="resources/sm_css/sm_popup.css">
 <link rel="stylesheet" href="resources/sm_css/sm_music.css">
-<script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_musicJs.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 .button {
@@ -90,7 +90,7 @@ span:hover + p.arrow_box2 {
 				 
 				<c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 				<div class="button">
-					<a href="mainImg.updateGo?userId=${Diary.diaryUserId }"> 修正 </a>
+					<a href="jp_mainImg.updateGo?userId=${Diary.diaryUserId }"> 修正 </a>
 					<%-- <input type="hidden" value="${User.userId }" name="userId"> --%>
 				</div>
 				</c:if>
@@ -130,7 +130,7 @@ span:hover + p.arrow_box2 {
 $(document).ready(function(){
 	$(".question-backImg2").click(function(e) {
 	      
-        var url = "http://api.openweathermap.org/data/2.5/weather?q=seoul&appid=e7b1a57cd2158c8d195bfb24b7597bad&units=metric&lang=kr";
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=e7b1a57cd2158c8d195bfb24b7597bad&units=metric&lang=jp";
          $.getJSON(url, function(data){
            var icon = "https://openweathermap.org/img/wn/"+data.weather[0].icon+".png";
            $("#weatherImg").attr("src", icon);

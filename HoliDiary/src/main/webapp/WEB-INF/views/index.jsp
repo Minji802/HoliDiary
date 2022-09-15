@@ -79,10 +79,10 @@
 			<input type="hidden" value="${sessionScope.loginUser.userID }" id="userID">
 			<input type="hidden" value="${Category.categoryUserId }" id="CuserID">
 			<span class="menu_bar_border"></span>
-			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">마이페이지</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goHolinow()">홀리 NOW</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goBestHoli()">Best 홀리</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goItemShop()">아이템샵</a>
+			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">MY PAGE</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goHolinow()">Holi Now</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goBestHoli()">Best Holi</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goItemShop()">Item Shop</a>
 			<!-- <a class="menu_bar_li" href="">Map(임시)</a> -->
 			
 			
@@ -95,10 +95,10 @@
 		<a class="logo_img_go_home" href="javascript:void(0)" onclick="goHome()">
 		<img class="header_logo_img" src="resources/sej_img/logofit-removebg-preview.png">
 		</a>
-		<div>
-			<a class="japan_home_button" href="javascript:void(0)" onclick="goJP_home()">JAPAN</a>
-		</div>
 		<!-- 일본어 버튼 추가 -->
+		<div>
+			<a class="quick_home_button" href="javascript:void(0)" onclick="goJP_home()">JAPAN</a>
+		</div>
 		<div class="search_box">
 		<div class="search_img">
 		<a href="javascript:void(0)" onclick="goSearch()">

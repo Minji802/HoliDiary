@@ -17,21 +17,21 @@ public class JPItemShopController {
 	
 	@RequestMapping(value = "/JPitemShop.go", method = RequestMethod.GET)
 	public String JPitemShopGo(HttpServletRequest req) {
-		uDAO.loginCheck(req);
+		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_sej_itemShop/JPitemShop.jsp");
 		return "JPindex";
 	}
 	
 	@RequestMapping(value = "/JPitemShop_sticker.go", method = RequestMethod.GET)
 	public String JPitemShopStickerGo(HttpServletRequest req) {
-		uDAO.loginCheck(req);
+		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_sej_itemShop/JPitemShop_sticker.jsp");
 		return "JPindex";
 	}
 	
 	@RequestMapping(value = "/JPitemShop_other.go", method = RequestMethod.GET)
 	public String JPitemShopOtherGo(HttpServletRequest req) {
-		uDAO.loginCheck(req);
+		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_sej_itemShop/JPitemShop_sticker.jsp");
 		return "JPindex";
 	}

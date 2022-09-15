@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HOLIDIARY</title>
-
+<link href="resources/sej_img/logofit-removebg-preview.png" rel="shortcut icon" type="image/x-icon">
 <link rel="stylesheet" href="resources/sej_css/index.css">
 <link rel="stylesheet" href="resources/sej_css/home.css">
 <link rel="stylesheet" href="resources/sej_css/home_search.css">
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="resources/kjs_css/kjs_find_user.css?ver=1">
 <link rel="styleSheet" href="resources/summernote/summernote-lite.css">
 <link rel="stylesheet" href="resources/mj_css/mj_write.css">
-<script type="text/javascript" src="resources/sm_js/sm_popupJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_popupJs.js"></script>
 <script type="text/javascript" src="resources/sej_js/jquery.js"></script>
 <script type="text/javascript" src="resources/sej_js/sej_home.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -26,11 +26,11 @@
 <script type="text/javascript" src="resources/sej_js/sej_go.js"></script>
 <script type="text/javascript" src="resources/sej_js/JP_sej_go.js"></script>
 <script type="text/javascript" src="resources/sej_js/sej_popup.js"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_kakao.js?ver=1"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_mypage.js?ver=1"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_subscribe.js"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_valid.js"></script>
-<script type="text/javascript" src="resources/kjs_js/kjs_validCheck.js"></script>
+<script type="text/javascript" src="resources/jp_kjs_js/kjs_kakao.js?ver=1"></script>
+<script type="text/javascript" src="resources/jp_kjs_js/kjs_mypage.js?ver=1"></script>
+<script type="text/javascript" src="resources/jp_kjs_js/kjs_subscribe.js"></script>
+<script type="text/javascript" src="resources/jp_kjs_js/kjs_valid.js"></script>
+<script type="text/javascript" src="resources/jp_kjs_js/kjs_validCheck.js"></script>
 <script type="text/javascript" src="resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="resources/summernote/lang/summernote-ko-KR.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -79,10 +79,10 @@
 			<input type="hidden" value="${sessionScope.loginUser.userID }" id="userID">
 			<input type="hidden" value="${Category.categoryUserId }" id="CuserID">
 			<span class="menu_bar_border"></span>
-			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">マイページ</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_Holinow()">ホリー NOW</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_BestHoli()">Best ホリー</a>
-			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_ItemShop()">アイテムショップ</a>
+			<a class="menu_bar_li" href="javascript:void(0);" onclick="return mypageCheckUser();">MY PAGE</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_Holinow()">Holi Now</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_BestHoli()">Best Holi</a>
+			<a class="menu_bar_li" href="javascript:void(0)" onclick="goJP_ItemShop()">Item Shop</a>
 			<!-- <a class="menu_bar_li" href="">Map(임시)</a> -->
 			
 			
@@ -96,15 +96,15 @@
 		<img class="header_logo_img" src="resources/sej_img/logofit-removebg-preview.png">
 		</a>
 		<div>
-			<a class="japan_home_button" href="javascript:void(0)" onclick="goHome()">KOREA</a>
+			<a class="quick_home_button" href="javascript:void(0)" onclick="goHome()">KOREA</a>
 		</div>
 		<div class="search_box">
 		<div class="search_img">
-		<a href="javascript:void(0)" onclick="goSearch()">
+		<a href="javascript:void(0)" onclick="goJPSearch()">
 		<img src="resources/sej_img/search_berry.png">
 		</a>
 		</div>
-		<input class="search_input" type="text" placeholder="検索">
+		<input class="search_input" type="text" placeholder="search">
 		</div>
 
 		<div class="top_menu_img_box">

@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="resources/sm_css/sm_popup.css">
 <link rel="stylesheet" href="resources/sm_css/sm_schedule.css">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="resources/sm_js/sm_scheduleJs.js"></script>
-<script type="text/javascript" src="resources/sm_js/sm_scheduleJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_scheduleJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_scheduleJs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 .calendar {
@@ -199,6 +199,7 @@ input.add-event-edit:-ms-input-placeholder {
 	background: #FFDE59;
 	color: #1C1C1C;
 	border-color: transparent;
+	width: 100px;
 }
 
 .event-btn--cancel:hover {
@@ -484,7 +485,7 @@ $(function(){
 		let scheduleContent = $("#day-events-list").html();
 
 		$.ajax({
-			url : "schedule.insert",
+			url : "jp_schedule.insert",
 			type : "GET",
 			dataType : "text",
 			data :	{"ScheduleUserId" : userID,
@@ -498,7 +499,6 @@ $(function(){
 				console.log(getData);
 				alert == swal('日程が保存されました。');
 				if (getData == 1) {
-					console.log("일정 저장 성공");
 					$("#input-add-event-name").val('');
 					$(".inputText").val("");
 				
@@ -539,7 +539,7 @@ $(function(){
 			if(result){
 				 
 				 $.ajax({
-						url : "schedule.delete",
+						url : "jp_schedule.delete",
 						type : "GET",
 						dataType : "text",
 						data :	{"ScheduleUserId" : userID,
@@ -552,7 +552,7 @@ $(function(){
 						success : function(getData) {
 							console.log(getData);
 							var userID = document.getElementById("userID").value;
-							location.href = "popupScheduleGo?userId="+userID;
+							location.href = "jp_popupScheduleGo?userId="+userID;
 										
 						}
 					});
@@ -638,7 +638,7 @@ $(function(){
 
 					<div id="event-btn--lastsave-all" class="event-btn--lastsave-all">
 						<button id="rewriteBtn" class="event-btn--lastsave">すべて削除する</button>
-						<button id="saveBtn" class="event-btn--lastsave">スケジュール保存</button>
+						<button id="saveBtn" class="event-btn--lastsave">保存する</button>
 					</div>
 				</div>
 			</div>
@@ -808,7 +808,7 @@ $(function(){
 		  }
 		  let getArrayData;
 		  $.ajax({
-				url : "schedule.getAllEvents",
+				url : "jp_schedule.getAllEvents",
 				data : {
 					"month" : m+1,
 					"year" : y.toString().substring(2,4),
@@ -817,7 +817,6 @@ $(function(){
 				async: false,
 				dataType : "json",
 				success : function(data) {
-					console.log(data + '111111111111');
 					for (var i = 0; i < data.length; i++) {
 						data[i] = data[i].substring(0,10);
 					}
@@ -890,7 +889,7 @@ $(function(){
 		  let id = $("#userID").val();
 		  let getdayEvents;
 			 $.ajax({
-			 url : "schedule.get",
+			 url : "jp_schedule.get",
 			 data : {"scheduleUserId" : id , "scheduleDate": date},
 			 dataType : "json",
 			 async : false,
@@ -944,12 +943,10 @@ $(function(){
 		  let myScheduleContent = this.dayEventsList.firstChild;
 		  let myUL = $(getdayEvents.scheduleContent);
 		  $(myScheduleContent).append($(myUL).find('li'));
-		  console.log("getdayEvents 있는 곳");
 			rewriteBtn.style.display = "inline";
 			saveBtn.style.display = "inline";
 		 
 		  }else{
-		  console.log("getdayEvents 없으면!!");
 		  	rewriteBtn.style.display = "none";
 		  	saveBtn.style.display = "none";
 		  }

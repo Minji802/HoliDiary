@@ -136,6 +136,18 @@
 	margin-right: auto;
 	display: block;
 }
+.JPsecond_slider_title {
+	text-align: left;
+	font-family: 'Montserrat';
+	font-size: 28px;
+	font-weight: 600;
+	color: black;
+	margin-bottom: 15px;
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
 .second_slider_title_border {
 	border-top: 5px dashed #FFDE59;
 	width: 910px;
@@ -174,6 +186,19 @@
 	font-family: 'GangwonEdu_OTFBoldA';
 	font-size: 30px;
 	font-weight: 500;
+	color: black;
+	margin-bottom: 15px;
+	width: 1023px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding-left: 30px;
+}
+.JPsecond_slider_title {
+	text-align: left;
+	font-family: 'Montserrat';
+	font-size: 28px;
+	font-weight: 600;
 	color: black;
 	margin-bottom: 15px;
 	width: 1023px;
@@ -227,6 +252,20 @@
 	display: block;
 	padding-left: 30px;
 }
+.JPsecond_slider_title {
+	text-align: left;
+	font-family: 'Montserrat';
+	font-size: 28px;
+	font-weight: 600;
+	color: black;
+	margin-bottom: 15px;
+	width: 767px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	padding-left: 30px;
+}
+
 .second_slider_title_border {
 	border-top: 5px dashed #FFDE59;
 	width: 420px;

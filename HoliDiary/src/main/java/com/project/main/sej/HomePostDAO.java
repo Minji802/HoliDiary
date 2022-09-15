@@ -65,6 +65,38 @@ public class HomePostDAO {
 		req.setAttribute("curPage", pageNo);
 		
 	}
+	public void searchPostJP(int pageNo, HomePostSelector pSel, HttpServletRequest req) {
+		int count = so.getPostCountPerpage();
+		int start = (pageNo - 1) * count + 1;
+		int end = start + (count - 1);
+		int postCount = 0;
+		String search = req.getParameter("search");
+		
+		pSel = new HomePostSelector(search, new BigDecimal(start), new BigDecimal(end));
+		System.out.println(search);
+		System.out.println(pSel.getSearch());
+		
+		req.setAttribute("search", search);
+		
+		
+		List<PostContent> contents = ss.getMapper(Sej_postMapper.class).getPost(pSel);
+		
+		if (search.equals("")||contents.isEmpty()) {
+			req.setAttribute("contentPage", "jp_sej_search/JPhome_search_null.jsp");
+		} else {
+			pSel.setStart(new BigDecimal(start));
+			pSel.setEnd(new BigDecimal(end));
+			postCount = ss.getMapper(Sej_postMapper.class).getPostCountBeta(pSel);
+			req.setAttribute("contentPage", "jp_sej_search/JPhome_search.jsp");
+		}
+		
+		int pageCount = (int) Math.ceil(postCount / (double) count);
+		req.setAttribute("pageCount", pageCount);
+		
+		req.setAttribute("contents", contents);
+		req.setAttribute("curPage", pageNo);
+		
+	}
 	
 	public void holiByCountry(int pageNo, HomePostSelector pSel, HttpServletRequest req) {
 		int count = so.getPostCountPerpage();
@@ -89,6 +121,39 @@ public class HomePostDAO {
 			pSel.setEnd(new BigDecimal(end));
 			postCount = ss.getMapper(Sej_postMapper.class).getPostCountFor_HoliByCountry(pSel);
 			req.setAttribute("contentPage", "sej_search/home_search.jsp");
+		}
+		
+		
+		int pageCount = (int) Math.ceil(postCount / (double) count);
+		req.setAttribute("pageCount", pageCount);
+		
+		req.setAttribute("contents", contents);
+		req.setAttribute("curPage", pageNo);
+		
+	}
+	public void holiByCountryJP(int pageNo, HomePostSelector pSel, HttpServletRequest req) {
+		int count = so.getPostCountPerpage();
+		int start = (pageNo - 1) * count + 1;
+		int end = start + (count - 1);
+		int postCount = 0;
+		String search = req.getParameter("search");
+		
+		pSel = new HomePostSelector(search, new BigDecimal(start), new BigDecimal(end));
+		System.out.println(search);
+		System.out.println(pSel.getSearch());
+		
+		req.setAttribute("search", search);
+		
+		
+		List<PostContent> contents = ss.getMapper(Sej_postMapper.class).getHoliByCountry(pSel);
+		
+		if (search.equals("")||contents.isEmpty()) {
+			req.setAttribute("contentPage", "jp_sej_search/JPhome_search_null.jsp");
+		} else {
+			pSel.setStart(new BigDecimal(start));
+			pSel.setEnd(new BigDecimal(end));
+			postCount = ss.getMapper(Sej_postMapper.class).getPostCountFor_HoliByCountry(pSel);
+			req.setAttribute("contentPage", "jp_sej_search/JPhome_search.jsp");
 		}
 		
 		

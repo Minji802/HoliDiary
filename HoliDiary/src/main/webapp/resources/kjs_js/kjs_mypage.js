@@ -307,12 +307,12 @@ function showMyinfo(){
 }
 
 // 마이페이지 정보수정 이동
-function showFollowing(){
+function showSubscribeInfo(){
 	location.href='mypage.mysubscribe.go'
 }
 
 // 마이페이지 구독정보 확인
-function showFollower(){
+function showMyDiary(){
 	location.href='mypage.mydiary.go'
 }
 

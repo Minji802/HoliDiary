@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>HOLIDIARY</title>
 <link rel="stylesheet" href="resources/sm_css/sm_music.css">
-<script type="text/javascript" src="resources/sm_js/sm_musicJs.js"></script>
+<script type="text/javascript" src="resources/jp_sm_js/jp_sm_musicJs.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>

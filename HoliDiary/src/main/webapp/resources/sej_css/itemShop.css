@@ -65,11 +65,15 @@
     font-size: 20px;
     border-radius: 3px;
 }
+#jp_theme_li {
+	font-family: 'Montserrat';
+	font-size: 18px;
+}
 .itemMenuList ul li:first-child {
 	margin-left: -40px;
 }
 .itemMenuList ul li a {
-	width: 130px;
+	width: 150px;
 	height: 55px;
 	display: inline-block;
 	text-decoration: none;
@@ -131,8 +135,8 @@
 	height: 64px;
 	text-align: center;
 	line-height: 64px;
-	font-family: 'GangwonEdu_OTFBoldA';
-	font-size: 18px;
+	font-family: 'Montserrat';
+	font-size: 16px;
 	color: #737373;
 	border-bottom: 1px solid #eee;
 }

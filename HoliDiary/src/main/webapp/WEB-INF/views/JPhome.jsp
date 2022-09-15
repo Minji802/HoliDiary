@@ -27,9 +27,9 @@
 		</div>
 	</div>
 
-	<p class="second_slider_title">
+	<p class="JPsecond_slider_title">
 		<img class="second_slider_title_img"
-			src="resources/sej_img/slider/free-icon-travel-6350271.png">国別
+			src="resources/sej_img/slider/free-icon-travel-6350271.png">&nbsp;国別
 		Holiまとめ <span class="second_slider_title_border"></span>
 	</p>
 	<div class="swiper-container swiper1">
