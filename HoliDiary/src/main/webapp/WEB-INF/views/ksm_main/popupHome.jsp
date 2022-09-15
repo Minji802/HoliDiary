@@ -112,6 +112,7 @@ span:hover + p.arrow_box2 {
 	</div>
 	
 	<!-- 날씨 api -->
+	
 	<table id="weatherArea" style="background: ${Diary.themeColor}">
       <tr>
          <td rowspan="2"><img id="weatherImg"></td>
@@ -120,12 +121,11 @@ span:hover + p.arrow_box2 {
       <tr>
          <td id="weatherTemp"></td>
       </tr>
-   </table>
+    </table>
 	
 		<hr style="height: 1px; border:0; border-top: 3px dashed ${Diary.themeColor};">
 
 <script>
-
 
 $(document).ready(function(){
 	$(".question-backImg2").click(function(e) {

@@ -15,7 +15,7 @@
 	</div>
 
 	<div>
-		<div id="#postDetail" style="width: 100%">
+		<div id="postDetail" style="width: 100%">
 			<div>
 				<div id="leftSide" style="width: 100%">
 					<div class="postDetailWriter">Writer: ${DiaryPost.postWriter }</div>
@@ -84,7 +84,7 @@
 				style="display: none; float: right; text-align: right; position: relative;">
 				<div id="mapage_mydiaryURL">
 					<input id="mp_mydiary_copyURL"
-						value="localhost/main/post.detail.go?postNum=${DiaryPost.postNum }&userId=${DiaryPost.postWriter }"
+						value="localhost/main/jp_post.detail.go?postNum=${DiaryPost.postNum }&userId=${DiaryPost.postWriter }"
 						readonly />
 					<button type="button" id="mp_mydiary_copy_btn">copy</button>
 					
@@ -107,7 +107,7 @@
 
 	<div id="goToListDiv" style="margin-top: 165px;">
 		<button class="goToList-Btn" 
-			onclick="location.href='post-list?userId=${User.userID}&nowPage=1&cntPerPage=15'"
+			onclick="location.href='jp_post-list?userId=${User.userID}&nowPage=1&cntPerPage=15'"
 			id="GoToList">目録へ</button>
 		<br>
 	</div>
@@ -163,7 +163,7 @@
 				                }
 				                    }).then((result) => {
 				                        if(result){
-				                        	location.href = "diaryPost.delete?postNum=" + n
+				                        	location.href = "jp_diaryPost.delete?postNum=" + n
 				    						+ "&postWriter=" + postWriter + "&userId=" + userId + "&nowPage=" + 1 + "&cntPerPage=" + 15;
 				    						alert == swal("掲示物が削除しました");
 				                        }else{
@@ -192,7 +192,7 @@
                 }
                     }).then((result) => {
                         if(result){
-                        	location.href = "diaryPost.update.go?&postNum=" + n + "&userId=" + userId;
+                        	location.href = "jp_diaryPost.update.go?&postNum=" + n + "&userId=" + userId;
                         }else{
                             $(this).prop("checked", true);
                             return;
@@ -231,7 +231,7 @@
 		function shareTwitter() {
 			var postNum = document.getElementById("postNum").value;
 			var userId = document.getElementById("postWriter").value;
-   			var sendUrl = "localhost/main/post.detail.go?postNum="+postNum+"&userId="+userId; // 전달할 URL
+   			var sendUrl = "localhost/main/jp_post.detail.go?postNum="+postNum+"&userId="+userId; // 전달할 URL
    			//console.log(sendUrl);
    			window.open("https://twitter.com/intent/tweet?text=HoliDiaryで自分だけの旅行レビューを書いてみてください!😊 &url=" + sendUrl);
 		}
@@ -240,7 +240,7 @@
 		function shareFacebook() {
 			var postNum = document.getElementById("postNum").value;
 			var userId = document.getElementById("postWriter").value;
-    		var sendUrl = "localhost/main/post.detail.go?postNum="+postNum+"&userId="+userId; // 전달할 URL
+    		var sendUrl = "localhost/main/jp_post.detail.go?postNum="+postNum+"&userId="+userId; // 전달할 URL
     		window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 		}
 		
@@ -260,7 +260,7 @@
 			function likeupdate() {
 				let likeCnt = $("#likeCnt");
 				$.ajax({
-					url : "updateLike.do",
+					url : "jp_updateLike.do",
 					type : "GET",
 					dataType : "json",
 					data : {
@@ -293,7 +293,7 @@
 		function checkLike2(postNum,userID) {
 			
 			$.ajax({
-				url : "checkLike.do",
+				url : "jp_checkLike.do",
 				type : "GET",
 				dataType : "text",
 				data : {
@@ -361,7 +361,7 @@
 			}
 
 			$.ajax({
-				url : "comment.do",
+				url : "jp_comment.do",
 				type : "GET",
 				dataType : "text",
 				data : {
@@ -387,7 +387,7 @@
 			
 			$.ajax({
 				type : 'GET',
-				url : 'commentList.do',
+				url : 'jp_commentList.do',
 				dataType : 'json',
 				data : $("#commentForm").serialize(),
 				success : function(data) {
@@ -498,7 +498,7 @@
 	}
 		
 	function goThere(a) {
-		location.href="popupHomeGo?userId="+a;
+		location.href="jp_popupHomeGo?userId="+a;
 	}	
 		
 	function closeLayer(obj) {
@@ -566,7 +566,7 @@
                 	if (result) {
             			$.ajax({
             				type: "GET",
-            				url: "commentDelete.do",
+            				url: "jp_commentDelete.do",
             				data : {"commentNum": commentNum},
             				dataType: "text",
             				success: function(data) {
@@ -589,7 +589,7 @@
 		 //console.log("3" + commentTxt);
 				 $.ajax({
 				
-				url : "commentUpdate.do",
+				url : "jp_commentUpdate.do",
 				type : "GET",
 				dataType : "text",
 				data : {

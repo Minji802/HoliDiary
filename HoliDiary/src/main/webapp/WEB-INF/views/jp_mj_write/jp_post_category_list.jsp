@@ -11,19 +11,19 @@
 	function countPostChange() {
 		var countPost = document.getElementById('cntPerPage').value;
 		var category = document.getElementById('categoryName').value;
-		location.href = "category-list?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="
+		location.href = "jp_category-list?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="
 				+ countPost + "&category=" + category;
 	}
 
 	function getList() {
 		var category = document.getElementById('categoryName').value;
-		location.href = "category-list?userId=${User.userID}&nowPage=1&cntPerPage=10&category="
+		location.href = "jp_category-list?userId=${User.userID}&nowPage=1&cntPerPage=10&category="
 				+ category;
 	}
 
 	function getGallery() {
 		var category = document.getElementById('categoryName').value;
-		location.href = "category-gallery?userId=${User.userID}&nowPage=1&cntPerPage=9&category="
+		location.href = "jp_category-gallery?userId=${User.userID}&nowPage=1&cntPerPage=9&category="
 				+ category;
 	}
 </script>
@@ -90,7 +90,7 @@
 	<div style="text-align: center; margin-top: 15px; font-size: 10pt;">
 		<c:if test="${paging.startPage != 1 }">
 			<a
-				href="category-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&lt;</a>
+				href="jp_category-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 			var="p">
@@ -100,13 +100,13 @@
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
 					<a
-						href="category-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }&category=${param.category }">${p }</a>
+						href="jp_category-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }&category=${param.category }">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage }">
 			<a
-				href="category-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&gt;</a>
+				href="jp_category-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }&category=${param.category }">&gt;</a>
 		</c:if>
 	</div>
 

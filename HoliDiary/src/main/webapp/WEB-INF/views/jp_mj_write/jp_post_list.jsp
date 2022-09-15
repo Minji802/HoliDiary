@@ -10,30 +10,30 @@
 <script type="text/javascript">
 	function countPostChange() {
 		var countPost = document.getElementById('cntPerPage').value;
-		location.href="post-list?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
+		location.href="jp_post-list?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
 	}
 	
 	function getList() {
-		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=10";
+		location.href="jp_post-list?userId=${User.userID}&nowPage=1&cntPerPage=10";
 	}
 
 	function getGallery() {
-		location.href="post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=9";
+		location.href="jp_post-Gallery?userId=${User.userID}&nowPage=1&cntPerPage=9";
 	}
 	
 	function recentList() {
 		var countPost = document.getElementById('cntPerPage').value;
-		location.href="post-list?userId=${User.userID}&nowPage=1&cntPerPage=10";
+		location.href="jp_post-list?userId=${User.userID}&nowPage=1&cntPerPage=10";
 	}
 	
 	function pastList() {
 		var countPost = document.getElementById('cntPerPage').value;
-		location.href="post-list.past?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
+		location.href="jp_post-list.past?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
 	}
 	
 	function recommendList() {
 		var countPost = document.getElementById('cntPerPage').value;
-		location.href="post-list.recommend?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
+		location.href="jp_post-list.recommend?userId=${User.userID}&nowPage=${paging.nowPage}&cntPerPage="+countPost;
 	}
 	
 	
@@ -87,7 +87,7 @@
 		<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
 			<tr class="postList">
 				<td class="postTitle"><a
-					href='post.detail.go?postNum=${dp.postNum }&userId=${dp.postWriter }'>${dp.postTitle }</a></td>
+					href='jp_post.detail.go?postNum=${dp.postNum }&userId=${dp.postWriter }'>${dp.postTitle }</a></td>
 				<td class="postWriter">${dp.postWriter }</td>
 				<td class="postDate">${dp.postDate }</td>
 				<td class="postDate">${dp.postRecommend }</td>
@@ -105,7 +105,7 @@
 
 	<div style="text-align: center; margin-top: 15px; font-size: 10pt;">
 		<c:if test="${paging.startPage != 1 }">
-			<a href="post-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }">&lt;</a>
+			<a href="jp_post-list?userId=${User.userID}&nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage }">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 			<c:choose>
@@ -113,12 +113,12 @@
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="post-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }">${p }</a>
+					<a href="jp_post-list?userId=${User.userID}&nowPage=${p }&cntPerPage=${paging.cntPerPage }">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage }">
-			<a href="post-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }">&gt;</a>
+			<a href="jp_post-list?userId=${User.userID}&nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage }">&gt;</a>
 		</c:if>
 	</div>
 	

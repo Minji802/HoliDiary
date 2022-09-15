@@ -14,11 +14,11 @@
 	<script language="javascript">
 		function showPopupMap() {
 			let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=800, height=650, top=100, left=270";
-			window.open("map.open", "map", options);
+			window.open("jp_map.open", "map", options);
 		}
 	</script>
 
-	<form action="diaryPost.reg.do?nowPage=1&cntPerPage=10" method="post" name="postSubmitForm" onsubmit="return postSubmitCheck();">
+	<form action="jp_diaryPost.reg.do?nowPage=1&cntPerPage=10" method="post" name="postSubmitForm" onsubmit="return postSubmitCheck();">
 		<div id="container" style="width: 100%">
 			<div class="postTitleWrite" style="font-size: 12pt;">
 				<input type="text" name="postTitle" class="postTitleWriteContent" placeholder="Titleを入力してください" 

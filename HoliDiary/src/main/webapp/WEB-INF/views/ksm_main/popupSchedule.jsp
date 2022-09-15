@@ -594,8 +594,6 @@ $(function(){
 								<label class="add-event-label"> 일정 제목 <input type="text"
 									class="add-event-edit add-event-edit--long"
 									placeholder="새로운 일정" id="input-add-event-name">
-
-
 								</label>
 							</div>
 							<div class="qtr">
@@ -607,7 +605,6 @@ $(function(){
 									data-format="datetime"> <input type="hidden"
 									class="add-event-edit" placeholder="am"
 									id="input-add-event-start-ampm" data-options="a,p,am,pm">
-
 								</label>
 							</div>
 							<div class="qtr">
@@ -619,7 +616,6 @@ $(function(){
 									data-format="datetime"> <input type="hidden"
 									class="add-event-edit" placeholder="am"
 									id="input-add-event-end-ampm" data-options="a,p,am,pm">
-
 									<input type="hidden" value="${User.userID }" id="userID">
 								</label>
 							</div>
@@ -670,6 +666,7 @@ $(function(){
 
 
 	<script type="text/javascript"> /* 오전오후 */
+
 	function makeST() {
 	let st	=	$("#makeStartTime").val();
 	let hour = st.substring(0,2);
@@ -809,6 +806,7 @@ $(function(){
 		    this.calendarView.appendChild(spacer);
 		  }
 		  let getArrayData;
+		  
 		  $.ajax({
 				url : "schedule.getAllEvents",
 				data : {
@@ -819,7 +817,6 @@ $(function(){
 				async: false,
 				dataType : "json",
 				success : function(data) {
-					console.log(data + '111111111111');
 					for (var i = 0; i < data.length; i++) {
 						data[i] = data[i].substring(0,10);
 					}
@@ -887,6 +884,7 @@ $(function(){
 
 		  
 		};
+		
 		CalendarApp.prototype.openDayWindow = function(date){
 		  //alert(date)
 		  let id = $("#userID").val();

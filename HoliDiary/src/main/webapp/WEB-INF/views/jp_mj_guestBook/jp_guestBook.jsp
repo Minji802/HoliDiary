@@ -57,7 +57,7 @@
 			}
 
 			$.ajax({
-				url : "guestBoodReg.do",
+				url : "jp_guestBoodReg.do",
 				type : "GET",
 				dataType : "text",
 				data : {
@@ -88,7 +88,7 @@
 			
 			$.ajax({
 				type : 'GET',
-				url : 'guestBookList.do',
+				url : 'jp_guestBookList.do',
 				dataType : 'json',
 				data : $("#guestBookForm").serialize(),
 				success : function(data) {
@@ -143,7 +143,7 @@
 		}
 		
 		function goThere(a) {
-			location.href="popupHomeGo?userId="+a;
+			location.href="jp_popupHomeGo?userId="+a;
 		}	
 			
 		function closeLayer(obj) {
@@ -205,7 +205,7 @@
 	                	if (result) {
 	        				$.ajax({
 	        					type: "GET",
-	        					url: "guestBookDelete.do",
+	        					url: "jp_guestBookDelete.do",
 	        					data : {"guestBookNum": guestBookNum},
 	        					dataType: "text",
 	        					success: function(data) {
