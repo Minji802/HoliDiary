@@ -57,7 +57,7 @@
 		<!-- tabindex 속성을 주게되면 해당 속성을 가진 태그에 focus할 수 있게되고 focus가 가는 순간부터 키보드 입력이 가능해진다 -->
 		<div class="modal hidden" tabindex="0" >
 			<div class="bg"></div>
-			<div class="modalBox" style="z-index: 100">
+			<div class="modalBox" style="z-index: 100; height: 50px;">
 				<p>
 					<c:forEach items="${Like }" var="Like">
 						<li><strong>${Like.userId }</strong></li>
@@ -271,20 +271,17 @@
 					},
 					success : function(likeResult) {
 						if (likeResult == 0) {
-							//console.log("추천함");
 							$(likeCnt).html(parseInt($(likeCnt).text())+1);
 							alert == swal("いいね！しました")
 							location.reload(true);
 							
 						} else if (likeResult == 1) {
-							//console.log("추천취소");
 							$(likeCnt).html($(likeCnt).text()-1);
 							alert == swal("いいね！をキャンセルしました")
 							location.reload(true);
 						}
 					},
 					error : function(request, status, error) {
-						//alert("ajax 실패1");
 					}
 
 				});
@@ -320,7 +317,7 @@
 			});	
 		}
 		
-		/*모달창*/	
+		/*MODAL*/	
 		const $modal = document.querySelector('.modal');
 
 		//$modal.style.display ='flex';
@@ -344,7 +341,7 @@
 			});
 		  
 		  
-		 /*댓글창*/
+		 /*Comment*/
 		function commentSubmit() {
 			 
 			let postNum = document.getElementById("postNum").value;
@@ -353,7 +350,7 @@
 			let commentTxt = $("#commentTxt").val().replaceAll("\n", "<br>");
 			let commentSecret = 0;
 			
-			 //비밀댓글 체크여부
+			 // Secret Comment Checking
 			 if($("#commentSecret").is(":checked")){
 				 commentSecret = 1;
 			 }
@@ -419,7 +416,7 @@
 								} else if(postMaster == currentUser) {
 									html += '<ul>'+data[i]["commentTxt"]+'</ul>';
 								} else {
-									html += '<ul>Secret Comment</ul>';
+									html += '<ul style="text-align: center;">Secret Comment</ul>';
 								}
 							} else if (data[i]["commentSecret"] == false){
 								html += '<ul>'+data[i]["commentTxt"]+'</ul>';
@@ -515,13 +512,13 @@
 		$(myStrong).on("click", function(e) {
 			popupLayer = $(this).parent().parent().find(".popupLayer");
 			//console.log(popupLayer);
-			/* 클릭 클릭시 클릭을 클릭한 위치 근처에 레이어가 나타난다. */
+			/* クリックするとクリックする位置にレイアウトが現れる */
 			var sWidth = window.innerWidth;
 			var sHeight = window.innerHeight;
 			var oWidth = $(popupLayer).width();
 			var oHeight = $(popupLayer).height();
 
-			// 레이어가 나타날 위치를 셋팅한다.
+			// レイアウトが現れる位置をセッティングする
 			var divLeft = e.offsetX;
 			var divTop = e.offsetYY;
 

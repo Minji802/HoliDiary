@@ -36,7 +36,10 @@
 	    select s.subscribeno, d.diarytitle, u.userid, u.usernickname, u.userimg
 		from subscribetable s, diarytable d, user_table u
 		where subscribefrom = #{id}
-			and (u.usernickname like '%'||#{search}||'%' or d.diarytitle like '%'||#{search}||'%')
+			and (u.usernickname like lower('%'||#{search}||'%')
+				or  u.usernickname like upper('%'||#{search}||'%')
+				or d.diarytitle like lower('%'||#{search}||'%')
+				or d.diarytitle like upper('%'||#{search}||'%'))
 	    	and s.subscribeto = d.diaryuserid
 	   		and d.diaryuserid = u.userid
 	</select>
@@ -45,7 +48,10 @@
 	    select s.subscribeno, d.diarytitle, u.userid, u.usernickname, u.userimg
 		from subscribetable s, diarytable d, user_table u
 		where subscribeto = #{id}
-			and (u.usernickname like '%'||#{search}||'%' or d.diarytitle like '%'||#{search}||'%')
+			and (u.usernickname like lower('%'||#{search}||'%')
+				or  u.usernickname like upper('%'||#{search}||'%')
+				or d.diarytitle like lower('%'||#{search}||'%')
+				or d.diarytitle like upper('%'||#{search}||'%'))
 	    	and s.subscribefrom = d.diaryuserid
 	   		and d.diaryuserid = u.userid
 	</select>

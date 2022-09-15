@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HOLIDIARY</title>
-
+<link href="resources/sej_img/logofit-removebg-preview.png" rel="shortcut icon" type="image/x-icon">
 <link rel="stylesheet" href="resources/sej_css/index.css">
 <link rel="stylesheet" href="resources/sej_css/home.css">
 <link rel="stylesheet" href="resources/sej_css/home_search.css">

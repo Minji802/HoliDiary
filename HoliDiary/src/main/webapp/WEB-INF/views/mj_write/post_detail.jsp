@@ -131,7 +131,7 @@
 				id="postWriter" name="postWriter" value="${DiaryPost.postWriter }">
 			<input type="hidden" id="commentWriter" name="commentWriter"
 				value="${sessionScope.loginUser.userID}">
-			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요 (800자 이내)"
+			<textarea name="commentTxt" id="commentTxt" placeholder="댓글을 입력해주세요(800자 이내)"
 				maxlength="800" style="width: 100%; height: 80px; resize: none;"></textarea>
 			<button id="commentRegBtn" style="float: right" type="button" onclick="commentSubmit()">등록</button>
 		</div>
@@ -328,7 +328,7 @@
 		const open = () => {
 			$modal.classList.remove("hidden");
 			$modal.focus();
-		  }
+		}
 
 		const close = () => {
 			$modal.classList.add("hidden");
@@ -407,7 +407,7 @@
 							
 							html += '<div class="popupLayer" tabindex="1">';
 							html += '<span onclick="closeLayer(this)" style="float:right; cursor:pointer; font-size:1.5em" title="닫기"></span>';
-							html += '<p class="arrow_box" style="float:left; margin-top: -7px;" onclick="goThere('+"'"+data[i]["commentWriter"]+"'"+')">'+data[i]["commentWriter"]+'의 다이어리 바로가기</p>';
+							html += '<p class="arrow_box" style="float:left; margin-top: -7px;" onclick="goThere('+"'"+data[i]["commentWriter"]+"'"+')">'+data[i]["commentWriter"]+'의 다이어리</p>';
 							html += '</div>'
 							
 							
@@ -419,7 +419,7 @@
 								} else if(postMaster == currentUser) {
 									html += '<ul>'+data[i]["commentTxt"]+'</ul>';
 								} else {
-									html += '<ul>비밀댓글입니다.</ul>';
+									html += '<ul style="text-align: center;">SECRET COMMENT</ul>';
 								}
 							} else if (data[i]["commentSecret"] == false){
 								html += '<ul>'+data[i]["commentTxt"]+'</ul>';

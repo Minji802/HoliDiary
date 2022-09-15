@@ -449,9 +449,9 @@ public class UserDAO {
 				String code = req.getParameter("code");
 				User u = (User) req.getSession().getAttribute("loginUser");
 				//KOR
-				//String redirect = "http://localhost/main/connect.kakao";
+				String redirect = "http://localhost/main/connect.kakao";
 				//JPN
-				String redirect = "http://localhost/main/jp.connect.kakao";
+				//String redirect = "http://localhost/main/jp.connect.kakao";
 				//System.out.println(code);
 					
 				// 유저정보 가져오기
@@ -664,7 +664,7 @@ public class UserDAO {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";		
-		String hostSMTPid = "tlawl912@naver.com"; // 본인의 아이디 입력		
+		String hostSMTPid = ""; // 본인의 아이디 입력		
 		String hostSMTPpwd = ""; // 비밀번호 입력
 			
 		// 보내는 사람 EMail, 제목, 내용 
@@ -702,8 +702,8 @@ public class UserDAO {
 		public void mailSendJP(String userName, String userEmail, String pw) {
 			// Mail Server 설정
 			String charSet = "utf-8";
-			String hostSMTP = "smtp.naver.com";		
-			String hostSMTPid = "tlawl912@naver.com"; // 본인의 아이디 입력		
+			String hostSMTP = "smtp.gmail.com";		
+			String hostSMTPid = "rlawl912@gmail.com"; // 본인의 아이디 입력		
 			String hostSMTPpwd = ""; // 비밀번호 입력
 				
 			// 보내는 사람 EMail, 제목, 내용 

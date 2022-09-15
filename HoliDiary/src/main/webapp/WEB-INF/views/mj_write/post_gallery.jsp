@@ -81,9 +81,10 @@
 				<table id="postListTbl" class="postList" border=0
 					style="width: 220px; text-align: center; float: left;">
 					<tr>
-						<td colspan="2"><img src="${result.postImg }"
+						<td colspan="2">
+						<img src="${result.postImg }"
 							onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';"
-							style="width: 220px; height: 170px;"></td>
+							style="width: 200px; height: 150px;"></td>
 					</tr>
 					<tr>
 						<td class="postTitle" colspan="2"><a

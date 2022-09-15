@@ -53,8 +53,7 @@
 						</div>
 					</div>
 					<div class="join_file_btn_box">
-						<button class="join_go_home_btn" onclick="goHome()">나중에
-							등록하기</button>
+						<button type="button" class="join_go_home_btn" onclick="goHome()">나중에 등록하기</button>
 						<button class="join_file_reg_btn">등록하기</button>
 					</div>
 				</div>

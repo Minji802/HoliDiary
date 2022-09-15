@@ -78,7 +78,7 @@ function initMap() {
             place.formatted_address;
     });
   
-// 현재 위치찾기
+// 現在位置探し
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
   locationButton.textContent = "現在位置";
@@ -131,7 +131,7 @@ function initMap() {
   });
 		
 	
-  // 지도 위에 그리기
+  // DrawingManager
   const drawingManager = new google.maps.drawing.DrawingManager({
         drawingMode: google.maps.drawing.OverlayType.MARKER,
         drawingControl: true,
@@ -162,43 +162,30 @@ function initMap() {
  
  google.maps.event.addListener(drawingManager, 'overlaycomplete', function(e) {
 	 if (e.type == google.maps.drawing.OverlayType.MARKER) {
-		// arr.push(e.overlay);
-		// console.log(arr[0]);
-		// drawingManager.setDrawingMode(null);
 		google.maps.event.addListener(e.overlay, 'click', function(event) {
 			e.overlay.setMap(null);
 		});
 		
 		
-		 // drawingManager.setMap(null);
    } else if (e.type == google.maps.drawing.OverlayType.CIRCLE) {
-	   	// arr.push(e.overlay);
-		// console.log(arr[0]);
-		// drawingManager.setDrawingMode(null);
 		google.maps.event.addListener(e.overlay, 'click', function overlayClickListner(event) {
 			e.overlay.setRadius(0);
 			e.overlay.setMap(null);
 		});
 		
    } else if (e.type == google.maps.drawing.OverlayType.POLYGON) {
-		// arr.push(e.overlay);
-		// console.log(arr[0]);
 		drawingManager.setDrawingMode(null);
 		google.maps.event.addListener(e.overlay, 'click', function(event) {
 			e.overlay.setMap(null);
 		});
 		
    } else if (e.type == google.maps.drawing.OverlayType.POLYLINE) {
-		// arr.push(e.overlay);
-		// console.log(arr[0]);
 		drawingManager.setDrawingMode(null);
 		google.maps.event.addListener(e.overlay, 'click', function(event) {
 			e.overlay.setMap(null);
 		});
 		
   } else {
-	// arr.push(e.overlay);
-		// console.log(arr[0]);
 		drawingManager.setDrawingMode(null);
 		google.maps.event.addListener(e.overlay, 'click', function(event) {
 			e.overlay.setMap(null);
