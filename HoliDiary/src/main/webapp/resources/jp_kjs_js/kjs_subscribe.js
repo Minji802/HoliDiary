@@ -110,7 +110,7 @@ function mypagePopup(id){
 	
 	//alert(id);
 	
-	var url = 'popup.open?userId=' +id;
+	var url = 'jp_popup.open?userId=' +id;
 	
 	window.open(url,"_blank", options);
 }

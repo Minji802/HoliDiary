@@ -22,8 +22,8 @@
 								<img id="join_preview_img">
 							</div>
 							<div class="join_file_input_box">
-								<input class="join_upload_name" value="첨부파일" placeholder="ファイル">
-								<label for="join_img_file">ファイル</label> <input type="file"
+								<input class="join_upload_name" value="添付ファイル" placeholder="添付">
+								<label for="join_img_file">添付</label> <input type="file"
 									onchange="readURL(this)" name="userImg" id="join_img_file"
 									readonly /> <input type="hidden" name="userID"
 									value="${sessionScope.loginUser.userID }">
@@ -52,8 +52,8 @@
 						</div>
 					</div>
 					<div class="join_file_btn_box">
-						<button class="join_go_home_btn" onclick="goHome()">後で登録します</button>
-						<button class="join_file_reg_btn">登録</button>
+						<button type="button" class="join_go_home_btn" onclick="goJP_home()">後で登録します</button>
+						<button class="join_file_reg_btn">登録します</button>
 					</div>
 				</div>
 			</form>

@@ -9,7 +9,7 @@
 <body>
 
 		<div class="login_btn_a">
-			<a href="login.go">로그인</a>
+			<a href="login.go">LOGIN</a>
 		</div>
 
 </body>

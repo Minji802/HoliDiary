@@ -600,7 +600,7 @@ public class UserDAO {
 		if(ss.getMapper(UserMapper.class).findPW(u) != null) {
 			User dbUser = ss.getMapper(UserMapper.class).findPW(u);
 
-			String name = dbUser.getUserNickname();
+			String name = dbUser.getUserName();
 			String email = dbUser.getUserEmail();
 			// 8자리 랜덤 문자열 생성
 			String temporaryPW = getRandomString(8);
@@ -632,7 +632,7 @@ public class UserDAO {
 			if(ss.getMapper(UserMapper.class).findPW(u) != null) {
 				User dbUser = ss.getMapper(UserMapper.class).findPW(u);
 
-				String name = dbUser.getUserNickname();
+				String name = dbUser.getUserName();
 				String email = dbUser.getUserEmail();
 				// 8자리 랜덤 문자열 생성
 				String temporaryPW = getRandomString(8);
@@ -663,12 +663,12 @@ public class UserDAO {
 	public void mailSend(String userName, String userEmail, String pw) {
 		// Mail Server 설정
 		String charSet = "utf-8";
-		String hostSMTP = "smtp.naver.com";		
+		String hostSMTP = "smtp.gmail.com";		
 		String hostSMTPid = ""; // 본인의 아이디 입력		
 		String hostSMTPpwd = ""; // 비밀번호 입력
 			
 		// 보내는 사람 EMail, 제목, 내용 
-		String fromEmail = "tlawl912@naver.com"; // 보내는 사람 eamil
+		String fromEmail = ""; // 보내는 사람 eamil
 		String fromName = "홀리다이어리";  // 보내는 사람 이름
 		String subject = "[홀리다이어리]임시 비밀번호가 발급되었습니다"; // 제목
 				
@@ -703,11 +703,11 @@ public class UserDAO {
 			// Mail Server 설정
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.gmail.com";		
-			String hostSMTPid = "rlawl912@gmail.com"; // 본인의 아이디 입력		
+			String hostSMTPid = ""; // 본인의 아이디 입력		
 			String hostSMTPpwd = ""; // 비밀번호 입력
 				
 			// 보내는 사람 EMail, 제목, 내용 
-			String fromEmail = "tlawl912@naver.com"; // 보내는 사람 eamil
+			String fromEmail = ""; // 보내는 사람 eamil
 			String fromName = "HOLIDIARY";  // 보내는 사람 이름
 			String subject = "[HOLIDIARY]臨時パスワードが発行されました。"; // 제목
 					
@@ -730,7 +730,7 @@ public class UserDAO {
 				email.setHtmlMsg("<h2>いつもご利用いただきありがとうございます。" +  userName + "様</h2><br><br>\r\n" + 
 						""				+ "<p>臨時パスワードを発行いたしました。</p>\r\n" + 
 						""				+ "<p>臨時パスワードは<h2 style='color : blue'>" + pw +"</h2>でございます。" 
-										+ "ログインをした後、マイページでパスワードを変更してください。</p><br>\\r\\n\" " +
+										+ "ログインをした後、マイページでパスワードを変更してください。</p><br>\r\n" +
 						""				+ "(もし間違ったメールだったら、このメールは無視してもいいです。)"); // 본문 내용
 				email.send();			
 			} catch (Exception e) {

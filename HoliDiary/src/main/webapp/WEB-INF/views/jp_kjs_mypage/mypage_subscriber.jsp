@@ -47,7 +47,7 @@
 								</c:when>
 								<c:when test="${info.subCheck eq 'no'}">
 									<div class="mysub_info_canclesub">
-										<button type="button" onclick="event.stopPropagation();subscribeDo('${info.userID }');">登録</button>
+										<button type="button" onclick="event.stopPropagation();subscribeDo('${info.userID }');">ダイアリー登録</button>
 									</div>
 							</c:when>
 							</c:choose>

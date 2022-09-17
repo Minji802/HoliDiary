@@ -29,7 +29,7 @@
 						<span>プロフィール</span> 
 						<a href="jp.mypage.changepw.go">パスワード変更</a>
 					</div>
-					<form action="update.do" method="post"
+					<form action="jp.update.do" method="post"
 						enctype="multipart/form-data" onsubmit="return updateValidCheck();">
 						<div style="text-align: center;">
 							<div class="mypage_myinfo_left">

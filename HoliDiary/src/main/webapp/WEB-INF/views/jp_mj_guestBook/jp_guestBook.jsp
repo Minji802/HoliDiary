@@ -189,13 +189,13 @@
 			confirm == swal("本当に削除しますか？", {
 	            buttons: {
 	                  cancel: {
-	                        text: "Cancel",
+	                        text: "キャンセル",
 	                        value: false,
 	                        visible: true,
 	                        closeModal: true,
 	                      },
 	                      confirm: {
-	                        text: "Delete",
+	                        text: "削除",
 	                        value: true,
 	                        visible: true,
 	                        closeModal: true

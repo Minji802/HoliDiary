@@ -9,7 +9,7 @@
 <body>
 
 		<div class="login_btn_a">
-			<a href="jp.login.go">ログイン</a>
+			<a href="jp.login.go">LOGIN</a>
 		</div>
 
 </body>

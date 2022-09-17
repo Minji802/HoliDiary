@@ -28,7 +28,7 @@
 			<c:when test="${r eq '일치' }">
 				<div class="find_pw_result_info">
 					<span>
-						<span class="find_pw_result_email">${userEmail }</span>へ臨時パスワードが送信されました。<br>
+						<span class="find_pw_result_email" >${userEmail }</span>へ臨時パスワードが送信されました。<br>
 						臨時パスワードでログインした後、パスワードの変更をお願いします。
 					</span>
 				</div>

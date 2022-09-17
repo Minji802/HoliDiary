@@ -27,14 +27,14 @@
 						<input type="password" placeholder="パスワード" name="userPW" autocomplete="off" id="loginPW">
 					</div>
 					<div class="login_btn_box">
-						<button>ログイン</button>
+						<button>LOGIN</button>
 					</div>
 					<c:choose>
 						<c:when test="${empty r}">
-							<div><span id="login_error" style="font-family:'GangwonEdu_OTFBoldA';"></span></div>
+							<div><span id="login_error" style="font-family:'M PLUS Rounded 1c'; font-size: 7pt;"></span></div>
 						</c:when>
 						<c:when test="${r eq '로그인실패'}">
-							<div><span id="login_error" style="font-family:'GangwonEdu_OTFBoldA'; color: red;">ログインに失敗しました。「ID」と「パスワード」を確認してください。</span></div>
+							<div><span id="login_error" style="font-family:'M PLUS Rounded 1c'; font-size: 8pt; color: red;">ログインに失敗しました。「ID」と「パスワード」を確認してください。</span></div>
 						</c:when>
 					</c:choose>
 			</form>

@@ -28,7 +28,7 @@
 					<div class="mypage_changePW_title">
 						<span>パスワード変更</span><span style="font-size: 12pt; color: red; margin-left: 20px;">${result}</span>
 					</div>
-					<form action="update.pw" method="post" onsubmit="return changePWValidCheck()">
+					<form action="jp.update.pw" method="post" onsubmit="return changePWValidCheck()">
 					<div class="mypage_changePW_content_box">
 						<div class="mypage_changePW_input_box">
 							<div>
