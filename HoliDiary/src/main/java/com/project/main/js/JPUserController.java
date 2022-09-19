@@ -115,7 +115,7 @@ public class JPUserController {
 	// 카카오톡으로 회원가입 및 로그인하기
 	@RequestMapping(value = "/jp.social.kakao", method = RequestMethod.GET)
 	public String socialKakao(HttpServletRequest req) {
-		uDAO.loginWithKakao(req);
+		uDAO.loginWithKakaoJP(req);
 		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "JPhome.jsp");
 		
@@ -127,7 +127,7 @@ public class JPUserController {
 	@RequestMapping(value = "/jp.connect.kakao", method = RequestMethod.GET)
 	public String connectKakao(HttpServletRequest req) {
 		
-		uDAO.connectKakao(req);
+		uDAO.connectKakaoJP(req);
 		uDAO.loginCheckJP(req);
 		req.setAttribute("contentPage", "jp_kjs_mypage/mypage_myinfo.jsp");
 		

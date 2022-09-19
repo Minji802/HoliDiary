@@ -44,13 +44,13 @@
 				window.opener.location.href = "http://localhost/main/social.login.naver?naverID=" + naverID + "&naver_token=" + naver_id_login.oauthParams.access_token;
 			}else{
 				swal("회원가입을 먼저 진행해주세요");
-				window.close();
+				//window.close();
 			}
 			},
 		error : function(request,status,error) {
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			swal("문제가 발생했습니다. 다시 시도해주세요.");
-			window.close();
+			//window.close();
 		} 
   })
      

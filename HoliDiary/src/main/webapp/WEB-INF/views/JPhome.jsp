@@ -60,13 +60,13 @@
 				</a>
 			</div>
 			<div class="swiper-slide">
-				<img src="resources/sej_img/slider/임시 이미지.png">
+				<img src="resources/sej_img/slider/테스트이미지.png">
 			</div>
 			<div class="swiper-slide">
-				<img src="resources/sej_img/slider/임시 이미지.png">
+				<img src="resources/sej_img/slider/테스트이미지.png">
 			</div>
 			<div class="swiper-slide">
-				<img src="resources/sej_img/slider/임시 이미지.png">
+				<img src="resources/sej_img/slider/테스트이미지.png">
 			</div>
 		</div>
 		<div class="swiper-button-next"></div>

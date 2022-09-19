@@ -57,7 +57,7 @@
 		<!-- tabindex 속성을 주게되면 해당 속성을 가진 태그에 focus할 수 있게되고 focus가 가는 순간부터 키보드 입력이 가능해진다 -->
 		<div class="modal hidden" tabindex="0" >
 			<div class="bg"></div>
-			<div class="modalBox" style="z-index: 100; height: 50px;">
+			<div class="modalBox" style="z-index: 100;">
 				<p>
 					<c:forEach items="${Like }" var="Like">
 						<li><strong>${Like.userId }</strong></li>

@@ -7,6 +7,7 @@
 <title>HOLIDIARY</title>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -75,13 +76,13 @@
 					error : function(request, status, error) {
 						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 						swal("회원가입에 실패했습니다. 간편회원가입을 이용해주세요.");
-							window.close();
+						//window.close();
 					}
 				}); 
 
 			}else if(getData == 2){
 				swal("이미 등록된 회원입니다. 아닌 경우 간편회원가입 이용후, 네이버연동을 이용해주세요.");
-				window.close();
+				//window.close();
 			}else{
 				swal("이미 등록된 회원입니다");
 				window.close();

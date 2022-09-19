@@ -43,14 +43,15 @@
 				window.close();
 				window.opener.location.href = "http://localhost/main/jp.social.login.naver?naverID=" + naverID + "&naver_token=" + naver_id_login.oauthParams.access_token;
 			}else{
+				//alert('会員登録をしてください。');
 				swal("会員登録をしてください。");
-				window.close();
+				//window.close();
 			}
 			},
 		error : function(request,status,error) {
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			swal("問題が発生しました。もう一度利用してください。");
-			window.close();
+			//window.close();
 		} 
   })
      
