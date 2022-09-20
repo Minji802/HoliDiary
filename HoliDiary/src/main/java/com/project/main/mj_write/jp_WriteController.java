@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 import com.project.main.js.Subscribe;
 import com.project.main.js.User;
 import com.project.main.js.UserDAO;
+import com.project.main.js.VisitDAO;
 import com.project.main.sej.TokenMaker;
 import com.project.main.sm.Category;
 import com.project.main.sm.Diary;
@@ -37,6 +38,9 @@ public class jp_WriteController {
 
 	@Autowired
 	private DiaryDAO dDAO;
+	
+	@Autowired
+	private VisitDAO vDAO;
 
 	// 게시글 목록 불러오기 - 리스트 형식
 	@RequestMapping(value = "/jp_post-list", method = RequestMethod.GET)
@@ -195,10 +199,11 @@ public class jp_WriteController {
 	public String postDetailGo(DiaryPost p, Diary d, @RequestParam("userId") String userId, HttpServletRequest req,
 			User u, Category cate, Comment c, Like l, Subscribe s) {
 
-		if (uDAO.loginCheck(req)) {
+		if (uDAO.loginCheckJP(req)) {
 			dDAO.getDiaryInfo(req, d, userId, u, cate, s, c, p);
 			pDAO.countPostView(p, req, u);
 			pDAO.detailPost(p, req, c, l);
+			vDAO.countVisit(userId,req);
 		} else {
 			req.setAttribute("popupContentPage", "jp_popupBack.jsp");
 			return "jp_ksm_main/jp_popupBack";

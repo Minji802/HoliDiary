@@ -33,17 +33,17 @@ function goJP_ItemShop_other() {
 }
 
 function goHoliByCountry_Europe() {
-	location.href='holiByCountry.go?search=유럽';
+	location.href='JPholiByCountry.go?search=유럽';
 }
 function goHoliByCountry_America() {
-	location.href='holiByCountry.go?search=아메리카';
+	location.href='JPholiByCountry.go?search=아메리카';
 }
 function goHoliByCountry_Asia() {
-	location.href='holiByCountry.go?search=아시아';
+	location.href='JPholiByCountry.go?search=아시아';
 }
 function goHoliByCountry_Africa() {
-	location.href='holiByCountry.go?search=아프리카';
+	location.href='JPholiByCountry.go?search=아프리카';
 }
 function goHoliByCountry_Oceania() {
-	location.href='holiByCountry.go?search=오세아니아';
+	location.href='JPholiByCountry.go?search=오세아니아';
 }

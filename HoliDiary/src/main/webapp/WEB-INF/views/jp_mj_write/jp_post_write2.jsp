@@ -69,7 +69,7 @@
 			<input type="hidden" id="postImg" name="postImg">
 			
 			<div class="row justify-content-md-center">
-				<button class="writeUpload" style="font-weight: bold"> 登録 </button>
+				<button class="writeUpload" style="font-weight: bold"> 投稿 </button>
 				<button type="button" onclick="history.go(-1)" class="writeCancel"
 					style="font-weight: bold"> キャンセル </button>
 			</div>

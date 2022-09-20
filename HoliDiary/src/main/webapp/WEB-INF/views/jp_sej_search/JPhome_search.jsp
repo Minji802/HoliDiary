@@ -33,7 +33,7 @@
 			</a>
 			</c:if>
 			<c:if test="${sessionScope.loginUser.userID == null}">
-			<a href="login.go">
+			<a href="jp.login.go">
 			<img src="${c.postimg }" onerror="this.onerror=null; this.src='resources/alterImg/free-icon-picture-6490775.png';">
 			</a>
 			</c:if>

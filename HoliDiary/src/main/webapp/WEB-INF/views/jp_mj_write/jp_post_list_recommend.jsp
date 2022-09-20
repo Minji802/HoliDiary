@@ -78,11 +78,12 @@
 		<table id="postListTbl" border=0
 			style="width: 100%; text-align: center; border-collapse: collapse;">
 			<tr class="postTbl">
-				<td class="postTitle" style="width: 30%">Title</td>
-				<td class="postWriter" style="width: 20%">Writer</td>
-				<td class="postDate" style="width: 25%">Date</td>
-				<td class="postLike" style="width: 10%">Likes</td>
-				<td class="postNo" style="width: 15%">Views</td>
+				<td class="postTitle" style="width: 25%">Title</td>
+				<td class="postWriter" style="width: 18%">Writer</td>
+				<td class="postDate" style="width: 23%">Date</td>
+				<td class="postCategory" style="width: 18%">Category</td>
+				<td class="postRecommend" style="width: 8%">Likes</td>
+				<td class="postNo" style="width: 8%">Views</td>
 			</tr>
 			<c:if test="${DiaryPosts.size() != 0}">
 				<c:forEach var="dp" items="${DiaryPosts }" varStatus="status">
@@ -91,7 +92,8 @@
 							href='jp_post.detail.go?postNum=${dp.postNum }&userId=${dp.postWriter }'>${dp.postTitle }</a></td>
 						<td class="postWriter">${dp.postWriter }</td>
 						<td class="postDate">${dp.postDate }</td>
-						<td class="postDate">${dp.postRecommend }</td>
+						<td class="postCategory">${dp.postCategory }</td>
+						<td class="postRecommend">${dp.postRecommend }</td>
 						<td class="postViewCount">${dp.postView }</td>
 					</tr>
 				</c:forEach>

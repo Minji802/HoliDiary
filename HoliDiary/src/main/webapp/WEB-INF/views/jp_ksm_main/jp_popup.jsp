@@ -161,7 +161,7 @@ body {
 	<!-- 우클릭 시 메뉴 -->
 	<c:if test="${Diary.diaryUserId eq sessionScope.loginUser.userID }">
 		<ul class="contextmenu">
-			<li><a href="jp_write.go?userId=${sessionScope.loginUser.userID }">ポスト作成</a></li>
+			<li><a href="jp_write.go?userId=${sessionScope.loginUser.userID }">投稿を作成</a></li>
 			<li><a
 				href="jp_mainImg.updateGo?userId=${sessionScope.loginUser.userID }">ホーム編集</a></li>
 			<li><a
@@ -230,7 +230,7 @@ body {
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="feather feather-list">
             <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-          </svg> POST
+          </svg> DIARY POST
 					</a>
 
 <!-- 카테고리 수정 &삭제 & 추가 -->
@@ -306,7 +306,7 @@ body {
 						<div class="action-buttons-wrapper">
 							<button class="action-buttons btn-upload"
 								onclick="location.href='jp_write.go?userId=${sessionScope.loginUser.userID }'"
-								style="background: ${Diary.themeColor}">ポスト作成</button>
+								style="background: ${Diary.themeColor}">投稿を作成</button>
 						</div>
 					</c:when>
 					<c:when test="${not empty Subcribe}">

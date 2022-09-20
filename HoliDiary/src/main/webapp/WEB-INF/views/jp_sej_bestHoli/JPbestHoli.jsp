@@ -294,10 +294,10 @@
                 <footer>
                     <div><fmt:formatDate value="${bh.postdate }" pattern="yyyy/MM/dd"/> </div>
                     <c:if test="${sessionScope.loginUser.userID != null}">
-                    <a <%-- href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }" --%>onclick="searchPopup('${bh.postnum }','${bh.postwriter }')">READ MORE</a>
+                    <a <%-- href="post.detail.go?postNum=${bh.postnum } + &userId=${bh.postwriter }" --%>onclick="searchPopupJP('${bh.postnum }','${bh.postwriter }')">READ MORE</a>
                 	</c:if>
                     <c:if test="${sessionScope.loginUser.userID == null}">
-                    <a href="login.go">READ MORE</a>
+                    <a href="jp.login.go">READ MORE</a>
                 	</c:if>
                 </footer>
             </article>
