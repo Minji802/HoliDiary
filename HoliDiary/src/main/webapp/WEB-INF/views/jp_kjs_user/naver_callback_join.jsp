@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -75,16 +76,16 @@
 					error : function(request, status, error) {
 						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 						swal("会員登録に失敗しました。一般会員登録を利用してください。");
-							window.close();
+							//window.close();
 					}
 				}); 
 
 			}else if(getData == 2){
 				swal("登録している会員です。会員登録をしたことがない場合、会員登録をした後ネイバー連動をしてください。");
-				window.close();
+				//window.close();
 			}else{
 				swal("すでに登録している会員です。");
-				window.close();
+				//window.close();
 			}
 		},
 		error : function(request,status,error) {

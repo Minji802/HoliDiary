@@ -45,7 +45,8 @@ body {
 </style>
 <body>
 
-	<div class="popupBack">ログイン後に利用可能な機能です。</div>
+<!-- 	<div class="popupBack">ログイン後に利用可能な機能です。</div> -->
+	<div class="popupBack">ログインしてください。</div>
 	<div>
 		<a href="#" onclick=popupclose()><img class="popupBackLoginBtn" src="resources/sm_img/close-removebg-preview.png"></a>
 	</div>
