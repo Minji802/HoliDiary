@@ -1,5 +1,5 @@
 # HoliDiary
-## Soledesk Final Project ####2022.08 ~ 2022.09
+## Soledesk Final Project 2022.08 ~ 2022.09
 ## Participants
 |박민지|김수민|김지수|손은주|
 |---|---|---|---|
