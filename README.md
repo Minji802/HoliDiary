@@ -7,7 +7,7 @@ HoliDiaryは[KR]と[JP]の2つの言語で作られたサイトです。README�
 
 ***
 <div align="right">
-  [KOR]
+  [KR]
 </div>
 
 # HoliDiary
