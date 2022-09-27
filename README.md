@@ -61,6 +61,6 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 ## Assigned Task
 |박민지<br>(パク・ミンジ)|김수민<br>(キム・スミン)|김지수<br>(キム・ジス)|손은주<br>(ソン・ウンジュ)|
 |---|---|---|---|
-|mjpark.0311kr@gmail.com|kmanvy@naver.com|---|---|
+|:mjpark.0311kr@gmail.com:|:kmanvy@naver.com:|:---:|:---:|
 |**リーダー・Git Master**<br>**[ダイアリー掲示板]**<br>- 掲示板UI構成<br>- GoogleマップAPI活用<br>- ダイアリー投稿/コメント/<br>いいね/投稿物共有|**[ダイアリーメイン画面]**<br>- ダイアリーメイン画面<br>(天気情報API)<br>- ダイアリー修正<br>- スケジューラー<br>- ダイアリーCSS|**[ユーザ管理]**<br>- ログイン(ソーシャル<br>ログインAPI)<br>- マイページ・登録<br>- ダイアリー訪問者統計<br>- ログイン・マイページCSS|**[メイン画面]**<br>- メインホームCSS<br>- 最新・人気順掲示板<br>- 販売メニュー(機能X)<br>- 国別旅行レビュー集め|
 |**리더 겸 Git Master**<br>**[다이어리 게시판]**<br>- 게시판 UI 구성<br>- 구글맵API 활용<br>- 다이어리 글쓰기/댓글/<br>좋아요/공유|**[다이어리 메인화면]**<br>- 다이어리 메인화면<br>(날씨API)<br>- 다이어리 자체수정<br>- 스케쥴러<br>- 다이어리CSS|**[유저 관리]**<br>- 로그인(소셜로그인API)<br>- 마이페이지 및 구독<br>- 다이어리 방문자 현황<br>- 로그인・마이페이지CSS|**[메인화면]**<br>- 전체 틀 CSS<br>- 최신글, 인기글<br>- 판매(기능구현x)<br>- 국가별 여행후기 모아보기|
