@@ -17,7 +17,7 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 
 ## Development Environment
 <img src="https://img.shields.io/badge/Oralce-F80000?style=flat-square&logo=Oracle&logoColor=white"/> <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat-square&logo=Eclipse IDE&logoColor=white"/> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat-square&logo=Apache Tomcat&logoColor=black"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=black"/> <img src="https://img.shields.io/badge/CSS3-F43059?style=flat-square&logo=CSS3&logoColor=black"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Sourcetree-0052CC?style=flat-square&logo=Sourcetree&logoColor=white"/>
-<img width="600" src="https://user-images.githubusercontent.com/107027223/192579393-18225f05-def1-4225-947d-806bf0a97380.png"/> <br>
+<img width="600" src="https://user-images.githubusercontent.com/107027223/192581321-9c368b16-5439-489d-a3c2-a70a00bafcd7.png"/> <br>
 
 ## Database
 <img width="600" src="https://user-images.githubusercontent.com/107032817/192459590-efb74f8a-cd7f-4da0-938a-b9a36e9f6113.png"/> <br>
