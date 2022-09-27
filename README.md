@@ -2,8 +2,8 @@
 HoliDiary는 [KR]과 [JP] 두 가지 언어로 만들어진 사이트입니다. README도 2가지 언어로 만들어져 있습니다. 참고해주시길 바랍니다.<br>
 HoliDiaryは[KR]と[JP]の2つの言語で作られたサイトです。READMEも2つの言語で作られています。ご参考ください。<br>
 
-[한국어 PDF 파일 다운로드](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary/files/9653803/HOLIDIARY_KOR.pdf)<br>
-[日本語 PDF ファイル ダウンロード](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary/files/9653819/HOLIDIARY_JPN.pdf)<br>
+[한국어 PDF 파일 다운로드](https://github.com/Minji802/HoliDiary/files/9657893/HOLIDIARY_KOR.pdf)<br>
+[日本語 PDF ファイル ダウンロード](https://github.com/Minji802/HoliDiary/files/9657897/HOLIDIARY_JPN.pdf)<br>
 
 ***
 
@@ -17,7 +17,7 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 
 ## Development Environment
 <img src="https://img.shields.io/badge/Oralce-F80000?style=flat-square&logo=Oracle&logoColor=white"/> <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat-square&logo=Eclipse IDE&logoColor=white"/> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat-square&logo=Apache Tomcat&logoColor=black"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=black"/> <img src="https://img.shields.io/badge/CSS3-F43059?style=flat-square&logo=CSS3&logoColor=black"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Sourcetree-0052CC?style=flat-square&logo=Sourcetree&logoColor=white"/>
-<img width="600" src="https://user-images.githubusercontent.com/107032817/192460103-5a64f68d-b5f4-4dc8-b014-b1c20f841e1f.png"/> <br>
+<img width="600" src="https://user-images.githubusercontent.com/107027223/192579393-18225f05-def1-4225-947d-806bf0a97380.png"/> <br>
 
 ## Database
 <img width="600" src="https://user-images.githubusercontent.com/107032817/192459590-efb74f8a-cd7f-4da0-938a-b9a36e9f6113.png"/> <br>
