@@ -24,7 +24,7 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 
 ## Description
 <img width="600" src="https://user-images.githubusercontent.com/107032817/192462001-7ca9f0fa-f8d1-40db-b6f0-7e7549ae4c31.png"/> <br>
-여행은 실제 취미활동에 많은 비중을 차지하고 있습니다. 많은 사람들이 여행에 대한 동경의 마음을 가지고 있으며 최근에는 온라인 활동이 활발해지고 있습니다. 저희 팀은 여행을 취미로 가지고 있는 사람들이 활발하게 소통할 수 있는 웹사이트를 만들고자 하였습니다. 휴가를 뜻하는 Holiday와 일기를 뜻하는 Diary를 합쳐서 여행을 기록하는 커뮤니티 사이트 'Holi Diary' 제작을 결정하였습니다.<br>
+여행은 실제 취미활동에 많은 비중을 차지하고 있습니다. 많은 사람들이 여행에 대한 동경의 마음을 가지고 있으며 최근에는 온라인 활동이 활발해지고 있습니다. 저희 팀은 여행을 취미로 가지고 있는 사람들이 활발하게 소통할 수 있는 웹사이트를 만들고자 하였습니다. 휴가를 뜻하는 Holiday와 일기를 뜻하는 Diary를 합쳐서 여행을 기록하는 커뮤니티 사이트 'HoliDiary' 제작을 결정하였습니다.<br>
 
 ***
 
