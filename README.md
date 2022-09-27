@@ -7,9 +7,9 @@ HoliDiaryは[KR]と[JP]の2つの言語で作られたサイトです。README�
 
 ***
 <div align="right">
-  내용물
+  [KOR]
 </div>
-**[KOR]**
+
 # HoliDiary
 #### 여행 정보를 기록하여 공유하는 커뮤니티 웹 사이트 [KR]
 **2022 Final-Project Team ３** <br>
