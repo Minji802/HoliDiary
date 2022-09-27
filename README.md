@@ -6,7 +6,9 @@ HoliDiaryは[KR]と[JP]の2つの言語で作られたサイトです。README�
 [日本語 PDF ファイル ダウンロード](https://github.com/Minji802/HoliDiary/files/9657897/HOLIDIARY_JPN.pdf)<br>
 
 ***
-
+<div align="right">
+  내용물
+</div>
 **[KOR]**
 # HoliDiary
 #### 여행 정보를 기록하여 공유하는 커뮤니티 웹 사이트 [KR]
