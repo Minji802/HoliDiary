@@ -7,8 +7,8 @@ HoliDiaryは[KR]と[JP]の2つの言語で作られたサイトです。README�
 
 ***
 
-# HoliDiary <br><br> 
-### 여행 정보를 기록하여 공유하는 커뮤니티 웹 사이트 [KR]
+# HoliDiary
+#### 여행 정보를 기록하여 공유하는 커뮤니티 웹 사이트 [KR]
 **2022 Final-Project Team ３** <br>
 
 Project nickname : HoliDiary <br>
@@ -29,7 +29,8 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 
 ***
 
-# HoliDiary : 旅行情報を記録するコミュニティウェブサイト [JP]
+# HoliDiary
+#### 旅行情報を記録するコミュニティウェブサイト [JP]
 **2022 Final-Project Team ３** <br>
 
 Project nickname : HoliDiary <br>
