@@ -42,7 +42,7 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 
 Project nickname : HoliDiary <br>
 Project execution period : 2022.8.1 ~ 2022.9.5 <br><br>
-Member : 박민지(パク・ミンジ), 김수민(キム・スミン), 김지수(キム・ジス), 손은주(ソン・ウンジュ)<br>
+Member : パク・ミンジ、キム・スミン、キム・ジス、ソン・ウンジュ<br>
 Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary) <br><br>
 
 ## Development Environment
