@@ -32,7 +32,10 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 
 ***
 
-**[JP]**
+<div align="right">
+  [JP]
+</div>
+
 # HoliDiary
 #### 旅行情報を記録するコミュニティウェブサイト [JP]
 **2022 Final-Project Team ３** <br>
