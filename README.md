@@ -20,7 +20,7 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 <img width="600" src="https://user-images.githubusercontent.com/107027223/192582279-9faa8cc4-a4ef-4989-8a9a-2c0ee150e97f.png"/> <br>
 
 ## Database
-<img width="600" src="https://user-images.githubusercontent.com/107032817/192459590-efb74f8a-cd7f-4da0-938a-b9a36e9f6113.png"/> <br>
+<img width="600" src="https://user-images.githubusercontent.com/107027223/192584427-96c9af90-396a-4e1a-8445-4ebddda59fa5.png"/> <br>
 
 ## Description
 <img width="600" src="https://user-images.githubusercontent.com/107032817/192462001-7ca9f0fa-f8d1-40db-b6f0-7e7549ae4c31.png"/> <br>
