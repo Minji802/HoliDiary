@@ -17,7 +17,7 @@ HoliDiaryは[KR]と[JP]の2つの言語で作られたサイトです。README�
 Project nickname : HoliDiary <br>
 Project execution period : 2022.8.1 ~ 2022.9.5 <br><br>
 Member : 박민지, 김수민, 김지수, 손은주<br>
-Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary) <br><br>
+Git URL : [HoliDiary](https://github.com/Minji802/HoliDiary) <br><br>
 
 ## Development Environment
 <img src="https://img.shields.io/badge/Oralce-F80000?style=flat-square&logo=Oracle&logoColor=white"/> <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat-square&logo=Eclipse IDE&logoColor=white"/> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat-square&logo=Apache Tomcat&logoColor=black"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=black"/> <img src="https://img.shields.io/badge/CSS3-F43059?style=flat-square&logo=CSS3&logoColor=black"/> <img src="https://img.shields.io/badge/spring-%236DB33F?style=flat-square&logo=spring&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black"/> <img src="https://img.shields.io/badge/jquery-%230769AD?style=flat-square&logo=jquery&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Sourcetree-0052CC?style=flat-square&logo=Sourcetree&logoColor=white"/>
@@ -43,7 +43,7 @@ Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary)
 Project nickname : HoliDiary <br>
 Project execution period : 2022.8.1 ~ 2022.9.5 <br><br>
 Member : パク・ミンジ、キム・スミン、キム・ジス、ソン・ウンジュ<br>
-Git URL : [HoliDiary](https://github.com/KimSumin0/Team3_FinalProject_HoliDiary) <br><br>
+Git URL : [HoliDiary](https://github.com/Minji802/HoliDiary) <br><br>
 
 ## Development Environment
 <img src="https://img.shields.io/badge/Oralce-F80000?style=flat-square&logo=Oracle&logoColor=white"/> <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat-square&logo=Eclipse IDE&logoColor=white"/> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat-square&logo=Apache Tomcat&logoColor=black"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=black"/> <img src="https://img.shields.io/badge/CSS3-F43059?style=flat-square&logo=CSS3&logoColor=black"/> <img src="https://img.shields.io/badge/spring-%236DB33F?style=flat-square&logo=spring&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black"/> <img src="https://img.shields.io/badge/jquery-%230769AD?style=flat-square&logo=jquery&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Sourcetree-0052CC?style=flat-square&logo=Sourcetree&logoColor=white"/>
